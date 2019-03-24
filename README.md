@@ -3,7 +3,8 @@
 
 ## Highlited features:
 
-graph.tin	- Graphical status bars function
+#### graph.tin
+* Graphical status bars function
 
 ### 3k/3s:
 #### 3k/mapper.tin
