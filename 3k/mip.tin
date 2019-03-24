@@ -107,7 +107,7 @@
 		#CASE {"DDD"} {#NOP Room Exits;#NOP Split at Hex 160 (Non Breaking Space);};
 		#CASE {"FFF"} {#NOP Combined Stats Data;.mipProcessFFF {%2}};
 		#CASE {"HAA"} {#NOP Room Items;};
-		#CASE {"HAB"} {#NOP Item Actions;};
+		#CASE {"HAB"} {#NOP Item Actions;.mipProcessHAB {%2}};
 		#DEFAULT {#NOP Every other non-handled flag;#showme <148>UNHANDLED MIP: %0<088>};
 	}
 }
@@ -371,9 +371,23 @@
 	}
 }
 
+#NOP ***** Room Nouns Handling *****;
+#ALIAS {.mipProcessHAB} {
+	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
+		#list {nouns} {fin} {&3} {noun_index};
+		#if {$noun_index == 0} {
+			#list {nouns} {add} {&3};
+			#if {"$autosearch" == "on"} {
+				exa &3;
+				search &3
+			}
+		}
+	}
+}
+#list {nouns} {create}
+
 #NOP ***** Guild Stats Line Colour Handling *****;
-#FUNCTION {fMipColourConv}
-{
+#FUNCTION {fMipColourConv} {
   #VAR {result} {%1};
   #REPLACE {result} {>} {<099>};
   #REPLACE {result} {<y} {<839>};

@@ -17,7 +17,7 @@
 	#format {icao} {%.${cut}s} {$icao};
 	#format {icao} {%r} {$icao};
 	
-	#sys .scripts/adds.tt $icao;
+	#sys ~/.scripts/adds.tt $icao;
 
 	#var addsapproved no;
 	#var addslinename {$mip[comm][line]};
