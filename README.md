@@ -25,7 +25,7 @@ graph.tin	- Graphical status bars function
 
 ### Aardwolf:
 
-####map/AWmap.tin
+#### map/AWmap.tin
 * Additional mapping features not included in the gmcp module
 * Data captures for longdesc
 * Aliases for easier map movement and mob hunting
@@ -39,7 +39,7 @@ graph.tin	- Graphical status bars function
 * Auto-mapping with exit-stubs
 * Terrain mapping to set roomsymbol to Aardwolf style terrain on adding new rooms
 
-####A W/terrain.tin
+#### AW/terrain.tin
 * Set rooms currently in your map to Aardwolf style terrain
 
 #### AW/snd.tin
