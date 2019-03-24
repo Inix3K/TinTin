@@ -9,7 +9,7 @@
 ### 3k/3s:
 #### 3k/mapper.tin
 * Mapper setup to automap for 3K or 3S  
-* Autoadds exit-stubs and colors them read to see rooms you haven't visted yet  
+* Autoadds exit-stubs and colors them red to see rooms you haven't visted yet  
 * Data capture for room short, long desc, area name  
 * Map follow on following others  
 * Transports for uncommon exits / moving areas  
