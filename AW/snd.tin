@@ -1,0 +1,51 @@
+#class {snd} {open}
+
+#act {You still have to kill \* %1 \(%2\)} {
+        #map list %2
+}
+#act {You still have to kill %d \* %2 \(%3\)} {
+        #map list %3
+}
+
+#alias snd {
+	#var sndmob %0;
+
+	#map get {roomarea} {area};
+
+	#act {{(\D{29}) (\D+)}} {
+		#unact {{(\D{29}) (\D+)}};
+		#format {findloc} {%%p} {%%3};
+
+		#unvar rooms;
+		#unvar roomlist;
+		#list rooms cre;
+		#map list {roomname} {%*$findloc%*} {roomarea} {$area} {variable} {roomlist};
+		#foreach {$roomlist} {room} {#regex {$room} {\.000} {} {#list {rooms} add {$room}}};
+
+		sndr
+	};
+
+	where $sndmob;
+}
+
+#alias sndr {
+	#map run $rooms[1];
+	#list rooms del 1;
+
+	#var sndtouch 1;
+	study $sndmob;
+}
+
+#act {There is no one here by that name.} {
+	#if {$sndtouch && &rooms[] > 0} {
+		sndr
+	}
+	#unvar sndtouch;
+}
+
+#alias snds {
+	#class {snd} {kill};
+	#delay 1 #read .tt/AW/snd.tin
+}
+
+#class {snd} {close}

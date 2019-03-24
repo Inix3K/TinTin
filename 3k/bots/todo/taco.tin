@@ -1,0 +1,100 @@
+#class {bot} {open}#NOP Track entering combat with a taco
+
+#var taco_combat 0; /*track if in combat with taco*/
+#var taco_kolettuce 0; /*track if knocked out of room by lettuce*/
+#var taco_kotaco 0; /*track if knocked out of room by taco */
+
+#NOP Setup various generic bot commands:
+#var {botpath} {e;e;e;s;w;w;w;w};
+#path load botpath;
+#unact {%*dealt%*};
+#act {dealt the killing blow to} {
+	#if {$taco_kolettuce|$taco_kotaco} {climb cord} 
+	{corpsetrig;get all;#if {!$taco_kolettuce} {#var taco_combat 0;glance};}
+	}
+
+
+#nop SHELLS
+#act {>x< DEATH TACO - CRISPY SHELLS >x< (e)} {#if {!$taco_combat} {grab shell}}
+#act {As you reach to grab a taco shell, it leaps out of your grasp, and ROARS} {exa shell on ground;#var taco_combat 1;#var mobname shell}
+#act {You try to grab a taco shell, but they all wriggle away from your grasp!} {#path walk}
+
+#nop LETTUCE
+#act {>x< DEATH TACO - SHREDDED LETTUCE >x<} {#if {!$taco_combat} {grab lettuce}}
+#act {As you reach to grab some of the shredded lettuce, it pulls away from} {exa lettuce on ground;#var taco_combat 1;#var mobname lettuce}
+#act {You try to grab some lettuce, but it shrinks away from your hand!} {#path walk}
+
+#nop TOMATOS
+#act {>x< DEATH TACO - DICED TOMATOES >x<} {#if {!$taco_combat} {grab tomatoes}}
+#act {You grab an unappetizing pile of soggy diced tomatoes.  Just as you are} {exa tomatoes on ground;#var taco_combat 1;#var mobname tomatoes}
+#act {You try to grab some tomatoes but they quiver like jello and slime away} {#path walk}
+
+#nop CHEESE
+#act {>x< DEATH TACO - GRATED CHEESE >x<} {#if {!$taco_combat} {grab cheese}}
+#act {As you reach for some cheese it melts out of your grasp, rears up, and} {exa cheese on ground;#var taco_combat 1;#var mobname cheese}
+#act {You try to grab a handful of cheese, but it slips away from you.} {#path walk}
+
+#nop MYSTERY MEAT
+#act {>x< DEATH TACO - MYSTERY MEAT >x<} {#if {!$taco_combat} {#path walk}}
+
+#nop
+#act {>x< DEATH TACO - SOUR CREAM >x<} {#if {!$taco_combat} {#path walk}}
+
+#nop
+#act {>x< DEATH TACO - GUACAMOLE >x<} {#if {!$taco_combat} {#path walk}}
+
+#nop
+#act {>x< DEATH TACO - HOT SAUCE >x<} {#if {!$taco_combat} {#path walk}}
+
+#nop
+#act {>x< DEATH TACO ASSEMBLY AREA >x<} {#nop}
+
+#act {O SNAP!!! Shredded Lettuce grabs you and THROWS you off the slide!} {#var taco_kolettuce 1}
+#act {You plummet, and SLAM into the ground!} {e;climb cord}
+#act {You grasp hold of the electrical cord, and climb up it.} {
+	#if {$taco_kolettuce} {n;w;#delay {10} {w;#var taco_kolettuce 0;}};
+	#if {$taco_kotaco} {w;w;w;#delay {10} {w;#var taco_kotaco 0;}};
+	}
+
+#act {The taco grabs you and THROWS you out of the room!} {#del {10} {w}}
+
+#nop >x< DEATH TACO FLOOR >x< (w)
+
+
+
+/*
+Veggie Taco:A Cervesa = first time use, +con, overmax sp after
+A side of rice. = overmax hp/sp
+A Veggie Taco = first time use, +wis, overmax after
+A gigantic pop
+
+Cheesy Taco
+Foil wrapper = radiation and mental ac
+nacho cheese = cold and acid ac
+meat paste = edged and energy ac
+sour cream = flame and electricity ac
+refried beans = crushing and poison ac
+
+Meat Taco
+cup of salsa
+wet wipe - stops combat
+Sliced jalapenos - +hp regen
+Cinnamon twists - throw for damage
+
+Works Taco
+Lettuce leaf
+hot sauce
+Cup of salsa - +dex, +int, +wis, +cha, regen
+
+Death Taco
+spork tier3+
+codpiece
+Guacamole skin treatment
+Shot of tequila - damage to mobs
+*/
+
+
+#nop 
+#class {bot} {close}
+
+

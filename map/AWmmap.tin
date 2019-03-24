@@ -1,0 +1,17 @@
+#class {mmap} {open}
+
+/* AW Map Capture */
+#act {^<MAPSTART>$} {
+        #act {~%%1} {
+                #line {log} {.tt/map/AWmudmap.txt} {%%1};
+                #line gag
+        };
+        #line gag
+}
+
+#act {^<MAPEND>$} {
+        #unact {~%%1};
+        #line gag
+} {1}
+
+#class {mmap} {close}

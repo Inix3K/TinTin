@@ -1,0 +1,50 @@
+#class {adds} {open}
+
+#var adds on;
+
+#alias {doadds} {
+	#var data {$mip[comm][data]};
+	#replace {data} {iwx} {#};
+	#var data_cnt 0;
+	#parse {$data} {char} {
+		#math {data_cnt} {$data_cnt + 1};
+		#if {"$char" == "#"} {
+			#var data_cut $data_cnt
+		}
+	};
+	#math {cut} {$data_cnt - $data_cut - 1};
+	#format {icao} {%r} {$data};
+	#format {icao} {%.${cut}s} {$icao};
+	#format {icao} {%r} {$icao};
+	
+	#sys .scripts/adds.tt $icao;
+
+	#var addsapproved no;
+	#var addslinename {$mip[comm][line]};
+	#switch {"$addslinename"} {
+		#case {"ADMIN"}         {#var addsapproved yes};
+		#case {"Bear"}          {#var addsapproved yes};
+		#case {"Bloodname"}     {#var addsapproved yes};
+		#case {"Clan Cad"}      {#var addsapproved yes};
+		#case {"Council"}       {#var addsapproved yes};
+		#case {"Falcon"}        {#var addsapproved yes};
+		#case {"JuggNewbie"}    {#var addsapproved yes};
+		#case {"Main"}          {#var addsapproved yes};
+		#case {"Party"}         {#var addsapproved yes};
+		#case {"Tell"}		{#var addsapproved yes};
+		#case {"Whine"}         {#var addsapproved yes};
+		#case {"Wolf"}          {#var addsapproved yes};
+		#default                {#var addsapproved no};
+	};
+	#if {"$addsapproved" == "yes"} {
+		#var line {$mip[comm][command]};
+		#delay 1 {
+			#send converse $line;
+			#read .scripts/adds.txt;
+			#send **;
+		}
+	}
+}
+
+
+#class {adds} {close}

@@ -1,0 +1,31 @@
+remotevaf setplan;yes
+@higreen: Tool        Description     Source@
+@hiblack:---------------------------------------------------------------------------@
+@higreen: 8Inix@@white:       Magic 8-Ball    @@green:Self created.  Answers from@
+@green:                             Wikipedia: Magic 8-Ball@
+@higreen: IDefine@@white:     Definitions     @@green:New Oxford American Dictionary@
+@white: @
+@hired:                              *@@white: Whitelisted @@red:*@
+@white: @
+@higreen: UDefine@@white:     Urban Defs      @@green:Urban Dictionary@
+@higreen: IWX@@white:         METARS/TAFS     @@green:AviationWeather.gov@
+@white: @
+@hiblack:---------------------------------------------------------------------------@
+@white: @
+@hicyan: How to use:@
+@hiblue:     State the tool name followed by the question, word, or ICAO airport@
+@hiblue: identifier, respectively.@
+@hiblack: <@@yellow:chatline@@hiblack:/@@yellow:tell@@hiblack:> <@@higreen:toolname@@hiblack:> <@@hicyan:argument@@hiblack:>@
+@white: E.g.    @@yellow:ju@@higreen: 8inix@@hiblack:,@@hicyan: will it rain today?@
+@yellow:         tell inix @@higreen:iwx@@hicyan: klax@
+ 
+@higreen: *@@white: Whitelist:  Whitelisted tools will not function on all lines.  They are@
+@white:     restricted to @@yellow:Jugger guild lines@@white:,@@yellow: clan line@@white:,@@yellow: party@@white:, and@@yellow: tells.@
+ 
+@higreen: **@@white: These tools are here for you to use and have fun, but any abuse and you@
+@white:     will be @@hiblack:blacklisted@@white: from using them in any manner.@
+@white: @
+@higreen: ***@@white: Anti-idle: These tools are included in my @@red:deadman@@white: to prevent being@
+@white:     unidled by others.@
+**
+finger inix

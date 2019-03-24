@@ -1,0 +1,11 @@
+#class {bot} {open}
+
+#var {botpath} {e;e;n;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;n;n;n;n;n;n;n;n;w;w}
+
+#act {=M= {Aegis Assembler Model 68-AS}} {
+	#var mobname robot;
+	_check_mob
+}
+
+#class {bot} {close}
+

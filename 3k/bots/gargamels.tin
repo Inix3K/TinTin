@@ -1,0 +1,14 @@
+#class {bot} {open}
+
+#var {botpath} {w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;s;w;e;e;w;n;n;n;n;n;n;out;n;n;n;n;n;n;n;n;w;w;n;n;n;n}
+
+#act {^=M= {Azreal|A very large rat|A large furry spider}} {
+	#switch {"%1"} {
+		#case {"Azreal"}		{#var mobname cat};
+		#case {"A very large rat"}	{#var mobname rat};
+		#case {"A large furry spider"}	{#var mobname spider};
+	};
+	_check_mob
+}
+
+#class {bot} {close}

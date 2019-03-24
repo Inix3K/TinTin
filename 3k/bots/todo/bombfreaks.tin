@@ -1,0 +1,17 @@
+#class {bot} {open}
+#var {area} {bombfreaks}
+#var {botpath} {n;n;e;s;n;n;e;d;w;e;s;s;w;e;e;w;s;s;w;e;e;w;s;s;w;e;e;w;s;s;w;e;e;w;s;s;w;e;e;w;s;e;w;n;n;n;n;n;n;n;n;n;n;n;u;w;s;s;w;s}
+
+#act {^=M= %*{A Worshipper|Bailey|Anti-Technologist}} {
+        #if {"%2" == "A Worshipper"} {#var mobname worshipper};
+		#if {"%2" == "Bailey"} {#var mobname bailey};
+		#if {"%2" == "Anti-Technologist"} {#var mobname human};
+        _check_mob
+        }
+#act {You've killed} {#nop} {1}
+
+#class {bot} {close}
+
+
+
+

@@ -1,0 +1,7 @@
+#class {bot} {open}
+#var {areaname} {MT - Spiders}
+#var {botpath} {w;s;e;e;n;n;w;w;w;s;s;s;e;e;e;e;n;n;n;n;w;w;w;w;s;s;e;e}
+#act {=M= %*{Widow|Mantis|Tarantula}} {#var mobname bug;_check_mob}
+#class {bot} {close}
+
+

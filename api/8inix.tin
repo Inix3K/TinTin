@@ -1,0 +1,39 @@
+#class {8inix} {open}
+
+#var 8inix on
+
+#alias {do8inix} {
+	
+	#math {outcome} {1d20};
+	#switch {$outcome} {
+		#case {1}	{#var message {As I see it, yes}};
+		#case {2}	{#var message {It is certain}};
+		#case {3}	{#var message {It is decidedly so}};
+		#case {4}	{#var message {Most likely}};
+		#case {5}	{#var message {Outlook good}};
+		#case {6}	{#var message {Signs point to yes}};
+		#case {7}	{#var message {Without a doubt}};
+		#case {8}	{#var message {Yes}};
+		#case {9}	{#var message {Yes - definitely}};
+		#case {10}	{#var message {You may rely on it}};
+		#case {11}	{#var message {Reply hazy, try again}};
+		#case {12}	{#var message {Ask again later}};
+		#case {13}	{#var message {Better not tell you now}};
+		#case {14}	{#var message {Cannot predict now}};
+		#case {15}	{#var message {Concentrate and ask again}};
+		#case {16}	{#var message {Don't count on it}};
+		#case {17}	{#var message {My reply is no}};
+		#case {18}	{#var message {My sources say no}};
+		#case {19}	{#var message {Outlook not so good}};
+		#case {20}	{#var message {Very doubtful}};
+		#default	{#var message {WOW!  You must really suck at life...you broke the 8Inix!}}
+	};
+	#var 8line {$mip[comm][command]};
+	#if {"$mip[comm][line]" == "Tell"} {
+		#delay 1 #send $8line (8)Inix : $message;
+	} {
+		#delay 1 #send $8line [30\;1m([34\;1m8[30\;1m)[0mInix : $message;
+	}
+}
+
+#class {8inix} {close}

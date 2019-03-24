@@ -1,0 +1,8 @@
+#class {dtaco} {open}
+
+#var weapon axe
+#act {The melting cheese finally evaporates from %w.} {!wield $weapon}
+
+#act {The guacamole coating %w finally oozes off.} {!wear all}
+
+#class {dtaco} {close}

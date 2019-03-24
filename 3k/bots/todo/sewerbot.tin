@@ -1,0 +1,128 @@
+#CLASS {sewerbot} OPEN 
+#map create 
+#map goto 1 
+#map flag vtmap on 
+#split 10 4
+#map flag vtgraphics off
+
+#var exit 0 
+#var foundroom 0 
+#var foundmob 0 
+#var foundplayer 0 
+#var halt 0 
+#var leave 0 
+#var mobname 0 
+#var numexits 0 
+#var reverse 0 
+#list {sewerexits} {clr} 
+#list {newexits} {clr} 
+#list {curexits} {clr} 
+
+#NOP Bind numpad '/' to advance rooms, '+' to stop, '*' to run to a stub room.
+#macro {\eOo} {#var foundplayer 0;#var foundmob 0;#var foundroom 0;#var halt 0;glance} 
+#macro {\eOm} {#var halt 1;#map run stub;#map name {}} 
+#alias {sbot} {#var foundplayer 0;#var foundmob 0;#var foundroom 0;#var halt 0;glance}
+#alias {back} {#var halt 1;#map run stub;#map name {}}
+
+
+#action {>%*} { 
+   xx 
+} {10} 
+
+/* Avoid rooms with players heavenly|saintly|very good|*/ 
+#action {-P-} 
+{ 
+   #var foundplayer 1;
+   #var foundmob 0 
+} 
+
+#function {reversedir} { 
+   #if {"%1"=="n"} {#var result s} 
+   #if {"%1"=="s"} {#var result n} 
+   #if {"%1"=="e"} {#var result w} 
+   #if {"%1"=="w"} {#var result e} 
+   #if {"%1"=="u"} {#var result 0} 
+} 
+
+/* Returns a list of all elements in list1 that are not also in list2 */ 
+#function {listcompare} { 
+   #list {result} {clr};
+   #var temp {%2};
+   #forall {%1} { 
+      #list {temp} {find} {&0} {found};
+      #if {$found==0} {#list {result} {INS} {-1} {&0}};
+   };
+   #unvar found;
+   #unvar temp;
+} 
+
+#action {You lose your footing and wind up flat on your butt} 
+{ 
+   #map undo;
+   $exit;   
+} 
+
+#action {{Dead End|Sewer Maze|Sewer Portal} (%2)} 
+{ 
+	#var foundroom 1;
+	#var sewerexits %2; 
+	#map get roomexits mapexits;
+	#var j 0;
+	#list curexits clr;
+	#foreach {$mapexits} {i} {
+		#if {$j == 1} {
+			#var j 0;
+			#continue;
+		};
+		#list curexits add $i;
+		#var j 1;
+		};
+   #replace {sewerexits} {,} {;};
+   #list {sewerexits} {create} {$sewerexits};
+   #list {result} {find} {u} {sewerexits};
+   #if {$result > 0} {  
+		#map name portal;
+		#if {$leave == 1} {#var halt 1;#map destroy;#class sewerbot kill};
+		#list {sewerexits} {del} {$result};
+			};
+   #var newexits @listcompare{{$sewerexits} {$curexits}};
+   #list {newexits} {size} {numexits};
+   #if {$numexits > 0} {
+		#var exit $newexits[+1d$numexits];
+		#if {$numexits > 1} {#map name stub};
+   } {
+      #list {sewerexits} {find} {$reverse} {result};
+      #list {sewerexits} {delete} {$result};
+      #list {sewerexits} {size} {numexits};
+      #if {$numexits > 0} {#var exit $sewerexits[1d$numexits]} {#var exit $reverse};
+   };
+   #var reverse @reversedir{$exit}
+}
+
+#action {^=M= {Slug|Muck Monster|Venomous sludge|Thorn beast|Grimy Beast|Mudman|Living Fungus}}
+{
+	#if {"%1"=="Slug"} {#var mobname slug}
+	#if {"%1"=="Muck Monster"} {#var mobname monster}
+	#if {"%1"=="Venomous sludge"} {#var mobname sludge}
+	#if {"%1"=="Thorn beast"} {#var mobname beast}
+	#if {"%1"=="Grimy Beast"} {#var mobname beast}
+	#if {"%1"=="Mudman"} {#var mobname mudman}
+	#if {"%1"=="Living Fungus"} {#var mobname fungus};
+	#if {$leave==0 && $foundmob==0 && $foundplayer==0}
+	{
+		#var foundmob 1;
+		#var halt 1;
+		k $mobname
+	}
+}
+
+#alias xx {
+	#if {$foundmob==0 && $foundroom==1 && $halt==0}
+	{
+		#var foundroom 0;
+		#var foundplayer 0;
+		$exit
+	}
+}
+#CLASS {sewerbot} CLOSE
+

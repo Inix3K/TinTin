@@ -1,0 +1,15 @@
+#class {bot} {open}
+#var {area} {leprechaun}
+#var {botpath} {d;e;s;w;out;e;out;s;e;out;s;out;n;n;ne;nw;out;e;n;out;e;e;n;out;e;w;w;w;w;sw;w;u}
+
+#act {^=M= {A leprechaun|An adult}}{
+	#var mobname leprechaun;
+        _check_mob
+        }
+#act {You've killed} {#nop} {1}
+
+#class {bot} {close}
+
+
+
+

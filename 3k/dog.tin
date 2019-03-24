@@ -1,0 +1,37 @@
+#class {dog} {open}
+
+#act {{^Kerensky :: HP: (\d+)/(\d+)  Happy: ([\d\-]+)\%  Hungry: ([\d\-]+)\%  Level: (\d+)/(\d+)\%}} {
+	#var {dog_hp}	{%2};
+	#var {dog_mhp}	{%3};
+	#var {dog_hap}	{%4};
+	#var {dog_hun}	{%5};
+	#var {dog_lvl}	{%6};
+	#var {dog_tnl}	{%7};
+	#if {$dog_hp < $dog_mhp*.75} {
+		#echo <001>!DOGGIE IS HURTING!<088>;
+		#bell
+	};
+	#if {$dog_hap < 95} {!dog pet};
+	#if {$dog_hun > 40} {
+		#if 	{$inv_count > 10}	{!drop corpse};
+		#elseif {$truck_count > 0}	{!truck drop corpse};
+		#elseif {$cooler_count > 0}	{!uncooler corpse};
+		#elseif {$inv_count > 0}	{!drop corpse};
+		#elseif {$freezer_count > 0}	{!deslab};
+		#elseif {$coffin_count > 0}	{!unwrap};
+		#else	{#echo {<001>!NO CORPSES!<088>}};
+		!dog eat
+	}
+}
+
+#act {{(?:\w+) command(?:s)? (?:everyone|your audience) to HEEL\!}} {!dog heel}
+#act {has commanded you to HEEL!} {!dog heel}
+#act {woofs at you} {!dog stay}
+#act {You woof.$} {!dog stay}
+#act {woofs.$} {!dog stay}
+#act {Your dog lays down and places his head on his paws, looking sad\.$} {!say Kerensky is staying here.}
+#act {Your dog is so happy he can hardly stand it and runs around in circles\.$} {!say Kerensky is following me.}
+#act {Your dog looks disappointed, but slowly moves behind you\.$} {!say Kerensky is no longer assisting me in combat.}
+#act {Your dog is so happy he can hardly stand it and bounds in front of you\.$} {!say Kerensky is now assisting me in combat.}
+
+#class {dog} {close}

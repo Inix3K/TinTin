@@ -1,0 +1,55 @@
+#class {botcycle} {open}
+
+#var cycle 0
+
+#alias {ba} {
+	#list {botcycle} {add} {%1};
+	#list {botcycle} {size} {areacount}
+}
+
+#alias {br} {
+	#list {botcycle} {del} {%1};
+	#list {botcycle} {size} {areacount}
+}
+
+#alias {nextarea} {
+	#if {$cycle < $areacount} {
+		#math cycle {$cycle+1}
+	} {
+		#var cycle 1
+	};
+	#list {botcycle} {get} {$cycle} {currentarea};
+	go $currentarea;
+	#delay {1} {- $currentarea};
+	#delay {2} {..}
+}
+
+#alias {killcycle} {#var areacount 0}
+
+#alias {bc} {
+	#echo {<228> +-------------------+}<088>;
+	#echo {<228> |<138>    Area Cycler    <228>|<088>};
+	#echo {<228> +-------------------+}<088>;
+	#if {&botcycle[] == 0} {
+		#echo {<228> |<178>  No areas loaded  <228>|<088>};
+		#echo {<228> +-------------------+}<088>;
+	} {
+		#var cnt 0;
+		#while {$cnt < &botcycle[]} {
+			#math {cnt} {$cnt + 1};
+			#if {$cnt == $cycle} {
+				#format {cntnum} {%+4s} {<128>$cnt\.<088>};
+				#format {area_display} {%-13s} {<128>$botcycle[$cnt]<088>};
+			} {
+				#format {cntnum} {%+4s} {<178>$cnt\.<088>};
+				#format {area_display} {%-13s} {<148>$botcycle[$cnt]<088>};
+			};
+			#echo { <228>| $cntnum $area_display <228>|<088>};
+		};
+		#echo { <228>+-------------------+}<088>;
+	}
+}
+
+#alias {bas} {ba {rim2;android;rim2;dundee8;rim2;dundee7;rim2;dundee6;rim2;dundee5}}
+
+#class {botcycle} {close}

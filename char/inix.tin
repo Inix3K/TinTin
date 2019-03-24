@@ -1,0 +1,191 @@
+#class {inix} {open}
+
+#read .tt/3k/mip.tin
+#read .tt/api/8inix.tin
+#read .tt/api/adds.tin
+#read .tt/api/define.tin
+#read .tt/api/udefine.tin
+#read .tt/api/stocks.tin
+
+#act {HP:\[{\d+}/{\d+}\] SP:\[{\d+}/{\d+}\] S:\[{\d+}\%\] HE:\[{\d+}\%\] HT:\[{\d+}\] M/C:\[{\d+}/{\d+}\]\[{\d+}/{\d+}\]\[{\d+}\%\] G:{[\d\.]+}\%} {
+	#var {my[hp][current]}		{%1};
+	#var {my[hp][max]}		{%2};
+	#var {my[sp][current]}		{%3};
+	#var {my[sp][max]}		{%4};
+	#var {my[gp1][current]}		{%5};
+	#var {my[gp2][current]}		{%6};
+	#var {hits}		{%7};
+	#var {nukes}		{%8};
+	#var {nukes_max}	{%9};
+	#var {clan}		{%10};
+	#var {clan_max}		{%11};
+	#var {reset}		{%12};
+	#var {gxp}		{%13};
+	#if {$my[gp1][current] < 60} {stimheal};
+	#if {$my[gp1][current] < 50} {stimheal};
+	#if {$my[gp1][current] < 40} {stimheal};
+	#if {$my[gp1][current] < 30} {stimheal};
+	#if {$my[gp1][current] < 20} {stimheal};
+	#if {$my[gp1][current] < 25} {#bell};
+	#if {$my[gp1][current] < 95 && $my[sp][current] > 50} {
+		#if {$my[gp2][current] > 70} {!dissipate};
+		!transpose max;
+	}
+}
+
+#act {{^Ammo:\[(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?\] SHP:\[\s*(\d+)\] SNL:\[([\d\.]*)\] SM:\[(\w+)\] SA:\[(\w+)\] SD:\[(\w+)\] E:([\d\w]+)?\%?}} {
+	#var {ammo}	{%2};
+	#var {ammo2}	{%3};
+	#var {ammo3}	{%4};
+	#var {ammo4}	{%5};
+	#var {ammo5}	{%6};
+	#var {shp}	{%7};
+	#var {snl}	{%8};
+	#var {smd}	{%9};
+	#var {saf}	{%10};
+	#var {sdf}	{%11};
+	#var {ehealth}	{%12};
+	#format {ammo_len} {%L} {$ammo};
+	#if {$ammo_buy == "on" && $ammo_len > 0} {
+		#if {$ammo < 100} {
+			!truck ammo vbuy $weapon_type $ammo_type 1 $ammo_buy_amount
+		} {#if {$ammo2 < 100} {
+			!truck ammo vbuy $weapon_type $ammo_type 2 $ammo_buy_amount
+		} {#if {$ammo3 < 100} {
+			!truck ammo vbuy $weapon_type $ammo_type 3 $ammo_buy_amount
+		} {#if {$ammo4 < 100} {
+			!truck ammo vbuy $weapon_type $ammo_type 4 $ammo_buy_amount
+		} {#if {$ammo5 < 100} {
+			!truck ammo vbuy $weapon_type $ammo_type 5 $ammo_buy_amount
+		}}}}}
+	};
+	#if {$shp > 0 && $shp < 9} {!dismiss};
+	update_status;
+}
+
+#alias {update_status} {
+	#if {"$cooler" == "on" || $cooler_count > 0} {
+		#format {sb1_cooler} {%+2s} {$cooler_count};
+		#var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
+	} {
+		#var {sb1_cooler} {}
+	};
+	#if {"$freezer" == "on" || $freezer_count > 0} {
+		#format {sb2_freezer} {%+2s} {$freezer_count};
+		#var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
+	} {
+		#var {sb2_freezer} {}
+	};
+	#var {my[hp][graph]}	{@graph{$my[hp][current];${my[hp][max]}}};
+	#var {my[sp][graph]}	{@graph{$my[sp][current];$my[sp][max]}};
+	#var {my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var {my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
+	#var {gxp_graph}	{@graph{$gxp;100}};
+	#var {shp_graph}	{@graph{$shp;100}};
+	#var {enemy[graph]}	{@graph{$enemy[hp];100}};
+	#format {hp}		{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}	{%+4s} {<128>$my[hp][max]<088>};
+	#format {sp} 		{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
+	#format {sp_max}	{%+4s} {<128>$my[sp][max]<088>};
+	#format {gp1}		{%+3s} {@colscale{$my[gp1][current];$my[gp1][max]}};
+	#format {ehealth}	{%+6s} {@colscale{$enemy[hp];100}};
+	#format {nukes}		{%+2s} {$nukes};
+	#format {gxp_col}	{%+7s} {@colscale{$gxp;100}};
+	#format {reset}		{%+2s} {$reset};
+	#format {inv_count}	{%+2s} {$inv_count};
+	#format {truck_count}	{%+2s} {$truck_count};
+	#format {coffin_count}	{%+2s} {$coffin_count};
+	#format {freezer_count}	{%+2s} {$freezer_count};
+	#showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max ST:   $gp1\%    G: $gxp_col\%  N:  $nukes/$clan/$reset\%   E:$ehealth\%    IC:<130>${inv_count}<088> TC:<130>${truck_count}<088>${sb1_cooler}} {3};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} G:${gxp_graph} SH:${shp_graph}  E:${enemy[graph]} CF:<130>${coffin_count}<088>${sb2_freezer}} {2}
+}
+
+#alias {stimheal} {
+	#if {$inv_count > 10} {
+		#math {inv_count} {$inv_count - 1}
+	}; #elseif {$truck_count > 0} {
+		#send !get corpse from cl;
+		#math {truck_count} {$truck_count -1}
+	}; #elseif {$cooler_count > 0} {
+		#send !uncooler corpse
+	}; #else {
+		#if {"$bot" == "on"} {
+			.stop;
+		}
+		#bell
+	};
+	#send !fdeener
+}
+
+
+/* Set Ammo Defaults */
+#var {ammo_buy_amount}	{5000}
+#var {weapon_type}	{missile}
+#var {ammo_type}	{6}
+#var {ammo_buy}		{on}
+#var {ammo_donate}	{off}
+
+#act {After your discount, it will cost %1 coins.} {
+	#if {"$ammo_donate" == "on"} {
+		#send !give %1 coins to cl;
+		#send !truck vault
+	}
+}
+
+/* CREPORT */
+#nop #act {{\[([\w\s\Q/(\\\)\'\,-<\E\{\}\.]+)\] \[(\s*)(\d+)\] \[(\s*)(\d+)\]}}
+#act {[%1] [%2] [%3] $} {
+	#format {cr_class} {%p} {%2};
+	#format {cr_rnds} {%p} {%3};
+	#if {$cr_rnds == 0} {
+		#var {cr_hr} {Undefined}
+	} {
+		#math {cr_hr} {1.0*${cr_class}/${cr_rnds}*1801};
+		#format {cr_hr} {%d} {${cr_hr}}
+	};
+	#math {cr_class_tot} {${cr_class_tot} + ${cr_class}};
+	#math {cr_rnds_tot} {${cr_rnds_tot} + ${cr_rnds}};
+	#math {cr_count} {${cr_count} + 1};
+	#format {cr_hr} {%+12s} {<078>${cr_hr}<088>};
+	#var {cr_str} { [<078>%1<088>] [<078>%2<088>] [<138>%3<088>] [$cr_hr]};
+	#line gag;
+	#echo {$cr_str}
+}
+#substitute { .--------------------------. .------------. .----.}
+	    {<038> .-------------------------. .------------. .----. .------------.<088>}
+#substitute {   Monster\'s Name                  Class      Rnds}
+	    {    Monster's Name                Class      Rnds     Exp/Hour}
+#act {^  Current Enemy: } {
+	#math {cr_avg_class} {1.0*${cr_class_tot}/${cr_count}};
+	#format {cr_avg_class} {%d} {${cr_avg_class}};
+	#math {cr_avg_rnds} {1.0*${cr_rnds_tot}/${cr_count}};
+	#format {cr_avg_rnds} {%d} {${cr_avg_rnds}};
+	#math {cr_avg_hr} {1.0*${cr_class_tot}/${cr_rnds_tot}*1800};
+	#format {cr_avg_hr} {%d} {${cr_avg_hr}};
+	#math {cr_avg_xp} {${cr_avg_hr}*.8};
+	#format {cr_avg_xp} {%d} {${cr_avg_xp}}
+	#var cr_class_tot 0;
+	#var cr_rnds_tot 0;
+	#var cr_count 0;
+	#format {cr_avg_class} {%+33s} {${cr_avg_class}};
+	#format {cr_avg_rnds} {%+7s} {${cr_avg_rnds}};
+	#format {cr_avg_hr} {%+15s} {${cr_avg_hr}};
+	#var {cr_str} {  Average:${cr_avg_class}${cr_avg_rnds}${cr_avg_hr}}
+	#showme {${cr_str}};
+	#showme {${cr_avg_xp}}
+}
+
+
+/* Aliases */
+#alias corpsetrig {#nop}
+
+#alias rburn {
+	go bern;
+	#12 {
+		buy knife;
+		reforge knife little edged penetrate;
+		dec knife
+	};
+	go home
+}
+#class {inix} {close}

@@ -1,0 +1,17 @@
+#class {bot} {open}
+#var {area} {summerset}
+
+#var {botpath} {e;d;nw;n;e;u;e;e;s;e;n;n;w;w;w;n;e;e;e;search reeds;swim river;e;nw;n;n;n;e;e;e;s;w;w;w;s;e;e;e;s;w;w;se;s;s;s;e;e;e;n;w;w;w;n;e;e;e;w;n;w;n;e;nw;e;n;n;n;e;e;e;s;w;w;s;e;e;s;w;w;e;e;e;sw;e;sw;e;sw;e;e;e;nw;e;nw;e;n;w;n;e;se;n;se;n;n;n;w;s;e;s;e;e;e;e;e;n;w;w;w;w;n;e;e;e;e;n;w;w;w;w;n;n;w;s;e;s;e;e;e;e;ne;w;se;n;u;nw;e;s;e;w;nw;d;w;n;s;e;u;se;d;sw;w;w;w;w;s;s;s;w;w;w;w;s;s;s;s;nw;n;n;w;w;w;n;n;n;w;s;s;s;w;w;w;s;s;w;search reeds;swim river;w;w;w;s;s;s}
+
+#NOP #action {Someone has already searched the reeds.} {..}
+#nop #action {You move the reeds aside and find a small board.} {..}
+
+#act {^=M= {Puffball|Centany|Silfthan|Hlessinen|Chestnut|Nyreem|Hainthinnang}}{
+	#var mobname rabbit;
+    _check_mob
+        }
+#act {You've killed} {#nop} {1}
+
+#class {bot} {close}
+
+

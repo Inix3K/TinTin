@@ -1,0 +1,82 @@
+#class {gags} {open}
+
+/* Blank Line */
+#gag {^$}
+
+/* Guilds */
+#NOP Juggernauts
+#gag {YOU FRENZY!!!}
+#gag {Your feral rage allows you to shrug off some of the blow.}
+
+/* Item Gags */
+#NOP CMC
+#gag {The armour infuses you with chemicals, augmenting your abilities.}
+#gag {A flash of light from the CMC-660 fills everyone in your party with invigorating warmth!}
+#gag {The CMC-660 infuses you with adrenaline!}
+#gag {A flicker in the containment field surrounding the CMC's plasma tank}
+#gag {results in a plasma leak within your suit, causing you great pain.}
+#gag {The CMC-660 blocks the entire attack!!}
+#gag {The CMC-660 REFLECTS the entire attack!!}
+
+#NOP Cocoon
+#gag {The sticky cocoon absorbs part of the attack!}
+#gag {The cocoon fuses with the attack and grows stronger!}
+
+#NOP Redaxe
+#gag {Chopping violently, the axe draws rancor from }
+#gag {You slice, and a flow of rancor falls from }
+#gag {You slice, and a flow of blood falls from }
+#gag {The blood from the wound flows into your soul through the Axe.}
+
+#NOP Powerstone
+#gag {The energy of the powerstone flows through you.}
+#gag {Magical energies course through your body.}
+
+#NOP Zelligar's Headband
+#gag {Zelligar's Headband warms you with a radiant glow.}
+
+
+/* Mskills */
+#NOP Dodge
+#gag {ou nimbly dodge }
+
+#NOP Critical Hit
+#gag {You critically hit }
+
+#NOP Penetrate
+#gag {You drive your attack past %*'s resistances!}
+
+#NOP Shield Block
+#gag {Your shield blocks %* attack!}
+
+
+/* Professions */
+#NOP Assassin
+#gag {Your insidious inspiration flows through you as you make the most of each attack!}
+#gag {Your insidious inspiration fades.}
+
+#NOP Big Game Hunter
+#gag {Your crazed ambition overflows!}
+#gag {Your ambition overflows as you try to bring down the big game with a spell!}
+#gag {Your wild ambition drives you ever onward!}
+#gag {Your wild ambition takes a back seat to prudence.}
+
+#NOP Lumberjack
+#gag {You sing: }
+#gag {Yes, you're a lumberjack and you're ok, but you're done singing for now.}
+
+#NOP Tactician
+#gag {You outfox your opponent and take advantage of it!}
+#gag {You press your advantage on your outsmarted foe!}
+#gag {Your tactical advantage ends.}
+
+#class {gags} {close}
+
+
+/* Eternals */
+#NOP Immunity
+#gag {The assault glances harmlessly off your aura.}
+
+
+/* Dog */
+#gag {Your dog tears a chunk of flesh from }

@@ -1,0 +1,8 @@
+#class {bot} {open}
+#var no_loop 1;
+#var {botpath} {n;n;n;s;s;s;s;s;n;n;w;n;n;s;s;s;s;n;n;w;n;n;s;s;s;s;s;n;n;n;w;n;n;s;s;s;s;n;u;d;n;w;e;n;w;n;n;s;s;e;s;s;w;s;e;e;n;n;e;s;e;w;n;n;w;s;w;w;n;e;n;w;w;e;e;e;e;e;n;n;w;w;e;e;s;s;s;s;n;n;e;n;n;s;s;s;s;s;s;w;e;s;out1;n;n;e;n;s;s;n;e;n;n;n;n;w;e;s;s;s;e;e;e;n;s;s;w;w;w;e;n;w;w;w;s;w;w;n;n;w;w;w}
+
+#act {The Good Humor, Ice Cream Truck.} {#var mobname {truck};_check_mob;#send {enter truck};#read bots/truck.tin}
+
+#class {bot} {close}
+

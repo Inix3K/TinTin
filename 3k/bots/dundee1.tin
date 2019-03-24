@@ -1,0 +1,20 @@
+#class {bot} {open}
+
+#var {botpath} {e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;w}
+
+#act {^=M= {Swamp Crocodile|Red-bellied Watersnake|Drop bear|Cane Toad|Marbled Reed Frog|Swamp Sparrow|Tricolored Heron}} {
+	#switch {"%1"} {
+		#case {"Red-bellied Watersnake"}	{#var mobname snake};
+		#case {"Drop Bear"}			{#var mobname bear};
+		#case {"Cane Toad"}			{#var mobname toad};
+		#case {"Marbled Reed Frog"}		{#var mobname frog};
+		#case {"Swamp Sparrow"}			{#var mobname sparrow};
+		#case {"Tricolored Heron"}		{#var mobname heron};
+		#case {"Swamp Crocodile"}		{#var mobname crocodile}
+	};
+	_check_mob
+}
+
+#class {bot} {close}
+
+

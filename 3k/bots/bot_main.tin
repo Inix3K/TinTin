@@ -1,0 +1,132 @@
+#class {bot} {open};
+
+/* Disable items while botting */
+mapoff
+prompt >$nl$
+
+/* Initialize Variables */
+#var foundmob 0
+#var foundplayer 0
+#var mobname 0
+#var bot 0
+#var vacuum 0
+
+/*
+#var IdleTimeout 4200;
+#event {RECEIVED INPUT} {
+	#undelay {deadmanSwitch};
+	#delay {deadmanSwitch} {.stop;go home} {$IdleTimeout};
+};
+*/
+
+#alias {.pause} {
+	#class {xbot} {kill};
+	#alias {_check_mob} {.pause}
+}
+
+#alias {.stop} {
+	#class {xbot} {kill};
+	#alias {xx} {#nop};
+	#alias {_check_mob} {#nop};
+	#var halt 1
+}
+
+#alias {_check_mob} {#nop}
+
+#alias {..} {
+	#var bot 1;
+	#var halt 0;
+	#class {xbot} {open};
+	#delay {4};
+	#act {{^=S=}} {xx} {1};
+	#alias {xx} {
+		#var foundplayer 0;
+		#var itemfound 0;
+		#act {^>$} {
+			#if {$itemfound && !$foundplayer && $vacuum} {
+				#if {"$world" == "inix"} {
+					!truck get all
+				};
+				!get all
+			};
+			#path walk;
+			#unact {^>$}
+		} {1}
+	};
+	#alias {_check_mob} {
+		#act {^>$} {
+			#unact {^>$};
+			#if {$foundplayer} {
+				#path walk
+			} {
+				.pause;
+				k $mobname;
+				#var foundmob 1;
+				#if {$itemfound && $vacuum} {
+					get  all;
+					#if {"$world" == "inix"} {
+						truck get all
+					}
+				}
+			}
+		}
+	};
+	glance;
+	#class {xbot} {close}
+}
+
+#alias {killbot} {
+	.stop;
+	#class bot kill;
+	#unalias {.bot};
+	#var bot 0;
+	#var areacount 0
+}
+
+#alias {.bot} {
+	#if {$halt == 0} {
+		#delay {0} {..}
+	}
+}
+
+#alias {dogtank} {#alias {k} {#delay {2} {dog sicem %%0}}}
+#alias {nodogtank} {#unalias {k}};
+
+#act {^%w dealt the killing blow to} {
+	corpsetrig;
+	.bot
+} {1}
+
+/* Detect Players */
+#act {^=P=} {
+	#regex {%0} {Sky} {#nop} {#var foundplayer 1}
+} {6}
+
+/* Skip room on Mob */
+#NOP #act {Crikey} {#var foundplayer 1}
+
+#alias {v %1} {#if {%1 == "on"} {#var vacuum 1} {#var vacuum 0}}
+
+#act {#END OF PATH} {
+	#if {$no_loop | !$foundmob} {
+		killbot;
+		#if {$areacount > 1} {
+			nextarea
+		}; #else {
+			go home
+		}
+	} {
+		#unact {^>$};
+		#path load botpath;
+		#var foundmob 0;
+		.bot
+	}
+}
+	
+
+
+
+#path load botpath
+#var halt 2
+
+#class {bot} {close}

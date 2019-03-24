@@ -1,0 +1,210 @@
+#class {gmcp} {open}
+
+#read .tt/AW/terrain.tin
+
+#format IAC  %a 255
+#format DONT %a 254
+#format DO   %a 253
+#format WONT %a 252
+#format WILL %a 251
+#format SB   %a 250
+#format SE   %a 240
+
+#format GMCP %a 201
+
+#nop Turn telnet debug off once everything works as it's spammy.
+
+#config {debug telnet} {off}
+
+#var CLIENT_NAME TinTin++
+#var CLIENT_VERSION 2.01.1
+
+#nop Utility function to generate color gradients, requires 256 color terminal.
+
+#function {colscale} {
+        #switch {10 * %1 / %2}         {
+                #case {0} {#return <faa>%1<088>};
+                #case {1} {#return <fba>%1<088>};
+                #case {2} {#return <fca>%1<088>};
+                #case {3} {#return <fda>%1<088>};
+                #case {4} {#return <fea>%1<088>};
+                #case {5} {#return <ffa>%1<088>};
+                #case {6} {#return <efa>%1<088>};
+                #case {7} {#return <dfa>%1<088>};
+                #case {8} {#return <cfa>%1<088>};
+                #case {9} {#return <bfa>%1<088>};
+                #default  {#return <afa>%1<088>};
+        }
+}
+
+#event {PROGRAM START} {
+        #var CLIENT_NAME %0;
+        #var CLIENT_VERSION %1
+}
+
+#event {IAC WILL GMCP} {
+        #send {$IAC$DO$GMCP\};
+        #send {$IAC$SB$GMCP core.hello { "client": "$CLIENT_NAME", "version": "$CLIENT_VERSION" } $IAC$SE\};
+        #send {$IAC$SB$GMCP core.supports.set [ "room 1", "comm 1", "char 1", "group 1" ] $IAC$SE\}
+}
+
+#event {IAC SB GMCP char.status IAC SE} {
+        #var gmcp[char][status] {%0}
+}
+
+#event {IAC SB GMCP char.base IAC SE} {
+        #var gmcp[char][base] {%0}
+}
+
+#event {IAC SB GMCP char.vitals IAC SE} {
+        #var gmcp[char][vitals] {%0};
+	#var {hp}	{$gmcp[char][vitals][hp]};
+	#var {sp}	{$gmcp[char][vitals][mana]};
+	#var {mv}	{$gmcp[char][vitals][moves]};
+	update_status
+}
+
+#event {IAC SB GMCP char.maxstats IAC SE} {
+        #var gmcp[char][maxstats] {%0};
+	#var {hp_max} {$gmcp[char][maxstats][maxhp]};
+	#var {sp_max} {$gmcp[char][maxstats][maxmana]};
+	#var {mv_max} {$gmcp[char][maxstats][maxmoves]};
+}
+
+#event {IAC SB GMCP char.worth IAC SE} {
+        #var gmcp[char][worth] {%0};
+	update_caption
+}
+
+#event {IAC SB GMCP comm.channel IAC SE} {
+	#var gmcp[comm][channel] {%0};
+	#line log {.tt/logs/AW.chat} {$gmcp[comm][channel][msg]}
+}
+
+#event {IAC SB GMCP comm.quest IAC SE} {
+	#var gmcp[comm][quest] {%0}
+}
+
+#alias {update_caption} {
+        #format {world_cap}     {%-8s}  {$world};
+        #format {world_cap}     {%n}    {$world_cap};
+	#format {gold_cap}	{%+5s}	{$gmcp[char][worth][gold]};
+	#format {bank_cap}	{%+5s}	{$gmcp[char][worth][bank]};
+	#format {qp_cap}	{%+4s}	{$gmcp[char][worth][qp]};
+	#format {tp_cap}	{%+2s}	{$gmcp[char][worth][tp]};
+	#format {tr_cap}	{%+1s}	{$gmcp[char][worth][trains]};
+	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
+        #line ignore #showme { <128>$world_cap <238>G<278>:<138>$gold_cap<278>\[<178>$bank_cap<278>\]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>} {-1}
+}
+
+#tick {update_status} {update_status} {2}
+#alias {update_status} {
+	#if {&gmcp[char][] != 5} {
+		prot gmcp sendchar;
+		#return;
+	};
+
+        #var {hp_graph} {@graph{$hp;$hp_max}};
+        #var {sp_graph} {@graph{$sp;$sp_max}};
+        #var {mv_graph} {@graph{$mv;$mv_max}};
+        #var {a_graph}  {@graph{$align;2500}};
+        #var {qt_graph} {@graph{$qt;30}};
+        #var {egraph}   {@graph{$ehealth;100}};
+	
+	#format {chp}		{%+5s} {@colscale{$hp;$hp_max}};
+	#format {csp}		{%+4s} {@colscale{$sp;$sp_max}};
+	#format {cmv}		{%+4s} {@colscale{$mv;$mv_max}};
+	#format {chp_max}	{%+5s} {<238>$hp_max<088>};
+	#format {csp_max}	{%+4s} {<238>$sp_max<088>};
+	#format {cmv_max}	{%+4s} {<238>$mv_max<088>};
+	#format {clvl}		{%+3s} {<afa>$gmcp[char][status][level]<088>};
+	#format {ctnl}		{%+4s} {@colscale{$gmcp[char][status][tnl];$gmcp[char][base][perlevel]}};
+	#format {calign}	{%+7s} {@colscale{$gmcp[char][status][align];2500}};
+
+	#format {cqt}		{%+6s} {@colscale{$qt;30}m};
+	#format {cehealth}	{%+7s} {@colscale{$ehealth;100}%%};
+
+	#var {status1} {HP:$chp/$chp_max SP:$csp/$csp_max MV:$cmv/$cmv_max QT:$cqt    A:$calign    E:$cehealth     X:$clvl\[$ctnl\]\(<168>$delta<278>|<158>$ktnl<088>\)};
+	#var {status2} {HP:$hp_graph  S:$sp_graph M:$mv_graph Q:$qt_graph A:$a_graph E:$egraph};
+
+        #line ignore #showme {$status1} {3};
+        #line ignore #showme {$status2} {2}
+}
+
+#event {IAC SB GMCP group IAC SE} {
+	#var gmcp[group] {%0};
+
+	#sys rm .tt/AWgroup.txt;
+	#sys touch .tt/AWgroup.txt;
+	#if {"$gmcp[group][groupname]" != ""} {
+		#var gr1_name	$gmcp[group][members][1][name];
+		#var gr1_hp	$gmcp[group][members][1][info][hp];
+		#var gr1_maxhp	$gmcp[group][members][1][info][mhp];
+
+		#line log {.tt/AWgroup.txt} {$gr1_name : HP:$gr1_hp/$gr1_maxhp};
+	}
+
+}
+
+#event {IAC SB GMCP room.info IAC SE} {
+        #var gmcp[room][info] {%0};
+
+        #if {$gmcp[room][info][num] == -1} {
+                #return
+        };
+
+        #map goto {$gmcp[room][info][num]} {dig};
+
+        #map get roomarea {result};
+
+        #if {"$result" == ""} {
+                #map set roomarea $gmcp[room][info][zone];
+                #map set roomname $gmcp[room][info][name];
+                #map set roomterr $gmcp[room][info][terrain];
+                #map set roomdata $gmcp[room][info][details];
+		#map set roomcolor <178>;
+		set_terrain
+        };
+
+	#map get roomdata {roomdata};
+	#if {"$roomdata" == ""} {
+		#map set roomdata $gmcp[room][info][details];
+	};
+
+        #foreach {$gmcp[room][info][exits][]} {exit} {
+                #map get {roomexit} {result};
+
+                #if {&result[$exit] == 0} {
+                        #map get {roomvnum} {result} {$gmcp[room][info][exits][$exit]};
+
+                        #map dig {$exit} {$gmcp[room][info][exits][$exit]};
+
+                        #if {$result == 0} {
+                                #map set {roomcolor} {<110>} {$gmcp[room][info][exits][$exit]}
+                        }
+                }
+        };
+
+	#map {map} {132x63} {.tt/map/AWmap.txt};
+
+	#if {"$areas[$gmcp[room][info][zone]]" == ""} {
+		where;
+	};
+
+	#unvar area_mapped;
+	#map list {roomarea} {$gmcp[room][info][zone]} {variable} {area_mapped};
+	#var {room_cnt} {&area_mapped[]};
+	#sys rm .tt/map/AWmap.head;
+	#sys touch .tt/map/AWmap.head;
+	#line {log} {.tt/map/AWmap.head} {<020>$areas[$gmcp[room][info][zone]]<140> (<120>$room_cnt<140>)<099>};
+	#line {log} {.tt/map/AWmap.head} {<140>[<030>$gmcp[room][info][num]<140>] <130>$gmcp[room][info][name]<099>}
+
+
+}
+
+
+#event {SESSION DISCONNECTED} {
+        #map write .tt/map/AW.map
+}
+
+#class {gmcp} {close}

@@ -1,0 +1,16 @@
+#class {bot} {open}
+
+#var {botpath} {e;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;w}
+
+#act {^=M= {Mature Swamp Crocodile|Great Egret|Salamander|Crane|Anaconda}} {
+	#switch {"%1"} {
+		#case {"Mature Swamp Crocodile"}	{#var mobname crocodile};
+		#case {"Great Egret"}			{#var mobname egret};
+		#case {"Salamander"}			{#var mobname salamander};
+		#case {"Crane"}				{#var mobname crane};
+		#case {"Anaconda"}			{#var mobname snake};
+	};
+	_check_mob
+};
+
+#class {bot} {close}

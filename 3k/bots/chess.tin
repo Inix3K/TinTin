@@ -1,0 +1,36 @@
+#class {bot} {open}
+
+#var {botpath} {w;w;w;n;n;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;n;n;n;e;e;e}
+#var {hardmode} {0}
+
+#act {^=M= {A Refugee|A War Correspondent|Red Cross Medic|Red Charioteer|Red Counsellor|Red Foot Soldier|Red Horseman|Red King|Red Priest|White Charioteer|White Counsellor|White Foot Soldier|White Horseman|White King|White Priest}} {
+	#var mobhard 0;
+	#switch {"%1"} {
+		#case {"A Refugee"}		{#var mobname human};
+		#case {"A War Correspondent"}	{#var mobname human};
+		#case {"Red Cross Medic"}	{#var mobname human};
+		#case {"Red Charioteer"}	{#var mobname human};
+		#case {"Red Counsellor"}	{#var mobname human};
+		#case {"Red Foot Soldier"}	{#var mobname human};
+		#case {"Red Horseman"}		{#var mobname human};
+		#case {"Red King"}		{#var mobname human};
+		#case {"Red Priest"}		{#var mobname human};
+		#case {"White Charioteer"}	{#var mobname human};
+		#case {"White Counsellor"}	{#var mobname human};
+		#case {"White Foot Soldier"}	{#var mobname human};
+		#case {"White Horseman"}	{#var mobname human};
+		#case {"White King"}		{#var mobname human};
+		#case {"White Priest"}		{#var mobname human};
+		#case {"Angry Horse"}		{#var mobname {angry horse};#var mobhard 1};
+		#case {"Angry War Elephant"}	{#var mobname elephant;#var mobhard 1};
+	};
+	#if {$mobhard} {
+		#if {$hardmode} {
+			_check_mob
+		}
+	} {
+		_check_mob
+	}
+}
+
+#class {bot} {close}

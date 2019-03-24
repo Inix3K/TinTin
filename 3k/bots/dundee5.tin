@@ -1,0 +1,17 @@
+#class {bot} {open}
+
+#var {botpath} {ne;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;sw}
+
+#act {^=M= {Mature Swamp Crocodile|Star-nosed Mole|Three-toed Amphiuma|Purple Swamphen|Purple Swamphen|Golden-Crowned Snake}} {
+	#switch {"%1"} {
+		#case {"Mature Swamp Crocodile"}	{#var mobname crocodile};
+		#case {"Star-nosed Mole"}		{#var mobname mole};
+		#case {"Three-toed Amphiuma"}		{#var mobname amphiuma};
+		#case {"Golden-Crowned Snake"}		{#var mobname snake};
+		#case {"Purple Swamphen"}		{#var mobname swamphen};
+	};
+	_check_mob
+
+};
+
+#class {bot} {close}

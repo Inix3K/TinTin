@@ -1,0 +1,26 @@
+#class {common} {open}
+
+/* TMUX Aliases */
+#alias {split} {#sys tmux resize-pane -%0}
+#alias {rs} {
+	#if {$mobile} {
+		#sys tmux resize-pane -t 1 -x 45 -y 18;
+		#map {map} {45x15} {.tt/map/map.txt};
+		#split 2 4
+	} {
+		#sys tmux resize-pane -t 1 -x 55 -y 18;
+		#map {map} {55x15} {.tt/map/map.txt};
+		#split 2 4
+	}
+}
+#alias {rsm} {#var mobile 1;rs}
+#alias {rss} {#unvar mobile;rs}
+
+
+/* TT Aliases */
+#alias {/calc} {
+	#math {math} {%1};
+	#echo $math
+}
+
+#class {common} {close}

@@ -1,0 +1,27 @@
+#alias forge {
+	#var reforged no;
+	#var reforge_amt loads;
+	#var reforge_item %1;
+	#var reforge_from %2;
+	#var reforge_to %3;
+	@forge_do{}
+}
+
+/* reforge <item> <amount> from <ac> to <defense> */
+#function {forge_do} {
+	#if {$reforged == "no"} {
+                reforge $reforge_item $reforge_amt $reforge_from $reforge_to;
+		#switch {"$reforge_amt"} {
+			#case {"loads"} {#var reforge_amt lots};
+			#case {"lots"} {#var reforge_amt some};
+			#case {"some"} {#var reforge_amt little};
+			#case {"little"} {#return}
+		}
+	}
+}
+
+/* Triggers here for failure/success messages */
+#act {^BOOM SHAKA LAKA! You} {#var reforged yes}
+#act {^That item has already been reforged\.} {#var reforged yes}
+#act {^The {.*} does not have sufficient } {@forge_do{}}
+#act {^You are not yet powerful enough to reforge } {@forge_do{}}

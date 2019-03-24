@@ -1,0 +1,12 @@
+#class {bot} {open}
+
+#var no_loop 1
+
+#var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;w;s;w;w;w;w;w;s;e;e;e;e;w;s;w;w;w;s;e;e;w;s;w;s}
+
+#act {^=M= {A zombie bell hop waiting to carry your things.|A zombie cook looking for something to chop.|A zombie waiter offering drinks.}} {
+	#var mobname zombie;
+	_check_mob
+}
+
+#class {bot} {close}

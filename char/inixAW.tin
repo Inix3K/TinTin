@@ -1,0 +1,92 @@
+#class {inixaw} {kill}
+#class {inixaw} {open}
+
+#read .tt/AW/gmcp.tin
+#read .tt/AW/AWmap.tin
+#read .tt/AW/AWvar.tin
+#read .tt/AW/snd.tin
+
+#act {{^HP:(\d+)/(\d+) SP:(\d+)/(\d+) MV:(\d+)/(\d+) QT:(\d+) A:(\-?\d+) G:(\d+) XP:(\d+)/(\d+)(?: E:)?(\d*)?}} {
+	#var {hp}	{%2};
+	#var {hp_max}	{%3};
+	#var {sp}	{%4};
+	#var {sp_max}	{%5};
+	#var {mv}	{%6};
+	#var {mv_max}	{%7};
+	#var {qt}	{%8};
+	#var {align}	{%9};
+	#var {gold}	{%10};
+	#var {lvl}	{%11};
+	#var {tnl}	{%12};
+	#var {ehealth}	{%13};
+
+	#if {$tnl != $tnl_prev} {
+		#math {delta} {$tnl_prev - $tnl};
+		#if {$delta < 0 && $gmcp[char][base][perlevel] > 0} {
+			#math {delta} {$tnl_prev + $gmcp[char][base][perlevel] - $tnl}
+		};
+		#math {tnl_prev} {$tnl};
+		#math {ktnl} {$tnl/$delta+1};
+	};
+	
+	update_status;
+}
+
+#act {--> TICK <-- (%1 Qt: %2)} {
+	#var qt %2;
+	update_status;
+	#line gag
+}
+
+#act {^You feel as if you are being watched.$} {
+	#line log .tt/logs/AW.chat
+}
+
+/* Hunting */
+#var {hunt_checking} {off}
+#var {hunt_to} {off}
+
+#alias {hc} {
+	#var {hunt_checking} {on};
+	#var {hunt_cnt} {1};
+	#var {hunt_tgt} {%1};
+	hunt $hunt_tgt
+}
+
+#alias {ht} {
+	#var {hunt_to} {on};
+	#var {hunt_tgt} {%1};
+	hunt $hunt_tgt
+}
+
+#act {You are certain that %1 is %2 from here.} {
+	#var hunt_dir %2;
+	#if {"$hunt_checking" == "on"} {
+		#math {hunt_cnt} {$hunt_cnt + 1};
+		hunt $hunt_cnt\.$hunt_tgt
+	}; #elseif {"$hunt_to" == "on"} {
+		$hunt_dir;
+		hunt $hunt_tgt
+	}
+}
+
+#act {You seem unable to hunt that target for some reason.} {
+	#if {"$hunt_checking" == "on"} {
+		#var {hunt_checking} {off};
+		#echo {<218>TARGET ID<088>: <118>$hunt_cnt};
+		wf $hunt_cnt\.$hunt_tgt
+	}
+}
+
+
+		
+
+
+/* Aliases */
+#var {cspell} {101}
+#alias {cc} {cast $cspell}
+#alias {qh} {get heal bag;quaff heal}
+#alias {qs} {get lotus bag;quaff lotus}
+#alias {ep} {wear duffle;enter;hold amulet}
+
+#class {inixaw} {close}

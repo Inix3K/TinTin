@@ -1,0 +1,10 @@
+#class {botload} {kill}
+#class {botload} {open}
+
+#alias {- %1} {
+	#read .tt/3k/bots/%1.tin;
+	#var area {%1};
+	#read .tt/3k/bots/bot_main.tin
+}
+
+#class {botload} {close}

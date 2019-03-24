@@ -1,0 +1,51 @@
+#split 2 4
+
+/* Load Common Files */
+#read .tt/aliases.tin
+#read .tt/graph.tin
+
+#alias {load3k} {
+	#read .tt/3k/aliases.tin;
+	#read .tt/3k/ansi.tin;
+	#read .tt/3k/assemble.tin;
+	#read .tt/3k/bots/bot_cycle.tin;
+	#read .tt/3k/bots/bot_load.tin;
+	#NOP #read .tt/chat.tin;
+	#read .tt/3k/corpses.tin;
+	#read .tt/3k/dog.tin;
+	#read .tt/3k/gag.tin;
+	#read .tt/3k/mapper.tin;
+	#read .tt/3k/trigs.tin
+}
+
+
+/* Character Switching */
+#alias {switchto} {
+        #zap;
+        #read .tt/start.tin;
+	#if {"%0" == ""} {
+		connect inix
+	} {
+	        connect %0
+	}
+}
+#alias {connect} {
+        #regex {%0} {3s} {
+                #ses {%0} {3scapes.org} {3200};
+		#format {ses_len} {%L} {%0};
+		#math {ses_len} {$ses_len-2};
+		#format {ses_name} {%.${ses_len}s} {%0}
+        } {
+		#regex {%0} {AW} {
+			#ses {%0} {aardwolf.org} {23};
+			#format {ses_len} {%L} {%0};
+			#math {ses_len} {$ses_len-2};
+			#format {ses_name} {%.${ses_len}s} {%0}
+		} {
+			#ses {%0} {3k.org} {3000};
+			#var {ses_name} {%0}
+		}
+        };
+	$ses_name;
+	#read .tt/.pass
+}

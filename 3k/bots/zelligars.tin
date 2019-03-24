@@ -1,0 +1,19 @@
+#class {bot} {open}
+
+#var no_loop 1
+#var {zellgloves} {0}
+
+#var {botpath} {n;n;e;w;w;n;nw;n;e;e;e;e;w;s;s;search shelves;n;n;w;w;w;s;take key;e;e;s;n;w;n;e;e;s;s;e;e;e;n;n;n;n;e;e;s;s;w;w;s;e;e;e;n;n;n;n;w;w;w;w;s;s;s;s;unlock door;w;take key;e;n;n;n;n;e;e;e;e;s;s;s;s;w;w;w;s;w;w;w;n;n;w;n;e;n;s;w;s;w;n;unlock door;w;w;s;s;sw;w;w;w;n;nw;e;e;e;e;n;ne;e;e;e;w;w;w;sw;nw;nw;w;e;sw;e;se;w;w;s;w;se;e;e;e;s;ne;n;n;e;e;s;s;w;se;s;e;s;s}
+
+#act  {^=M= {Steel|Clay|Flesh|Stone|Mud|Straw|Glass} Golem} {
+	#var mobname golem;
+	_check_mob
+};
+
+#act {You sweep your hand over {one|some} of the higher shelves} {take gloves;keep gloves;#delay {1}{..}}
+#act {You reach in and snatch the key from the deadly acid.} {keep key;..}
+#act {There is no key here.} {..}
+#act {You slip the key into the lock and unlock the door.} {open door;..}
+#act {The door is already unlocked.} {..}
+
+#class {bot} {close}

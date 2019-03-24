@@ -1,0 +1,13 @@
+#class {trigs} {open}
+
+/* Cove of the Three (Lost Soul) */
+#act {^an angelic temptress standing before you.$} {
+	!present raqna's gem;
+	!present tyra's gem;
+	!present brenan's gem
+}
+
+/* Rohm Giddor (temper) */
+#act {^Leufarr whispers: The watchword is: %w} {#var {watchword} {%1}}
+
+#class {trigs} {close}

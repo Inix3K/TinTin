@@ -1,0 +1,49 @@
+#class {psion} {open}
+
+#act {{^(?:> )?\|HP:(\d+)/(\d+) SP:(\d+)/(\d+) PE:(\d+)/(\d+) ST:(\d+)/(\d+) GXP:(\w+)\[(\w+)\%\](?: T:)?([\w\d]+)?}} {
+	#var {hp}	{%2};
+	#var {hp_max}	{%3};
+	#var {sp}	{%4};
+	#var {sp_max}	{%5};
+	#var {pe}	{%6};
+	#var {pe_max}	{%7};
+	#var {stam}	{%8};
+	#var {stam_max}	{%9};
+	#var {g2n}	{%10};
+	#var {g2n_per}	{%11};
+	#var {ehealth}	{%12};
+	#format {ehealth_len} {%L} {$ehealth};
+	#if {$hp < ${hp_max}*0.75 && $pe > 20} {
+		!body adjustment
+	}; #elseif {$sp >= ${sp_max} && $pe < ${pe_max} - ${sp_max} * .2} {
+		!convert
+	}; #elseif {$stam > ${stam_max}*.9 && "$jaw" == "off"} {
+		!iron jaw
+	}; #elseif {$stam < ${stam_max}*.2 && "$jaw" == "on"} {
+		!iron jaw off
+	}; #elseif {$pe > ${pe_max}*.8 && "$psiwielded" == "off"} {
+		!psiwield $weapon
+	}; #elseif {$pe < ${pe_max}*.4 && "$psiwielded" == "on"} {
+		!unpsiwield $weapon
+	}; #elseif {$pe > ${pe_max}*.8 && ${ehealth_len} > 0} {
+		!remove shield;
+		!dissipating touch;
+		!wear shield
+	};
+	#var {hp_graph} {@graph{$hp;$hp_max}};
+	#var {sp_graph} {@graph{$sp;$sp_max}};
+	#var {pe_graph} {@graph{$pe;$pe_max}};
+	#var {stam_graph} {@graph{$stam;$stam_max}};
+	#var {g2n_graph} {@graph{$g2n_per;100}};
+	#var {egraph} {@graph{$ehealth;100}};
+	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} PE:${pe}/${ps_max} ST:${stam}/${stam_max} G:${g2n} E:${ehealth}} {3};
+	#showme {H:${hp_graph} S:${sp_graph} PE:${pe_graph} ST:${stam_graph} G:${g2n_graph} E:${egraph}} {2}
+}
+
+#alias {corpsetrig} {
+	!wrap;
+	!get coins;
+	!get component
+}
+
+#class {psion} {close}

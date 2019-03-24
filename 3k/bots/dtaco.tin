@@ -1,0 +1,25 @@
+#class {bot} {open}
+
+#var weapon axe
+#alias {dotaco} {e;grab shell}
+#act {Canislupus skips: a stale taco shell.} {get all;grab shell}
+#act {You try to grab a taco shell, but they all wriggle away from your grasp!} {e;grab lettuce}
+#act {Canislupus skips: a handful of shredded lettuce.} {get all;grab lettuce}
+#act {You try to grab some lettuce, but it shrinks away from your hand!} {e;grab tomatoes}
+#act {Canislupus skips: a handful of diced tomatoes.} {get all;grab tomatoes}
+#act {You try to grab some tomatoes but they quiver like jello and slime away} {e;grab cheese}
+#act {Canislupus skips: a handful of grated cheese.} {get all;grab cheese}
+#act {You try to grab a handful of cheese, but it slips away from you.} {s;grab meat}
+#act {Canislupus skips: a pile of ground meat.} {get all;grab meat}
+#act {You try to grab some meat, but it creeps away from your grasp!} {w;grab cream}
+#act {Canislupus skips: a glop of sour cream.} {get all;grab cream}
+#act {You try to grab a scoop of the sour cream, but it quivers away from you.} {w;grab guac}
+#act {Canislupus skips: a lump of pasty guacamole.} {get all;grab guac}
+#act {You try to grab a scoop of the guacamole, but it quivers away from you.} {w;grab sauce}
+#act {Canislupus skips: a packet of hot sauce.} {get all;grab sauce}
+#act {You try to grab a packet of hot sauce, but it crinkles away from you.} {#nop}
+
+#act {The melting cheese finally evaporates from %w.} {!wield $weapon}
+#act {The guacamole coating %w finally oozes off.} {!wear all}
+
+#class {bot} {close}

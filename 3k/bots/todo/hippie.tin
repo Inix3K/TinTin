@@ -1,0 +1,15 @@
+#class {bot} {open}
+#var {area} {hippie}
+#var {botpath} {climb vine;e;n;s;s;n;w;w;door;climb tree;d;e;e;n;e;w;n;w;e;n;enter;w;d;u;e;n;e;w;w;e;s;e;u;e;w;w;e;s;e;w;w;e;s;n;u;n;s;d;n;d;w;s;s;s;s;s}
+#act {*M*Birch the Handy Hippie} {#NOP}
+#act {^=M= %*{Hippie|chicken|Child}} {
+        #if {"%2" == "Hippie"} {#var mobname hippie};
+	#if {"%2" == "chicken"} {#var mobname chicken};
+	#if {"%2" == "Child"} {#var mobname hippie};      
+        _check_mob
+        }
+#act {You've killed} {#nop} {1}
+
+#class {bot} {close}
+
+

@@ -1,0 +1,18 @@
+#class {bot} {open}
+
+#var {botpath} {w;n;n;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;n;n;n;n;n;e}
+
+#act {^=M= {Caecilian|Marsh Rat|Swamp Crocodile|Anhinga|Short-tailed Shrew|Marsh Snake|Drop bear}} {
+	#switch {"%1"} {
+		#case {"Marsh Rat"}		{#var mobname rat};
+		#case {"Swamp Crocodile"}	{#var mobname crocodile};
+		#case {"Caecilian"}		{#var mobname caecilian};
+		#case {"Anhinga"}		{#var mobname anhinga};
+		#case {"Short-tailed Shrew"}	{#var mobname shrew};
+		#case {"Marsh Snake"}		{#var mobname snake};
+		#case {"Drop bear"}		{#var mobname bear};
+	};
+	_check_mob
+}
+
+#class {bot} {close}

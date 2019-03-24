@@ -1,0 +1,13 @@
+#class {bot} {open}
+#var {areaname} {Smurfs}
+#var {botpath} {e;e;e;e;e;e;e;e;e;s;s;s;{push lid;glance};n;n;n;e;e;e;{push lid;glance};w;w;w;n;n;n;{push lid;glance};s;s;s;w;w;w;w;w;w;w;w;w}
+
+
+#act {=M= A Captain of the Arovian Honor Guard} {#var mobname hengst;_check_mob}
+#act {=M= An Arovian honor guard} {#var mobname guard;_check_mob}
+#act {=M= Harakir, Champion of King Alaren} {#var mobname harakir;_check_mob}
+#act {=M= Mircarla, High priestess to King Alaren} {#var mobname mircarla;#delay {2} {k mircarla};_check_mob}
+#act {=M= Sumaren, Vizier to King Alaren} {#var mobname sumaren;_check_mob}
+#act {=M= Harakir, Champion of King Alaren} {#var mobname harakir;_check_mob}
+
+#class {bot} {close}

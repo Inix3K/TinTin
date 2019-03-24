@@ -1,0 +1,52 @@
+#class {udefine} {open}
+
+#var udefine {on}
+
+#alias {doudefine} {
+	#var data {$mip[comm][data]};
+	#replace {data} {udefine} {#};
+	#var data_cnt 0;
+	#parse {$data} {char} {
+		#math {data_cnt} {$data_cnt + 1};
+		#if {"$char" == "#"} {
+			#var data_cut $data_cnt	
+		}
+	};
+	#math {cut} {$data_cnt - $data_cut - 1};
+	#format {word} {%r} {$data};
+	#format {word} {%.${cut}s} {$word};
+	#format {word} {%r} {$word};
+	#var word2 {};
+	#sys {~/.scripts/udefine $word};
+	#read .scripts/udef.tin;
+	#format {def_len} {%L} {$udefinition};
+	#if {$def_len == 0} {
+		#var udefinition {No results found};
+	} {
+		#replace {udefinition} {\\n} { };
+		#replace {udefinition} {\\r} { }
+	};
+	#var uapproved no;
+	#var udefinelinename {$mip[comm][line]};
+	#switch {"$udefinelinename" } {
+		#case {"ADMIN"}		{#var uapproved yes};
+		#case {"Bear"}		{#var uapproved yes};
+		#case {"Bloodname"}	{#var uapproved yes};
+		#case {"Clan Cad"}	{#var uapproved yes};
+		#case {"Council"}	{#var uapproved yes};
+		#case {"Falcon"}	{#var uapproved yes};
+		#case {"JuggNewbie"}	{#var uapproved yes};
+		#case {"Main"}		{#var uapproved yes};
+		#case {"Party"}		{#var uapproved yes};
+		#case {"Tell"}		{#var uapproved yes};
+		#case {"Whine"}		{#var uapproved yes};
+		#case {"Wolf"}		{#var uapproved yes};
+		#default		{#var uapproved no};
+	};
+	#if {"$uapproved" == "yes"} {
+		#var udefineline {$mip[comm][command]};
+		#delay 1 {#send $udefineline $word : $udefinition}
+	}
+}
+
+#class {udefine} {close}

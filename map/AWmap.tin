@@ -1,0 +1,128 @@
+#class {awmap} {open}
+
+/* Cleanup Display TXT Files
+#sys rm .tt/map/AWmap.txt
+#sys rm .tt/map/AWmmap.txt
+#sys touch .tt/map/AWmap.txt
+#sys touch .tt/map/AWmmap.txt
+*/
+
+#map read .tt/map/AW.map
+#map goto 1
+
+/* Data Grab Triggers */
+#var longcap off
+
+#act {~\{rdesc\}} {
+	#map get roomdesc {roomdesc};
+	#if {"$roomdesc" == ""} {
+		#var longcap on;
+		#unvar long;
+		#act {%%1} {
+			#var long {${long}%%1 }
+		} {2}
+	}
+}
+#sub {\{rdesc\}} {}
+
+#act {\{/rdesc\}} {
+	#if {"$longcap" == "on"} {
+		#var longcap off;
+		#unact {%%1};
+		#map set roomdesc {$long}
+	}
+} {1}
+#sub {\{/rdesc\}} {}
+
+#act {You are in area : %1} {
+	#var area %1;
+        #if {"$areas[$gmcp[room][info][zone]]" == ""} {
+                #var areas $areas{$gmcp[room][info][zone]}{$area};
+		#class {var_areas} {write} {.tt/var/areas.var}
+        }
+}
+
+/* Autofinds */
+#act {You still have to kill \* %1 \(%2\)} {
+	#map list %2
+}
+#act {You still have to kill %1 \* %2 \(%3\)} {
+	#map list %3
+}
+
+#act {can be found in the vicinity of %1 which} {
+	#map find %1;
+	#map list %1
+}
+
+#alias {wf} {
+	#map get {roomarea} {area};
+	#act {{([\D]{29}) ([\D]+)}} {
+		#unact {{([\D]{29}) ([\D]+)}};
+		#format {findloc} {%%p} {%%3};
+		#if {"$findloc" != ""} {
+			#map find {roomname} {%*$findloc%*} {roomarea} {$area};
+			#map list {roomname} {%*$findloc%*} {roomarea} {$area};
+		}
+	};
+	where %0;
+}
+
+#alias {wfr} {
+	wf %0;
+	#delay 0.5 {#path run};
+}
+
+#alias {pr} {#path run}
+
+/* Aliases */
+#NOP Count the # of rooms mapped
+#alias {area_mapped %1} {
+	#unvar area_mapped;
+	#map list {} {} {} {%1} {variable} {area_mapped};
+	#showme {$area_mapped[] rooms mapped. };
+}
+
+#alias {go} {
+        #map find {roomnote} %0;
+        #path run
+}
+
+#alias {mapgo} {#map goto {roomnote} {%0}}
+
+#alias {mf} {#map list {roomname} {%i%*%0%*}}
+#alias {mr} {#map run}
+
+#alias {mapsearch} {
+	#show <129>Name matches:<088>;
+	#map list {%i%*%0%*};
+	#show \n;
+	#show <129>Note matches:<088>;
+	#map list {} {} {} {} {%i%*%0%*};
+}
+
+#alias {mapsave} {#map write .tt/map/AW.map}
+
+#alias {door} {
+	#map exit {%1} command {open %1;%1}
+}
+
+#alias {he} {#map exitflag {%1} hide}
+
+/* AW Map Capture */
+#act {^<MAPSTART>$} {
+	#sys rm .tt/map/AWmmap.txt;
+	#sys touch .tt/map/AWmmap.txt;
+	#act {~%%1} {
+		#line {log} {.tt/map/AWmmap.txt} {%%1};
+		#line gag
+	};
+	#line gag
+}
+
+#act {^<MAPEND>$} {
+	#unact {~%%1};
+	#line gag
+} {1}
+
+#class {awmap} {close}

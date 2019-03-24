@@ -1,0 +1,222 @@
+#CLASS {sewerbot} OPEN 
+#map create 
+#map goto 1 
+#map flag vtmap on 
+#split 10 4
+#map flag asciigraphics on
+
+#var exit 0 
+#var foundroom 0 
+#var foundmob 0 
+#var foundplayer 0 
+#var halt 0 
+#var leave 0 
+#var mobname 0 
+#var numexits 0 
+#var reverse 0 
+#list {sewerexits} {clr} 
+#list {newexits} {clr} 
+#list {curexits} {clr} 
+#list {ignoreexits} {clr}
+#list {ignoremobs} {clr}
+
+#NOP Bind numpad '/' to advance rooms, '+' to stop, '*' to run to a stub room.
+#alias {stopbot} {#var halt 1;#map run stub;#map name {}} 
+#alias {stop} {#var halt 1};
+#alias {..} {#var foundplayer 0;#var foundmob 0;#var foundroom 0;#var halt 0;glance}
+#alias {back} {#var halt 1;#map run stub;#map name {}}
+#alias {halt} {#var halt 1};
+
+#nop creates a list of exits to NOT choose during bot run;
+#alias {ignorex} {
+    #var exits %1;
+	#replace {exits} {,} {;};
+    #list {ignoreexits} {create} {$exits};
+    #show Ignoring exits: $ignoreexits[%*];
+    #return $ignoreexits;
+};
+
+#alias {ignoremobs} {
+    #var mobs %1;
+	#replace {mobs} {,} {;};
+    #list {ignoremobs} {create} {$mobs};
+    #show Ignoring mobs: $ignoremobs[%*];
+    #return $ignoremobs;
+};
+
+
+#nop at prompt, ask bot to do something;
+#action {>%*} { 
+   xx 
+} {10} 
+
+#action {-P-} 
+{ 
+   #var foundplayer 1;
+   #var foundmob 0;
+};
+
+#function {reversedir} { 
+   #if {"%1"=="n"} {#var result s} 
+   #if {"%1"=="s"} {#var result n} 
+   #if {"%1"=="e"} {#var result w} 
+   #if {"%1"=="w"} {#var result e} 
+   #if {"%1"=="u"} {#var result d} 
+   #if {"%1"=="d"} {#var result u} 
+   #if {"%1"=="ne"} {#var result sw} 
+   #if {"%1"=="se"} {#var result nw} 
+   #if {"%1"=="sw"} {#var result ne} 
+   #if {"%1"=="nw"} {#var result se} 
+   #if {"%1"=="enter"} {#var result out} 
+};
+
+/* Returns a list of all elements in list1 that are not also in list2 */ 
+#function {listcompare} { 
+   #list {result} {clr};
+   #var temp {%2};
+   #var j 0;
+   #foreach {%1} {i} {
+		#if {$j == 0} {
+			#var j 1;
+			#continue;
+		};
+		#list {temp} {find} {$i} {found};
+		#if {$found==0} {#list {result} {insert} {-1} {$i}};
+		#var j 0;
+	};
+
+   #unvar found;
+   #unvar temp;
+} 
+
+#action {{-R-(.*)} (%2)} 
+{
+	#var foundroom 1;
+	#map get roomexits curexits;
+
+    #var exits %3;
+	#replace {exits} {,} {;};
+    #list {exits} {create} {$exits};
+
+    #nop grab list of untravelled exits;
+    #var tempnewexits @listcompare{{$exits};{$curexits}};
+
+    #nop now filter out the exits we dont want;
+    #var newexits @listcompare{{$tempnewexits};{$ignoreexits}};
+
+    #list {newexits} {size} {numexits};
+
+    #nop are there exits we haven't been to yet?;
+	#if {$numexits > 0} {
+		#nop pick a "random" untravelled exit;
+		#var exit $newexits[+1d$numexits];
+		#nop if more than 1 untravelled exit, mark as stub and return later; 
+		#if {$numexits > 1} {#map name stub};
+    } {
+    	#nop otherwise, go in reverse from...;
+    	#list {exits} {find} {$reverse} {result};
+    	#list {exits} {delete} {$result};
+    	#list {exits} {size} {numexits};
+    	#if {$numexits > 0} {#var exit $exits[+1d$numexits]} {#var exit $reverse};
+    };
+
+    #var reverse @reversedir{$exit};
+};
+
+#action {{^=M= (.*)(\[(.*)\] \[(.*)\])?(.*)}}
+{
+	#show MOB %2;
+	#var targetName %2;
+	
+	#replace $targetName { } {;};
+	#list targetNameList create $targetName;
+	#list {targetNameList} {size} {nameLength};
+	#format guessTarget {%l} {$targetNameList[$nameLength]};
+	#replace {guessTarget} {.} {};
+	#replace {guessTarget} {!} {};
+
+	#var nummobs 1;
+	#show guess before multiple: $guessTarget;
+	#regex {"$guessTarget"} {\{%d\}} {#show matched multiple...;#var nummobs &1;};
+	#show num mobs: $nummobs;
+
+	#if {"$guessTarget" == "you"} {
+		#math newNameIndex {$nameLength - 2};
+		#format guessTarget {%l} {$targetNameList[$newNameIndex]};
+	};
+	#nop filter out health;
+	#regex {$guessTarget} {\[%d\%\]} {
+		#show filtering \%...;
+		#math newNameIndex {$newNameIndex - 2};
+		#format guessTarget {%l} {$targetNameList[$newNameIndex]};
+	};
+	#regex {$guessTarget} {\[%w\]} {
+		#show filtering letters...;
+		#math newNameIndex {$newNameIndex - 1};
+		#format guessTarget {%l} {$targetNameList[$newNameIndex]};
+	};
+
+	#show num mobs: $nummobs;
+	#show guessing: $guessTarget;
+
+	#if {$leave==0 && $foundmob==0 && $foundplayer==0}
+	{
+		#var foundmob 1;
+		#var halt 1;
+		k $guessTarget;
+	};
+} {4};
+
+#act {There is no {$guessTarget} here\.} {#show NO TARGET;#var foundmob 0;#var foundroom 1;#var halt 0;xx};
+
+#action {{^=M= Thread, Zorbaine's Komondor.}} {#nop;} {1};
+#action {{^=M= A manshi under the control of Zorbaine.}} {#nop;} {1};
+
+#alias xx {
+	#if {$foundmob==0 && $foundroom==1 && $halt==0}
+	{
+		#var foundroom 0;
+		#var foundplayer 0;
+		$exit;
+	}
+}
+
+#act {dealt the killing blow to} {..};
+#act {gurgles in his own blood} {..};
+#act {gurgles in its own blood} {..};
+#act {gurgles in her own blood} {..};
+#act {gasps for breath, then slumps into death} {..};
+#act {screeches in agony and falls to the ground, dead} {..};
+
+#nop Item pickup;
+#var pickupitems 0;
+#alias {itemson} {#show Pickup items on.;#var pickupitems 1};
+#alias {itemsoff} {#show Pickup items off.;#var pickupitems 0};
+
+#act {^\({o|a|w}\)} {#var founditem 1;gi};
+
+#alias {gi} {
+   #if {$pickupitems == 1} {
+      #if {$foundplayer == 1} {
+      } {
+         ga;pab;
+      };
+   };
+};
+
+#action {Putting 'all' in 'bag of devouring' master.} {put all in bag 2};
+
+#CLASS {sewerbot} CLOSE
+
+
+/* random exits chooser: 
+
+#function random_exit 
+{ 
+    #map get roomexits result; 
+    #list exits create $result[]; 
+    #var result $exits[1d&exits[]] 
+};
+@random_exit{};
+*/
+

@@ -1,0 +1,135 @@
+#class {terrain} {open}
+
+#alias {set_terrain} {
+	#map get roomterrain terrain;
+	
+	#switch {"$terrain"} {
+		#case {"air"}			{#var rmcol <268>;#var rmsym <268>. .<088>};
+		#case {"alley"}			{#var rmcol <248>;#var rmsym <248>. .<088>};
+		#case {"ashen_field"}		{#var rmcol <278>;#var rmsym <278>, `<088>};
+		#case {"areaexit"}		{#var rmcol <168>;#var rmsym <168>[<278>?<168>]<088>};
+		#case {"aylorcity"}		{#var rmcol <278>;#var rmsym <278>[ ]<088>};
+		#case {"beach"}			{#var rmcol <138>;#var rmsym <138>, `<088>};
+		#case {"bloodyhall"}		{#var rmcol <218>;#var rmsym <218>. .<088>};
+		#case {"bloodyroom"}		{#var rmcol <118>;#var rmsym <118>[ ]<088>};
+		#case {"bookshelves"}		{#var rmcol <238>;#var rmsym <238>\"\"\"<088>};
+		#case {"bookshelves_ns"}	{#var rmcol <238>;#var rmsym <238>=<148>.<238>=<088>};
+		#case {"bridge"}		{#var rmcol <238>;#var rmsym <238>===<088>};
+		#case {"cabin"}			{#var rmcol <238>;#var rmsym <238># #<088>};
+		#case {"cave"}			{#var rmcol <248>;#var rmsym <248>% %<088>};
+		#case {"castle"}		{#var rmcol <178>;#var rmsym <278>###<088>};
+		#case {"chaos_sea"}		{#var rmcol <258>;#var rmsym <258>~^~<088>};
+		#case {"chessblack"}		{#var rmcol <248>;#var rmsym <248>[ ]<088>};
+		#case {"chesswhite"}		{#var rmcol <178>;#var rmsym <178>[ ]<088>};
+		#case {"city"}			{#var rmcol <278>;#var rmsym <278>. .<088>};
+		#case {"city_underground"}	{#var rmcol <238>;#var rmsym <238>. .<088>};
+		#case {"cloud1"}		{#var rmcol <178>;#var rmsym <178>~ ~<088>};
+		#case {"cloud2"}		{#var rmcol <108>;#var rmsym <108>~ ~<088>};
+		#case {"cloud3"}		{#var rmcol <278>;#var rmsym <128>.<138>*<088>~<088>};
+		#case {"crossroad_ews"}		{#var rmcol <278>;#var rmsym <278>-+-<088>};
+		#case {"crossroad_nw"}		{#var rmcol <278>;#var rmsym <278>-+ <088>};
+		#case {"crossroad_se"}		{#var rmcol <278>;#var rmsym <278> +-<088>};
+		#case {"crypt"}			{#var rmcol <248>;#var rmsym <248>. <178>+<088>};
+		#case {"dark"}			{#var rmcol <208>;#var rmsym <208>[ ]<088>};
+		#case {"dead_field"}		{#var rmcol <238>;#var rmsym <238>, `<088>};
+		#case {"dead_forest"}		{#var rmcol <238>;#var rmsym <238>( *<088>};
+		#case {"dead_jungle"}		{#var rmcol <238>;#var rmsym <238>* *<088>};
+		#case {"desert"}		{#var rmcol <238>;#var rmsym <138>~ ~<088>};
+		#case {"dungeon"}		{#var rmcol <248>;#var rmsym <248># #<088>};
+		#case {"dustdevil"}		{#var rmcol <238>;#var rmsym <238>.\\/<088>};
+		#case {"field"}			{#var rmcol <228>;#var rmsym <228>, `<088>};
+		#case {"field2"}		{#var rmcol <228>;#var rmsym <228>. ^<088>};
+		#case {"field3"}		{#var rmcol <228>;#var rmsym <228>, .<088>};
+		#case {"field4"}		{#var rmcol <228>;#var rmsym <228>` ^<088>};
+		#case {"flowers1"}		{#var rmcol <178>;#var rmsym <168>*<158>*<138>*<088>};
+		#case {"flowers2"}		{#var rmcol <178>;#var rmsym <158>*<168>*<138>*<088>};
+		#case {"forest"}		{#var rmcol <228>;#var rmsym <228>( *<088>};
+		#case {"fountain"}		{#var rmcol <278>;#var rmsym <278>( )<088>};
+		#case {"graveyard"}		{#var rmcol <238>;#var rmsym <238>. <178>+<088>};
+		#case {"hallway"}		{#var rmcol <268>;#var rmsym <268>[ ]<088>};
+		#case {"hell1"}			{#var rmcol <218>;#var rmsym <218>` <118>,<088>};
+		#case {"hell2"}			{#var rmcol <218>;#var rmsym <218>~ .<088>};
+		#case {"hell3"}			{#var rmcol <218>;#var rmsym <218>~ <118>^<088>};
+		#case {"hell4"}			{#var rmcol <218>;#var rmsym <118>^ <218>^<088>};
+		#case {"hellfountain"}		{#var rmcol <218>;#var rmsym <118>(<178>~<118>)<088>};
+		#case {"hellhall"}		{#var rmcol <218>;#var rmsym <088>. <218>.<088>};
+		#case {"hellinside"}		{#var rmcol <218>;#var rmsym <218>[ ]<088>};
+		#case {"hills"}			{#var rmcol <228>;#var rmsym <228>. ^<088>};
+		#case {"hut"}			{#var rmcol <238>;#var rmsym <238>[ ]<088>};
+		#case {"ice"}			{#var rmcol <178>;#var rmsym <178>~ ~<088>};
+		#case {"icehills"}		{#var rmcol <178>;#var rmsym <178>^ ~<088>};
+		#case {"icemount"}		{#var rmcol <178>;#var rmsym <178>/\\ <088>};
+		#case {"inside"}		{#var rmcol <278>;#var rmsym <278>[ ]<088>};
+		#case {"insideice"}		{#var rmcol <178>;#var rmsym <178>[ ]<088>};
+		#case {"jungle"}		{#var rmcol <228>;#var rmsym <228>* *<088>};
+		#case {"lightning"}		{#var rmcol <138>;#var rmsym <138>  /<088>};
+		#case {"mist"}			{#var rmcol <178>;#var rmsym <178>~ ~<088>};
+		#case {"moon"}			{#var rmcol <248>;#var rmsym <248> * <088>};
+		#case {"mountain"}		{#var rmcol <238>;#var rmsym <238>/\\ <088>};
+		#case {"mountain_cyan"}		{#var rmcol <268>;#var rmsym <268>/\\ <088>};
+		#case {"ocean"}			{#var rmcol <148>;#var rmsym <148>~ ~<088>};
+		#case {"ocean2"}		{#var rmcol <148>;#var rmsym <148>~ ^<088>};
+		#case {"ocean3"}		{#var rmcol <148>;#var rmsym <148>^ ~<088>};
+		#case {"ocean4"}		{#var rmcol <148>;#var rmsym <148>, ~<088>};
+		#case {"office"}		{#var rmcol <238>;#var rmsym <238>[ ]<088>};
+		#case {"palace_room"}		{#var rmcol <138>;#var rmsym <138>[ ]<088>};
+		#case {"pillar"}		{#var rmcol <278>;#var rmsym <278> * <088>};
+		#case {"plain"}			{#var rmcol <238>;#var rmsym <238>, `<088>};
+		#case {"quicksand"}		{#var rmcol <138>;#var rmsym <138>\%\%\%<088>};
+		#case {"rain"}			{#var rmcol <148>;#var rmsym <148>'.'<088>};
+		#case {"rainbow"}		{#var rmcol <148>;#var rmsym <118>)<138>)<148>)<088>};
+		#case {"redcarpet"}		{#var rmcol <118>;#var rmsym <118>. .<088>};
+		#case {"river"}			{#var rmcol <148>;#var rmsym <148>~ ~<088>};
+		#case {"road"}			{#var rmcol <278>;#var rmsym <278>[ ]<088>};
+		#case {"road_crossroads"}	{#var rmcol <278>;#var rmsym <278>-+-<088>};
+		#case {"road_eastwest"}		{#var rmcol <278>;#var rmsym <278>- -<088>};
+		#case {"rocks"}			{#var rmcol <238>;#var rmsym <238>^ ^<088>};
+		#case {"ruins"}			{#var rmcol <178>;#var rmsym <178>\{<148>*<178>\}<088>};
+		#case {"ship"}			{#var rmcol <238>;#var rmsym <238>\\_/<088>};
+		#case {"shore"}			{#var rmcol <268>;#var rmsym <268>~ ~<088>};
+		#case {"shop"}			{#var rmcol <138>;#var rmsym <138>*<128>$<138>*<088>};
+		#case {"smallroad"}		{#var rmcol <278>;#var rmsym <228>,<278>|<228>`<088>};
+		#case {"smallroad_ew"}		{#var rmcol <278>;#var rmsym <278>---<088>};
+		#case {"snow"}			{#var rmcol <178>;#var rmsym <178>. ,<088>};
+		#case {"space1"}		{#var rmcol <108>;#var rmsym <208>[ ]<088>};
+		#case {"space2"}		{#var rmcol <278>;#var rmsym <278>*  <088>};
+		#case {"space3"}		{#var rmcol <278>;#var rmsym <278>  .<088>};
+		#case {"space4"}		{#var rmcol <108>;#var rmsym <208>[ ]<088>};
+		#case {"stairs"}		{#var rmcol <278>;#var rmsym <278>.@.<088>};
+		#case {"sun"}			{#var rmcol <138>;#var rmsym <138> * <088>};
+		#case {"swamp"}			{#var rmcol <228>;#var rmsym <228>\; \;<088>};
+		#case {"temple"}		{#var rmcol <268>;#var rmsym <268>\{<178>+<268>\}<088>};
+		#case {"tornado"}		{#var rmcol <108>;#var rmsym <108>.\\/<088>};
+		#case {"trail_ew"}		{#var rmcol <238>;#var rmsym <238>. .<088>};
+		#case {"tunnel"}		{#var rmcol <238>;#var rmsym <238>] [<088>};
+		#case {"underground"}		{#var rmcol <148>;#var rmsym <148>. .<088>};
+		#case {"underwater"}		{#var rmcol <248>;#var rmsym <248>~ ~<088>};
+		#case {"vertical_shaft"}	{#var rmcol <278>;#var rmsym <278>< ><088>};
+		#case {"volcano"}		{#var rmcol <218>;#var rmsym <218>/\\ <088>};
+		#case {"waterswim"}		{#var rmcol <148>;#var rmsym <148>~ ~<088>};
+		#case {"waternoswim"}		{#var rmcol <148>;#var rmsym <148>~ ~<088>};
+		#case {"well"}			{#var rmcol <238>;#var rmsym <238>(<148>~<238>)<088>};
+		#case {"wind1"}			{#var rmcol <168>;#var rmsym <168>~ ~<088>};
+		#case {"wind2"}			{#var rmcol <108>;#var rmsym <108>~-~<088>};
+		#default			{#var rmcol {};#var rmsym {}};
+	};
+
+	#format {rmsym_len} {%L} {$rmsym};
+
+	#if {"$rmcol" != ""} {
+		#map set roomcolor $rmcol
+	};
+	#if {$rmsym_len > 0} {
+		#map set roomsymbol $rmsym
+	};
+}
+
+	
+
+#alias {terrain} {
+	#loop 1 60000 {cnt} {
+		#map at {$cnt} {set_terrain};
+	}
+}
+
+#class {terrain} {close}

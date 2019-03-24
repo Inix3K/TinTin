@@ -1,0 +1,26 @@
+#class {bot} {open}
+#var {area} {somerset}
+#var {botpath} {e;e;e;n;w;w;w;n;e;e;e;s;s;w;w;w;n;n;n;e;e;e;search reeds;swim river;e;nw;n;n;n;e;s;s;s;s;e;n;n;n;n;e;s;s;s;w;w;w;e;s;e;e;e;s;w;w;s;s;e;e;e;n;w;w;w;n;e;e;e;w;n;n;n;n;n;n;e;s;s;s;e;n;n;n;e;s;s;s;s;s;s;e;n;n;n;w;s;s;s;e;e;n;n;n;n;e;s;s;s;s;w;n;n;n;n;e;e;e;s;w;w;n;e;e;n;w;n;e;s;s;e;n;n;n;n;w;n;e;s;s;e;s;s;s;e;n;n;n;e;s;s;s;e;n;n;n;ne;w;se;n;sw;w;w;w;w;s;s;s;w;n;s;s;w;w;w;s;s;s;w;n;n;n;w;n;n;n;w;w;w;s;s;s;s;s;s;w;w;n;w;w;search reeds;swim across river;w;w;w;s;s;s}
+
+#act {^=M= {Chestnut|Nyreem|Centany|Puffball|Silfthan|Hlessinen|Hainthinnang|Cow|Sheep|Goat|Duck}} {
+        #if {"%1" == "Chestnut"} {#var mobname chestnut};
+        #if {"%1" == "Nyreem"} {#var mobname nyreem};
+        #if {"%1" == "Centany"} {#var mobname centany};
+        #if {"%1" == "Puffball"} {#var mobname puffball};
+        #if {"%1" == "Silfthan"} {#var mobname silfthan};
+        #if {"%1" == "Hlessinen"} {#var mobname hlessinen};
+        #if {"%1" == "Hainthinnang"} {#var mobname hainthinnang};
+        #if {"%1" == "Cow"} {#var mobname cow};
+        #if {"%1" == "Sheep"} {#var mobname sheep};
+        #if {"%1" == "Goat"} {#var mobname goat};
+        #if {"%1" == "Duck"} {#var mobname duck};
+        _check_mob
+        }
+#act {You've killed} {#nop} {1}
+#act {You move the reeds aside and find a small board.} {..}
+#act {Someone has already searched the reeds.} {..}
+#nop #act {You jump into the river and begin} {..}
+#class {bot} {close}
+
+
+

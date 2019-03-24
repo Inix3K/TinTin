@@ -1,0 +1,46 @@
+#class {bot} {open}
+#var {areaname} {grocery store}
+#var {botpath} 
+{s;w;n;n;w;s;s;w;n;n;w;s;s;w;n;n;w;s;s;w;n;n;w;s;s;n;n;e;e;e;e;e;e;e;e;s}
+
+#act {^=M= {Toucan Sam|An annoying little girl|The Trix Rabbit|A Thirsty Girl|The Kool-Aid Man|The famous Ray Charles|A very health conscious cow|A Keebler Elf|Frito Bandito|Jay Leno|A Blonde|A Brunette|Kelly Lebrock|A Screaming Baby|A Booming Voice|Madge|A Lady who wishes she were Madge|Mr. Clean|A Cute Little Boy|A Really Fat Man|A Rather Slim Lady|A Chorus|Northern Bath Tissue Girl|Brawny, the Paper Towel Giant|Mr. Whipple|Polar Bear|A Weight Watcher's Lady|Bill Cosby|Campbell's Soup Kid|Chef Boyardee|Sprout|Jolly Green Giant|Mr. Lucky Charm|Snuggles the Bear}} {
+	#if {"%1" == "Toucan Sam"} {#var mobname sam};
+	#if {"%1" == "An annoying little girl"} {#var mobname girl};
+	#if {"%1" == "The Trix Rabbit"} {#var mobname rabbit};
+	#if {"%1" == "A Thirsty Girl"} {#var mobname girl};
+	#if {"%1" == "The Kool-Aid Man"} {#var mobname man};
+	#if {"%1" == "The famous Ray Charles"} {#var mobname ray};
+	#if {"%1" == "A very health conscious cow"} {#var mobname cow};
+	#if {"%1" == "A Keebler Elf"} {#var mobname elf};
+	#if {"%1" == "Frito Bandito"} {#var mobname frito};
+	#if {"%1" == "Jay Leno"} {#var mobname leno};
+	#if {"%1" == "A Blonde"} {#var mobname blonde};
+	#if {"%1" == "A Brunette"} {#var mobname brunette};
+	#if {"%1" == "Kelly Lebrock"} {#var mobname kelly};
+	#if {"%1" == "A Screaming Baby"} {#var mobname baby};
+	#if {"%1" == "A Booming Voice"} {#var mobname voice};
+	#if {"%1" == "Madge"} {#var mobname madge};
+	#if {"%1" == "A Lady who wishes she were Madge"} {#var mobname lady};
+	#if {"%1" == "Mr. Clean"} {#var mobname clean};
+	#if {"%1" == "A Cute Little Boy"} {#var mobname boy};
+	#if {"%1" == "A Really Fat Man"} {#var mobname man};
+	#if {"%1" == "A Rather Slim Lady"} {#var mobname lady};
+	#if {"%1" == "A Chorus"} {#var mobname chorus};
+	#if {"%1" == "Northern Bath Tissue Girl"} {#var mobname girl};
+	#if {"%1" == "Brawny, the Paper Towel Giant"} {#var mobname giant};
+	#if {"%1" == "Mr. Whipple"} {#var mobname whipple};
+	#if {"%1" == "Polar Bear"} {#var mobname bear};
+	#if {"%1" == "A Weight Watcher's Lady"} {#var mobname lady};
+	#if {"%1" == "Bill Cosby"} {#var mobname bill};
+	#if {"%1" == "Campbell's Soup Kid"} {#var mobname kid};
+	#if {"%1" == "Chef Boyardee"} {#var mobname chef};
+	#if {"%1" == "Sprout"} {#var mobname sprout};
+	#if {"%1" == "Jolly Green Giant"} {#var mobname giant};
+	#if {"%1" == "Mr. Lucky Charm"} {#var mobname charm};
+	#if {"%1" == "Snuggles the Bear"} {#var mobname bear};
+	_check_mob}
+
+#act {Your bite crushed} {#nop} {1}
+#class {bot} {close}
+
+

@@ -1,0 +1,78 @@
+#class {lycanth} {open}
+
+#var pers off
+#act {{HP:(\d+)/(\d+) SP:(\d+)/(\d+) ST:([\d\.]+)\% PP:([\d\.]+)\% CF:(\d+)/(\d+)\% BP:(\d+) FF:([\d\.]+)\% E?:?([\w\d\%]+)?}} {
+	#var {hp}	{%2};
+	#var {hp_max}	{%3};
+	#var {sp}	{%4};
+	#var {sp_max}	{%5};
+	#var {stam}	{%6};
+	#var {pp}	{%7};
+	#var {relin}	{%8};
+	#var {relin_r}	{%9};
+	#var {bio}	{%10};
+	#var {ff}	{%11};
+	#var {ehealth}	{%12};
+	#if {$stam < 35 && $pp > 35 && "$pers" == "on"} {
+		!perseverance off;
+		#var pers off
+	}; #elseif {$stam > 35 && $pp < 35 && "$pers" == "off"} {
+		!perseverance on;
+		#var pers on
+	};
+	#if {$stam < 30 || $pp < 30} {
+		#if {$relin > 0} {
+			!relinquish
+		}; #elseif {$bio > 0} {
+			!cb
+		}
+	};
+        #if {"$cooler" == "on" || $cooler_count > 0} {
+                #format {sb1_cooler} {%+2s} {$cooler_count};
+                #var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
+        } {
+                #var {sb1_cooler} {}
+        };
+        #if {"$freezer" == "on" || $freezer_count > 0} {
+                #format {sb2_freezer} {%+2s} {$freezer_count};
+                #var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
+        } {
+                #var {sb2_freezer} {}
+        };
+        #if {$ehealth > 0} {
+        	#format {ehealth_label} {%+6s} {$ehealth};
+                #var {ehealth_label} {$ehealth_label%%}
+        } {
+		#format {ehealth_label} {%-9s} {$ehealth};
+                #var {ehealth_label} { $ehealth_label}
+        };
+	#var	{hp_graph}	{@graph{$hp;$hp_max}};
+	#var	{sp_graph}	{@graph{$sp;$sp_max}};
+	#var	{stam_graph}	{@graph{$stam;100}};
+	#var	{pp_graph}	{@graph{$pp;100}};
+	#var	{ff_graph}	{@graph{$ff;100}};
+	#var	{egraph}	{@graph{$ehealth;100}};
+	#format {hp}		{%+4s} {$hp};
+	#format {hp_max}	{%+4s} {$hp_max};
+	#format {sp}		{%+4s} {$sp};
+	#format {sp_max}	{%+4s} {$sp_max};
+	#format {stam}		{%+8s} {$stam};
+	#format {pp}		{%+7s} {$pp};
+	#format {ff}		{%+7s} {$ff};
+        #format {inv_count}     {%+2s} {$inv_count};
+        #format {truck_count}   {%+2s} {$truck_count};
+        #format {coffin_count}  {%+2s} {$coffin_count};
+        #format {freezer_count} {%+2s} {$freezer_count};
+	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam}%  PP:${pp}%  FF:${ff}%  E:${ehealth_label}  R:${relin} IC:<138>${inv_count}<088>${sb1_cooler}} {3};
+	#showme {H:${hp_graph} S:${sp_graph} ST:${stam_graph} P:${pp_graph} F:${ff_graph} E:${egraph} BP:${bio} CF:<138>${coffin_count}<088>${sb2_freezer}} {2}
+}
+
+#alias {corpsetrig} {
+	!wrap;
+	!bio;
+	!get coins
+}
+
+#act {dealt the killing blow} {corpsetrig}
+
+#class {lycanth} {close}

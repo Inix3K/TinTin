@@ -1,0 +1,61 @@
+#NOP https://tintin.sourceforge.io/manual/colors.php
+#NOP #showme {<AFA> <AEA> <BEA> <BDA> <CDA> <DCA> <DBA> <EBA> <EAA> <FAA> }
+
+#function {graph}
+{
+	#regex {%1} {\d} {
+		#math per {100.0*%1/%2};
+		#format {per} {%d} {$per};
+		#if {$per > 100} {#var graph {<006>   $per%%   <088>}};
+		#if {$per == 100} {#var graph {<008><AFA>   $per%%   <088>}};
+		#if {$per < 100} {#var graph {<008><AEA>    $per%%  <088> }};
+		#if {$per < 90}	{#var graph {<008><BEA>    $per%% <070>  <088>}};
+		#if {$per < 80} {#var graph {<008><BDA>    $per%%<070>   <088>}};
+		#if {$per < 70} {#var graph {<008><CDA>    $per<070>%%   <088>}};
+		#if {$per < 60} {
+			#format {per_1} {%.1s} {$per};
+			#format {per_2} {%r} {$per};
+			#format {per_2} {%.1s} {$per_2};
+			#var graph {<008><DCA>    ${per_1}<070>${per_2}%%   <088>}};
+		#if {$per < 50} {#var graph {<008><DBA>    <070>$per%%   <088>}};
+		#if {$per < 40} {#var graph {<008><EBA>   <070> $per%%   <088>}};
+		#if {$per < 30} {#var graph {<008><EAA>  <070>  $per%%   <088>}};
+		#if {$per < 20} {#var graph {<008><FAA> <070>   $per%%   <088>}};
+		#if {$per < 10} {#var graph {<070>     $per%%   <088>}}
+	} {
+		#format {var} {%.3s} {%1};
+		#if {"$var" == "bet" || "$var" == "hea"} {
+			#var graph {<006>          <088>}
+		}; #elseif {"$var" == "per"} {
+			#var graph {<008><AFA>          <088>}
+		}; #elseif {"$var" == "bru"} {
+			#var graph {<008><BEA>        <088>  }
+		}; #elseif {"$var" == "ble"} {
+			#var graph {<008><DBA>    <088>      }
+		}; #elseif {"$var" == "eme" || "$var" == "alm"} {
+			#var graph {<008><FAA> <088>         }
+		}; #else {
+			#var graph {          }
+		}
+	}
+
+        #return $graph
+}
+
+#function {colscale} {
+	#math per {100*%1/%2};
+        #switch {1} {
+                #case {$per > 100}	{#return <168>%1<088>};
+                #case {$per > 90}	{#return <afa>%1<088>};
+                #case {$per > 80}	{#return <aea>%1<088>};
+                #case {$per > 70}	{#return <bea>%1<088>};
+                #case {$per > 60}	{#return <bda>%1<088>};
+                #case {$per > 50}	{#return <cda>%1<088>};
+                #case {$per > 40}	{#return <dca>%1<088>};
+                #case {$per > 30}	{#return <dba>%1<088>};
+                #case {$per > 20}	{#return <eba>%1<088>};
+                #case {$per > 10}	{#return <eaa>%1<088>};
+                #case {$per >= 0}	{#return <faa>%1<088>};
+                #default 	{#return <088>%1};
+        }
+}

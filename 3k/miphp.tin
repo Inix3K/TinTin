@@ -1,0 +1,24 @@
+#class {miphp} {open}
+
+#alias {update_status} {
+
+	#var	{my[hp][graph]}		{@graph{$my[hp][current];${my[hp][max]}}};
+	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
+	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
+	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
+	#format {hp}			{%+4s} {$my[hp][current]};
+	#format {hp_max}		{%+4s} {$my[hp][max]};
+	#format {sp}			{%+4s} {$my[sp][current]};
+	#format {sp_max}		{%+4s} {$my[sp][max]};
+	#format {gp1}			{%+4s} {$my[gp1][current]};
+	#format {gp1_max}		{%+4s} {$my[gp1][max]};
+	#format {gp2}			{%+4s} {$my[gp2][current]};
+	#format {gp2_max}		{%+4s} {$my[gp2][max]};
+	#format {ehealth}		{%+7s} {$enemy[hp]%%};
+	
+	#showme {HP:$hp/$hp_max SP:$sp/$sp_max GP1:$gp1/$gp1_max GP2:$gp2/$gp2_max E:$ehealth} {3};
+	#showme {H:$my[hp][graph] S:$my[sp][graph] G1:$my[gp1][graph] G2:$my[gp2][graph] E:$enemy[graph]} {2}
+}
+
+#class {miphp} {close}

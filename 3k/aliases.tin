@@ -1,0 +1,89 @@
+#class {aliases} {open}
+
+/* 3K Aliases */
+
+#alias {dg} {!divvy gold}
+#alias {fol} {!follow}
+#alias {ga} {!get all}
+#alias {gac} {!get all from corpse}
+#alias {gc} {!get coins}
+#alias {goto} {!houseedit gotoroom}
+#alias {gl} {!glance}
+#alias {k} {!kill}
+#alias {los} {!lineofsight}
+#alias {cl} {!ctell}
+#alias {pt} {!ptell}
+#alias {pth} {!ptell -h}
+#alias {th} {!tellhist}
+#alias {rem} {!remove}
+#alias {efor} {!portal eforest}
+#alias {wfor} {!portal wforest}
+#alias {pnam} {!pname Whiteout}
+
+#alias {/start} {
+        d;
+        touch post;
+        e;
+        home;
+        morgue;
+        acquire;
+        home;
+        keep all
+}
+
+#alias {swt} {switchto}
+
+#alias {shankey} {
+        search bed;
+        pull lever;
+        search dresser;
+        open drawer;
+        get key;
+        keep key
+}
+
+#alias {i1} {insert hand into left hole}
+#alias {i2} {insert hand into centre hole}
+#alias {i3} {insert hand into right hole}
+
+#alias {getcloud} {
+        go cloud;
+        gaze into mirror;
+        roll cloud;
+        get cloud;
+        claim cloud;
+        go home
+}
+
+#alias {/run} {
+        #config speedwalk on;
+        %0;
+        #config speedwalk off
+}
+
+/* Boosts */
+#alias {einstein} {
+        go einsteins_cottage;
+        ne;
+        climb gate;
+        w;
+        search tree;
+        e;
+        e;
+        n;
+        n;
+        enter;
+        unlock holder;
+        turn holder;
+        climb bench;
+        stagedive;
+        s;
+        s;
+        w;
+        unlock door;
+        open door;
+        n
+}
+
+
+#class {aliases} {close}

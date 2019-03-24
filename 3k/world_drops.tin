@@ -1,0 +1,28 @@
+#class {world_drops} {open}
+#act {^{Soul Drinker Blade|Zinc flask (purple liquid)PICNP Device|Amulet of Voraxis|Amulet of Waves|An exploding kitten|Buckler of Eternia|Frosted armour of Aylin|Frosted boots of Aylin|Frosted breastplate of Aylin|Frosted gauntlets of Aylin|Frosted helmet of Aylin|Frosted shield of Aylin|Golden Robes of Intellect|Molok's Titanium Breastplate|QT Amulet|Redoubt Cloak|Robe of Therlasia|Shieldbreaker|Shimmering cloak of Aylin|Skull of the Dracolich, Yaxtan|Staff of Elemental Fury|Thundering|TimeRender|Frosted shield of Aylin}}
+{
+	#regexp {%1} {{[aA]mulet}} {#var worldDropName {amulet}};
+	#regexp {%1} {{[bB]uckler}} {#var worldDropName {buckler}};
+	#regexp {%1} {{[aA]rmour}} {#var worldDropName {armour}};
+	#regexp {%1} {{[rR]obe[s]?}} {#var worldDropName {robes}};
+	#regexp {%1} {{kitten}} {#var worldDropName {kitten}};
+	#regexp {%1} {{[bB]reastplate}} {#var worldDropName {breastplate}};
+	#regexp {%1} {{[cC]loak}} {#var worldDropName {cloak}};
+	#regexp {%1} {{[sS]hieldbreaker}} {#var worldDropName {shieldbreaker}};
+	#regexp {%1} {{[sS]kull}} {#var worldDropName {skull}};
+	#regexp {%1} {{[sS]taff}} {#var worldDropName {staff}};
+	#regexp {%1} {{[tT]hundering}} {#var worldDropName {thundering}};
+	#regexp {%1} {{[tT]imerender}} {#var worldDropName {timerender}};
+	#regexp {%1} {{[gG]auntlets}} {#var worldDropName {gloves}};
+	#regexp {%1} {{[bB]oots}} {#var woldDropName {boots}};
+	#regexp {%1} {{[hH]elmet}} {#var worldDropName {helmet}};
+	#regexp {%1} {{[sS]hield}} {#var worldDropName {shield}};
+	#regexp {%1} {{[fF]lask}} {#var worldDropName {flask}};
+	#regexp {%1} {{[bB]lde}} {#var worldDropName {blade}};
+
+
+	#if {!$found_player} {get $worldDropName};
+	#unvar {worldDropName}
+} {1}; 
+
+#class {world_drops} {close}

@@ -1,0 +1,19 @@
+#class {bot} {open}
+
+#var {botpath} {n;n;n;nw;nw;n;se;se;n;nw;nw;ne;n;se;ne;s;sw;se;ne;s;sw;s;s;ne;n;se;ne;ne;ne;nw;nw;nw;n;nw;ne;se;s;se;se;n;nw;n;se;se;s;s;se;n;n;n;n;n;n;n;n;nw;s;s;s;sw;n;n;n;sw;s;s;sw;sw;nw;n;se;ne;nw;ne;nw;ne;ne;ne;nw;nw;nw;nw;nw;s;se;sw;se;sw;se;sw;s;s;nw;sw;n;ne;nw;nw;n;se;se;n;nw;ne;n;n;sw;s;sw;n;sw;sw;sw;sw;sw;sw;s;ne;s;se;n;n;ne;s;s;s;ne;n;n;se;s;se;sw;se;sw;nw;sw;nw;nw;nw;s;s;s;s;s;s;ne;se;n;nw;n;ne;ne;se;ne;se;sw;sw;nw;sw;se;se;sw;s;se;se;se;se;se;s;s}
+
+#act {^=M= {Queen's Elite Guardswoman|Wild Stag|Faerie Lizard|Baby Dragon|Rabid Wolf|Ragged Peasant|Sylvan Elf|Wyvern}} {
+	#switch {"%1"} {
+		#case {"Queen's Elite Guardswoman"}	{#var mobname guard};
+		#case {"Wild Stag"}			{#var mobname stag};
+		#case {"Faerie Lizard"}			{#var mobname lizard};
+		#case {"Baby Dragon"}			{#var mobname dragon};
+		#case {"Rabid Wolf"}			{#var mobname wolf};
+		#case {"Ragged Peasant"}		{#var mobname peasant};
+		#case {"Sylvan Elf"}			{#var mobname elf};
+		#case {"Wyvern"}			{#var mobname wyvern};
+	};
+	#if {($hardmode == 1 && "$mobname" == "guard") ^^ ("$mobname" != "guard")} {_check_mob}
+}
+
+#class {bot} {close}

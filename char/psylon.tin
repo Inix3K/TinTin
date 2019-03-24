@@ -1,0 +1,39 @@
+#class {psylon} {open}
+
+/* HP Bars */
+#act {{ HP:(\d+)/(\d+) C:(\d+)\%  NRG:(\d+)/(\d+)\((\d+)([\+\-]*)\)  SP:(\d+)/(\d+)  S:(\d+)\((\d+)\%\) G2N:(\d+)(\w+)(?:   T:)?([\w\s]*)\:?(\d*)\%?}} {
+	#var hp		{%2};
+	#var hp_max	{%3};
+	#var cohesion	{%4};
+	#var nrg	{%5};
+	#var nrg_max	{%6};
+	#var emit	{%7};
+	#var emit_mod	{%8};
+	#var sp		{%9};
+	#var sp_max	{%10};
+	#var blasts	{%11};
+	#var reset	{%12};
+	#var g2n	{%13};
+	#var g2n_mod	{%14};
+	#var enemy	{%15};
+	#var ehealth	{%16};
+	#var {hp_graph} {@graph{$hp;$hp_max}};
+	#var {sp_graph} {@graph{$sp;$sp_max}};
+	#var {nrg_graph} {@graph{$nrg;$nrg_max}};
+	#var {egraph} {@graph{$ehealth;100}};
+	#format {hp}		{%+4s} {$hp};
+	#format {hp_max}	{%+4s} {$hp_max};
+	#format {sp}		{%+4s} {$sp};
+	#format {sp_max}	{%+4s} {$sp_max};
+	#format {nrg}		{%+4s} {$nrg};
+	#format {nrg_max}	{%+4s} {$nrg_max};
+	#format {ehealth} {%+3s} {$ehealth};
+	#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  E:   ${ehealth}%} {3};
+	#showme {H:${hp_graph} S:${sp_graph} N:${nrg_graph} E:${egraph}} {2};
+}
+
+
+#alias {corpsetrig} {slab;wrap;mdc;cd;get coins}
+
+
+#class {psylon} {close}

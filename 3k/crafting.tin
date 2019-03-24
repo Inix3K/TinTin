@@ -1,0 +1,8 @@
+#alias {aa}	{#read common/crafting/assemble.tin};
+#alias {forge}	{#send {forge};#read common/crafting/blacksmith.tin};
+#alias {kiln}	{#send {kiln};#read common/crafting/blacksmith.tin};
+#alias {mines}	{#read common/crafting/miner.tin;#send {mines}};
+#alias {smelt}	{#read common/crafting/smelter.tin;#send {smelt}};
+
+
+#alias {shatter %1} {unstash2 worst %1;#send {shatter %1};stash all}

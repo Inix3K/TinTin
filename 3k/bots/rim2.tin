@@ -1,0 +1,14 @@
+#class {bot} {open}
+
+#var {botpath} {e;ne;se;n;nw;se;s;se;nw;w;s;w;s;e;ne;n;w;s;d;n;nw;ne;sw;se;s;u;n;w;w}
+
+#act {^=M= {A small|A large|A very large} Rimalkin} {
+	#switch {"%1"} {
+		#case {"A small"}	{#var mobname {small rimalkin}};
+		#case {"A large"}	{#var mobname {large rimalkin}};
+		#case {"A very large" }	{#var mobname {very large rimalkin}};
+	};
+	_check_mob
+}
+
+#class {bot} {close}

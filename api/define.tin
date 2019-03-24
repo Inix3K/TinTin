@@ -1,0 +1,39 @@
+#class {define} {open}
+
+#var idefine {on}
+
+#alias {dodefine} {
+	#var data {$mip[comm][data]};
+	#replace {data} {idefine} {#};
+	#var data_cnt 0;
+	#parse {$data} {char} {
+		#math {data_cnt} {$data_cnt + 1};
+		#if {"$char" == "#"} {
+			#var data_cut $data_cnt	
+		}
+	};
+	#math {cut} {$data_cnt - $data_cut - 1};
+	#format {word} {%r} {$data};
+	#format {word} {%.${cut}s} {$word};
+	#format {word} {%r} {$word};
+	#var word2 {};
+	#parse {$word} {char} {
+		#if {"$char" == " "} {
+			#var char {_};
+		};
+		#var word2 {$word2$char};
+	};
+	#sys {~/.scripts/define $word2};
+	#read .scripts/def.tin;
+	#format {def_len} {%L} {$definition};
+	#if {$def_len == 0} {
+		#var definition {No results found}
+	} {
+		#replace {definition} {\\n} { };
+		#replace {definition} {\\r} { }
+	};
+	#var defineline {$mip[comm][command]};
+	#delay 1 {#send $defineline $word : $definition}
+}
+
+#class {define} {close}

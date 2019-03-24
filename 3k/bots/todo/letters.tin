@@ -1,0 +1,12 @@
+#class {bot} {open}
+#var {area} {letters}
+#var {no_loop} {1}
+#var {botpath} {s;s;e;w;n;e;e;e;e;s;n;w;w;s;s;w;w;s;n;e;e;e;n;s;s;n;e;s;s;e;w;w;w;w;w;e;n;e;w;s;e;e;e;n;n;w;w;n;n;w;w;n}
+#act {=M= The Alphabet Serial Killer <?>} {mission ask}
+#act {=M= The Alphabet Serial Killer <!>} {mission return}
+
+#act {^=M= Letter} {#var mobname letter;_check_mob}
+
+#class {bot} {close}
+
+

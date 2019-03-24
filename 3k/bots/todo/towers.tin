@@ -1,0 +1,89 @@
+#VAR step[gipath] {polcof;cofcot};
+#VAR step[roompath] {cotcof;cofpol2};
+#VAR step[rdesc] {Forest of Despair (\(n,portal\)|\(portal,n\))};
+#VAR step[splitpath] true;
+
+#VAR path[poltest] {n;n;nw;nw;n;n;n;ne;s;s;s;s;se;n;n;n;n;n;nw;s;s;s;s;sw;nw;nw;nw;n;ne;n;ne;ne;nw;s;nw;s;sw;s;s;nw;n;n;n;ne;s;sw;nw;s;s;sw;sw;sw;sw;{#IF {$$step[ldetect][player] > 0} {#PATH load $$polpart2;l} {#PATH load $$poltower1;l}}};
+
+#VAR polpart2 {ne;ne;ne;n;n;n;n;n;ne;se;se;ne;se;ne;ne;ne;n;n;n;n;sw;s;s;s;s;sw;n;nw;n;s;s;s;nw;n;n;n;nw;s;s;s;s;nw;n;n;n;ne;n;sw;s;nw;s;s;s;sw;n;n;n;nw;nw;nw;{#IF {$$step[ldetect][player] > 0} {#PATH load $$polpart3;l} {#PATH load $$poltower2;l}}};
+#VAR polpart3 {se;se;se;ne;ne;ne;ne;ne;se;s;s;se;n;n;n;n;ne;s;s;s;s;s;s;ne;n;n;n;n;n;se;s;s;s;sw;nw;nw;n;n;ne;n;n;n;n;{#IF {$$step[ldetect][player] > 0} {#PATH load $$polpart4;l} {#PATH load $$poltower3;l}}};
+#VAR polpart4 {s;s;s;se;se;se;se;se;s;sw;sw;s;sw;sw;se;n;se;s;ne;n;n;n;ne;s;s;s;se;n;n;n;n;se;se;ne;ne;ne;{#IF {$$step[ldetect][player] > 0} {#PATH load $$polpart5;l} {#PATH load $$poltower4;l}}};
+#VAR polpart5 {sw;sw;sw;s;s;s;s;s;sw;nw;nw;sw;nw;sw;se;n;se;s;sw;se;ne;n;n;se;s;s;s;ne;n;n;se;s;s;se;se;se;{#IF {$$step[ldetect][player] > 0} {#PATH load $$polpart6;l} {#PATH load $$poltower5;l}}};
+#VAR polpart6 {nw;nw;nw;nw;sw;sw;sw;sw;nw;n;n;nw;n;sw;s;se;s;s;s;sw;n;n;n;n;n;nw;s;s;s;s;s;se;s;s};
+
+#VAR poltower1 {n;w;e;e;w;n;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower1out;l} {#PATH load $$poltower1s1;l}}};
+#VAR poltower1s1 {nw;u;d;se;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower1out;l} {#PATH load $$poltower1s2;l}}};
+#VAR poltower1s2 {ne;u;d;sw;{#PATH load $$poltower1out;l}};
+#VAR poltower1out {s;s;{#PATH load $$polpart2;l}};
+#VAR poltower2 {n;w;e;e;w;n;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower2out;l} {#PATH load $$poltower2s1;l}}};
+#VAR poltower2s1 {nw;u;d;se;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower2out;l} {#PATH load $$poltower2s2;l}}};
+#VAR poltower2s2 {ne;u;d;sw;{#PATH load $$poltower2out;l}};
+#VAR poltower2out {s;s;{#PATH load $$polpart3;l}};
+#VAR poltower3 {n;w;e;e;w;n;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower3out;l} {#PATH load $$poltower3s1;l}}};
+#VAR poltower3s1 {nw;u;d;se;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower3out;l} {#PATH load $$poltower3s2;l}}};
+#VAR poltower3s2 {ne;u;d;sw;{#PATH load $$poltower3out;l}};
+#VAR poltower3out {s;s;{#PATH load $$polpart4;l}};
+#VAR poltower4 {n;w;e;e;w;n;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower4out;l} {#PATH load $$poltower4s1;l}}};
+#VAR poltower4s1 {nw;u;d;se;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower4out;l} {#PATH load $$poltower4s2;l}}};
+#VAR poltower4s2 {ne;u;d;sw;{#PATH load $$poltower4out;l}};
+#VAR poltower4out {s;s;{#PATH load $$polpart5;l}};
+#VAR poltower5 {n;w;e;e;w;n;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower5out;l} {#PATH load $$poltower5s1;l}}};
+#VAR poltower5s1 {nw;u;d;se;{#IF {$$step[ldetect][player] > 0 && $$step[ldetect][mob] > 0} {#PATH load $$poltower5out;l} {#PATH load $$poltower5s2;l}}};
+#VAR poltower5s2 {ne;u;d;sw;{#PATH load $$poltower5out;l}};
+#VAR poltower5out {s;s;{#VAR step[splitpath] false;#PATH load $$polpart6;l}};
+
+#ACT {^#M#{(Black Patrol Leader|Black Patrol Guard|Black Patrol Captain|Queen's Elite Guardswoman|Shadow Guard|Wyvern|Sylvan Demon|Lesser Demon|Ragged Peasant|Warrior of the Mist|Evil Templar|Evil Cleric of Cyric|Cleric of Lathander|Demon Guard|Sylvan Elf|Faerie Lizard|Rabid Wolf|Wild Stag|Baby Dragon).+}} {
+        #MATH step[ldetect][mob] {$step[ldetect][mob] + 1};
+        #VAR temp[mobstacks] %10;
+        #IF {$temp[mobstacks] > 0} {
+                #MATH step[ldetect][mob] {($step[ldetect][mob] + $temp[mobstacks]) - 1};
+                #UNVAR temp[mobstacks];
+        };
+        #IF {"%2" == "Shadow Guard"} {
+                #VAR step[mob][name] guard;
+        }; #ELSEIF {"%2" == "Sylvan Demon"} { 
+                #VAR step[mob][name] demon;
+        }; #ELSEIF {"%2" == "Ragged Peasant"} { 
+                #VAR step[mob][name] peasant;
+        }; #ELSEIF {"%2" == "Warrior of the Mist"} { 
+                #VAR step[mob][name] warrior;
+        }; #ELSEIF {"%2" == "Queen's Elite Guardswoman"} { 
+                #VAR step[mob][name] guardswoman;
+        }; #ELSEIF {"%2" == "Evil Templar"} { 
+                #VAR step[mob][name] templar;
+        }; #ELSEIF {"%2" == "Evil Cleric of Cyric"} { 
+                #VAR step[mob][name] cleric;
+        }; #ELSEIF {"%2" == "Cleric of Lathander"} { 
+                #VAR step[mob][name] cleric;
+        }; #ELSEIF {"%2" == "Demon Guard"} { 
+                #VAR step[mob][name] guard;
+        }; #ELSEIF {"%2" == "Lesser Demon"} { 
+                #VAR step[mob][name] demon;
+        }; #ELSEIF {"%2" == "Sylvan Elf"} { 
+                #VAR step[mob][name] elf;
+        }; #ELSEIF {"%2" == "Faerie Lizard"} { 
+                #VAR step[mob][name] lizard;
+        }; #ELSEIF {"%2" == "Rabid Wolf"} { 
+                #VAR step[mob][name] wolf;
+	}; #ELSEIF {"%2" == "Wild Stag"} { 
+                #VAR step[mob][name] stag;
+        }; #ELSEIF {"%2" == "Baby Dragon"} { 
+                #VAR step[mob][name] dragon;
+        }; #ELSEIF {"%2" == "Wyvern"} { 
+                #VAR step[mob][name] wyvern;
+        }; #ELSEIF {"%2" == "Black Patrol Captain"} { 
+                #VAR step[mob][name] captain;
+        }; #ELSEIF {"%2" == "Black Patrol Leader" && "$step[mob][name]" != "captain"} { 
+                #VAR step[mob][name] leader;
+        }; #ELSEIF {"%2" == "Black Patrol Guard" && "$step[mob][name]" != "leader" && "$step[mob][name]" != "captain"} { 
+                #VAR step[mob][name] guard;
+        };
+} {3};
+
+#ACT {^{Courier leaves (north|south|east|west|northwest|northeast|southwest|southeast)\.}$} {
+        look;
+};
+
+#ACT {^#M#{Riley, Andeddu's Silky Terrier( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?\.}$} {
+        #MATH step[ldetect][dog] {$step[ldetect][dog] + 1};
+};

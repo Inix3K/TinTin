@@ -1,0 +1,119 @@
+#class {plasma} {open}
+
+/* HP Bar */
+#act {{HP\[(\d+)/(\d+)\] SP\[(\d+)\(?(\d+)?\)?/(\d+)\] NP\[(\d+)/(\d+)\|(\d+)c\] E\[([\w\~\-\d\%\s\,\']+):?(\w+)?\]}} {
+	#var {hp}	{%2};
+	#var {hp_max}	{%3};
+	#var {sp}	{%4};
+	#var {sp_inf}	{%5};
+	#var {sp_max}	{%6};
+	#var {np}	{%7};
+	#var {np_max}	{%8};
+	#var {corpses}	{%9};
+	#var {ehealth}	{%11};
+	#if {($hp_max+$sp_max)-($hp+$sp) > 300} {
+		!dream zzzz
+	};
+	#if {$np < $np_max*.9 && $corpses > 0} {
+		#if {$sp_inf > 0} {
+			!spfuse $sp_inf
+		};
+		!ab
+	};
+	#if {$hp < 400 && $corpses > 0} {
+		!ab2
+	}
+}
+
+#act {{Status\[w([\d]*)\%\|p(\w+)\|v(\w+)\|r(\d+)\%\] Cr\[(\d+)\%\]}} {
+	#var {worth}	{%2};
+	#var {prot}	{%3};
+	#var {gxp}	{%6};
+	#if {$worth < 125} {
+		!con
+	};
+	#if {"$prot" == "OFF"} {
+		!prot
+	};
+	#if {"$cooler" == "on" || $cooler_count > 0} {
+		#format {sb1_cooler} {%+2s} {$cooler_count};
+		#var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
+	} {
+		#var {sb1_cooler} {}
+	};
+	#if {"$freezer" == "on" || $freezer_count > 0} {
+		#format {sb2_freezer} {%+2s} {$freezer_count};
+		#var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
+	} {
+		#var {sb2_freezer} {}
+	};
+	#format {ehealth_label} {%-9s} {$ehealth};
+	#if {$ehealth > 0} {
+		#var {ehealth_label} {$ehealth_label%%}
+	} {
+		#var {ehealth_label} { $ehealth_label}
+	};
+	#var {hp_graph} {@graph{$hp;$hp_max}};
+	#var {sp_graph} {@graph{$sp;$sp_max}};
+	#var {np_graph} {@graph{$np;$np_max}};
+	#var {egraph} {@graph{$ehealth;100}};
+	#format {hp} {%+4s} {$hp};
+	#format {hp_max} {%+4s} {$hp_max};
+	#format {sp} {%+4s} {$sp};
+	#format {sp_inf} {%+3s} {$sp_inf};
+	#format {sp_max} {%+4s} {$sp_max};
+	#format {np} {%+5s} {$np};
+	#format {np_max} {%+5s} {$np_max};
+	#format {inv_count} {%+2s} {$inv_count};
+	#format {coffin_count} {%+2s} {$coffin_count};
+	#format {freezer_count} {%+2s} {$freezer_count};
+	#showme {HP:$hp/$hp_max SP:$sp($sp_inf)/$sp_max NP:$np/$np_max  E:$ehealth_label IC:<138>${inv_count}<088>${sb1_cooler}} {3};
+	#showme {H:$hp_graph SP:$sp_graph     NP:$np_graph   E:$egraph CF:<138>$coffin_count<088>${sb2_freezer}} {2}
+}
+
+#alias {corpsetrig} {
+	!pp
+}
+
+#act {dealt the killing blow to} {corpsetrig}
+
+/* Preserve all */
+#var preserving 0
+
+#alias {mpp} {
+	#var preserving 1;
+	#var preserve_np 0;
+	#var preserve_done 0;
+	!qtrance preserve remains>20
+}
+
+#act {You only have %d/%d necromantic points for that.} {
+	#if {$preserving} {
+		#var preserve_np 1
+	}
+}
+#act {That corpse is already preserved master.} {
+	#if {$preserving} {
+		#var preserve_done 1
+	}
+}
+#act {There is no corpse in this room master.} {
+	#if {$preserving} {
+		#var preserve_done 1
+	}
+}
+
+#act {You recover your senses} {
+	#if {$preserving} {
+		#if {$preserve_np} {
+			!absorb;
+			mpp
+		}; #elseif {$preserve_done} {
+			#var preserving 0
+		}; #else {
+			mpp
+		}
+	}
+}
+
+#class {plasma} {close}

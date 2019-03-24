@@ -1,0 +1,17 @@
+#class {bot} {open}
+#var {areaname} {icyblue}
+#var {botpath} 
+{s;s;s;s;s;s;s;w;w;n;e;n;w;n;w;w;e;s;w;s;e;s;w;e;n;w;n;e;n;e;e;n;w;n;e;n;w;n;s;e;n;n;w;w;s;w;n;s;e;s;w;s;e;s;w;e;n;w;n;e;n;n;e;e;s;s;s;w;s;e;s;w;s;e;s;w;s;e;e;e;e;n;w;e;n;e;e;s;w;s;e;w;n;e;n;w;w;n;w;n;e;n;e;s;e;s;w;e;n;w;n;e;n;w;n;e;n;w;w;w;s;e;s;w;s;n;e;n;w;n;e;e;e;s;w;s;e;s;w;w;s;w;s;e;s;s;s;w;w;n;n;n;n;n;n;n}
+
+#act {ring.} {get ring}
+
+#act {^=M= {Ice Man|Ice Woman|Ice Youth|Ice Child}} {
+	#if {"%1" == "Ice Man"} {#var mobname man};
+	#if {"%1" == "Ice Woman"} {#var mobname ice};
+	#if {"%1" == "Ice Youth"} {#var mobname ice};
+	#if {"%1" == "Ice Child"} {#var mobname ice};
+	_check_mob}
+
+#class {bot} {close}
+
+

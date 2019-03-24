@@ -1,0 +1,74 @@
+#class {stocks} {open}
+
+#var {stocks} {on}
+
+#alias {dostock} {
+	#var data {$mip[comm][data]};
+        #replace {data} {istock} {#};
+        #var data_cnt 0;
+        #parse {$data} {char} {
+                #math {data_cnt} {$data_cnt + 1};
+                #if {"$char" == "#"} {
+                        #var data_cut $data_cnt
+                }
+        };
+        #math {cut} {$data_cnt - $data_cut - 1};
+        #format {ticker} {%r} {$data};
+        #format {ticker} {%.${cut}s} {$ticker};
+        #format {ticker} {%r} {$ticker};
+
+	#var stockline {$mip[comm][command]};
+	#regex {"$ticker"} { } {
+		#delay 1 {#send $stockline Only one ticker, please.}
+	} {
+		#sys {~/.scripts/stock.tt $ticker};
+		#read .scripts/stock.tin;
+		#delay 1 {#send $stockline $stock}
+	}
+}
+
+#alias {dostocks} {
+	#var data {$mip[comm][data]};
+        #replace {data} {istock} {#};
+        #var data_cnt 0;
+        #parse {$data} {char} {
+                #math {data_cnt} {$data_cnt + 1};
+                #if {"$char" == "#"} {
+                        #var data_cut $data_cnt
+                }
+        };
+        #math {cut} {$data_cnt - $data_cut - 1};
+        #format {tickers} {%r} {$data};
+        #format {tickers} {%.${cut}s} {$tickers};
+        #format {tickers} {%r} {$tickers};
+	
+	#sys {~/.scripts/stocks.tt $tickers};
+	#var stocksapproved no;
+	#var stockslinename {$mip[comm][line]};
+	#switch {"$stockslinename"} {
+                #case {"ADMIN"}         {#var stocksapproved yes};
+                #case {"Bear"}          {#var stocksapproved yes};
+                #case {"Bloodname"}     {#var stocksapproved yes};
+                #case {"Clan Cad"}      {#var stocksapproved yes};
+                #case {"Council"}       {#var stocksapproved yes};
+                #case {"Falcon"}        {#var stocksapproved yes};
+                #case {"JuggNewbie"}    {#var stocksapproved yes};
+                #case {"Main"}          {#var stocksapproved yes};
+                #case {"Party"}         {#var stocksapproved yes};
+                #case {"Tell"}          {#var stocksapproved yes};
+                #case {"Whine"}         {#var stocksapproved yes};
+                #case {"Wolf"}          {#var stocksapproved yes};
+                #default                {#var stocksapproved no};
+        };
+        #if {"$stocksapproved" == "yes"} {
+                #var line {$mip[comm][command]};
+                #delay 1 {
+                        #send converse $line;
+                        #read .scripts/stocks.tin;
+                        #send **;
+                }
+        }
+}
+
+
+#class {stocks} {close}

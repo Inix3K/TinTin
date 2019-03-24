@@ -1,0 +1,18 @@
+#class {bot} {open}
+
+#var {botpath} {w;w;w;w;sw;se;s;se;s;w;w;w;w;nw;w;w;nw;w;w;w;nw;w;w;sw;ne;n;nw;se;s;e;e;se;e;e;e;ne;ne;e;e;e;e;ne;w;w;nw;w;nw;n;e;nw;ne;e;w;w;w;w;w;w;sw;sw;e;e;se;e;w;nw;w;w;w;w;nw;n;w;w;w;e;e;e;s;se;se;w;w;sw;sw;e;w;w;w;w;w;e;e;e;e;ne;ne;e;e;nw;e;e;ne;ne;e;e;e;e;e;sw;se;w;s;se;e;se;e;e;e;e;e;e;}
+
+#act {^=M= {A large black snake|A furry spider|A small cockroach|An oddly glowing rat|An irradiated crocodile|A medium sized glowing rat}} {
+	#switch {"%1"} {
+		#case {"A large black snake"}		{#var mobname snake};
+		#case {"A furry spider"}		{#var mobname spider};
+		#case {"An oddly glowing rat"}		{#var mobname rat};
+		#case {"An irradiated crocodile"}	{#var mobname crocodile};
+		#case {"A medium sized glowing rat"}	{#var mobname rat};
+		#case {"A small cockroach"}		{#var mobname cockroach};
+		#case {"Longtooth"}			{#var mobname longtooth}
+	};
+	_check_mob
+}
+
+#class {bot} {close}

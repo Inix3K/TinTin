@@ -1,0 +1,18 @@
+#class {bot} {open}
+
+#var {botpath} {e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;w}
+
+#act {^=M= {Swamp Crocodile|Marsh Frog|Armadillo|Platypus|Black-bellied Snake|Osprey}} {
+	#switch {"%1"} {
+		#case {"Marsh Frog"}		{#var mobname frog};
+		#case {"Swamp Crocodile"}	{#var mobname crocodile};
+		#case {"Armadillo"}		{#var mobname armadillo};
+		#case {"Platypus"}		{#var mobname platypus};
+		#case {"Black-bellied Snake"}	{#var mobname snake};
+		#case {"Osprey"}		{#var mobname osprey};
+		#case {"Drop bear"}		{#var mobname bear};
+	};
+	_check_mob
+}
+
+#class {bot} {close}

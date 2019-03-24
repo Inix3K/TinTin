@@ -1,0 +1,32 @@
+#class {defaultsetup} {open}
+
+#showme {-------------------------------------------------------}
+#showme {This script will change mud-side settings!!		}
+#showme { Are you sure?  (y/n)					}
+#showme {-------------------------------------------------------}
+
+#macro {y} {
+	aset look_monster =M= ;
+	aset look_player [PLaYeR];
+	aset room_short -R-_;
+	prompt >$nl$;
+	#sub {^=M= } {};#sub {^[PLaYeR]} {};#sub {^-R-_} {};#prompt {^>$} {>} {0};
+	#showme {-------------------------------------------------------};
+	#showme {Place these in your character files:			};
+	#showme { (You can insert color codes or leave empty -- Color	};
+	#showme {   codes are found in "#help colors".			};
+	#showme {#substitute {^=M= } {}					};
+	#showme {#substitute {^[PLaYeR]} {}					};
+	#showme {#substitute {^-R-_} {}					};
+	#showme {#prompt {^>$} {>} {0}					};
+	#showme {-------------------------------------------------------};
+	#showme {Setup successful!};
+	#class {defaultsetup} {kill}
+	}
+
+#macro {n} {
+	#showme {Setup cancelled!};
+	#class {defaultsetup} {kill}
+	}
+
+#class {defaultsetup} {close}

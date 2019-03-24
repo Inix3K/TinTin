@@ -1,0 +1,12 @@
+#class {awchat} {open}
+
+#act {~\{chan ch=%w\}%1} {#line log {.tt/logs/AW.chat} {%1}}
+#sub {\{chan ch=%w\}} {}
+
+#act {~\{tell\}%1} {#line log {.tt/logs/AW.chat} {%1}}
+#sub {\{tell\}} {}
+
+#act {~\{say\}%1} {#line log {.tt/logs/AW.chat} {%1}}
+#sub {\{say\}} {}
+
+#class {awchat} {close}

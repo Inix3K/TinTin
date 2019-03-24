@@ -1,0 +1,16 @@
+#class {bot} {open}
+
+#var {botpath} {se;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;nw}
+
+#act {^=M= {Mature Swamp Crocodile|Butcherbird|Spring Peeper|Yellow-Faced Whip Snake|Bobcat}} {
+	#switch {"%1"} {
+		#case {"Mature Swamp Crocodile"}	{#var mobname crocodile};
+		#case {"Butcherbird"}			{#var mobname bird};
+		#case {"Spring Peeper"}			{#var mobname peeper};
+		#case {"Yellow-Faced Whip Snake"}	{#var mobname whip snake};
+		#case {"Bobcat"}			{#var mobname bobcat};
+	};
+	_check_mob
+};
+
+#class {bot} {close}
