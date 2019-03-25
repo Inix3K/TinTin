@@ -1,5 +1,7 @@
 #class {bot} {open}
 
+#var no_loop 1
+
 #var {botpath} {n;e;w;s}
 
 #act {^=M= {Some moron with a lead pipe|Rocko the redneck.}} {

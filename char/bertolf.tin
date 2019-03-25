@@ -61,6 +61,10 @@
 	#var {dfn} {%6};
 	#var {lf} {%7};
 	#var {ehealth} {%8};
+	update_status
+}
+
+#alias {update_status} {
 	#if {"$cooler" == "on" || $cooler_count > 0} {
 		#format {sb1_cooler} {%+2s} {$cooler_count};
 		#var {sb1_cooler} { CL:<130>$sb1_cooler<088>}

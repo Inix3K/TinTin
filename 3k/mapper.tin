@@ -191,7 +191,7 @@
 
 #alias {mapsearch} {
 	#show <129>Name matches:<088>;
-	#map list {%i%*%0%I};
+	#map list {%i%*%0%*};
 	#show \n;
 	#show <129>Note matches:<088>;
 	#map list {} {} {} {} {%i%*%0%*};
@@ -257,7 +257,7 @@
 	#map get {roomvnum} {tvroom};
 	#map go 8227
 } {4}
-#act {You dive cleanly through the computer screen!} {
+#act {^You dive cleanly through the computer screen!} {
 	#map go $tvroom
 }
 
@@ -265,19 +265,19 @@
 #act {^You die.$} {#map goto 6247}
 
 #NOP Death Taco
-#act {You shoot through a graceful arc, and feel weightless for the} {#map goto {roomnote} roaches}
+#act {^You shoot through a graceful arc, and feel weightless for the} {#map goto {roomnote} roaches}
 
 #NOP Dragon Realms
-#act {You have to retreat against the onslaught of fire!} {#map move vortex}
+#act {^You have to retreat against the onslaught of fire!} {#map move vortex}
 
 #NOP Einstein
-#act {Standing on the bench, you relax and the stagedive through the rift} {#map goto 7039}
+#act {^Standing on the bench, you relax and the stagedive through the rift} {#map goto 7039}
 
 #NOP Global Merc Training Theatre
-#act {You have exited the simulation, thank you for playing.} {#map goto 15144}
+#act {^You have exited the simulation, thank you for playing.} {#map goto 15144}
 
 #NOP Kayos Portal
-#act {You leap into the unknown!} {
+#act {^You leap into the unknown!} {
 	#map get {roomvnum} {num};
 	#if {$num == 10278} {
 		#map go $plungeroom
@@ -286,10 +286,10 @@
 		#map go 10278
 	}
 }
-#act {You touch the beacon, and a friendly ship belonging to The Vigilant swings by.} {#map go 10278}
+#act {^You touch the beacon, and a friendly ship belonging to The Vigilant swings by.} {#map go 10278}
 
 #NOP Necromancers
-#act {You tumble down the river and find yourself on a rocky bank inside} {#map goto 7613}
+#act {^You tumble down the river and find yourself on a rocky bank inside} {#map goto 7613}
 
 #NOP Science Shuttle
 #act {^The captain announces: Welcome to Midway Space Station.$} {exit}
@@ -298,14 +298,25 @@
 #NOP Starcraft:Broodwar
 #act {^Door number: 3, Access Code: %1$} {#var starcraft_code %1}
 
+#NOP The Lost Village of Willothorn
+#act {^You swim for your life for the surface and end up back where} {#map go 14087}
+
+#NOP Xaxis
+#act {^Welcome to Xaxis!} {#map go 15875}
+#act {^Here we are folks. Welcome to the Isle of Equinity!} {#map go 15913}
+
+#NOP Wayhaven Ferry
+#act {^The ferryman says: Well, we're here!} {#map go 15463}
+#act {^The ferryman says: Well, here you are.} {#map go 7354}
+
 
 /* Blocked Exits */
-#act {You cannot go } {
+#act {^You cannot go } {
 	#if {$mapstatic} {
 		#map undo
 	}
 }
-#act {You cannot get it up.} {
+#act {^You cannot get it up.} {
 	#if {$mapstatic} {
 		#map undo
 	}
@@ -313,85 +324,85 @@
 
 #NOP ** GUILDS **
 #NOP Juggernauts
-#act {The room is locked.} {#map undo}
-#act {Dirk says: This area is for Wolves not } {#map undo}
-#act {Harlow says: You are not allowed here please turn around and leave at once} {#map undo}
-#act {Only members of clan jade falcon can go this way.} {#map undo}
+#act {^The room is locked.} {#map undo}
+#act {^Dirk says: This area is for Wolves not } {#map undo}
+#act {^Harlow says: You are not allowed here please turn around and leave at once} {#map undo}
+#act {^Only members of clan jade falcon can go this way.} {#map undo}
 
 #NOP Bards
-#act {You can't go there!} {#map undo}
+#act {^You can't go there!} {#map undo}
 
 #NOP ** AREAS **
 #NOP Abbey
-#act {A feeling of fear and dread washes over you, preventing you from going} {#map undo}
-#act {A feeling of dread washes over you, preventing you from going any further east.} {#map undo}
+#act {^A feeling of fear and dread washes over you, preventing you from going} {#map undo}
+#act {^A feeling of dread washes over you, preventing you from going any further east.} {#map undo}
 
 #NOP Body Mansion
-#act {You bump into a locked door.} {#map undo}
+#act {^You bump into a locked door.} {#map undo}
 
 #NOP Carnegie
-#act {Woody Allen says: You're going to have to wait for security!} {#map undo}
-#act {Mel Brooks blocks the exit.} {#map undo}
-#act {Jay-Z says: You're going to have to wait for security!} {#map undo}
-#act {Jay-Z says: Where do you think you're going?} {#map undo}
-#act {Jay-Z stops you leaving.} {#map undo}
-#act {Jay-Z blocks the exit.} {#map undo}
-#act {Trixie Hilton blocks the exit.} {#map undo}
+#act {^Woody Allen says: You're going to have to wait for security!} {#map undo}
+#act {^Mel Brooks blocks the exit.} {#map undo}
+#act {^Jay-Z says: You're going to have to wait for security!} {#map undo}
+#act {^Jay-Z says: Where do you think you're going?} {#map undo}
+#act {^Jay-Z stops you leaving.} {#map undo}
+#act {^Jay-Z blocks the exit.} {#map undo}
+#act {^Trixie Hilton blocks the exit.} {#map undo}
 
 #NOP Chaos Cinemaplex
-#act {The movie usher asks for your movie ticket. When you fail to come up with} {#map undo}
+#act {^The movie usher asks for your movie ticket. When you fail to come up with} {#map undo}
 
 #NOP Cove of the Three (Lost Soul)
-#act {A magical force pushes you back, and you hear a voice} {#map undo}
+#act {^A magical force pushes you back, and you hear a voice} {#map undo}
 
 #NOP Crystal Stairway
-#act {The Warrior will not let you invade her home any further.} {#map undo}
-#act {The warrior will not let you pass.} {#map undo}
+#act {^The Warrior will not let you invade her home any further.} {#map undo}
+#act {^The warrior will not let you pass.} {#map undo}
 
 #NOP Detroit
-#act {Officer yells: Get him, he must be stealing something!!!!} {#map undo}
+#act {^Officer yells: Get him, he must be stealing something!!!!} {#map undo}
 
 #NOP Dundee
-#act {The foliage in this part of the swamp is extremely thick and will take} {#map undo}
+#act {^The foliage in this part of the swamp is extremely thick and will take} {#map undo}
 
 #NOP Dragon Realms
-#act {You cannot get past the dragon guards.} {#map undo}
+#act {^You cannot get past the dragon guards.} {#map undo}
 
 #NOP Fallout Shelter
-#act {Core Guard jumps in your way, blocking your path!} {#map undo}
+#act {^Core Guard jumps in your way, blocking your path!} {#map undo}
 
 #NOP Ice Fishing
-#act {You are unable to climb the bank here.  It is very steep, and with all} {#map undo}
-#act {You can't go through a solid wall.  Try going around the shack, and} {#map undo}
+#act {^You are unable to climb the bank here.  It is very steep, and with all} {#map undo}
+#act {^You can't go through a solid wall.  Try going around the shack, and} {#map undo}
 
 #NOP Ice Mountains (Verbeeg)
 #act {^The magical barrier is impenetrable.$} {#map undo}
 
 #NOP Land
-#act {You are caught like a fly in a spider web, burning and twisting as} {#map undo}
+#act {^You are caught like a fly in a spider web, burning and twisting as} {#map undo}
 
 #NOP Mage Tower
-#act {The guard blocks your passage.} {#map undo}
+#act {^The guard blocks your passage.} {#map undo}
 
 #NOP Rabbit Fields
-#act {The rabbit prevents you from going that way.} {#map undo}
+#act {^The rabbit prevents you from going that way.} {#map undo}
 
 #NOP Ravenloft
-#act {You try to go down, but suddenly feel more terrified than} {#map undo}
-#act {The trees move together and bar your path!} {#map undo}
-#act {A deathly chill blows from the south, blasting into Inix!} {#map undo}
+#act {^You try to go down, but suddenly feel more terrified than} {#map undo}
+#act {^The trees move together and bar your path!} {#map undo}
+#act {^A deathly chill blows from the south, blasting into Inix!} {#map undo}
 
 #NOP Rocky Hill
-#act {Waving their rusty scimitars and growling loudly, the jackalmen} {#map undo}
+#act {^Waving their rusty scimitars and growling loudly, the jackalmen} {#map undo}
 
 #NOP SolChem
-#act {The gang member shoves you back.} {#map undo}
+#act {^The gang member shoves you back.} {#map undo}
 
 #NOP Theatre of Souls
-#act {A closed door blocks your way.} {#map undo}
+#act {^A closed door blocks your way.} {#map undo}
 
 #NOP Underdark
-#act {The {drow|guard} prevents you from going that way.} {#map undo}
-#act {The troll will not let you pass.} {#map undo}
+#act {^The {drow|guard} prevents you from going that way.} {#map undo}
+#act {^The troll will not let you pass.} {#map undo}
 
 #class {mapper} {close}

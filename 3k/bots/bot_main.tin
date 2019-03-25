@@ -80,7 +80,6 @@ prompt >$nl$
 	#class bot kill;
 	#unalias {.bot};
 	#var bot 0;
-	#var areacount 0
 }
 
 #alias {.bot} {
