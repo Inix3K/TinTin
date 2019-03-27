@@ -12,7 +12,7 @@
 #UNVAR {temp[digit]};
 
 #NOP ***** Kick Off MIP *************;
-#delay {2} #SEND {3klient $mip[id]~~Tin$mip[Version]};
+#delay {2} #SEND {3klient $mip[id]~~Tin$mip[Version];3klient LINEFEED on};
 
 #NOP ***** Extract Raw Data *********;
 #ACTION {~{\#K\%$mip[id](.{3})(.{3})(.*)}} {
