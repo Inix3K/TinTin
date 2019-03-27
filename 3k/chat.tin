@@ -46,9 +46,6 @@
 #act {{^[\w]+ <C-Trade>:}} {-cl}
 #act {{^[\w]+ <cgame>:}} {-cl}
 
-/* Ignore auction and spam from other mobs*/
-#act {{^(\[Auction\] )?(Bodyguard|Ray|Graktah|Benny|Robert|[HP:]|Gargamel|Brainy|Smelly|Crafty|Gart|Tracker|Guardswoman|Warrior|Garth|Wes|Frank|Champ|Arturo|Ed|Brian|Veronica|Smithy) (tells you:|says:)}} {#nop} {4}
-
 /* PARTY (Until they add timestamps) */
 #act {~^\e[0m\e[33;1m[PARTY]\e[0m} {-cl;#bell} {4}
 #act {^[PARTY] {GOLD divvy called by|All gold divvied}} {#nop} {3}

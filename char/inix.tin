@@ -59,7 +59,8 @@
 			!truck ammo vbuy $weapon_type $ammo_type 5 $ammo_buy_amount
 		}}}}}
 	};
-	#if {$shp > 0 && $shp < 9} {!dismiss};
+	#if {$shp > 0 && $shp < 9} {dismiss};
+	#if {"$saf" == "No"} {support assault fire};
 	update_status;
 }
 

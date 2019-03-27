@@ -16,7 +16,8 @@
 	#format {word} {%r} {$data};
 	#format {word} {%.${cut}s} {$word};
 	#format {word} {%r} {$word};
-	#var word2 {};
+	#var word2 $word;
+	#replace {word} { } {\%20};
 	#sys {~/.scripts/udefine $word};
 	#read .scripts/udef.tin;
 	#format {def_len} {%L} {$udefinition};
@@ -45,7 +46,7 @@
 	};
 	#if {"$uapproved" == "yes"} {
 		#var udefineline {$mip[comm][command]};
-		#delay 1 {#send $udefineline $word : $udefinition}
+		#delay 1 {#send $udefineline $word2 : $udefinition}
 	}
 }
 

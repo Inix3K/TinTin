@@ -2,23 +2,26 @@
 
 /* 3K Aliases */
 
-#alias {dg} {!divvy gold}
-#alias {fol} {!follow}
-#alias {ga} {!get all}
-#alias {gac} {!get all from corpse}
-#alias {gc} {!get coins}
-#alias {goto} {!houseedit gotoroom}
-#alias {gl} {!glance}
-#alias {k} {!kill}
-#alias {los} {!lineofsight}
-#alias {cl} {!ctell}
-#alias {pt} {!ptell}
-#alias {pth} {!ptell -h}
-#alias {th} {!tellhist}
-#alias {rem} {!remove}
-#alias {efor} {!portal eforest}
-#alias {wfor} {!portal wforest}
-#alias {pnam} {!pname Whiteout}
+#alias {mipon} {#read .tt/3k/mip.tin}
+#alias {mipoff} {#class mip kill}
+
+#alias {dg} {divvy gold}
+#alias {fol} {follow}
+#alias {ga} {get all}
+#alias {gac} {get all from corpse}
+#alias {gc} {get coins}
+#alias {goto} {houseedit gotoroom}
+#alias {gl} {glance}
+#alias {k} {kill}
+#alias {los} {lineofsight}
+#alias {cl} {ctell}
+#alias {pt} {ptell}
+#alias {pth} {ptell -h}
+#alias {th} {tellhist}
+#alias {rem} {remove}
+#alias {efor} {portal eforest}
+#alias {wfor} {portal wforest}
+#alias {pnam} {pname Whiteout}
 
 #alias {/start} {
         d;
@@ -28,7 +31,8 @@
         morgue;
         acquire;
         home;
-        keep all
+        keep all;
+	mapgo home
 }
 
 #alias {swt} {switchto}
@@ -63,9 +67,9 @@
 
 /* Boosts */
 #alias {einstein} {
-        go einsteins_cottage;
-        ne;
-        climb gate;
+#nop        go einsteins_cottage;
+#NOP        ne;
+#NOP        climb gate;
         w;
         search tree;
         e;

@@ -10,6 +10,7 @@
 #map goto {roomnote} {home}
 
 /* Move Event */
+#var mobile 1
 #event {MAP ENTER ROOM} {
 	#regex {"$world"} {3s} {
 		#if {$mobile} {
@@ -84,9 +85,9 @@
 
 #NOP Room Short with Exits
 #act {=S=%1 (%2)%3=S=} {
+	#var room %1;
+	#var exits %2;
 	#if {"$mapping" == "on"} {
-		#var room %1;
-		#var exits %2;
 		#replace exits {,} {;};
 		#foreach {$exits} {eachexit} {#map dig $eachexit}
 		#map get {roomexit} {rexit};
@@ -123,8 +124,8 @@
 
 #NOP Room Short with No Exits, Lowered Priority
 #act {=S=%1%s=S=} {
+	#var room %1;
 	#if {"$mapping" == "on"} {
-		#var room %1;
 		#if {$roomname_len == 0} {
 			#map set roomname {%1}
 		};
@@ -187,6 +188,18 @@
 }
 
 #alias {mapgo} {#map goto {roomnote} {%0}}
+
+#alias {findhere} {
+	#if {$room == ""} {
+		look
+	};
+	#map list {roomarea} {$area} {roomname} {$room%*};
+	#map list {roomarea} {$area} {roomname} {$room%*} {variable} {findroom};
+	#if {&findroom[] == 1} {
+		#list {foundroom} {create} {$findroom};
+		#map go $foundroom[1]
+	}
+}
 
 
 #alias {mapsearch} {

@@ -63,7 +63,7 @@ prompt >$nl$
 				k $mobname;
 				#var foundmob 1;
 				#if {$itemfound && $vacuum} {
-					get  all;
+					get all;
 					#if {"$world" == "inix"} {
 						truck get all
 					}

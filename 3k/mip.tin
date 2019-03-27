@@ -191,28 +191,22 @@
 };
 
 #NOP ***** Guild Stats Line 1/2 *****;
-#ALIAS {.mipProcessGline}
-{
-  #NOP %1;
-  #VAR {temp} {};
-  #IF {"%1" != ""}
-  {
-    #VAR {temp[gline]} {%1};
-    #REPLACE {temp[gline]} { } {;};
-    #FOREACH {$temp[gline]} {i}
-    {
-      #IF {"$i" != ""}
-      {
-        #REGEX {$i} {{^(\<\w{1}|)(.+)\:(.+?)(%|)(X\>|>|)$}}
-        {
-          #VAR {mip[gline][&3]} {&4};
-        };
-      };
-    };
-
-  };
-  #NOP #SHOWME @fMipColourConv{{%1}};
-  #NOP event_raise e_mip_gline;
+#ALIAS {.mipProcessGline} {
+	#NOP %1;
+	#VAR {temp} {};
+	#IF {"%1" != ""} {
+		#VAR {temp[gline]} {%1};
+		#REPLACE {temp[gline]} { } {;};
+		#FOREACH {$temp[gline]} {i} {
+			#IF {"$i" != ""} {
+			#REGEX {$i} {{^(\<\w{1}|)(.+)\:(.+?)(%|)(X\>|>|)$}} {
+				#VAR {mip[gline][&3]} {&4};
+			};
+		};
+	};
+};
+#NOP #SHOWME @fMipColourConv{{%1}};
+#NOP event_raise e_mip_gline;
 };
 
 #NOP ***** 2 Way Communication (Tell/Emote) *****;
@@ -236,49 +230,51 @@
 				#line log {.tt/logs/3k.chat} {$timestamp\};
 				#line log {.tt/logs/3k.chat} {<178>&3<088>: &4};
 
-				#NOP 8Inix;
-				#if {"$8inix" == "on"} {
-					#regex {$mip[comm][data]} {%i8inix} {
-						do8inix
+				#NOP Chat Tools
+				#if  {$idle > 600} {
+					#if {$bot} {
+						killbot;
+						#delay {gohome} {go home} {100}
 					}
-				};
+				} {
+					#NOP 8Inix;
+					#if {"$8inix" == "on"} {
+						#regex {$mip[comm][data]} {%i: 8inix} {
+							do8inix
+						}
+					};
 
-				#NOP IDefine;
-				#if {"$idefine" == "on"} {
-					#regex {$mip[comm][data]} {%iidefine} {
-						dodefine
-					}
-				};
+					#NOP IDefine;
+					#if {"$idefine" == "on"} {
+						#regex {$mip[comm][data]} {%i: idefine} {
+							dodefine
+						}
+					};
 
-				#NOP UDefine;
-				#if {"$udefine" == "on"} {
-					#regex {$mip[comm][data]} {%iudefine} {
-						doudefine
-					}
-				};
+					#NOP UDefine;
+					#if {"$udefine" == "on"} {
+						#regex {$mip[comm][data]} {%i: udefine} {
+							doudefine
+						}
+					};
 
-				#NOP ADDS;
-				#if {"$adds" == "on"} {
-					#regex {$mip[comm][data]} {%iiwx} {
-						doadds
-					}
-				};
+					#NOP ADDS;
+					#if {"$adds" == "on"} {
+						#regex {$mip[comm][data]} {%i: iwx} {
+							doadds
+						}
+					};
 
-				#NOP Stocks;
-				#if {"$stocks" == "on"} {
-					#regex {$mip[comm][data]} {%iistocks} {
-						dostocks
-					} {
-						#regex {$mip[comm][data]} {%iistock} {
-							dostock
+					#NOP Stocks;
+					#if {"$stocks" == "on"} {
+						#regex {$mip[comm][data]} {%i: istocks} {
+							dostocks
+						} {
+							#regex {$mip[comm][data]} {%i: istock} {
+								dostock
+							}
 						}
 					}
-				};
-
-				#bell;
-				#if {$idle > 600 && $bot} {
-					killbot;
-					#delay {gohome} {go home} {100}
 				}
 			}
 		}
@@ -330,41 +326,43 @@
 		#line log {.tt/logs/3k.chat} {$timestamp\};
 		#line log {.tt/logs/3k.chat} {$mip[comm][cdata]};
 
-		#NOP 8Inix;
-		#if {"$8inix" == "on"} {
-			#regex {$mip[comm][data]} {%i8inix} {
-				do8inix
-			}
-		};
+		#if {$idle > 600} {#nop} {
+			#NOP 8Inix;
+			#if {"$8inix" == "on"} {
+				#regex {$mip[comm][data]} {%i: 8inix} {
+					do8inix
+				}
+			};
 
-		#NOP IDefine;
-		#if {"$idefine" == "on"} {
-			#regex {$mip[comm][data]} {%iidefine} {
-				dodefine
-			}
-		};
+			#NOP IDefine;
+			#if {"$idefine" == "on"} {
+				#regex {$mip[comm][data]} {%i: idefine} {
+					dodefine
+				}
+			};
 
-		#NOP UDefine;
-		#if {"$udefine" == "on"} {
-			#regex {$mip[comm][data]} {%iudefine} {
-				doudefine
-			}
-		};
+			#NOP UDefine;
+			#if {"$udefine" == "on"} {
+				#regex {$mip[comm][data]} {%i: udefine} {
+					doudefine
+				}
+			};
 
-		#NOP ADDS;
-		#if {"$adds" == "on"} {
-			#regex {$mip[comm][data]} {%iiwx} {
-				doadds
-			}
-		};
+			#NOP ADDS;
+			#if {"$adds" == "on"} {
+				#regex {$mip[comm][data]} {%i: iwx} {
+					doadds
+				}
+			};
 
-		#NOP Stocks;
-		#if {"$stocks" == "on"} {
-			#regex {$mip[comm][data]} {%iistocks} {
-				dostocks
-			} {
-				#regex {$mip[comm][data]} {%iistock} {
-					dostock
+			#NOP Stocks;
+			#if {"$stocks" == "on"} {
+				#regex {$mip[comm][data]} {%i: istocks} {
+					dostocks
+				} {
+					#regex {$mip[comm][data]} {%i: istock} {
+						dostock
+					}
 				}
 			}
 		}
