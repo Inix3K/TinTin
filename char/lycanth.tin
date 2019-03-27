@@ -27,14 +27,14 @@
 			!cb
 		}
 	};
-        #if {"$cooler" == "on" || $cooler_count > 0} {
-                #format {sb1_cooler} {%+2s} {$cooler_count};
+        #if {"$cooler" == "on" || $corpses[cooler] > 0} {
+                #format {sb1_cooler} {%+2s} {$corpses[cooler]};
                 #var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
         } {
                 #var {sb1_cooler} {}
         };
-        #if {"$freezer" == "on" || $freezer_count > 0} {
-                #format {sb2_freezer} {%+2s} {$freezer_count};
+        #if {"$freezer" == "on" || $corpses[freezer] > 0} {
+                #format {sb2_freezer} {%+2s} {$corpses[freezer]};
                 #var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
         } {
                 #var {sb2_freezer} {}
@@ -59,12 +59,12 @@
 	#format {stam}		{%+8s} {$stam};
 	#format {pp}		{%+7s} {$pp};
 	#format {ff}		{%+7s} {$ff};
-        #format {inv_count}     {%+2s} {$inv_count};
-        #format {truck_count}   {%+2s} {$truck_count};
-        #format {coffin_count}  {%+2s} {$coffin_count};
-        #format {freezer_count} {%+2s} {$freezer_count};
-	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam}%  PP:${pp}%  FF:${ff}%  E:${ehealth_label}  R:${relin} IC:<138>${inv_count}<088>${sb1_cooler}} {3};
-	#showme {H:${hp_graph} S:${sp_graph} ST:${stam_graph} P:${pp_graph} F:${ff_graph} E:${egraph} BP:${bio} CF:<138>${coffin_count}<088>${sb2_freezer}} {2}
+        #format {corpses[inventory]}     {%+2s} {$corpses[inventory]};
+        #format {corpses[truck]}   {%+2s} {$corpses[truck]};
+        #format {corpses[coffin]}  {%+2s} {$corpses[coffin]};
+        #format {corpses[freezer]} {%+2s} {$corpses[freezer]};
+	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam}%  PP:${pp}%  FF:${ff}%  E:${ehealth_label}  R:${relin} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {3};
+	#showme {H:${hp_graph} S:${sp_graph} ST:${stam_graph} P:${pp_graph} F:${ff_graph} E:${egraph} BP:${bio} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {2}
 }
 
 #alias {corpsetrig} {

@@ -1,70 +1,70 @@
 #class {corpses} {open}
 
 /* Initialize vars */
-#var inv_count 0
-#var coffin_count 0
-#var cooler_count 0
-#var freezer_count 0
-#var truck_count 0
+#var corpses[inventory] 0
+#var corpses[coffin] 0
+#var corpses[cooler] 0
+#var corpses[freezer] 0
+#var corpses[truck] 0
 
 /* Coffin Counter */
-#act {{You keep An enchanted coffin \((\d+) corpses?\) \[(?:[\.\|\&]+)\] \[[\w\s]+\]\.}} {#var coffin_count %2}
-#act {{wrap it up into the coffin\'s protective hold!}} {#math {coffin_count} {$coffin_count + 1}}
+#act {{You keep An enchanted coffin \((\d+) corpses?\) \[(?:[\.\|\&]+)\] \[[\w\s]+\]\.}} {#var corpses[coffin] %2}
+#act {{wrap it up into the coffin\'s protective hold!}} {#math {corpses[coffin]} {$corpses[coffin] + 1}}
 #act {{The coffin expels (a|your selected) corpse onto the ground!}} {
-	#if {$coffin_count > 0} {
-		#math {coffin_count} {$coffin_count - 1}
+	#if {$corpses[coffin] > 0} {
+		#math {corpses[coffin]} {$corpses[coffin] - 1}
 	} {
-		#var {coffin_count} {0}
+		#var {corpses[coffin]} {0}
 	}
 }
 
 /* Freezer Counter */
-#act {{You keep \*?Death\'s Freezer \((\d+) corpses\)\.}} {#var freezer_count %2}
-#act {{frame causing it to get sucked in!}} {#math {freezer_count} {$freezer_count + 1}}
+#act {{You keep \*?Death\'s Freezer \((\d+) corpses\)\.}} {#var corpses[freezer] %2}
+#act {{frame causing it to get sucked in!}} {#math {corpses[freezer]} {$corpses[freezer] + 1}}
 #act {{You shake the frame and out drops }} {
-	#if {$freezer_count > 0} {
-		#math {freezer_count} {$freezer_count - 1}
+	#if {$corpses[freezer] > 0} {
+		#math {corpses[freezer]} {$corpses[freezer] - 1}
 	} {
-		#var {freezer_count} {0}
+		#var {corpses[freezer]} {0}
 	}
 }
 
 /* Tech Ultra-Cooler Counter */
-#act {{The Tech Ultra-Cooler contains:}} {#var cooler_count 0;corpsecount cooler}
-#act {{The cooler does not contain a corpse\.}} {#var cooler_count 0}
+#act {{The Tech Ultra-Cooler contains:}} {#var corpses[cooler] 0;corpsecount cooler}
+#act {{The cooler does not contain a corpse\.}} {#var corpses[cooler] 0}
 #act {{There is no reason to \'uncooler\' here\.}} {
 	#var cooler off;
-	#var cooler_count 0
+	#var corpses[cooler] 0
 }
-#act {{There is no more room in the Ultra-Cooler}} {#var cooler_count 50}
+#act {{There is no more room in the Ultra-Cooler}} {#var corpses[cooler] 50}
 #act {{You place the corpse into the Ultra-Cooler and seal the lid}} {
 	#var cooler on;
-	#math {cooler_count} {$cooler_count + 1};
-	#if {$inv_count > 0} {
-		#math {inv_count} {$inv_count - 1}
+	#math {corpses[cooler]} {$corpses[cooler] + 1};
+	#if {$corpses[inventory] > 0} {
+		#math {corpses[inventory]} {$corpses[inventory] - 1}
 	} {
-		#var inv_count 0
+		#var corpses[inventory] 0
 	}
 }
-#act {{You activate the Ultra-Cooler to retrieve }} {#math {cooler_count} {$cooler_count - 1}}
+#act {{You activate the Ultra-Cooler to retrieve }} {#math {corpses[cooler]} {$corpses[cooler] - 1}}
 
 /* Inventory Counter */
-#act {{You keep (?:.*) corpse of }} {#math {inv_count} {$inv_count + 1}}
+#act {{You keep (?:.*) corpse of }} {#math {corpses[inventory]} {$corpses[inventory] + 1}}
 #act {{You drop (?:.*) corpse of }} {
-	#if {$inv_count > 0} {
-		#math {inv_count} {$inv_count - 1}
+	#if {$corpses[inventory] > 0} {
+		#math {corpses[inventory]} {$corpses[inventory] - 1}
 	} {
-		#var inv_count 0
+		#var corpses[inventory] 0
 	}
 }
-#alias {kac} {#var inv_count 0;!keep all corpse}
+#alias {kac} {#var corpses[inventory] 0;!keep all corpse}
 	
 /* Truck Counter */
-#act {{^A tank named CanisLupus}} {#var truck_count 0;corpsecount truck}
-#act {{Canislupus takes: (?:.*) corpse of }} {#math {truck_count} {$truck_count + 1}}
+#act {{^A tank named CanisLupus}} {#var corpses[truck] 0;corpsecount truck}
+#act {{Canislupus takes: (?:.*) corpse of }} {#math {corpses[truck]} {$corpses[truck] + 1}}
 #act {{Canislupus drops (?:.*)[corpse|preservation|remains]}} {
-	#if {$truck_count > 0} {
-		#math {truck_count} {$truck_count - 1}
+	#if {$corpses[truck] > 0} {
+		#math {corpses[truck]} {$corpses[truck] - 1}
 	}
 }
 
@@ -83,7 +83,7 @@
 		}
 	};
 	#act {^>$} {
-		#var {%1_count} {$corpse_cnt};
+		#var {corpses[%1]} {$corpse_cnt};
 		#class {corpse_count} {kill}
 	};
 	#class {corpse_count} {close}

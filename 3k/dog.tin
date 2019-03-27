@@ -13,12 +13,12 @@
 	};
 	#if {$dog_hap < 95} {!dog pet};
 	#if {$dog_hun > 40} {
-		#if 	{$inv_count > 10}	{!drop corpse};
-		#elseif {$truck_count > 0}	{!truck drop corpse};
-		#elseif {$cooler_count > 0}	{!uncooler corpse};
-		#elseif {$inv_count > 0}	{!drop corpse};
-		#elseif {$freezer_count > 0}	{!deslab};
-		#elseif {$coffin_count > 0}	{!unwrap};
+		#if 	{$corpses[inventory] > 10}	{!drop corpse};
+		#elseif {$corpses[truck] > 0}	{!truck drop corpse};
+		#elseif {$corpses[cooler] > 0}	{!uncooler corpse};
+		#elseif {$corpses[inventory] > 0}	{!drop corpse};
+		#elseif {$corpses[freezer] > 0}	{!deslab};
+		#elseif {$corpses[coffin] > 0}	{!unwrap};
 		#else	{#echo {<001>!NO CORPSES!<088>}};
 		!dog eat
 	}
