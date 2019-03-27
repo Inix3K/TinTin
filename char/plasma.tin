@@ -1,5 +1,7 @@
 #class {plasma} {open}
 
+#var guild necromancer
+
 /* HP Bar */
 #act {{HP\[(\d+)/(\d+)\] SP\[(\d+)\(?(\d+)?\)?/(\d+)\] NP\[(\d+)/(\d+)\|(\d+)c\] E\[([\w\~\-\d\%\s\,\']+):?(\w+)?\]}} {
 	#var {hp}	{%2};

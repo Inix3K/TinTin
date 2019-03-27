@@ -7,6 +7,9 @@
 #read .tt/api/udefine.tin
 #read .tt/api/stocks.tin
 
+#var guild juggernaut
+#var clan 0
+
 #act {HP:\[{\d+}/{\d+}\] SP:\[{\d+}/{\d+}\] S:\[{\d+}\%\] HE:\[{\d+}\%\] HT:\[{\d+}\] M/C:\[{\d+}/{\d+}\]\[{\d+}/{\d+}\]\[{\d+}\%\] G:{[\d\.]+}\%} {
 	#var {my[hp][current]}		{%1};
 	#var {my[hp][max]}		{%2};

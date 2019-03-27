@@ -1,24 +1,24 @@
-#CLASS {mip} {kill};
-#CLASS {mip} {open};
-#NOP ***** Set MIP ID Code **********;
-#VAR {mip} {};
-#VAR {mip[Version]} {2.01.1};
-#VAR {mip[id]} {};
-#LOOP {1} {5} {i}
-{
-  #MATH {temp[digit]} {1d10 - 1};
-  #VAR {mip[id]} {$mip[id]$temp[digit]};
-};
-#UNVAR {temp[digit]};
+#CLASS {mip} {kill}
+#CLASS {mip} {open}
 
-#NOP ***** Kick Off MIP *************;
+#NOP ***** Set MIP ID Code **********
+#VAR {mip} {}
+#VAR {mip[Version]} {2.01.1}
+#VAR {mip[id]} {}
+#LOOP {1} {5} {i} {
+	#MATH {temp[digit]} {1d10 - 1};
+	#VAR {mip[id]} {$mip[id]$temp[digit]}
+}
+#UNVAR {temp[digit]}
+
+#NOP ***** Kick Off MIP *************
 #DELAY {2} {
 	#SEND 3klient $mip[id]~~Tin$mip[Version];
 	#SEND 3klient LINEFEED on;
 	#SEND 3klient HAA off
-};
+}
 
-#NOP ***** Extract Raw Data *********;
+#NOP ***** Extract Raw Data *********
 #ACTION {~{\#K\%$mip[id](.{3})(.{3})(.*)}} {
 	#VAR {mip[charcount]} {0};
 	#VAR {mip[out]} {};
@@ -41,18 +41,19 @@
 			#BREAK;
 		};
 		#VAR {mip[char2]} {$mip[char1]};
-		#VAR {mip[char1]} {$i};
+		#VAR {mip[char1]} {$i}
 	};
 	#VAR {mip[%3][data]} {$mip[out]};
 	.mipProcessFlag {%3} {$mip[out]};
-	#NOP event_raise {e_mip_%3} {$mip[out]};
-	#IF {"${mip[overflow]}" != ""} {#SHOWME {${mip[overflow]}};};
+	#IF {"${mip[overflow]}" != ""} {#SHOWME {${mip[overflow]}}};
 
 	#NOP update_status alias defined in personal hpbar trigger;
 	update_status;
 
-	#LINE GAG;
-} {1};
+	#IF {"$mip[echo]" != "on"} {
+		#LINE GAG
+	}
+} {1}
 
 #ALIAS {update_caption} {
 	#format {world_cap}	{%-8s}	{$world};
@@ -82,140 +83,150 @@
 
 #EVENT {RECEIVED INPUT} {#var idle 0}
 
-#NOP ***** Individual Data Sections *****;
+#NOP ***** Individual Data Sections *****
 #ALIAS {.mipProcessFlag} {
-	#NOP %1;
 	#SWITCH {"%1"} {
-		#CASE {"AAA"} {#NOP Sound;};
-		#CASE {"AAB"} {#NOP Image;};
+		#CASE {"AAA"} {#NOP Sound};
+		#CASE {"AAB"} {#NOP Image};
 		#CASE {"AAC"} {#NOP Reboot Time;#VAR {session[reboot]} {%2};update_caption};
-		#CASE {"AAD"} {#NOP Music;};
+		#CASE {"AAD"} {#NOP Music};
 		#CASE {"AAF"} {#NOP Uptime;#VAR {session[uptime]} {%2};update_caption};
-		#CASE {"AAG"} {#NOP AVI movie;};
-		#CASE {"AAH"} {#NOP Download Media;};
+		#CASE {"AAG"} {#NOP AVI movie};
+		#CASE {"AAH"} {#NOP Download Media};
 		#CASE {"BAA"} {#NOP Special Textstring;#showme {%2} {-2}};
 		#CASE {"BAB"} {#NOP 2 Way Communications;.mipProcessBAB {%2}};
-		#CASE {"BAC"} {#NOP Special Textstring2;};
-		#CASE {"BAD"} {#NOP Room Description;};
+		#CASE {"BAC"} {#NOP Special Textstring2};
+		#CASE {"BAD"} {#NOP Room Description};
 		#CASE {"BAE"} {#NOP Mud Lag;#VAR {session[lag]} {%2};update_caption};
-		#CASE {"BAF"} {#NOP Send Edit;};
+		#CASE {"BAF"} {#NOP Send Edit};
 		#CASE {"BBA"} {#NOP Guild Point1 Mask;#FORMAT {my[gp1][name]} {%s} {%2}};
 		#CASE {"BBB"} {#NOP Guild Point2 Mask;#FORMAT {my[gp2][name]} {%s} {%2}};
 		#CASE {"BBC"} {#NOP Hit Point Mask;#FORMAT {my[hp][name]} {%s} {%2}};
 		#CASE {"BBD"} {#NOP Spell Point Mask;#FORMAT {my[sp][name]} {%s} {%2}};
 		#CASE {"CAA"} {#NOP Chat Messages;.mipProcessCAA {%2}};
 		#CASE {"CAP"} {#NOP Window Caption Text;#FORMAT {temp} {%h} {%2};#showme {$temp} {-2}};
-		#CASE {"CCF"} {#NOP Send File Line;};
-		#CASE {"CDF"} {#NOP Send File Begin;};
-		#CASE {"CEF"} {#NOP Send File End;};
-		#CASE {"DDD"} {#NOP Room Exits;#NOP Split at Hex 160 (Non Breaking Space);};
+		#CASE {"CCF"} {#NOP Send File Line};
+		#CASE {"CDF"} {#NOP Send File Begin};
+		#CASE {"CEF"} {#NOP Send File End};
+		#CASE {"DDD"} {#NOP Room Exits;#NOP Split at Hex 160 (Non Breaking Space)};
 		#CASE {"FFF"} {#NOP Combined Stats Data;.mipProcessFFF {%2}};
-		#CASE {"HAA"} {#NOP Room Items;};
+		#CASE {"HAA"} {#NOP Room Items};
 		#CASE {"HAB"} {#NOP Item Actions;.mipProcessHAB {%2}};
-		#DEFAULT {#NOP Every other non-handled flag;#showme <148>UNHANDLED MIP: %0<088>};
+		#DEFAULT {#NOP Every other non-handled flag;#showme <148>UNHANDLED MIP: %0<088>}
 	}
 }
 
-#NOP ***** Combined Stats Data *****;
-#ALIAS {.mipProcessFFF}
-{
-  #NOP %1;
-  #VAR {mip[FFF][flag]} {0};
-  #VAR {mip[FFF][toggle]} {0};
-  #PARSE {%1} {i}
-  {
-    #IF {"$mip[FFF][flag]" == "0"}
-    {
-      #VAR {mip[FFF][flag]} {$i};
-      #VAR {mip[FFF][$i]} {};
-      #VAR {mip[FFF][$i][data]} {};
-    }
-    {
-      #IF {"$i" == "~"}
-      {
-        #IF {"$mip[FFF][toggle]" == "0"}
-        {
-          #VAR {mip[FFF][toggle]} {1};
-        }
-        {
-          .mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]};
-          #VAR {mip[FFF][flag]} {0};
-          #VAR {mip[FFF][toggle]} {0};
-        };
-      }
-      {
-        #VAR {mip[FFF][${mip[FFF][flag]}][data]} {${mip[FFF][${mip[FFF][flag]}][data]}${i}};
-      };
-    };
-  };
-  #IF {"$mip[FFF][$mip[FFF][flag]][data]" != ""}
-  {
-    .mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]};
-    #NOP event_raise {e_mip_FFF_${mip[FFF][flag]}} {$mip[FFF][${mip[FFF][flag]}][data]};
-  };
-};
+#NOP ***** Combined Stats Data *****
+#ALIAS {.mipProcessFFF} {
+	#VAR {mip[FFF][flag]} {0};
+	#VAR {mip[FFF][toggle]} {0};
+	#PARSE {%1} {i} {
+		#IF {"$mip[FFF][flag]" == "0"} {
+			#VAR {mip[FFF][flag]} {$i};
+			#VAR {mip[FFF][$i]} {};
+			#VAR {mip[FFF][$i][data]} {};
+		} {
+			#IF {"$i" == "~"} {
+				#IF {"$mip[FFF][toggle]" == "0"} {
+					#VAR {mip[FFF][toggle]} {1};
+				} {
+					.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]};
+					#VAR {mip[FFF][flag]} {0};
+					#VAR {mip[FFF][toggle]} {0};
+				}
+			} {
+				#VAR {mip[FFF][${mip[FFF][flag]}][data]} {${mip[FFF][${mip[FFF][flag]}][data]}${i}}
+			}
+		}
+	};
+	#IF {"$mip[FFF][$mip[FFF][flag]][data]" != ""} {
+		.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]}
+	}
+}
 
-#NOP ***** Separated Stats Data *****;
-#ALIAS {.mipProcessFFFSub}
-{
-  #NOP %1;
-  #SWITCH {"%1"}
-  {
-    #CASE {"A"} {#NOP Hit Points;#FORMAT {my[hp][current]} {%d} {%2};};
-    #CASE {"B"} {#NOP Hit Points Maximum;#FORMAT {my[hp][max]} {%d} {%2};};
-    #CASE {"C"} {#NOP Spell Points;#FORMAT {my[sp][current]} {%d} {%2};};
-    #CASE {"D"} {#NOP Spell Points Maximum;#FORMAT {my[sp][max]} {%d} {%2};};
-    #CASE {"E"} {#NOP Guild Points1;#FORMAT {my[gp1][current]} {%d} {%2};};
-    #CASE {"F"} {#NOP Guild Points1 Maximum;#FORMAT {my[gp1][max]} {%d} {%2};};
-    #CASE {"G"} {#NOP Guild Points2;#FORMAT {my[gp2][current]} {%d} {%2};};
-    #CASE {"H"} {#NOP Guild Points2 Maximum;#FORMAT {my[gp2][max]} {%d} {%2};};
-    #CASE {"I"} {#NOP Primary Guild Line;.mipProcessGline {%2};};
-    #CASE {"J"} {#NOP Secondary Guild Line;.mipProcessGline {%2};};
-    #CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2};};
-    #CASE {"L"} {#NOP Mob Health;#FORMAT {enemy[hp]} {%d} {%2};};
-    #CASE {"M"} {#NOP Mob Image File;};
-    #CASE {"N"} {#NOP Combat Round Counter;};
-    #DEFAULT {#NOP Every other non-handled flag;};
-  };
-};
+#NOP ***** Separated Stats Data *****
+#ALIAS {.mipProcessFFFSub} {
+	#SWITCH {"%1"} {
+		#CASE {"A"} {#NOP Hit Points;#FORMAT {my[hp][current]} {%d} {%2}};
+		#CASE {"B"} {#NOP Hit Points Maximum;#FORMAT {my[hp][max]} {%d} {%2}};
+		#CASE {"C"} {#NOP Spell Points;#FORMAT {my[sp][current]} {%d} {%2}};
+		#CASE {"D"} {#NOP Spell Points Maximum;#FORMAT {my[sp][max]} {%d} {%2}};
+		#CASE {"E"} {#NOP Guild Points1;#FORMAT {my[gp1][current]} {%d} {%2}};
+		#CASE {"F"} {#NOP Guild Points1 Maximum;#FORMAT {my[gp1][max]} {%d} {%2}};
+		#CASE {"G"} {#NOP Guild Points2;#FORMAT {my[gp2][current]} {%d} {%2}};
+		#CASE {"H"} {#NOP Guild Points2 Maximum;#FORMAT {my[gp2][max]} {%d} {%2}};
+		#CASE {"I"} {#NOP Primary Guild Line;.mipProcessGline {1} {%2}};
+		#CASE {"J"} {#NOP Secondary Guild Line;.mipProcessGline {2} {%2}};
+		#CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2}};
+		#CASE {"L"} {#NOP Mob Health;#FORMAT {enemy[hp]} {%d} {%2}};
+		#CASE {"M"} {#NOP Mob Image File};
+		#CASE {"N"} {#NOP Combat Round Counter};
+		#DEFAULT {#NOP Every other non-handled flag}
+	}
+}
 
 #NOP ***** Combat Mob Name *****;
-#ALIAS {.mipProcessFFFK}
-{
-  #NOP %1;
-  #IF {"%1" != ""}
-  {
-    #VAR {enemy} {};
-    #VAR {enemy[name]} {%1};
-    #NOP event_raise e_combat {%1};
-  }
-  {
-    #VAR {enemy[hp]} {};
-  };
-};
-
-#NOP ***** Guild Stats Line 1/2 *****;
-#ALIAS {.mipProcessGline} {
-	#NOP %1;
-	#VAR {temp} {};
+#ALIAS {.mipProcessFFFK} {
 	#IF {"%1" != ""} {
-		#VAR {temp[gline]} {%1};
-		#REPLACE {temp[gline]} { } {;};
-		#FOREACH {$temp[gline]} {i} {
-			#IF {"$i" != ""} {
-			#REGEX {$i} {{^(\<\w{1}|)(.+)\:(.+?)(%|)(X\>|>|)$}} {
-				#VAR {mip[gline][&3]} {&4};
-			};
-		};
-	};
-};
-#NOP #SHOWME @fMipColourConv{{%1}};
-#NOP event_raise e_mip_gline;
-};
+		#VAR {enemy} {};
+		#VAR {enemy[name]} {%1};
+	} {
+		#VAR {enemy[hp]} {}
+	}
+}
 
-#NOP ***** 2 Way Communication (Tell/Emote) *****;
+#NOP ***** Guild Stats Line 1/2 *****
+#ALIAS {.mipProcessGline} {
+	#VAR {mip[gline][%1]} {%2};
+	#VAR {temp} {};
+
+	#NOP GUILD SPECIFIC GLINE PROCESSING;
+	#IF {"%2" != ""} {
+		#SWITCH {"$guild"} {
+			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
+			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
+		}
+	}
+}
+
+#ALIAS {.mipProcessGlineJuggernaut} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {Ammo:\[%d/%d/%d/%d/%d\] <yGxp: %d.%d\%> Hits: \[%d\] <cCoffin: %d/%d} {
+			#VAR {ammo[1]}		{&1};
+			#VAR {ammo[2]}		{&2};
+			#VAR {ammo[3]}		{&3};
+			#VAR {ammo[4]}		{&4};
+			#VAR {ammo[5]}		{&5};
+			#VAR {gxp}		{&6.&7};
+			#VAR {hits}		{&8};
+			#VAR {corpses[coffin]}	{&9}
+		}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]} {Nukes: \[%d/%d\]> Reset: \[%d\%\]} {
+			#VAR {nukes}		{&1};
+			#VAR {nukes_max}	{&2};
+			#VAR {reset}		{&3};
+		}
+	}; #ELSE {
+		#NOP Invalid Gline Number
+	}
+}
+
+#ALIAS {.mipProcessGlineNecromancer} {
+	#VAR {temp[gline]} {%1};
+	#REPLACE {temp[gline]} { } {;};
+	#FOREACH {$temp[gline]} {i} {
+		#IF {"$i" != ""} {
+			#REGEX {$i} {{^(\<\w{1}|)(.+)\:(.+?)(%|)(X\>|>|)$}} {
+				#VAR {mip[gline][&3]} {&4}
+			}
+		}
+	}
+}
+
+
+#NOP ***** 2 Way Communication (Tell/Emote) *****
 #ALIAS {.mipProcessBAB} {
-	#NOP %1;
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)}} {
 		#IF {"&3" != "0"} {
 			#var mip[comm][data]	{&4};
@@ -227,14 +238,14 @@
 				#NOP Message to another player;
 				#var mip[comm][twoway] {to};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
-				#line log {.tt/logs/3k.chat} {<178>To &3<088>: &4};
+				#line log {.tt/logs/3k.chat} {<178>To &3<088>: &4}
 			} {
 				#NOP Message from another player;
 				#var mip[comm][twoway] {from};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
 				#line log {.tt/logs/3k.chat} {<178>&3<088>: &4};
 
-				#NOP Chat Tools
+				#NOP Chat Tools;
 				#if  {$idle > 600} {
 					#if {$bot} {
 						killbot;
@@ -285,7 +296,7 @@
 	}
 }
 
-#NOP ***** Broadcast Communication (Chat/Shout) *****;
+#NOP ***** Broadcast Communication (Chat/Shout) *****
 #ALIAS {.mipProcessCAA} {
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
 		#var {mip[enomm]} {};
@@ -295,8 +306,7 @@
 		#var {mip[comm][data]}		{&5};
 		#format {timestamp} {%t} {<108>[<268>%H<108>:<268>%M<108>]<088> };
 
-#NOP Ansify lines;
-		#NOP default color to hiwhite;
+		#NOP Ansify lines;
 		#var {commcol} {<178>};
 		#switch {"$mip[comm][line]"} {
 			#case {"ADMIN"}		{#var {commcol} {<158>}};
@@ -373,7 +383,7 @@
 	}
 }
 
-#NOP ***** Room Nouns Handling *****;
+#NOP ***** Room Nouns Handling *****
 #ALIAS {.mipProcessHAB} {
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
 		#list {nouns} {fin} {&3} {noun_index};
@@ -388,17 +398,17 @@
 }
 #list {nouns} {create}
 
-#NOP ***** Guild Stats Line Colour Handling *****;
+#NOP ***** Guild Stats Line Colour Handling *****
 #FUNCTION {fMipColourConv} {
-  #VAR {result} {%1};
-  #REPLACE {result} {>} {<099>};
-  #REPLACE {result} {<y} {<839>};
-  #REPLACE {result} {<r} {<819>};
-  #REPLACE {result} {<b} {<849>};
-  #REPLACE {result} {<g} {<829>};
-  #REPLACE {result} {<c} {<869>};
-  #REPLACE {result} {<v} {<859>};
-  #REPLACE {result} {<s} {<279>};
-};
+	#VAR {result} {%1};
+	#REPLACE {result} {>} {<099>};
+	#REPLACE {result} {<y} {<839>};
+	#REPLACE {result} {<r} {<819>};
+	#REPLACE {result} {<b} {<849>};
+	#REPLACE {result} {<g} {<829>};
+	#REPLACE {result} {<c} {<869>};
+	#REPLACE {result} {<v} {<859>};
+	#REPLACE {result} {<s} {<279>};
+}
 
-#CLASS {mip} {close};
+#CLASS {mip} {close}
