@@ -289,6 +289,7 @@
 				#var mip[comm][twoway] {from};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
 				#line log {.tt/logs/3k.chat} {<178>&3<088>: &4};
+				#bell;
 
 				#NOP Chat Tools;
 				#if  {$idle > 600} {
