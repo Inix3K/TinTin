@@ -1,42 +1,47 @@
 #class {plasma} {open}
 
+#read .tt/3k/mip.tin
+
 #var guild necromancer
 
 /* HP Bar */
 #act {{HP\[(\d+)/(\d+)\] SP\[(\d+)\(?(\d+)?\)?/(\d+)\] NP\[(\d+)/(\d+)\|(\d+)c\] E\[([\w\~\-\d\%\s\,\']+):?(\w+)?\]}} {
-	#var {hp}	{%2};
-	#var {hp_max}	{%3};
-	#var {sp}	{%4};
-	#var {sp_inf}	{%5};
-	#var {sp_max}	{%6};
-	#var {np}	{%7};
-	#var {np_max}	{%8};
-	#var {corpses}	{%9};
-	#var {ehealth}	{%11};
-	#if {($hp_max+$sp_max)-($hp+$sp) > 300} {
-		!dream zzzz
-	};
-	#if {$np < $np_max*.9 && $corpses > 0} {
-		#if {$sp_inf > 0} {
-			!spfuse $sp_inf
-		};
-		!ab
-	};
-	#if {$hp < 400 && $corpses > 0} {
-		!ab2
-	}
+	#var {my[hp][current]}		{%2};
+	#var {my[hp][max]}		{%3};
+	#var {my[sp][current]}		{%4};
+	#var {my[sp][fuse][current]}	{%5};
+	#var {my[sp][max]}		{%6};
+	#var {my[gp1][current]}		{%7};
+	#var {my[gp1][max]}		{%8};
+	#var {corpses[inventory]}	{%9};
+	#var {ehealth}			{%11};
 }
 
 #act {{Status\[w([\d]*)\%\|p(\w+)\|v(\w+)\|r(\d+)\%\] Cr\[(\d+)\%\]}} {
-	#var {worth}	{%2};
-	#var {prot}	{%3};
-	#var {gxp}	{%6};
-	#if {$worth < 125} {
-		!con
+	#var {my[worth]}	{%2};
+	#var {my[prot]}	{%3};
+	#var {my[gxp]}	{%6};
+	#if {$my[worth] < 125} {
+		con
 	};
-	#if {"$prot" == "OFF"} {
-		!prot
+	#if {"$my[prot]" == "OFF"} {
+		prot
 	};
+}
+
+#alias {update_status} {
+	#if {($my[hp][max]+$my[sp][max])-($my[hp][current]+$my[sp][current]) > 300} {
+		dream zzzz
+	};
+	#if {$my[gp1][current] < $my[gp1][max]*.9 && $corpses[inventory] > 0} {
+		#if {$my[sp][fuse][current] > 0} {
+			spfuse $my[sp][fuse][current]
+		};
+		ab
+	};
+	#if {$my[hp][current] < 400 && $corpses[inventory] > 0} {
+		ab2
+	}
 	#if {"$cooler" == "on" || $corpses[cooler] > 0} {
 		#format {sb1_cooler} {%+2s} {$corpses[cooler]};
 		#var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
@@ -49,32 +54,27 @@
 	} {
 		#var {sb2_freezer} {}
 	};
-	#format {ehealth_label} {%-9s} {$ehealth};
-	#if {$ehealth > 0} {
-		#var {ehealth_label} {$ehealth_label%%}
-	} {
-		#var {ehealth_label} { $ehealth_label}
-	};
-	#var {hp_graph} {@graph{$hp;$hp_max}};
-	#var {sp_graph} {@graph{$sp;$sp_max}};
-	#var {np_graph} {@graph{$np;$np_max}};
-	#var {egraph} {@graph{$ehealth;100}};
-	#format {hp} {%+4s} {$hp};
-	#format {hp_max} {%+4s} {$hp_max};
-	#format {sp} {%+4s} {$sp};
-	#format {sp_inf} {%+3s} {$sp_inf};
-	#format {sp_max} {%+4s} {$sp_max};
-	#format {np} {%+5s} {$np};
-	#format {np_max} {%+5s} {$np_max};
-	#format {corpses[inventory]} {%+2s} {$corpses[inventory]};
-	#format {corpses[coffin]} {%+2s} {$corpses[coffin]};
-	#format {corpses[freezer]} {%+2s} {$corpses[freezer]};
-	#showme {HP:$hp/$hp_max SP:$sp($sp_inf)/$sp_max NP:$np/$np_max  E:$ehealth_label IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {3};
-	#showme {H:$hp_graph SP:$sp_graph     NP:$np_graph   E:$egraph CF:<138>$corpses[coffin]<088>${sb2_freezer}} {2}
+	#var {my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
+	#var {my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
+	#var {my[gp1][graph]}		{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var {enemy[graph]}		{@graph{$enemy[hp];100}};
+	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
+	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
+	#format {sp_inf}		{%+3s} {<168>$my[sp][fuse][current]<088>};
+	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
+	#format {np}			{%+5s} {@colscale{$my[gp1][current];$my[gp1][max]}};
+	#format {np_max}		{%+5s} {<128>$my[gp1][max]<088>};
+	#format {ehealth}		{%+8s} {@colscale{$enemy[hp];100}\%};
+	#format {corpses[inventory]}	{%+2s} {$corpses[inventory]};
+	#format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
+	#format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
+	#showme {<088>HP:$hp/$hp_max SP:$sp($sp_inf)/$sp_max NP:$np/$np_max  E:$ehealth    IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {3};
+	#showme {H:$my[hp][graph] SP:$my[sp][graph]     NP:$my[gp1][graph]   E:$enemy[graph] CF:<138>$corpses[coffin]<088>${sb2_freezer}} {2}
 }
 
 #alias {corpsetrig} {
-	!pp
+	pp
 }
 
 #act {dealt the killing blow to} {corpsetrig}
@@ -86,7 +86,7 @@
 	#var preserving 1;
 	#var preserve_np 0;
 	#var preserve_done 0;
-	!qtrance preserve remains>20
+	qtrance preserve remains>20
 }
 
 #act {You only have %d/%d necromantic points for that.} {
@@ -108,7 +108,7 @@
 #act {You recover your senses} {
 	#if {$preserving} {
 		#if {$preserve_np} {
-			!absorb;
+			absorb;
 			mpp
 		}; #elseif {$preserve_done} {
 			#var preserving 0

@@ -9,7 +9,8 @@
 
 /* Coffin Counter */
 #act {{You keep An enchanted coffin \((\d+) corpses?\) \[(?:[\.\|\&]+)\] \[[\w\s]+\]\.}} {#var corpses[coffin] %2}
-#act {{wrap it up into the coffin\'s protective hold!}} {#math {corpses[coffin]} {$corpses[coffin] + 1}}
+#act {The Mortician says: Your generous donation of } {#var {corpses[coffin]} {0}}
+#act {wrap it up into the coffin's protective hold!} {#math {corpses[coffin]} {$corpses[coffin] + 1}}
 #act {{The coffin expels (a|your selected) corpse onto the ground!}} {
 	#if {$corpses[coffin] > 0} {
 		#math {corpses[coffin]} {$corpses[coffin] - 1}

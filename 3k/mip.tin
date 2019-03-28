@@ -147,18 +147,18 @@
 #NOP ***** Separated Stats Data *****
 #ALIAS {.mipProcessFFFSub} {
 	#SWITCH {"%1"} {
-		#CASE {"A"} {#NOP Hit Points;#FORMAT {my[hp][current]} {%d} {%2}};
-		#CASE {"B"} {#NOP Hit Points Maximum;#FORMAT {my[hp][max]} {%d} {%2}};
-		#CASE {"C"} {#NOP Spell Points;#FORMAT {my[sp][current]} {%d} {%2}};
-		#CASE {"D"} {#NOP Spell Points Maximum;#FORMAT {my[sp][max]} {%d} {%2}};
-		#CASE {"E"} {#NOP Guild Points1;#FORMAT {my[gp1][current]} {%d} {%2}};
-		#CASE {"F"} {#NOP Guild Points1 Maximum;#FORMAT {my[gp1][max]} {%d} {%2}};
-		#CASE {"G"} {#NOP Guild Points2;#FORMAT {my[gp2][current]} {%d} {%2}};
-		#CASE {"H"} {#NOP Guild Points2 Maximum;#FORMAT {my[gp2][max]} {%d} {%2}};
+		#CASE {"A"} {#NOP Hit Points;#VAR {my[hp][current]} {%2}};
+		#CASE {"B"} {#NOP Hit Points Maximum;#VAR {my[hp][max]} {%2}};
+		#CASE {"C"} {#NOP Spell Points;#VAR {my[sp][current]} {%2}};
+		#CASE {"D"} {#NOP Spell Points Maximum;#VAR {my[sp][max]} {%2}};
+		#CASE {"E"} {#NOP Guild Points1;#VAR {my[gp1][current]} {%2}};
+		#CASE {"F"} {#NOP Guild Points1 Maximum;#VAR {my[gp1][max]} {%2}};
+		#CASE {"G"} {#NOP Guild Points2;#VAR {my[gp2][current]} {%2}};
+		#CASE {"H"} {#NOP Guild Points2 Maximum;#VAR {my[gp2][max]} {%2}};
 		#CASE {"I"} {#NOP Primary Guild Line;.mipProcessGline {1} {%2}};
 		#CASE {"J"} {#NOP Secondary Guild Line;.mipProcessGline {2} {%2}};
 		#CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2}};
-		#CASE {"L"} {#NOP Mob Health;#FORMAT {enemy[hp]} {%d} {%2}};
+		#CASE {"L"} {#NOP Mob Health;#VAR {enemy[hp]} {%2}};
 		#CASE {"M"} {#NOP Mob Image File};
 		#CASE {"N"} {#NOP Combat Round Counter};
 		#DEFAULT {#NOP Every other non-handled flag}
@@ -183,9 +183,31 @@
 	#NOP GUILD SPECIFIC GLINE PROCESSING;
 	#IF {"%2" != ""} {
 		#SWITCH {"$guild"} {
+			#CASE {"changeling"}	{.mipProcessGlineChangeling {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
 		}
+	}
+}
+
+#ALIAS {.mipProcessGlineChangeling} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {Chaos Flux: %d/%d} {
+			#VAR {my[relinquish][current]}	{&1};
+			#VAR {my[relinquish][reset]}	{&2}
+		};
+		#REGEX {$mip[gline][1]} {{Density|Homeostasis|Mitosis|Morphogenesis|Resilience}: %d.%d\%} {
+			#VAR {my[skill][name]}		{&1};
+			#VAR {my[skill][current]}	{&2.&3}
+		};
+		#REGEX {$mip[gline][1]}	{\[{FF|IL}\(%d\): %d.%d\%\]>  \[%D\]} {
+			#VAR {my[ff][current]}		{&3.&4};
+			#VAR {my[form]}			{&5}
+		}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]}	{\[Bioplasts: %d\]} {#VAR {my[bioplasts]}	{&1}}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
 	}
 }
 
@@ -208,19 +230,42 @@
 			#VAR {reset}		{&3};
 		}
 	}; #ELSE {
-		#NOP Invalid Gline Number
+		#ECHO {<171> Invalid Gline Number <088>}
 	}
 }
 
 #ALIAS {.mipProcessGlineNecromancer} {
-	#VAR {temp[gline]} {%1};
-	#REPLACE {temp[gline]} { } {;};
-	#FOREACH {$temp[gline]} {i} {
-		#IF {"$i" != ""} {
-			#REGEX {$i} {{^(\<\w{1}|)(.+)\:(.+?)(%|)(X\>|>|)$}} {
-				#VAR {mip[gline][&3]} {&4}
-			}
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {C:%d}		{#VAR {corpses[inventory]}	{&1}};
+		#REGEX {$mip[gline][1]} {Worth:%d}	{#VAR {my[worth]}		{&1}};
+		#REGEX {$mip[gline][1]} {Tport:%d/%d}	{
+			#VAR {my[ports][current]}	{&1};
+			#VAR {my[ports][max]}		{&2}
+		};
+		#REGEX {$mip[gline][1]} {Sprk:%d/%d}	{
+			#VAR {my[sparks][current]}	{&1};
+			#VAR {my[sparks][max]}		{&2};
+		};
+		#REGEX {$mip[gline][1]} {Prot:%wX}	{#VAR {my[prot]}		{&1}};
+		#REGEX {$mip[gline][1]} {Circle:%d}	{#VAR {my[gxp]}			{&1}};
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]}	{Undead:%w}	{#VAR {my[undead]}		{&1}};
+		#REGEX {$mip[gline][2]}	{SPf:%d/%d}	{
+			#VAR {my[sp][fuse][current]}	{&1};
+			#VAR {my[sp][fuse][max]}	{&2}
 		}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineBard} {
+	#IF {%1 == 1} {
+		
+	}; #ELSEIF {%1 == 2} {
+		
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
 	}
 }
 
@@ -314,6 +359,7 @@
 			#case {"Bear"}		{#var {commcol} {<168>}};
 			#case {"Bloodname"}	{#var {commcol} {<138>}};
 			#case {"Clan Cad"}	{#var {commcol} {<158>}};
+			#case {"Com"}		{#var {commcol} {<128>}};
 			#case {"Council"}	{#var {commcol} {<108>}};
 			#case {"Eternal Main"}	{#var {commcol} {<168>}};
 			#case {"Events"}	{#var {commcol} {<168>}};
