@@ -33,7 +33,14 @@
 	#if {$my[gp1][current] < 95 && $my[sp][current] > 50} {
 		#if {$my[gp2][current] > 70} {!dissipate};
 		!transpose max;
-	}
+	};
+	#if {$reset == 99} {
+		#if {$clan > 0} {
+			frenzy
+		}; #elseif {$nukes > 0 && $mip[round] > 0} {
+			fire $nukes $mobname
+		}
+	};
 }
 
 #act {{^Ammo:\[(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?\] SHP:\[\s*(\d+)\] SNL:\[([\d\.]*)\] SM:\[(\w+)\] SA:\[(\w+)\] SD:\[(\w+)\] E:([\d\w]+)?\%?}} {
@@ -49,7 +56,7 @@
 	#var {sdf}	{%11};
 	#var {ehealth}	{%12};
 	#format {ammo_len} {%L} {$ammo};
-	#if {$ammo_buy == "on" && $ammo_len > 0} {
+	#if {"$ammo_buy" == "on" && $ammo_len > 0} {
 		#if {$ammo[1] < 100} {
 			!truck ammo vbuy $weapon_type $ammo_type 1 $ammo_buy_amount
 		}; #elseif {$ammo[2] < 100} {

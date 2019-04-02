@@ -2,9 +2,9 @@
 #class {inixaw} {open}
 
 #read .tt/AW/gmcp.tin
-#read .tt/AW/AWmap.tin
-#read .tt/AW/AWvar.tin
+#read .tt/AW/var.tin
 #read .tt/AW/snd.tin
+#read .tt/map/AWmap.tin
 
 #act {{^HP:(\d+)/(\d+) SP:(\d+)/(\d+) MV:(\d+)/(\d+) QT:(\d+) A:(\-?\d+) G:(\d+) XP:(\d+)/(\d+)(?: E:)?(\d*)?}} {
 	#var {hp}	{%2};

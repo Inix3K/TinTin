@@ -160,7 +160,7 @@
 		#CASE {"K"} {#NOP Mob Fighting;.mipProcessFFFK {%2}};
 		#CASE {"L"} {#NOP Mob Health;#VAR {enemy[hp]} {%2}};
 		#CASE {"M"} {#NOP Mob Image File};
-		#CASE {"N"} {#NOP Combat Round Counter};
+		#CASE {"N"} {#NOP Combat Round Counter;#VAR {mip[round]} {%2}};
 		#DEFAULT {#NOP Every other non-handled flag}
 	}
 }
@@ -184,6 +184,7 @@
 	#IF {"%2" != ""} {
 		#SWITCH {"$guild"} {
 			#CASE {"changeling"}	{.mipProcessGlineChangeling {%1}};
+			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
 		}
@@ -211,17 +212,41 @@
 	}
 }
 
+#ALIAS {.mipProcessGlineElemental} {
+	#IF {%1 == 1} {
+		#REGEX {Emit> : <%w%d>}			{#VAR {my[emit][level]}		{&2}};
+		#REGEX {Equipollent}			{#VAR {my[equip]}		{on}}
+							{#VAR {my[equip]}		{off}};
+		#REGEX {Form>: <c%w>\(<r%d>\)}		{
+			#VAR {my[form][type]}		{&1};
+			#VAR {my[form][size]}		{&2}
+		};
+		#REGEX {Rating>: <r%d>}			{#VAR {my[rating]}		{&1}}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {Stones/Waves/Shrouds>: <%w%d>/<%w%d>/<%w%d>\(%d\%\)}
+			#VAR {my[blasts]		{&2};
+			#VAR {my[waves]}		{&4};
+			#VAR {my[shrouds]}		{&6};
+			#VAR {my[reset]}		{&7}
+		};
+		#REGEX {G2N: <%w%d>}			{#VAR {my[g2n]}			{&2}}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
 #ALIAS {.mipProcessGlineJuggernaut} {
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]} {Ammo:\[%d/%d/%d/%d/%d\] <yGxp: %d.%d\%> Hits: \[%d\] <cCoffin: %d/%d} {
-			#VAR {ammo[1]}		{&1};
-			#VAR {ammo[2]}		{&2};
-			#VAR {ammo[3]}		{&3};
-			#VAR {ammo[4]}		{&4};
-			#VAR {ammo[5]}		{&5};
-			#VAR {gxp}		{&6.&7};
-			#VAR {hits}		{&8};
-			#VAR {corpses[coffin]}	{&9}
+			#VAR {ammo[1]}			{&1};
+			#VAR {ammo[2]}			{&2};
+			#VAR {ammo[3]}			{&3};
+			#VAR {ammo[4]}			{&4};
+			#VAR {ammo[5]}			{&5};
+			#VAR {gxp}			{&6.&7};
+			#VAR {hits}			{&8};
+			#VAR {corpses[coffin]}		{&9};
+			#VAR {corpses[coffinsize]}	{&10}
 		}
 	}; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]} {Nukes: \[%d/%d\]> Reset: \[%d\%\]} {
@@ -300,38 +325,38 @@
 				} {
 					#NOP 8Inix;
 					#if {"$8inix" == "on"} {
-						#regex {$mip[comm][data]} {%i: 8inix} {
+						#regex {$mip[comm][data]} {%i8inix} {
 							do8inix
 						}
 					};
 
 					#NOP IDefine;
 					#if {"$idefine" == "on"} {
-						#regex {$mip[comm][data]} {%i: idefine} {
+						#regex {$mip[comm][data]} {%iidefine} {
 							dodefine
 						}
 					};
 
 					#NOP UDefine;
 					#if {"$udefine" == "on"} {
-						#regex {$mip[comm][data]} {%i: udefine} {
+						#regex {$mip[comm][data]} {%iudefine} {
 							doudefine
 						}
 					};
 
 					#NOP ADDS;
 					#if {"$adds" == "on"} {
-						#regex {$mip[comm][data]} {%i: iwx} {
+						#regex {$mip[comm][data]} {%iiwx} {
 							doadds
 						}
 					};
 
 					#NOP Stocks;
 					#if {"$stocks" == "on"} {
-						#regex {$mip[comm][data]} {%i: istocks} {
+						#regex {$mip[comm][data]} {%iistocks} {
 							dostocks
 						} {
-							#regex {$mip[comm][data]} {%i: istock} {
+							#regex {$mip[comm][data]} {%iistock} {
 								dostock
 							}
 						}

@@ -12,9 +12,11 @@
 
 	#map get {roomarea} {area};
 
-	#act {{(\D{29}) (\D+)}} {
-		#unact {{(\D{29}) (\D+)}};
+	#act {{(\D{30}) (\D+)}} {
+		#unact {{(\D{30}) (\D+)}};
+		#var temp {%%3};
 		#format {findloc} {%%p} {%%3};
+		#echo {$findloc};
 
 		#unvar rooms;
 		#unvar roomlist;
