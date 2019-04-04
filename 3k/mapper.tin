@@ -270,7 +270,7 @@
 	#map get {roomvnum} {tvroom};
 	#map go 8227
 } {4}
-#act {^You dive cleanly through the computer screen!} {
+#act {^   You dive cleanly through the computer screen!} {
 	#map go $tvroom
 }
 
@@ -390,6 +390,7 @@
 
 #NOP Ice Mountains (Verbeeg)
 #act {^The magical barrier is impenetrable.$} {#map undo}
+#act {^The cryohydra snaps one of its heads at you as you try and approach} {#map undo}
 
 #NOP Land
 #act {^You are caught like a fly in a spider web, burning and twisting as} {#map undo}

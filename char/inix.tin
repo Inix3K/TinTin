@@ -167,21 +167,22 @@
 #substitute {   Monster\'s Name                  Class      Rnds}
 	    {    Monster's Name                Class      Rnds     Exp/Hour}
 #act {^  Current Enemy: } {
-	#math {cr_avg_class} {1.0*${cr_class_tot}/${cr_count}};
-	#format {cr_avg_class} {%d} {${cr_avg_class}};
-	#math {cr_avg_rnds} {1.0*${cr_rnds_tot}/${cr_count}};
-	#format {cr_avg_rnds} {%d} {${cr_avg_rnds}};
-	#math {cr_avg_hr} {1.0*${cr_class_tot}/${cr_rnds_tot}*1800};
-	#format {cr_avg_hr} {%d} {${cr_avg_hr}};
-	#math {cr_avg_xp} {${cr_avg_hr}*.8};
-	#format {cr_avg_xp} {%d} {${cr_avg_xp}}
-	#var cr_class_tot 0;
-	#var cr_rnds_tot 0;
-	#var cr_count 0;
-	#format {cr_avg_class} {%+33s} {${cr_avg_class}};
-	#format {cr_avg_rnds} {%+7s} {${cr_avg_rnds}};
-	#format {cr_avg_hr} {%+15s} {${cr_avg_hr}};
-	#var {cr_str} {  Average:${cr_avg_class}${cr_avg_rnds}${cr_avg_hr}}
+	#math	{cr_avg_class}	{1.0*${cr_class_tot}/${cr_count}};
+	#format	{cr_avg_class}	{%d}	{${cr_avg_class}};
+	#math	{cr_avg_rnds}	{1.0*${cr_rnds_tot}/${cr_count}};
+	#format	{cr_avg_rnds}	{%d}	{${cr_avg_rnds}};
+	#math 	{cr_avg_hr}	{1.0*${cr_class_tot}/${cr_rnds_tot}*1800};
+	#format	{cr_avg_hr}	{%d}	{${cr_avg_hr}};
+	#math	{cr_avg_xp} 	{${cr_avg_hr}*.8};
+	#var	cr_class_tot	0;
+	#var	cr_rnds_tot	0;
+	#var	cr_count	0;
+	#format	{cr_avg_class}	{%+32s}	{${cr_avg_class}};
+	#format	{cr_avg_rnds}	{%+7s}	{${cr_avg_rnds}};
+	#format	{cr_avg_hr}	{%+15s}	{${cr_avg_hr}};
+	#format	{cr_avg_xp}	{%d}	{${cr_avg_xp}};
+	#format	{cr_avg_xp}	{%+64s}	{${cr_avg_xp}};
+	#var	{cr_str}	{  Average:${cr_avg_class}${cr_avg_rnds}${cr_avg_hr}};
 	#showme {${cr_str}};
 	#showme {${cr_avg_xp}}
 }

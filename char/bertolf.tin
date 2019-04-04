@@ -184,7 +184,7 @@
 				#case {2} {#regex {$exits} {sw} {sw} {se}}
 			}
 		} {
-			!start
+			start
 		}
 	} {
 		#regex {$exits} {n} {
@@ -192,6 +192,8 @@
 				#case {1} {n};
 				#case {2} {#regex {$exits} {nw} {nw} {ne}}
 			}
+		} {
+			start
 		}
 	}
 }
