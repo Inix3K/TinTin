@@ -9,6 +9,6 @@
 		#case {"Newt"}				{#var mobname Newt};
 	};
 	_check_mob
-};
+}
 
 #class {bot} {close}

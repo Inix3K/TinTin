@@ -18,6 +18,7 @@
 	#format {word} {%r} {$word};
 	#var word2 $word;
 	#replace {word} { } {\%20};
+	#replace {word} {'} {\%27};
 	#sys {~/.scripts/udefine $word};
 	#read .scripts/udef.tin;
 	#format {def_len} {%L} {$udefinition};

@@ -15,6 +15,7 @@
 	#read .tt/3k/dog.tin;
 	#read .tt/3k/gag.tin;
 	#read .tt/3k/mapper.tin;
+	#read .tt/3k/mob_monitors.tin;
 	#read .tt/3k/trigs.tin
 }
 

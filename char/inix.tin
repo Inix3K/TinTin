@@ -34,13 +34,13 @@
 		#if {$my[gp2][current] > 70} {!dissipate};
 		!transpose max;
 	};
-	#if {$reset == 99} {
+	#if {$reset >= 95} {
 		#if {$clan > 0} {
 			frenzy
 		}; #elseif {$nukes > 0 && $mip[round] > 0} {
 			fire $nukes $mobname
 		}
-	};
+	}
 }
 
 #act {{^Ammo:\[(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?\] SHP:\[\s*(\d+)\] SNL:\[([\d\.]*)\] SM:\[(\w+)\] SA:\[(\w+)\] SD:\[(\w+)\] E:([\d\w]+)?\%?}} {

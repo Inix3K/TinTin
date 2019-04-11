@@ -11,6 +11,6 @@
 		#case {"Bobcat"}			{#var mobname bobcat};
 	};
 	_check_mob
-};
+}
 
 #class {bot} {close}

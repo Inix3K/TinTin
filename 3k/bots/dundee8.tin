@@ -2,15 +2,16 @@
 
 #var {botpath} {e;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;w}
 
-#act {^=M= {Exotic Swamp Crocodile|Dark-Spotted Anaconda|Beaver|Barred Owl|Greater Siren}} {
+#act {^=M= {Exotic Swamp Crocodile|Swamp Crocodile|Dark-Spotted Anaconda|Beaver|Barred Owl|Greater Siren}} {
 	#switch {"%1"} {
 		#case {"Exotic Swamp Crocodile"}	{#var mobname crocodile};
+		#case {"Swamp Crocodile"}		{#var mobname crocodile};
 		#case {"Dark-Spotted Anaconda"}		{#var mobname snake};
 		#case {"Beaver"}			{#var mobname beaver};
 		#case {"Barred Owl"}			{#var mobname owl};
 		#case {"Greater Siren"}			{#var mobname siren};
 	};
 	_check_mob
-};
+}
 
 #class {bot} {close}

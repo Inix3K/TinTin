@@ -11,6 +11,6 @@
 		#case {"Anaconda"}			{#var mobname snake};
 	};
 	_check_mob
-};
+}
 
 #class {bot} {close}

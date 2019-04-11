@@ -73,7 +73,7 @@
 	} {
 		#var areacap {};	
 	};
-	#SHOWME { <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {-1}
+	#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {-1}
 }
 
 #TICKER {idle} {
@@ -317,9 +317,9 @@
 				#bell;
 
 				#NOP Chat Tools;
-				#if  {$idle > 600} {
+				#if  {$idle > 900} {
 					#if {$bot} {
-						killbot;
+						.stop;
 						#delay {gohome} {go home} {100}
 					}
 				} {

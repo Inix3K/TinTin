@@ -16,6 +16,7 @@
 	#format {word} {%r} {$data};
 	#format {word} {%.${cut}s} {$word};
 	#format {word} {%r} {$word};
+	#replace {word} {'} {\%27};
 	#var word2 {};
 	#parse {$word} {char} {
 		#if {"$char" == " "} {

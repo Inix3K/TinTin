@@ -25,6 +25,7 @@ prompt >$nl$
 }
 
 #alias {.stop} {
+	#map get {roomvnum} {botvnum};
 	#class {xbot} {kill};
 	#alias {xx} {#nop};
 	#alias {_check_mob} {#nop};

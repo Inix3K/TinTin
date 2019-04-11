@@ -12,6 +12,6 @@
 	};
 	_check_mob
 
-};
+}
 
 #class {bot} {close}
