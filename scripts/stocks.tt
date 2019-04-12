@@ -1,0 +1,50 @@
+#!/bin/bash
+
+printf "#send  Ticker      Open      High       Low     Close      Volume\n" > ~/.scripts/stocks.tin
+echo "#send -----------------------------------------------------------" >> ~/.scripts/stocks.tin
+
+TICKERS=$*
+TICKERS=$(echo ${TICKERS^^})
+
+URL_BASE='https://www.alphavantage.co/query?'
+FUNC='function=TIME_SERIES_INTRADAY'
+INTERVAL='&interval=1min'
+SIZE='&outputsize=compact'
+API='&apikey=VCZ7LEKXP24L9TLQ'
+DATA='&datatype=json'
+
+INPUT=~/.scripts/stock.json
+
+for TICKER in $TICKERS
+do
+	SYM='&symbol='$TICKER
+
+	URL=$URL_BASE$FUNC$SYM$INTERVAL$API$DATA
+
+	curl -s $URL > $INPUT
+
+	RECENT=$(jq '."Meta Data"."3. Last Refreshed"' $INPUT)
+
+	OPENGET="'.\"Time Series (1min)\".$RECENT.\"1. open\"'"
+	HIGHGET="'.\"Time Series (1min)\".$RECENT.\"2. high\"'"
+	LOWGET="'.\"Time Series (1min)\".$RECENT.\"3. low\"'"
+	CLOSEGET="'.\"Time Series (1min)\".$RECENT.\"4. close\"'"
+	VOLUMEGET="'.\"Time Series (1min)\".$RECENT.\"5. volume\"'"
+
+	OPEN=$(eval jq $OPENGET $INPUT)
+	HIGH=$(eval jq $HIGHGET $INPUT)
+	LOW=$(eval jq $LOWGET $INPUT)
+	CLOSE=$(eval jq $CLOSEGET $INPUT)
+	VOLUME=$(eval jq $VOLUMEGET $INPUT)
+
+	OPEN=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$OPEN")
+	HIGH=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$HIGH")
+	LOW=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$LOW")
+	CLOSE=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$CLOSE")
+	VOLUME=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$VOLUME")
+
+	printf "#send  %-7s%10s%10s%10s%10s%11s\n" $TICKER $OPEN $HIGH $LOW $CLOSE $VOLUME >> ~/.scripts/stocks.tin
+
+done
+
+rm ~/.scripts/stock.json

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+WORD=$*
+
+URL_BASE='https://od-api.oxforddictionaries.com:443/api/v1/entries/en/'
+REGION='/regions=us'
+
+URL=$URL_BASE$WORD$REGION
+
+
+curl -s -X GET --header 'Accept: application/json' --header 'app_id: 00abcb63' --header 'app_key: 0ed62ce044d28b7d8306e1d9a93d3e75' $URL > ~/.scripts/define.json
+
+jq '.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]' ~/.scripts/define.json > ~/.scripts/define.txt
+
+echo "#var definition {" > ~/.scripts/def.tin
+cat ~/.scripts/define.txt >> ~/.scripts/def.tin
+echo "}" >> ~/.scripts/def.tin

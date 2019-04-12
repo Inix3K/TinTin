@@ -1,0 +1,44 @@
+#!/bin/bash
+
+TICKER=$*
+TICKER=$(echo ${TICKER^^})
+
+URL_BASE='https://www.alphavantage.co/query?'
+FUNC='function=TIME_SERIES_INTRADAY'
+INTERVAL='&interval=1min'
+SIZE='&outputsize=compact'
+API='&apikey=VCZ7LEKXP24L9TLQ'
+DATA='&datatype=json'
+SYM='&symbol='$TICKER
+
+INPUT=~/.scripts/stock.json
+
+URL=$URL_BASE$FUNC$SYM$INTERVAL$API$DATA
+
+curl -s $URL > $INPUT
+
+RECENT=$(jq '."Meta Data"."3. Last Refreshed"' $INPUT)
+
+OPENGET="'.\"Time Series (1min)\".$RECENT.\"1. open\"'"
+HIGHGET="'.\"Time Series (1min)\".$RECENT.\"2. high\"'"
+LOWGET="'.\"Time Series (1min)\".$RECENT.\"3. low\"'"
+CLOSEGET="'.\"Time Series (1min)\".$RECENT.\"4. close\"'"
+VOLUMEGET="'.\"Time Series (1min)\".$RECENT.\"5. volume\"'"
+
+OPEN=$(eval jq $OPENGET $INPUT)
+HIGH=$(eval jq $HIGHGET $INPUT)
+LOW=$(eval jq $LOWGET $INPUT)
+CLOSE=$(eval jq $CLOSEGET $INPUT)
+VOLUME=$(eval jq $VOLUMEGET $INPUT)
+
+OPEN=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$OPEN")
+HIGH=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$HIGH")
+LOW=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$LOW")
+CLOSE=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$CLOSE")
+VOLUME=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$VOLUME")
+
+echo "#var stock {" > ~/.scripts/stock.tin
+echo "$TICKER O:$OPEN H:$HIGH L:$LOW C:$CLOSE V:$VOLUME" >> ~/.scripts/stock.tin
+echo "}" >> ~/.scripts/stock.tin
+
+rm ~/.scripts/stock.json

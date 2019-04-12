@@ -1,0 +1,10 @@
+#!/bin/bash
+SCREENID=$(screen -list | grep $1)
+if (( ${#SCREENID} > 0 ));
+then
+	SCREENID=${SCREENID%\(*}
+	screen -dr $SCREENID
+else
+	screen -c ~/.screenrc$1 -S $1
+fi
+unset SCREENID

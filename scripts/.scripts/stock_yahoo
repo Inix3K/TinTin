@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+URL_BASE='http://download.finance.yahoo.com/d/quotes.csv?s='
+FIELDS='&f=sl1c1p2poabj1'
+IFS=,
+INPUT=stock.csv
+
+TICKERS=$*
+
+URL=$URL_BASE$TICKERS$FIELDS
+
+curl -s $URL > stock.csv
+
+echo "----------------------------------------------------------------------------!"
+printf " Ticker     Last   Change  Change%%  Pr Cls    Open     Ask     Bid  Mkt Cap !\n"
+echo "----------------------------------------------------------------------------!"
+
+while read tick last chg chg_per pr_cls open ask bid mkt_cap
+do
+	tick=${tick#\"}
+	tick=${tick%\"}
+
+	chg_per=${chg_per#\"}
+	chg_per=${chg_per%\"}
+
+	printf " %-8s%7s%9s%9s%8s%8s%8s%8s%9s !\n" $tick $last $chg $chg_per $pr_cls $open $ask $bid $mkt_cap
+done < $INPUT
+echo "----------------------------------------------------------------------------!"
+
+rm stock.csv

@@ -1,0 +1,14 @@
+Recommend adding the below to your .profile:
+
+
+# Add scripts folder to PATH env variable
+PATH=$PATH:$HOME/.tt/scripts
+
+# Aliases for 3k and 3s reconnecting TMUX with trcc script
+alias 3k='trcc 3k'
+alias 3s='trcc 3s'
+alias 3kx='trcx 3k'
+alias 3sx='trcx 3s'
+alias tt='tt++ ~/.tt/.tinrc'
+
+export PATH
