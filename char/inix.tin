@@ -37,7 +37,7 @@
 	#if {$reset >= 95} {
 		#if {$clan > 0} {
 			frenzy
-		}; #elseif {$nukes > 0 && $mip[round] > 0} {
+		}; #elseif {$nukes > 0 && $mip[round] > 0 && $bot} {
 			fire $nukes $mobname
 		}
 	}
