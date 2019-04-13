@@ -190,7 +190,7 @@
 #alias {mapgo} {#map goto {roomnote} {%0}}
 
 #alias {findhere} {
-	#if {$room == ""} {
+	#if {"$room" == ""} {
 		look
 	};
 	#map list {roomarea} {$area} {roomname} {$room%*};
