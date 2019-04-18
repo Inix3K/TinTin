@@ -78,6 +78,10 @@
 
 #TICKER {idle} {
 	#math {idle} {$idle + 1};
+	#if {$bot} {
+		.stop;
+		#delay {gohome} {go home} {100}
+	};
 	update_caption
 } {1}
 
@@ -317,12 +321,7 @@
 				#bell;
 
 				#NOP Chat Tools;
-				#if  {$idle > 900} {
-					#if {$bot} {
-						.stop;
-						#delay {gohome} {go home} {100}
-					}
-				} {
+				#if  {$idle <= 900} {
 					#NOP 8Inix;
 					#if {"$8inix" == "on"} {
 						#regex {$mip[comm][data]} {%i8inix} {
@@ -412,7 +411,7 @@
 		#line log {.tt/logs/3k.chat} {$timestamp\};
 		#line log {.tt/logs/3k.chat} {$mip[comm][cdata]};
 
-		#if {$idle > 600} {#nop} {
+		#if {$idle <= 900} {
 			#NOP 8Inix;
 			#if {"$8inix" == "on"} {
 				#regex {$mip[comm][data]} {%i: 8inix} {
