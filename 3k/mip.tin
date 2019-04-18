@@ -78,7 +78,7 @@
 
 #TICKER {idle} {
 	#math {idle} {$idle + 1};
-	#if {$bot} {
+	#if {$bot & $idle > 900} {
 		.stop;
 		#delay {gohome} {go home} {100}
 	};
