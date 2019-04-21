@@ -1,0 +1,9 @@
+#class {ansi_setup} {open}
+
+#send room_short_pref [33\;1m=S=[0m
+#send room_short_suff [33\;1m=S=[0m
+#send look_monster_pref [36m=M=[0m
+#send look_player_pref [32\;1m=P=[0m
+
+
+#class {ansi_setup} {close}
