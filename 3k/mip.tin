@@ -78,8 +78,9 @@
 
 #TICKER {idle} {
 	#math {idle} {$idle + 1};
-	#if {$bot & $idle > 900} {
+	#if {$bot && $idle > 900} {
 		.stop;
+		#unvar bot;
 		#delay {gohome} {go home} {100}
 	};
 	update_caption
