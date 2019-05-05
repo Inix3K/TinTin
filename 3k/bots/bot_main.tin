@@ -35,6 +35,7 @@ prompt >$nl$
 #alias {_check_mob} {#nop}
 
 #alias {..} {
+	#undelay gohome;
 	#var bot 1;
 	#var halt 0;
 	#class {xbot} {open};

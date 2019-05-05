@@ -2,6 +2,9 @@
 
 #var monitor_file {.tt/logs/3k.chat}
 
+#NOP Crysmal
+#act {^In a mighty shattering, The %w casing cracks apart from Crysmal!} {#line log $monitor_file}
+
 #NOP Elemental Planes
 #act {^The elemental flares brightly before emitting an explosion.} {#line log $monitor_file}
 

@@ -20,14 +20,14 @@
 	#var my[g2n]			{%13};
 	#var g2n_mod			{%14};
 	#var enemy[name]		{%15};
-	#var ehealth			{%16}
+	#var enemy[hp]			{%16}
 }
 
 #alias {update_status} {
 	#var {my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
 	#var {my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
 	#var {my[gp1][graph]}		{@graph{$my[gp1][current];$my[gp1][max]}};
-	#var {enemy[graph]}		{@graph{$enemy[health];100}};
+	#var {enemy[graph]}		{@graph{$enemy[hp];100}};
 	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
 	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
 	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
