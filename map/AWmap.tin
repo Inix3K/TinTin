@@ -57,8 +57,8 @@
 
 #alias {wf} {
 	#map get {roomarea} {area};
-	#act {{([\D]{29}) ([\D]+)}} {
-		#unact {{([\D]{29}) ([\D]+)}};
+	#act {{([\D]{30}) ([\D]+)}} {
+		#unact {{([\D]{30}) ([\D]+)}};
 		#format {findloc} {%%p} {%%3};
 		#if {"$findloc" != ""} {
 			#map find {roomname} {%*$findloc%*} {roomarea} {$area};

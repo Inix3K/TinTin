@@ -76,8 +76,18 @@
 	#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {-1}
 }
 
+#var clockon 0
 #TICKER {idle} {
 	#math {idle} {$idle + 1};
+	#if {$idle > 899} {
+		#sys tmux setw -g clock-mode-colour red
+	}; #elseif {$idle > 839} {
+		#sys tmux setw -g clock-mode-colour yellow
+	}; #elseif {$idle > 599} {
+		#var clockon 1;
+		#sys tmux setw -g clock-mode-colour green;
+		#sys tmux clock -t 0
+	};
 	#if {$bot && $idle > 900} {
 		.stop;
 		#unvar bot;
@@ -86,7 +96,13 @@
 	update_caption
 } {1}
 
-#EVENT {RECEIVED INPUT} {#var idle 0}
+#EVENT {RECEIVED INPUT} {
+	#var idle 0;
+	#if {$clockon} {
+		#var clockon 0;
+		#sys tmux send-keys -t 0 q
+	}
+}
 
 #NOP ***** Individual Data Sections *****
 #ALIAS {.mipProcessFlag} {
@@ -99,7 +115,7 @@
 		#CASE {"AAG"} {#NOP AVI movie};
 		#CASE {"AAH"} {#NOP Download Media};
 		#CASE {"BAA"} {#NOP Special Textstring;#showme {%2} {-2}};
-		#CASE {"BAB"} {#NOP 2 Way Communications;.mipProcessBAB {%2}};
+		#CASE {"BAB"} {#NOP 2 Way Communications;.mipProcessBABgag {%2}};
 		#CASE {"BAC"} {#NOP Special Textstring2};
 		#CASE {"BAD"} {#NOP Room Description};
 		#CASE {"BAE"} {#NOP Mud Lag;#VAR {session[lag]} {%2};update_caption};
@@ -301,6 +317,13 @@
 
 
 #NOP ***** 2 Way Communication (Tell/Emote) *****
+#ALIAS {.mipProcessBABgag} {
+	#NOP Add cases for tells/emotes to gag from monitor, such as mob emotes;
+	#SWITCH {"TRUE"} {
+		#CASE {#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {TRUE}} {#NOP};
+		#DEFAULT {.mipProcessBAB %0};
+	}
+}
 #ALIAS {.mipProcessBAB} {
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)}} {
 		#IF {"&3" != "0"} {
@@ -359,6 +382,13 @@
 							#regex {$mip[comm][data]} {%iistock} {
 								dostock
 							}
+						}
+					};
+
+					#NOP Crypto;
+					#if {"$crypto" == "on"} {
+						#regex {$mip[comm][data]} {%i: icrypto} {
+							docrypto
 						}
 					}
 				}
@@ -449,6 +479,13 @@
 					#regex {$mip[comm][data]} {%i: istock} {
 						dostock
 					}
+				}
+			};
+
+			#NOP Crypto;
+			#if {"$crypto" == "on"} {
+				#regex {$mip[comm][data]} {%i: icrypto} {
+					docrypto
 				}
 			}
 		}

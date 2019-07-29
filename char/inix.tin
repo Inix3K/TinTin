@@ -3,6 +3,7 @@
 #read .tt/3k/mip.tin
 #read .tt/api/8inix.tin
 #read .tt/api/adds.tin
+#read .tt/api/crypto.tin
 #read .tt/api/define.tin
 #read .tt/api/udefine.tin
 #read .tt/api/stocks.tin
@@ -190,6 +191,8 @@
 
 /* Aliases */
 #alias corpsetrig {#nop}
+
+#alias ff {fire 5 $mobname}
 
 #alias rburn {
 	go bern;

@@ -83,10 +83,10 @@
 
 
 /* Aliases */
-#var {cspell} {101}
+#var {cspell} {391}
 #alias {cc} {cast $cspell}
 #alias {qh} {get heal bag;quaff heal}
 #alias {qs} {get lotus bag;quaff lotus}
-#alias {ep} {wear duffle;enter;hold amulet}
+#alias {ep} {wear duff;enter;wear amulet}
 
 #class {inixaw} {close}

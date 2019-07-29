@@ -2,6 +2,9 @@
 
 #var monitor_file {.tt/logs/3k.chat}
 
+#NOP Farsight Tag
+#act {^You notice that } {#line log $monitor_file}
+
 #NOP Crysmal
 #act {^In a mighty shattering, The %w casing cracks apart from Crysmal!} {#line log $monitor_file}
 

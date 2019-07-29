@@ -51,6 +51,9 @@ prompt >$nl$
 				};
 				!get all
 			};
+			#if {$goldfound && !$foundplayer} {
+				!get coins
+			};
 			#path walk;
 			#unact {^>$}
 		} {1}
@@ -69,6 +72,9 @@ prompt >$nl$
 					#if {"$world" == "inix"} {
 						truck get all
 					}
+				};
+				#if {$goldfound} {
+					get coins
 				}
 			}
 		}

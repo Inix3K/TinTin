@@ -395,6 +395,9 @@
 #NOP Land
 #act {^You are caught like a fly in a spider web, burning and twisting as} {#map undo}
 
+#NOP Longshadow
+#act {^The drawbridge is currently upright denying you access to the castle.} {#map undo}
+
 #NOP Mage Tower
 #act {^The guard blocks your passage.} {#map undo}
 
