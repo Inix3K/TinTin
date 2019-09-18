@@ -22,14 +22,14 @@
 }
 
 #alias {update_status} {
-	#if {my[gp1][current] < my[gp1][max] * .5} {
+	#if {$my[gp1][current] < $my[gp1][max] * .5} {
 		#if {$corpses[cooler] > 0} {
 			uncooler corpse
-		} #elseif {$corpses[inventory] > 10} {
-			#nop
-		} #elseif {$corpses[freezer] > 0} {
+		}; #elseif {$corpses[inventory] > 0} {
+			drop corpse
+		}; #elseif {$corpses[freezer] > 0} {
 			deslab
-		} #elseif {$corpses[coffin] > 0} {
+		}; #elseif {$corpses[coffin] > 0} {
 			unwrap
 		};
 		decompose
@@ -61,8 +61,8 @@
         #format {corpses[inventory]}     {%+2s} {$corpses[inventory]};
         #format {corpses[coffin]}  {%+2s} {$corpses[coffin]};
         #format {corpses[freezer]} {%+2s} {$corpses[freezer]};
-        #showme {<088>HP:$hp/$hp_max PR:$gp1/$gp1_max HT:   $gp2\%    G: $gxp_col\%  E:$ehealth\%    IC:<130>${corpses[inventory]}<088> ${sb1_cooler}} {3};
-        #showme {H:${my[hp][graph]} P:${my[gp1][graph]} HT:${my[gp2][graph]} G:${gxp_graph} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {2}
+        #showme {<088>HP:$hp/$hp_max PR:$gp1/$gp1_max HT:   $gp2\%    G: $gxp_col\%  E:$ehealth\%    IC:<130>${corpses[inventory]}<088> ${sb1_cooler}} {-4};
+        #showme {H:${my[hp][graph]} P:${my[gp1][graph]} HT:${my[gp2][graph]} G:${gxp_graph} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
 }
 
 #alias {corpsetrig} {

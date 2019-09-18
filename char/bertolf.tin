@@ -116,8 +116,8 @@
 	#format {gxn_last} {%+2s} {$gxn_last};
 	#format {gxn_time} {%+10s} {$gxn_time};
 	#format {ehealth} {%-10s} {$ehealth};
-	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} STM:${stm}/${stm_max}  GXP: ${gxn}(${gxn_last})${gxn_time}   E:${ehealth_label} IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {3};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} STM:${stm_graph} STN:${stn_graph} G:${gxn_graph} E:${e_graph} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {2}
+	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} STM:${stm}/${stm_max}  GXP: ${gxn}(${gxn_last})${gxn_time}   E:${ehealth_label} IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} STM:${stm_graph} STN:${stn_graph} G:${gxn_graph} E:${e_graph} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
 }
 
 #act {{GXP: (?:[\d\,\s]+) Needed: (?:[\d\,\-]+) (?:\s+)\[\{(?:.*)\}\] ([\d\.]+)\%}} {

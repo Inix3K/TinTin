@@ -108,8 +108,8 @@
 	#format {corpses[truck]}	{%+2s} {$corpses[truck]};
 	#format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
 	#format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
-	#showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max ST:   $gp1\%    G: $gxp_col\%  N:  $nukes/$clan/$reset\%   E:$ehealth\%    IC:<130>${corpses[inventory]}<088> TC:<130>${corpses[truck]}<088>${sb1_cooler}} {3};
-	#showme {HP:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} G:${gxp_graph} SH:${shp_graph}  E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {2}
+	#showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max ST:   $gp1\%    G: $gxp_col\%  N:  $nukes/$clan/$reset\%   E:$ehealth\%    IC:<130>${corpses[inventory]}<088> TC:<130>${corpses[truck]}<088>${sb1_cooler}} {-4};
+	#showme {HP:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} G:${gxp_graph} SH:${shp_graph}  E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
 }
 
 #alias {stimheal} {

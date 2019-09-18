@@ -39,10 +39,10 @@
 			#math {cnt} {$cnt + 1};
 			#if {$cnt == $cycle} {
 				#format {cntnum} {%+4s} {<128>$cnt\.<088>};
-				#format {area_display} {%-13s} {<128>$botcycle[$cnt]<088>};
+				#format {area_display} {%-12s} {<128>$botcycle[$cnt]<088>};
 			} {
 				#format {cntnum} {%+4s} {<178>$cnt\.<088>};
-				#format {area_display} {%-13s} {<148>$botcycle[$cnt]<088>};
+				#format {area_display} {%-12s} {<148>$botcycle[$cnt]<088>};
 			};
 			#echo { <228>| $cntnum $area_display <228>|<088>};
 		};

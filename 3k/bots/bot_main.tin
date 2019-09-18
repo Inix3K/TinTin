@@ -7,17 +7,11 @@ prompt >$nl$
 /* Initialize Variables */
 #var foundmob 0
 #var foundplayer 0
+#var goldfound 0
 #var mobname 0
 #var bot 0
 #var vacuum 0
 
-/*
-#var IdleTimeout 4200;
-#event {RECEIVED INPUT} {
-	#undelay {deadmanSwitch};
-	#delay {deadmanSwitch} {.stop;go home} {$IdleTimeout};
-};
-*/
 
 #alias {.pause} {
 	#class {xbot} {kill};
@@ -43,6 +37,7 @@ prompt >$nl$
 	#act {{^=S=}} {xx} {1};
 	#alias {xx} {
 		#var foundplayer 0;
+		#var goldfound 0;
 		#var itemfound 0;
 		#act {^>$} {
 			#if {$itemfound && !$foundplayer && $vacuum} {
@@ -83,6 +78,10 @@ prompt >$nl$
 	#class {xbot} {close}
 }
 
+#act { gold coins.$} {
+	#var goldfound 1
+}
+
 #alias {killbot} {
 	.stop;
 	#class bot kill;
@@ -105,8 +104,8 @@ prompt >$nl$
 } {1}
 
 /* Detect Players */
-#act {^=P=} {
-	#regex {%0} {Sky} {#nop} {#var foundplayer 1}
+#act {^=P= %*} {
+	#regex {%1} {Nauda} {#nop} {#var foundplayer 1}
 } {6}
 
 /* Skip room on Mob */

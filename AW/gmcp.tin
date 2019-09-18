@@ -1,6 +1,6 @@
 #class {gmcp} {open}
 
-#read .tt/AW/terrain.tin
+#read .tt/AW/terrainb.tin
 
 #format IAC  %a 255
 #format DONT %a 254
@@ -94,7 +94,7 @@
 	#format {tp_cap}	{%+2s}	{$gmcp[char][worth][tp]};
 	#format {tr_cap}	{%+1s}	{$gmcp[char][worth][trains]};
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
-        #line ignore #showme { <128>$world_cap <238>G<278>:<138>$gold_cap<278>\[<178>$bank_cap<278>\]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>} {-1}
+        #line ignore #showme { <128>$world_cap <238>G<278>:<138>$gold_cap<278>\[<178>$bank_cap<278>\]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>} {1}
 }
 
 #tick {update_status} {update_status} {2}
@@ -127,8 +127,8 @@
 	#var {status1} {HP:$chp/$chp_max SP:$csp/$csp_max MV:$cmv/$cmv_max QT:$cqt    A:$calign    E:$cehealth     X:$clvl\[$ctnl\]\(<168>$delta<278>|<158>$ktnl<088>\)};
 	#var {status2} {HP:$hp_graph  S:$sp_graph M:$mv_graph Q:$qt_graph A:$a_graph E:$egraph};
 
-        #line ignore #showme {$status1} {3};
-        #line ignore #showme {$status2} {2}
+        #line ignore #showme {$status1} {-4};
+        #line ignore #showme {$status2} {-3}
 }
 
 #event {IAC SB GMCP group IAC SE} {
@@ -185,7 +185,7 @@
                 }
         };
 
-	#map {map} {132x63} {.tt/map/AWmap.txt};
+	#map {map} {63} {132} {overwrite} {.tt/map/AWmap.txt};
 
 	#if {"$areas[$gmcp[room][info][zone]]" == ""} {
 		where;

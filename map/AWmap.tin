@@ -42,6 +42,9 @@
         }
 }
 
+/* Map Room Events */
+#EVENT {MAP ENTER ROOM 11910} {enter hole}
+
 /* Autofinds */
 #act {You still have to kill \* %1 \(%2\)} {
 	#map list %2
@@ -87,6 +90,17 @@
         #map find {roomnote} %0;
         #path run
 }
+
+#alias {goa} {
+	#map find {roomarea} {%0%*};
+	#path run
+}
+
+#alias {goar} {
+	#map find {roomarea} %0;
+	#path run
+}
+
 
 #alias {mapgo} {#map goto {roomnote} {%0}}
 

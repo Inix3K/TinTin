@@ -33,6 +33,8 @@
 	#map set {roomnote} {beacon}
 }
 
-#act {#END OF PATH} {#bell} {1}
+#act {#END OF PATH} {
+	#bell;
+} {1}
 
 #class {bot} {close}

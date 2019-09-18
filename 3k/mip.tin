@@ -73,7 +73,7 @@
 	} {
 		#var areacap {};	
 	};
-	#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {-1}
+	#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {1}
 }
 
 #var clockon 0
@@ -114,7 +114,7 @@
 		#CASE {"AAF"} {#NOP Uptime;#VAR {session[uptime]} {%2};update_caption};
 		#CASE {"AAG"} {#NOP AVI movie};
 		#CASE {"AAH"} {#NOP Download Media};
-		#CASE {"BAA"} {#NOP Special Textstring;#showme {%2} {-2}};
+		#CASE {"BAA"} {#NOP Special Textstring;#showme {%2} {2}};
 		#CASE {"BAB"} {#NOP 2 Way Communications;.mipProcessBABgag {%2}};
 		#CASE {"BAC"} {#NOP Special Textstring2};
 		#CASE {"BAD"} {#NOP Room Description};
@@ -125,7 +125,7 @@
 		#CASE {"BBC"} {#NOP Hit Point Mask;#FORMAT {my[hp][name]} {%s} {%2}};
 		#CASE {"BBD"} {#NOP Spell Point Mask;#FORMAT {my[sp][name]} {%s} {%2}};
 		#CASE {"CAA"} {#NOP Chat Messages;.mipProcessCAA {%2}};
-		#CASE {"CAP"} {#NOP Window Caption Text;#FORMAT {temp} {%h} {%2};#showme {$temp} {-2}};
+		#CASE {"CAP"} {#NOP Window Caption Text;#FORMAT {temp} {%h} {%2};#showme {$temp} {2}};
 		#CASE {"CCF"} {#NOP Send File Line};
 		#CASE {"CDF"} {#NOP Send File Begin};
 		#CASE {"CEF"} {#NOP Send File End};
@@ -410,33 +410,42 @@
 		#NOP Ansify lines;
 		#var {commcol} {<178>};
 		#switch {"$mip[comm][line]"} {
-			#case {"ADMIN"}		{#var {commcol} {<158>}};
-			#case {"Auction"}	{#var {commcol} {<108>}};
-			#case {"Bear"}		{#var {commcol} {<168>}};
-			#case {"Bloodname"}	{#var {commcol} {<138>}};
-			#case {"Clan Cad"}	{#var {commcol} {<158>}};
-			#case {"Com"}		{#var {commcol} {<128>}};
-			#case {"Council"}	{#var {commcol} {<108>}};
-			#case {"Eternal Main"}	{#var {commcol} {<168>}};
-			#case {"Events"}	{#var {commcol} {<168>}};
-			#case {"Falcon"}	{#var {commcol} {<128>}};
-			#case {"High Mortal"}	{#var {commcol} {<108>}};
-			#case {"JuggAnnounce"}	{#var {commcol} {<118>}};
-			#case {"JuggMissiles"}	{#var {commcol} {<118>}};
-			#case {"JuggNewbie"}	{#var {commcol} {<258>}};
-			#case {"Main"}		{#var {commcol} {<118>}};
-			#case {"Newbie"}	{#var {commcol} {<138>}};
-			#case {"Party"}		{#var {commcol} {<128>}};
-			#case {"Shout"}		{#var {commcol} {<178>}};
-			#case {"Whine"}		{#var {commcol} {<118>}};
-			#case {"Wolf"}		{#var {commcol} {<228>}};
-			#default		{#var {commcol} {<178>}};
+			#case {"ADMIN"}			{#var {commcol} {<158>}};
+			#case {"Auction"}		{#var {commcol} {<108>}};
+			#case {"Bear"}			{#var {commcol} {<168>}};
+			#case {"Bloodname"}		{#var {commcol} {<138>}};
+			#case {"Clan Cad"}		{#var {commcol} {<158>}};
+			#case {"Com"}			{#var {commcol} {<128>}};
+			#case {"Council"}		{#var {commcol} {<108>}};
+			#case {"Cyborg Com"}		{#var {commcol} {<138>}};
+			#case {"Cyborg Death"}		{#var {commcol} {<218>}};
+			#case {"Cyborg Guild"}		{#var {commcol} {<228>}};
+			#case {"Cyborg Notify"}		{#var {commcol} {<268>}};
+			#case {"Cyborg Syndicate"}	{#var {commcol} {<128>}};
+			#case {"Eternal Main"}		{#var {commcol} {<168>}};
+			#case {"Events"}		{#var {commcol} {<168>}};
+			#case {"Explorer"}		{#var {commcol} {<178>}};
+			#case {"Falcon"}		{#var {commcol} {<128>}};
+			#case {"High Mortal"}		{#var {commcol} {<108>}};
+			#case {"JuggAnnounce"}		{#var {commcol} {<118>}};
+			#case {"JuggMissiles"}		{#var {commcol} {<118>}};
+			#case {"JuggNewbie"}		{#var {commcol} {<258>}};
+			#case {"Lottery"}		{#var {commcol} {<178>}};
+			#case {"Main"}			{#var {commcol} {<118>}};
+			#case {"Newbie"}		{#var {commcol} {<138>}};
+			#case {"Party"}			{#var {commcol} {<128>}};
+			#case {"Poll"}			{#var {commcol} {<178>}};
+			#case {"Professions"}		{#var {commcol} {<178>}};
+			#case {"Shout"}			{#var {commcol} {<178>}};
+			#case {"Whine"}			{#var {commcol} {<118>}};
+			#case {"Wolf"}			{#var {commcol} {<228>}};
+			#case {"Zilch_shout"}		{#var {commcol} {<168>}};
+			#default			{#var {commcol} {<178>}};
 		};
 		
 
 		#var {mip[comm][cdata]} {$mip[comm][data]};
-		#replace {mip[comm][cdata]} {:} {:<099>};
-		#replace {mip[comm][cdata]} {]} {]<099>};
+		#replace {mip[comm][cdata]} {: } {: <099>};
 		#var {mip[comm][cdata]} {$commcol$mip[comm][cdata]<099>};
 
 		#line log {.tt/logs/3k.chat} {$timestamp\};

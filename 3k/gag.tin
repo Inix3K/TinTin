@@ -80,3 +80,20 @@
 
 /* Dog */
 #gag {Your dog tears a chunk of flesh from }
+
+/* Mobs/Areas */
+#gag {^Impediment shakes, fire burning.}
+
+#gag {^Shadow sees the light, frenzied screeching!}
+#gag {^Shadow seeps into the ground, reappearing momentarily.}
+#gag {^Shadow slows, light sinking in, time flowing out.}
+
+#gag {^Shield askew, Bulwark screams, black blood flows.}
+#gag {^Glancing blow, Shield shudders.}
+#gag {^Serrated sword sweeping in front, Bulwark rolls.}
+#gag {^Bulwark pulls his shield up, struck low.  Oopse}
+
+#gag {^Stuck in his own trap, Furtive squeals.}
+#gag {^Furtive darts behind his web, protected by the silk.}
+
+#gag {^Tough as steel, Resilient feels nothing.}

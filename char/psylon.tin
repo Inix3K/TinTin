@@ -35,8 +35,8 @@
 	#format {nrg}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
 	#format {nrg_max}		{%+4s} {<128>$my[gp1][max]<088>};
 	#format {ehealth}		{%+3s} {@colscale{$enemy[hp];100}};
-	#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  E:   ${ehealth}%} {3};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} N:${my[gp1][graph]} E:${enemy[graph]}} {2};
+	#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  E:   ${ehealth}%} {-4};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} N:${my[gp1][graph]} E:${enemy[graph]}} {-3};
 }
 
 

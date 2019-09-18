@@ -12,18 +12,11 @@
 /* Move Event */
 #var mobile 1
 #event {MAP ENTER ROOM} {
+#delay {mapupdate} {
 	#regex {"$world"} {3s} {
-		#if {$mobile} {
-			#map {map} {45x15} {.tt/map/3smap.txt};
-		} {
-			#map {map} {55x15} {.tt/map/3smap.txt};
-		}
+		#map {map} {15} {45} {overwrite} {.tt/map/3smap.txt};
 	} {
-		#if {$mobile} {
-			#map {map} {45x15} {.tt/map/map.txt};
-		} {
-			#map {map} {55x15} {.tt/map/map.txt};
-		}
+		#map {map} {15} {45} {overwrite} {.tt/map/map.txt};
 	};
 	#map {get} {ROOMVNUM} {roomvnum};
 	#map {get} {ROOMAREA} {roomarea};
@@ -42,6 +35,7 @@
 		#line {log} {.tt/map/map.txt} {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
 		#line {log} {.tt/map/map.txt} {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
 	}
+} {0.05}
 }
 
 #event {MAP EXIT ROOM} {
@@ -183,7 +177,7 @@
 }
 
 #alias {go} {
-	#map find {roomnote} %0;
+	#map find {roomnote} {%0%*};
 	#path run
 }
 
@@ -252,6 +246,12 @@
 #event {SCREEN RESIZE} {rs}
 
 /* Transports */
+#NOP Abyss
+#act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
+
+#NOP Ascended
+#act {Arid environment (sw,n,s,e,climb)} {#map goto 16718} {1}
+
 #NOP Chaos TV
 #act {AREA NAME: Simpsons [Doh]} {
 	#if {"$area" != "Simpsons"} {
@@ -299,10 +299,29 @@
 		#map go 10278
 	}
 }
-#act {^You touch the beacon, and a friendly ship belonging to The Vigilant swings by.} {#map go 10278}
+#act {^You touch the beacon, and a friendly ship belonging to The Vigilant swings by.} {#map goto 10278}
 
 #NOP Necromancers
 #act {^You tumble down the river and find yourself on a rocky bank inside} {#map goto 7613}
+
+#NOP Night of Colour
+#act {^The balloon softly touches down, basket bumps lightly.} {exit}
+#act {^You step out of the basket, into forest.} {
+	#map get {roomarea} {area};
+	#if {"$area" == "Night of Colour"} {
+		#map goto 16359
+	} {
+		#map goto  16530
+	}
+}
+#act {^You step out of the basket, into chaos.} {
+	#map get {roomarea} {area};
+	#if {"$area" == "Night of Colour"} {
+		#map goto 16307
+	} {
+		#map goto 16527
+	}
+}
 
 #NOP Science Shuttle
 #act {^The captain announces: Welcome to Midway Space Station.$} {exit}
@@ -400,6 +419,10 @@
 
 #NOP Mage Tower
 #act {^The guard blocks your passage.} {#map undo}
+
+#NOP Night of Colour
+#act {^Impediment slaps you back, thorns tearing.} {#map undo}
+#act {^Serrated sword extended, Bulwark stops your progress.} {#map undo}
 
 #NOP Rabbit Fields
 #act {^The rabbit prevents you from going that way.} {#map undo}
