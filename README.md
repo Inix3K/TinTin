@@ -2,7 +2,8 @@
 
 ## Required Version
 * TinTin++ version 2.01.90 or higher required
-** Certain aspects are not backwards compatible with older versions of TinTin++ due to syntax changes within the client.  Notable, the #map and #showme commands.
+
+    Certain aspects are not backwards compatible with older versions of TinTin++ due to syntax changes within the client.  Notable, the #map and #showme commands.
 
 ## Highlited features:
 
