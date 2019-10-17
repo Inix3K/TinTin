@@ -47,9 +47,6 @@
 	.mipProcessFlag {%3} {$mip[out]};
 	#IF {"${mip[overflow]}" != ""} {#SHOWME {${mip[overflow]}}};
 
-	#NOP update_status alias defined in personal hpbar trigger;
-	update_status;
-
 	#IF {"$mip[echo]" != "on"} {
 		#LINE GAG
 	}
@@ -183,7 +180,9 @@
 		#CASE {"M"} {#NOP Mob Image File};
 		#CASE {"N"} {#NOP Combat Round Counter;#VAR {mip[round]} {%2}};
 		#DEFAULT {#NOP Every other non-handled flag}
-	}
+	};
+	#NOP update_status alias defined in personal hpbar trigger;
+	update_status;
 }
 
 #NOP ***** Combat Mob Name *****;

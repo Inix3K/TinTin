@@ -20,7 +20,6 @@
 	} {
 		#var cycle 1
 	};
-	botdraw;
 	#list {botcycle} {get} {$cycle} {currentarea};
 	go $currentarea;
 	#delay {1} {- $currentarea};
@@ -54,11 +53,16 @@
 }
 
 #alias {botdraw} {
+	#NOP Clear previous drawing;
+	#screen clear square 21 -45 -8 -1;
+
 	#if {&botcycle[] == 0} {
 		#var botareas {
-			<178>           No areas loaded<088>
-		}
+			<178>            No areas loaded<088>
+		};
+		#var botheight 1;
 	} {
+		#var botheight $areacount;
 		#var botareas {};
 		#var cnt 0;
 		#while {$cnt < &botcycle[]} {
@@ -77,19 +81,29 @@
 			}
 		}
 	};
-	#draw green box 22 -42 24 -3 {
-		<138>             Area Cycler    <088>
+	#draw green box 22 -43 24 -3 {
+		<138>              Area Cycler    <088>
 	};
-	#draw green box 24 -42 25+$areacount -3 {
+	#draw green box 24 -43 25+$botheight -3 {
 		$botareas
 	};
-	#showme {<228>\u251C} 24 -42;
+	#showme {<228>\u251C} 24 -43;
 	#showme {<228>\u2524} 24 -3;
-	#showme {<228>\u256D} 22 -42;
+	#showme {<228>\u256D} 22 -43;
 	#showme {<228>\u256E} 22 -3;
-	#showme {<228>\u256F} 25+$areacount -3;
-	#showme {<228>\u2570} 25+$areacount -42
+	#showme {<228>\u256F} 25+$botheight -3;
+	#showme {<228>\u2570} 25+$botheight -43
 }
+
+#event {VARIABLE UPDATE cycle} {
+	botdraw
+}
+
+/*
+#event {VARIABLE UPDATE botcycle} {
+	botdraw
+}
+*/
 
 #alias {bas} {ba {rim2;android;rim2;dundee8;rim2;dundee7;rim2;dundee6;rim2;dundee5}}
 
