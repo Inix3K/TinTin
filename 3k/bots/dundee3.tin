@@ -11,6 +11,7 @@
 		#case {"Black-bellied Snake"}	{#var mobname snake};
 		#case {"Osprey"}		{#var mobname osprey};
 		#case {"Drop bear"}		{#var mobname bear};
+		#case {"Orinoco Crocodile"}	{#var mobname crocodile};
 	};
 	_check_mob
 }

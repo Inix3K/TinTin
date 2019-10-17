@@ -1,7 +1,5 @@
 #class {psylon} {open}
 
-#read .tt/3k/mip.tin
-
 #var guild elemental
 
 /* HP Bars */
@@ -37,6 +35,7 @@
 	#format {ehealth}		{%+3s} {@colscale{$enemy[hp];100}};
 	#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  E:   ${ehealth}%} {-4};
 	#showme {H:${my[hp][graph]} S:${my[sp][graph]} N:${my[gp1][graph]} E:${enemy[graph]}} {-3};
+	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
 

@@ -1,41 +1,40 @@
 #class {mapper} {open}
 
-#nop watch -c -t -n 0.1 cat .tt/map/map.txt
-
-#regex {"$world} {3s} {
+#regex {"$world"} {3s} {
 	#map read .tt/map/3s.map
 } {
 	#map read .tt/map/3k.map
 }
+#map offset 1 -45 17 -1
 #map goto {roomnote} {home}
 
 /* Move Event */
-#var mobile 1
-#event {MAP ENTER ROOM} {
-#delay {mapupdate} {
-	#regex {"$world"} {3s} {
-		#map {map} {15} {45} {overwrite} {.tt/map/3smap.txt};
-	} {
-		#map {map} {15} {45} {overwrite} {.tt/map/map.txt};
-	};
+#alias {mapupdate} {
 	#map {get} {ROOMVNUM} {roomvnum};
 	#map {get} {ROOMAREA} {roomarea};
 	#map {get} {ROOMNAME} {roomname};
 	#map {get} {ROOMDESC} {roomdesc};
-	#format {roomname_len} {%L} {$roomname};
-	#format {roomarea_len} {%L} {$roomarea};
-	#format {roomdesc_len} {%L} {$roomdesc};
+	#format {roomname_len}	{%L} {$roomname};
+	#format {roomvnum_len}	{%L} {$roomvnum};
+	#format {roomarea_len}	{%L} {$roomarea};
+	#format {roomdesc_len}	{%L} {$roomdesc};
+	#math {name_len} {42-$roomvnum_len};
+	#format {name_trunc} {%.${name_len}s} {$roomname};
 	#unvar area_mapped;
 	#map list {} {} {} {$roomarea} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
-	#regex {"$world"} {3s} {
-		#line {log} {.tt/map/3smap.txt} {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-		#line {log} {.tt/map/3smap.txt} {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
-	} {
-		#line {log} {.tt/map/map.txt} {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-		#line {log} {.tt/map/map.txt} {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+	#draw {tile} 16 -45 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+	#draw {tile} 17 -45 17 -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+}
+
+#event {MAP UPDATED VTMAP} {
+	#delay {0.05} {mapupdate}
+}
+
+#event {MAP ENTER ROOM} {
+	#if {"$mapping" == "on"} {
+		mapupdate
 	}
-} {0.05}
 }
 
 #event {MAP EXIT ROOM} {
@@ -78,9 +77,9 @@
 }
 
 #NOP Room Short with Exits
-#act {=S=%1 (%2)%3=S=} {
-	#var room %1;
-	#var exits %2;
+#act {{=S=(.*) \((.*)\)\s*=S=}} {
+	#var room %2;
+	#var exits %3;
 	#if {"$mapping" == "on"} {
 		#replace exits {,} {;};
 		#foreach {$exits} {eachexit} {#map dig $eachexit}
@@ -94,7 +93,7 @@
 			}
 		};
 		#if {$roomname_len == 0} {
-			#map set roomname {%1 (%2)}
+			#map set roomname {%2 (%3)}
 		};
 		#if {$roomarea_len == 0} {
 			#map set roomarea {$area};
@@ -112,7 +111,7 @@
 			} {2}
 		};
 		#map get {roomvnum} {gonum};
-		#map go $gonum
+		#map goto $gonum;
 	}
 }
 
@@ -139,7 +138,7 @@
 			} {2}
 		};
 		#map get {roomvnum} {gonum};
-		#map go $gonum
+		#map goto $gonum;
 	}
 } {6}
 
@@ -173,7 +172,9 @@
 		}
 	};
 	#map get {roomvnum} {gonum};
-	#map go $gonum
+	#map goto $gonum;
+	#draw {tile} 16 -45 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+	#draw {tile} 17 -45 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
 }
 
 #alias {go} {
@@ -191,7 +192,7 @@
 	#map list {roomarea} {$area} {roomname} {$room%*} {variable} {findroom};
 	#if {&findroom[] == 1} {
 		#list {foundroom} {create} {$findroom};
-		#map go $foundroom[1]
+		#map goto $foundroom[1]
 	}
 }
 
@@ -242,8 +243,10 @@
 	}
 }
 
-/* TMUX Sizing */
-#event {SCREEN RESIZE} {rs}
+/* Screen Sizing */
+#event {SCREEN RESIZE} {
+	#read .tt/3k/draw.tin
+}
 
 /* Transports */
 #NOP Abyss
@@ -257,7 +260,7 @@
 	#if {"$area" != "Simpsons"} {
 		#var {area} {Simpsons};
 		#map get {roomvnum} {tvroom};
-		#map go 8315;
+		#map goto 8315;
 	}
 } {4}
 
@@ -268,10 +271,10 @@
 #act {AREA NAME: Simpsons Expansion [Frank]} {
 	#var {area} {Simpsons Expansion};
 	#map get {roomvnum} {tvroom};
-	#map go 8227
+	#map goto 8227
 } {4}
 #act {^   You dive cleanly through the computer screen!} {
-	#map go $tvroom
+	#map goto $tvroom
 }
 
 #NOP Death
@@ -286,6 +289,9 @@
 #NOP Einstein
 #act {^Standing on the bench, you relax and the stagedive through the rift} {#map goto 7039}
 
+#NOP Funkytown
+#act {^The intense gravity of the sun pulls the coaster to its surface where you} {#map goto 17497}
+
 #NOP Global Merc Training Theatre
 #act {^You have exited the simulation, thank you for playing.} {#map goto 15144}
 
@@ -293,10 +299,10 @@
 #act {^You leap into the unknown!} {
 	#map get {roomvnum} {num};
 	#if {$num == 10278} {
-		#map go $plungeroom
+		#map goto $plungeroom
 	} {
 		#var plungeroom $num;
-		#map go 10278
+		#map goto 10278
 	}
 }
 #act {^You touch the beacon, and a friendly ship belonging to The Vigilant swings by.} {#map goto 10278}
@@ -327,19 +333,24 @@
 #act {^The captain announces: Welcome to Midway Space Station.$} {exit}
 #act {^The captain announces: Welcome to Houston Transport Center.$} {exit2}
 
+#NOP Serinth
+#act {^The World of Serinth Board containing } {#map goto 16722}
+
 #NOP Starcraft:Broodwar
 #act {^Door number: 3, Access Code: %1$} {#var starcraft_code %1}
 
 #NOP The Lost Village of Willothorn
-#act {^You swim for your life for the surface and end up back where} {#map go 14087}
+#act {^You swim for your life for the surface and end up back where} {#map goto 14087}
+
+#NOP Sausage Dimensions
+#act {^The frankfurter SMACKS you so hard you wake up somewhere else!} {#map goto 17561}
 
 #NOP Xaxis
-#act {^Welcome to Xaxis!} {#map go 15875}
-#act {^Here we are folks. Welcome to the Isle of Equinity!} {#map go 15913}
+#act {^Welcome to Xaxis!} {#map goto 15875}
+#act {^Here we are folks. Welcome to the Isle of Equinity!} {#map goto 15913}
 
 #NOP Wayhaven Ferry
-#act {^The ferryman says: Well, we're here!} {#map go 15463}
-#act {^The ferryman says: Well, here you are.} {#map go 7354}
+#act {^The ferryman says: Well, here you are.} {#map goto 7354}
 
 
 /* Blocked Exits */

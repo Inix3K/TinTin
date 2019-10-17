@@ -3,7 +3,7 @@
 
 #NOP ***** Set MIP ID Code **********
 #VAR {mip} {}
-#VAR {mip[Version]} {2.01.1}
+#VAR {mip[Version]} {2.01.92b}
 #VAR {mip[id]} {}
 #LOOP {1} {5} {i} {
 	#MATH {temp[digit]} {1d10 - 1};
@@ -73,20 +73,20 @@
 	} {
 		#var areacap {};	
 	};
-	#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {1}
+	#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {19}
 }
 
 #var clockon 0
 #TICKER {idle} {
 	#math {idle} {$idle + 1};
-	#if {$idle > 899} {
-		#sys tmux setw -g clock-mode-colour red
-	}; #elseif {$idle > 839} {
-		#sys tmux setw -g clock-mode-colour yellow
-	}; #elseif {$idle > 599} {
-		#var clockon 1;
-		#sys tmux setw -g clock-mode-colour green;
-		#sys tmux clock -t 0
+	#if {$idle > 900} {
+		#draw tile 21 1 -8 1 {<BF00>}
+	}; #elseif {$idle > 840} {
+		#draw tile 21 1 -8 1 {<BFF0>}
+	}; #elseif {$idle > 600} {
+		#draw tile 21 1 -8 1 {<B0F0>}
+	}; #elseif {$idle < 600} {
+		#screen clear square 21 1 -8 1
 	};
 	#if {$bot && $idle > 900} {
 		.stop;
@@ -198,7 +198,7 @@
 
 #NOP ***** Guild Stats Line 1/2 *****
 #ALIAS {.mipProcessGline} {
-	#VAR {mip[gline][%1]} {%2};
+	#VAR {mip[gline][%1]} {@fMipColorConv{%2}};
 	#VAR {temp} {};
 
 	#NOP GUILD SPECIFIC GLINE PROCESSING;
@@ -208,6 +208,7 @@
 			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
+			#CASE {"psicorp"}	{.mipProcessGlinePsicorp {%1}};
 		}
 	}
 }
@@ -235,22 +236,22 @@
 
 #ALIAS {.mipProcessGlineElemental} {
 	#IF {%1 == 1} {
-		#REGEX {Emit> : <%w%d>}			{#VAR {my[emit][level]}		{&2}};
+		#REGEX {Emit<099> : <%d>%d<099>}	{#VAR {my[emit][level]}		{&2}};
 		#REGEX {Equipollent}			{#VAR {my[equip]}		{on}}
 							{#VAR {my[equip]}		{off}};
-		#REGEX {Form>: <c%w>\(<r%d>\)}		{
+		#REGEX {Form<099>: <869>%w<099>\(<819>%d<099>\)}		{
 			#VAR {my[form][type]}		{&1};
 			#VAR {my[form][size]}		{&2}
 		};
-		#REGEX {Rating>: <r%d>}			{#VAR {my[rating]}		{&1}}
+		#REGEX {Rating<099>: <819>%d<099>}			{#VAR {my[rating]}		{&1}}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {Stones/Waves/Shrouds>: <%w%d>/<%w%d>/<%w%d>\(%d\%\)}
+		#REGEX {Stones/Waves/Shrouds<099>: <%d>%d<099>/<%d>%d<099>/<%d>%d<099>\(%d\%\)}
 			#VAR {my[blasts]		{&2};
 			#VAR {my[waves]}		{&4};
 			#VAR {my[shrouds]}		{&6};
 			#VAR {my[reset]}		{&7}
 		};
-		#REGEX {G2N: <%w%d>}			{#VAR {my[g2n]}			{&2}}
+		#REGEX {G2N: <%d>%d<099>}		{#VAR {my[g2n]}			{&2}}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
@@ -258,7 +259,7 @@
 
 #ALIAS {.mipProcessGlineJuggernaut} {
 	#IF {%1 == 1} {
-		#REGEX {$mip[gline][1]} {Ammo:\[%d/%d/%d/%d/%d\] <yGxp: %d.%d\%> Hits: \[%d\] <cCoffin: %d/%d} {
+		#REGEX {$mip[gline][1]} {Ammo:\[%d/%d/%d/%d/%d\] <838>Gxp: %d.%d\%<099> Hits: \[%d\] <868>Coffin: %d/%d} {
 			#VAR {ammo[1]}			{&1};
 			#VAR {ammo[2]}			{&2};
 			#VAR {ammo[3]}			{&3};
@@ -270,7 +271,7 @@
 			#VAR {corpses[coffinsize]}	{&10}
 		}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {$mip[gline][2]} {Nukes: \[%d/%d\]> Reset: \[%d\%\]} {
+		#REGEX {$mip[gline][2]} {Nukes: \[%d/%d\]<099> Reset: \[%d\%\]} {
 			#VAR {nukes}		{&1};
 			#VAR {nukes_max}	{&2};
 			#VAR {reset}		{&3};
@@ -305,6 +306,19 @@
 	}
 }
 
+#ALIAS {.mipProcessGlinePsicorp} {
+	#IF {%1 == 1} {
+		#NOP
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]} {G2N: %* / %d\%} {
+			#FORMAT {my[gxp][tnl]} {%d} {&1};
+			#VAR {my[gxp][per]} {&2}
+		}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
 #ALIAS {.mipProcessGlineBard} {
 	#IF {%1 == 1} {
 		
@@ -324,6 +338,17 @@
 		#DEFAULT {.mipProcessBAB %0};
 	}
 }
+
+#ALIAS {update_chat} {
+	#if {&chat[log][] > $chat[rows]} {
+		#list chat[log] del 1
+	};
+	#list chat[log] ins -1 {%0};
+
+	#class {chat} {write} {.tt/3k/vars/${mud}chat.var};
+	#line sub {var;esc} #draw {tile} 1 1 17 -47 $chat[log][%*]
+}
+
 #ALIAS {.mipProcessBAB} {
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)}} {
 		#IF {"&3" != "0"} {
@@ -336,12 +361,14 @@
 				#NOP Message to another player;
 				#var mip[comm][twoway] {to};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
-				#line log {.tt/logs/3k.chat} {<178>To &3<088>: &4}
+				#line log {.tt/logs/3k.chat} {<178>To &3<088>: &4};
+				update_chat ${timestamp}<178>To &3<088>: &4;
 			} {
 				#NOP Message from another player;
 				#var mip[comm][twoway] {from};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
 				#line log {.tt/logs/3k.chat} {<178>&3<088>: &4};
+				update_chat ${timestamp}<178>&3<088>: &4;
 				#bell;
 
 				#NOP Chat Tools;
@@ -400,7 +427,6 @@
 #NOP ***** Broadcast Communication (Chat/Shout) *****
 #ALIAS {.mipProcessCAA} {
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
-		#var {mip[enomm]} {};
 		#var {mip[comm][command]}	{&2};
 		#var {mip[comm][line]}		{&3};
 		#var {mip[comm][source]}	{&4};
@@ -426,6 +452,7 @@
 			#case {"Events"}		{#var {commcol} {<168>}};
 			#case {"Explorer"}		{#var {commcol} {<178>}};
 			#case {"Falcon"}		{#var {commcol} {<128>}};
+			#case {"Gamers"}		{#var {commcol} {<268>}};
 			#case {"High Mortal"}		{#var {commcol} {<108>}};
 			#case {"JuggAnnounce"}		{#var {commcol} {<118>}};
 			#case {"JuggMissiles"}		{#var {commcol} {<118>}};
@@ -436,6 +463,7 @@
 			#case {"Party"}			{#var {commcol} {<128>}};
 			#case {"Poll"}			{#var {commcol} {<178>}};
 			#case {"Professions"}		{#var {commcol} {<178>}};
+			#case {"Psi Main"}		{#var {commcol} {<168>}};
 			#case {"Shout"}			{#var {commcol} {<178>}};
 			#case {"Whine"}			{#var {commcol} {<118>}};
 			#case {"Wolf"}			{#var {commcol} {<228>}};
@@ -450,6 +478,7 @@
 
 		#line log {.tt/logs/3k.chat} {$timestamp\};
 		#line log {.tt/logs/3k.chat} {$mip[comm][cdata]};
+		update_chat ${timestamp}$mip[comm][cdata];
 
 		#if {$idle <= 900} {
 			#NOP 8Inix;
@@ -516,17 +545,18 @@
 }
 #list {nouns} {create}
 
-#NOP ***** Guild Stats Line Colour Handling *****
-#FUNCTION {fMipColourConv} {
+#NOP ***** Guild Stats Line Color Handling *****
+#FUNCTION {fMipColorConv} {
 	#VAR {result} {%1};
 	#REPLACE {result} {>} {<099>};
-	#REPLACE {result} {<y} {<839>};
-	#REPLACE {result} {<r} {<819>};
-	#REPLACE {result} {<b} {<849>};
-	#REPLACE {result} {<g} {<829>};
-	#REPLACE {result} {<c} {<869>};
-	#REPLACE {result} {<v} {<859>};
-	#REPLACE {result} {<s} {<279>};
+	#REPLACE {result} {<b} {<848>};
+	#REPLACE {result} {<c} {<868>};
+	#REPLACE {result} {<g} {<828>};
+	#REPLACE {result} {<r} {<818>};
+	#REPLACE {result} {<s} {<278>};
+	#REPLACE {result} {<v} {<858>};
+	#REPLACE {result} {<w} {<178>};
+	#REPLACE {result} {<y} {<838>};
 }
 
 #CLASS {mip} {close}

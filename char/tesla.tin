@@ -1,6 +1,6 @@
 #class {tesla} {open}
 
-#read .tt/3k/mip.tin
+#var guild cyborg
 
 #act {{HP: (\d+)\[(\d+)\]\((\d+)\) PWR: (\d+)\[(\d+)\]\(([\d\-]+)\) HT: \[(\d+)\%\] SI: \[([\d\.]+)\%\]}} {
 	#var my[hp][current]	%2;
@@ -62,7 +62,8 @@
         #format {corpses[coffin]}  {%+2s} {$corpses[coffin]};
         #format {corpses[freezer]} {%+2s} {$corpses[freezer]};
         #showme {<088>HP:$hp/$hp_max PR:$gp1/$gp1_max HT:   $gp2\%    G: $gxp_col\%  E:$ehealth\%    IC:<130>${corpses[inventory]}<088> ${sb1_cooler}} {-4};
-        #showme {H:${my[hp][graph]} P:${my[gp1][graph]} HT:${my[gp2][graph]} G:${gxp_graph} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
+        #showme {H:${my[hp][graph]} P:${my[gp1][graph]} HT:${my[gp2][graph]} G:${gxp_graph} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
 #alias {corpsetrig} {

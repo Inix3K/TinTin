@@ -9,6 +9,7 @@
 
 #alias snd {
 	#var sndmob %0;
+	#var snd on;
 
 	#map get {roomarea} {area};
 
@@ -49,5 +50,12 @@
 	#class {snd} {kill};
 	#delay 1 #read .tt/AW/snd.tin
 }
+
+#act {Not while you are fighting!} {
+	#if {"$snd" == "on"} {
+		snds
+	}
+}
+
 
 #class {snd} {close}

@@ -17,7 +17,7 @@
 #config {debug telnet} {off}
 
 #var CLIENT_NAME TinTin++
-#var CLIENT_VERSION 2.01.1
+#var CLIENT_VERSION 2.01.92b
 
 #nop Utility function to generate color gradients, requires 256 color terminal.
 
@@ -171,7 +171,7 @@
 		#map set roomdata $gmcp[room][info][details];
 	};
 
-        #foreach {$gmcp[room][info][exits][]} {exit} {
+        #foreach {*gmcp[room][info][exits][]} {exit} {
                 #map get {roomexit} {result};
 
                 #if {&result[$exit] == 0} {
@@ -185,21 +185,22 @@
                 }
         };
 
-	#map {map} {63} {132} {overwrite} {.tt/map/AWmap.txt};
+	#NOP #map {map} {63} {132} {overwrite} {.tt/map/AWmap.txt};
 
 	#if {"$areas[$gmcp[room][info][zone]]" == ""} {
 		where;
 	};
 
-	#unvar area_mapped;
 	#map list {roomarea} {$gmcp[room][info][zone]} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
-	#sys rm .tt/map/AWmap.head;
-	#sys touch .tt/map/AWmap.head;
-	#line {log} {.tt/map/AWmap.head} {<020>$areas[$gmcp[room][info][zone]]<140> (<120>$room_cnt<140>)<099>};
-	#line {log} {.tt/map/AWmap.head} {<140>[<030>$gmcp[room][info][num]<140>] <130>$gmcp[room][info][name]<099>}
-
-
+	#format {room_len} {%L} {$room_cnt};
+	#format {roomvnum_len} {%L} {$gmcp[room][info][num]};
+	#math {area_len} {27-$room_len};
+	#math {name_len} {27-$roomvnum_len};
+	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]]};
+	#format {name_trunc} {%.${name_len}s} {$gmcp[room][info][name]};
+	#draw tile 3 -30 3 -1 {<020>$area_trunc<140> (<120>$room_cnt<140>)<099>};
+	#draw tile 4 -30 4 -1 {<140>[<030>$gmcp[room][info][num]<140>] <130>$name_trunc<099>}
 }
 
 

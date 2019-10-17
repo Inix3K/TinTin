@@ -1,43 +1,59 @@
 #class {psion} {open}
 
+#var guild psicorp
+
 #act {{^(?:> )?\|HP:(\d+)/(\d+) SP:(\d+)/(\d+) PE:(\d+)/(\d+) ST:(\d+)/(\d+) GXP:(\w+)\[(\w+)\%\](?: T:)?([\w\d]+)?}} {
-	#var {hp}	{%2};
-	#var {hp_max}	{%3};
-	#var {sp}	{%4};
-	#var {sp_max}	{%5};
-	#var {pe}	{%6};
-	#var {pe_max}	{%7};
-	#var {stam}	{%8};
-	#var {stam_max}	{%9};
-	#var {g2n}	{%10};
-	#var {g2n_per}	{%11};
-	#var {ehealth}	{%12};
-	#format {ehealth_len} {%L} {$ehealth};
-	#if {$hp < ${hp_max}*0.75 && $pe > 20} {
+	#var {my[hp][current]}	{%2};
+	#var {my[hp][max]}	{%3};
+	#var {my[sp][current]}	{%4};
+	#var {my[sp][max]}	{%5};
+	#var {my[gp1][current]}	{%6};
+	#var {my[gp1][max]}	{%7};
+	#var {my[gp2][current]}	{%8};
+	#var {my[gp2][max]}	{%9};
+	#var {my[gxp][tnl]}	{%10};
+	#var {my[gxp][per]}	{%11};
+	#NOP #var {ehealth}	{%12};
+	update_status
+}
+
+#alias update_status {
+	#if {$my[hp][current] < ${my[hp][max]}*0.75 && $my[gp1][current] > 20} {
 		!body adjustment
-	}; #elseif {$sp >= ${sp_max} && $pe < ${pe_max} - ${sp_max} * .2} {
+	}; #elseif {$my[sp][current] >= $my[sp][max] && $my[gp1][current] < $my[gp1][max] - $my[sp][max] * .2} {
 		!convert
-	}; #elseif {$stam > ${stam_max}*.9 && "$jaw" == "off"} {
+	}; #elseif {$my[gp2][current] > $my[gp2][max]*.9 && "$jaw" == "off"} {
 		!iron jaw
-	}; #elseif {$stam < ${stam_max}*.2 && "$jaw" == "on"} {
+	}; #elseif {$my[gp2][current] < $my[gp2][max]*.2 && "$jaw" == "on"} {
 		!iron jaw off
-	}; #elseif {$pe > ${pe_max}*.8 && "$psiwielded" == "off"} {
+	}; #elseif {$my[gp1][current] > $my[gp1][max]*.8 && "$psiwielded" == "off"} {
 		!psiwield $weapon
-	}; #elseif {$pe < ${pe_max}*.4 && "$psiwielded" == "on"} {
+	}; #elseif {$my[gp1][current] < $my[gp1][max]*.4 && "$psiwielded" == "on"} {
 		!unpsiwield $weapon
-	}; #elseif {$pe > ${pe_max}*.8 && ${ehealth_len} > 0} {
+	}; #elseif {$my[gp1][current] > $my[gp1][max]*.8 && ${ehealth_len} > 0} {
 		!remove shield;
 		!dissipating touch;
 		!wear shield
 	};
-	#var {hp_graph} {@graph{$hp;$hp_max}};
-	#var {sp_graph} {@graph{$sp;$sp_max}};
-	#var {pe_graph} {@graph{$pe;$pe_max}};
-	#var {stam_graph} {@graph{$stam;$stam_max}};
-	#var {g2n_graph} {@graph{$g2n_per;100}};
-	#var {egraph} {@graph{$ehealth;100}};
-	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} PE:${pe}/${ps_max} ST:${stam}/${stam_max} G:${g2n} E:${ehealth}} {3};
-	#showme {H:${hp_graph} S:${sp_graph} PE:${pe_graph} ST:${stam_graph} G:${g2n_graph} E:${egraph}} {2}
+	#var {my[hp][graph]}	{@graph{$my[hp][current];$my[hp][max]}};
+	#var {my[sp][graph]}	{@graph{$my[sp][current];$my[sp][max]}};
+	#var {my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var {my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
+	#var {my[gxp][graph]}	{@graph{$my[gxp][per];100}};
+	#var {enemy[graph]}	{@graph{$enemy[hp];100}};
+	#format {hp}		{%+4s}	{@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}	{%+4s}	{<128>$my[hp][max]<088>};
+	#format {sp}		{%+4s}	{@colscale{$my[sp][current];$my[sp][max]}};
+	#format {sp_max}	{%+4s}	{<128>$my[sp][max]<088>};
+	#format {gp1}		{%+4s}	{@colscale{$my[gp1][current];$my[gp1][max]}};
+	#format {gp1_max}	{%+4s}	{<128>$my[gp1][max]<088>};
+	#format {gp2}		{%+4s}	{@colscale{$my[gp2][current];$my[gp2][max]}};
+	#format {gp2_max}	{%+4s}	{<128>$my[gp2][max]<088>};
+	#format {g2n}		{%-10s}	{$my[gxp][tnl]};
+	#format {ehealth}	{%+6s} {@colscale{$enemy[hp];100}};
+	#showme {HP:$hp/$hp_max SP:$sp/$sp_max PE:$gp1/$gp1_max  ST:$gp2/$gp2_max  G:$g2n E:$ehealth\%} {-4};
+	#showme {H:$my[hp][graph] S:$my[sp][graph] PE:$my[gp1][graph] ST:$my[gp2][graph] G:$my[gxp][graph] E:$enemy[graph]} {-3};
+	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
 #alias {corpsetrig} {

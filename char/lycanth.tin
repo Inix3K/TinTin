@@ -68,8 +68,9 @@
         #format {corpses[truck]}	{%+2s} {$corpses[truck]};
         #format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
         #format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
-	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam}%  PP:${pp}%  FF:${ff}%  R:${relin}/${relin_r}\% BP:${bio} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {3};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} P:${pp_graph} F:${my[ff][graph]} E:${enemy[graph]}     CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {2}
+	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam}%  PP:${pp}%  FF:${ff}%  R:${relin}/${relin_r}\% BP:${bio} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} P:${my[gp2][graph]} F:${my[ff][graph]} E:${enemy[graph]}     CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
 #alias {corpsetrig} {

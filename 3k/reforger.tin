@@ -25,3 +25,5 @@
 #act {^That item has already been reforged\.} {#var reforged yes}
 #act {^The {.*} does not have sufficient } {@forge_do{}}
 #act {^You are not yet powerful enough to reforge } {@forge_do{}}
+
+#NOP You adjust your reforger's kit slightly, ready to do more business.
