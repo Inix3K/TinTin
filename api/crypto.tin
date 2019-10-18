@@ -1,0 +1,25 @@
+#class {crypto} {open}
+
+#var {crypto} {on}
+
+#alias {docrypto} {
+	#var data {$mip[comm][data]};
+        #replace {data} {icrypto} {#};
+        #var data_cnt 0;
+        #parse {$data} {char} {
+                #math {data_cnt} {$data_cnt + 1};
+                #if {"$char" == "#"} {
+                        #var data_cut $data_cnt
+                }
+        };
+        #math {cut} {$data_cnt - $data_cut - 1};
+        #format {ticker} {%r} {$data};
+        #format {ticker} {%.${cut}s} {$ticker};
+        #format {ticker} {%r} {$ticker};
+
+	#sys {~/.scripts/crypto $ticker};
+	#read .scripts/crypto.tin;
+	#var crypt[line] {$mip[comm][command]};
+	#delay 1 {#send $crypt[line] $crypt[pair] $crypt[price]}
+}
+#class {crypto} {close}

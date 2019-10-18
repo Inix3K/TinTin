@@ -1,0 +1,16 @@
+#class {bot} {open}
+
+#var no_loop 1
+
+#var {botpath} {sw;w;w;n;n;w;s;s;n;w;s;s;e;s;n;w;n;w;n;w;n;w;s;s;w;s;s;e;n;s;s;e;n;s;e;s;e;n;s;e;e;e;e;e;e;n;e;e;s;w;e;s;w;s;w;s;s;e;n;s;w;n;w;n;n;e;w;s;s;w;w;s;e;e;w;w;n;w;s;w;w;n;e;w;w;s;n;n;e;n;e;s;n;w;s;w;n;w;n;w;n;e;e;s;e;e;e;e;e;e;e;n;e;e;n;s;e;s;e;e;e;n;e;n;s;e;s;w;e;e;e;e;n;s;w;w;w;n;w;w;s;w;w;n;n;e;s;n;e;n;s;w;n;n;s;w;w;s;n;n;s;e;n;n;n;w;s;n;w;n;n;e;e;s;w;e;e;s;n;n;s;e;s;s;w;e;n;n;e;s;n;n;w;e;s;e;n;e;e;e;s;n;w;w;w;s;w;w;w;w;n;w;w;w;n;e;w;n;w;n;n;e;s;n;w;s;w;s;s;e;w;n;n;w;w;n;e;e;w;w;s;w;n;w;w;s;e;w;w;n;s;s;e;s;n;w;s;w;e;s;e;e;e;e;e;e;e;s;e;w;n;w;w;w;w;w;w;s;w;w;n;w;s;w;w;e;n;s;e;s;w;s;n;w;w;e;s;w;s;e;w;s;e;s;s;e;s;n;w;n;w;e;n;w;n;w;s;w;w;e;n;s;e;s;w;s;n;w;w;e;s;w;s;e;w;s;e;s;s;e;s;n;w;n;w;e;n;w;n;w;};
+
+#act {{^=M= An? (tiny|small|medium|large|enormous|incredibly enormous|supremely enormous) (.*) dragon}} {
+	#var mobname dragon;
+	#regex {"%1"} {supreme}		{_check_mob};
+	#regex {"%1"} {enormous}	{_check_mob};
+	#regex {"%1"} {large}		{_check_mob};
+}
+
+#class {bot} {close}
+
+

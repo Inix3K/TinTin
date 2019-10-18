@@ -1,0 +1,7 @@
+#split 2 4 0 31
+#draw line 3 -31 -6 -31
+#draw green line 2 1 2 -1
+#draw line -2 1 -2 -1
+#draw line -5 1 -5 -1
+#showme {<088>\u2534} -5 -31
+#showme {<228>\u252C} 2 -31

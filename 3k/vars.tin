@@ -1,0 +1,6 @@
+#CLASS {vars} OPEN
+
+#class chat kill
+#read .tt/3k/vars/3kchat.var
+
+#CLASS {vars} CLOSE

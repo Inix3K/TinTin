@@ -1,0 +1,75 @@
+#CONFIG           {AUTO TAB}		{5000}
+#CONFIG           {BUFFER SIZE}		{1000000}
+#CONFIG           {CHARSET}		{UTF-8}
+#CONFIG           {COLOR MODE}		{TRUE}
+#CONFIG           {COLOR PATCH}		{ON}
+#CONFIG           {COMMAND COLOR}	{<078>}
+#CONFIG           {COMMAND ECHO}	{ON}
+#CONFIG           {CONNECT RETRY}	{15}
+#CONFIG           {HISTORY SIZE}	{1000}
+#CONFIG           {LOG MODE}		{RAW}
+#CONFIG           {MOUSE TRACKING}	{ON}
+#CONFIG           {PACKET PATCH}	{0.80}
+#CONFIG           {REPEAT CHAR}		{!}
+#CONFIG           {REPEAT ENTER}	{ON}
+#CONFIG           {SCROLL LOCK}		{ON}
+#CONFIG           {SPEEDWALK}		{OFF}
+#CONFIG           {TINTIN CHAR}		{#}
+#CONFIG           {VERBATIM}		{OFF}
+#CONFIG           {VERBATIM CHAR}	{\}
+#CONFIG           {VERBOSE}		{OFF}
+#CONFIG           {WORDWRAP}		{ON}
+#PATHDIR          {d}	{u}	{32}
+#PATHDIR          {e}	{w}	{2}
+#PATHDIR          {n}	{s}	{1}
+#PATHDIR          {ne}	{sw}	{3}
+#PATHDIR          {nw}	{se}	{9}
+#PATHDIR          {s}	{n}	{4}
+#PATHDIR          {se}	{nw}	{6}
+#PATHDIR          {sw}	{ne}	{12}
+#PATHDIR          {u}	{d}	{16}
+#PATHDIR          {w}	{e}	{8}
+
+#EVENT {SESSION CONNECTED} {
+	#var world {%0};
+	#format logfile {.tt/logs/%0_%t.log} {%Y%m%d};
+	#LOG {APPEND} {$logfile};
+	#read .tt/start.tin;
+	#read .tt/char/%0.tin;
+}
+
+#var world {}
+
+/* Character Switching */
+#alias {switchto} {
+        #zap;
+        #read .tt/start.tin;
+        #if {"%0" == ""} {
+                connect inix
+        } {
+                connect %0
+        }
+}
+#alias {connect} {
+        #regex {%0} {3s} {
+                #ses {%0} {3scapes.org} {3200};
+                #format {ses_len} {%L} {%0};
+                #math {ses_len} {$ses_len-2};
+                #format {ses_name} {%.${ses_len}s} {%0};
+                #var {mud} {3s}
+        } {
+                #regex {%0} {AW} {
+                        #ses {%0} {aardwolf.org} {23};
+                        #format {ses_len} {%L} {%0};
+                        #math {ses_len} {$ses_len-2};
+                        #format {ses_name} {%.${ses_len}s} {%0};
+                        #var {mud} {AW}
+                } {
+                        #ses {%0} {3k.org} {3000};
+                        #var {ses_name} {%0};
+                        #var {mud} {3k}
+                }
+        };
+        $ses_name;
+        #read .tt/.pass
+}

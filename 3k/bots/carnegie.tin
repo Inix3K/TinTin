@@ -1,0 +1,10 @@
+#class {bot} {open}
+
+#var {botpath} {w;w;w;nw;ne;e;e;e;se;nw;n;e;e;out;w;w;w;w;w;nw;nw;n;e;s;se;e;e;e;e;e;ne;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;s;sw;sw;ne;ne;n;w;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;ne;sw;w;w;w;w;w;w;w;nw;se;s;s;s;s;s;s;se;e;s;s;sw;u;se;e;e;e;ne;nw;w;w;w;sw;u;ne;nw;nw;nw;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;e;e;e;e;e;e;e;n;n;n;n;n;n;n;e;sw;sw;se;sw;w;w;w;w;w;nw;d;d;se;e;e}
+
+#act {^=M= {A New Yorker \(waiting in line\)|An Usher|A Large Usher|A bodyguard \(ex-mafia\)|A Lady \(waiting to use the toilet\)|A polite audience member|An angry audience member|A member of the audience hurrying to his seat|A lady in a hurry to find her seat|A sleeping audience member|A New Yorker trying to find his seat|A New Yorker trying to find her seat|A member of the audience hurrying to her seat}} {
+	#var mobname human;
+	_check_mob
+};
+
+#class {bot} {close}

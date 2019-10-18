@@ -1,0 +1,12 @@
+#class {bot} {open}
+
+#var no_loop 1
+
+#var {botpath} {ne;u;nw;n;e;ne;n;n;n;s;s;s;sw;w;w;w;w;w;nw;n;n;n;s;s;s;se;e;s;e;e;e;se;d;sw}
+
+#act {^=M= {A Large Usher}} {
+	#var mobname usher;
+	_check_mob
+};
+
+#class {bot} {close}
