@@ -57,7 +57,7 @@
 	#if {$my[hp][current] < $my[hp][max]*.8} {!staunch};
 	#if {$my[sp][current] > $my[sp][max]*.9} {
 		#if {$my[gp1][current] < 90 || $my[gp2][current] > 10} {
-			!will
+			#delay {willdelay} {!will} {0.05}
 		}
 	};
 	#if {$my[gp2][current] > 50 && $corpses[coffin] > 1} {!unwrap;!bury corpse};
@@ -123,7 +123,7 @@
 
 #act {^{\w*} dealt the killing blow to} {corpsetrig}
 #alias corpsetrig {
-	#if {$stm < $stm_max*.25 || $stn > 75} {
+	#if {$my[gp1][current] < $my[gp1][max]*.25 || $my[gp2][current] > 25} {
 		.pause
 	};
 	!rest;

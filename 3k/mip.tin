@@ -74,6 +74,7 @@
 }
 
 #var clockon 0
+#var IdleLimit 900
 #TICKER {idle} {
 	#math {idle} {$idle + 1};
 	#if {$idle > 900} {
@@ -85,7 +86,7 @@
 	}; #elseif {$idle < 600} {
 		#screen clear square 21 1 -8 1
 	};
-	#if {$bot && $idle > 900} {
+	#if {$bot && $idle > $IdleLimit} {
 		.stop;
 		#unvar bot;
 		#delay {gohome} {go home} {100}
@@ -146,11 +147,11 @@
 		} {
 			#IF {"$i" == "~"} {
 				#IF {"$mip[FFF][toggle]" == "0"} {
-					#VAR {mip[FFF][toggle]} {1};
+					#VAR {mip[FFF][toggle]} {1}
 				} {
 					.mipProcessFFFSub {$mip[FFF][flag]} {$mip[FFF][${mip[FFF][flag]}][data]};
 					#VAR {mip[FFF][flag]} {0};
-					#VAR {mip[FFF][toggle]} {0};
+					#VAR {mip[FFF][toggle]} {0}
 				}
 			} {
 				#VAR {mip[FFF][${mip[FFF][flag]}][data]} {${mip[FFF][${mip[FFF][flag]}][data]}${i}}
@@ -182,14 +183,14 @@
 		#DEFAULT {#NOP Every other non-handled flag}
 	};
 	#NOP update_status alias defined in personal hpbar trigger;
-	update_status;
+	update_status
 }
 
 #NOP ***** Combat Mob Name *****;
 #ALIAS {.mipProcessFFFK} {
 	#IF {"%1" != ""} {
 		#VAR {enemy} {};
-		#VAR {enemy[name]} {%1};
+		#VAR {enemy[name]} {%1}
 	} {
 		#VAR {enemy[hp]} {}
 	}
@@ -208,6 +209,7 @@
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
 			#CASE {"psicorp"}	{.mipProcessGlinePsicorp {%1}};
+			#CASE {"sii"}		{.mipProcessGlineSii {%1}}
 		}
 	}
 }
@@ -273,7 +275,7 @@
 		#REGEX {$mip[gline][2]} {Nukes: \[%d/%d\]<099> Reset: \[%d\%\]} {
 			#VAR {nukes}		{&1};
 			#VAR {nukes_max}	{&2};
-			#VAR {reset}		{&3};
+			#VAR {reset}		{&3}
 		}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
@@ -290,10 +292,10 @@
 		};
 		#REGEX {$mip[gline][1]} {Sprk:%d/%d}	{
 			#VAR {my[sparks][current]}	{&1};
-			#VAR {my[sparks][max]}		{&2};
+			#VAR {my[sparks][max]}		{&2}
 		};
 		#REGEX {$mip[gline][1]} {Prot:%wX}	{#VAR {my[prot]}		{&1}};
-		#REGEX {$mip[gline][1]} {Circle:%d}	{#VAR {my[gxp]}			{&1}};
+		#REGEX {$mip[gline][1]} {Circle:%d}	{#VAR {my[gxp]}			{&1}}
 	}; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]}	{Undead:%w}	{#VAR {my[undead]}		{&1}};
 		#REGEX {$mip[gline][2]}	{SPf:%d/%d}	{
@@ -318,6 +320,19 @@
 	}
 }
 
+#ALIAS {.mipProcessGlineSii} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]}	{Regen: %w}	{#VAR {my[regen]}		{&1}}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]}	{Con:%d/%d}	{
+			#VAR {my[control][current]}	{&1};
+			#VAR {my[control][max]}		{&2}
+		}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
 #ALIAS {.mipProcessGlineBard} {
 	#IF {%1 == 1} {
 		
@@ -331,11 +346,21 @@
 
 #NOP ***** 2 Way Communication (Tell/Emote) *****
 #ALIAS {.mipProcessBABgag} {
+	#var mipgag 0;
+
 	#NOP Add cases for tells/emotes to gag from monitor, such as mob emotes;
-	#SWITCH {"TRUE"} {
-		#CASE {#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {TRUE}} {#NOP};
-		#DEFAULT {.mipProcessBAB %0};
-	}
+
+	#NOP Zelligar's Headband;
+	#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {#var mipgag 1};
+
+	#NOP Knights;
+	#REGEX {%0} {~Bela~} {#var mipgag 1};
+
+	#NOP Sii;
+	#REGEX {%0} {~Your~malicious attacks fade} {#var mipgag 1};
+	#REGEX {%0} {~The~corpse explodes as a small vicious lizard-like creature bursts forth!} {#var mipgag 1};
+
+	#IF {$mipgag == 0} {.mipProcessBAB %0}
 }
 
 #ALIAS {update_chat} {
@@ -361,7 +386,7 @@
 				#var mip[comm][twoway] {to};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
 				#line log {.tt/logs/3k.chat} {<178>To &3<088>: &4};
-				update_chat ${timestamp}<178>To &3<088>: &4;
+				update_chat ${timestamp}<178>To &3<088>: &4
 			} {
 				#NOP Message from another player;
 				#var mip[comm][twoway] {from};
@@ -467,7 +492,7 @@
 			#case {"Whine"}			{#var {commcol} {<118>}};
 			#case {"Wolf"}			{#var {commcol} {<228>}};
 			#case {"Zilch_shout"}		{#var {commcol} {<168>}};
-			#default			{#var {commcol} {<178>}};
+			#default			{#var {commcol} {<178>}}
 		};
 		
 
@@ -555,7 +580,7 @@
 	#REPLACE {result} {<s} {<278>};
 	#REPLACE {result} {<v} {<858>};
 	#REPLACE {result} {<w} {<178>};
-	#REPLACE {result} {<y} {<838>};
+	#REPLACE {result} {<y} {<838>}
 }
 
 #CLASS {mip} {close}

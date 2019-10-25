@@ -116,7 +116,7 @@ prompt >$nl$
 #act {#END OF PATH} {
 	#if {$no_loop | !$foundmob} {
 		killbot;
-		#if {$areacount > 1} {
+		#if {&botcycle[] > 1} {
 			nextarea
 		}; #else {
 			go home

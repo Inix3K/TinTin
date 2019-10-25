@@ -1,7 +1,5 @@
 #class {lycanth} {open}
 
-#read .tt/3k/mip.tin
-
 #var guild changeling
 
 #var pers off

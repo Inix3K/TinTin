@@ -252,6 +252,9 @@
 #NOP Abyss
 #act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
 
+#NOP Ao
+#act {** The Docks of Ao ** (se)} {#map goto 15463} {1}
+
 #NOP Ascended
 #act {Arid environment (sw,n,s,e,climb)} {#map goto 16718} {1}
 
@@ -446,6 +449,9 @@
 #NOP Rocky Hill
 #act {^Waving their rusty scimitars and growling loudly, the jackalmen} {#map undo}
 
+#NOP Simpsons
+#act {^   The Guard stops you and says: Aww no...you can't go in there.} {#map undo}
+
 #NOP SolChem
 #act {^The gang member shoves you back.} {#map undo}
 
@@ -458,5 +464,6 @@
 
 #NOP Whorehouse
 #act {^Doh shoves you backwards with a scowl.} {#map undo}
+#act {^Your feet are mired in the bird poop, you can't seem to move!!} {#map undo}
 
 #class {mapper} {close}

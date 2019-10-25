@@ -3,15 +3,15 @@
 #var monitor_file {.tt/logs/3k.chat}
 
 #NOP Farsight Tag
-#act {^You notice that } {#line log $monitor_file}
+#act {^You notice that %*} {update_chat %0}
 
 #NOP Crysmal
-#act {^In a mighty shattering, The %w casing cracks apart from Crysmal!} {#line log $monitor_file}
+#act {^In a mighty shattering, The %w casing cracks apart from Crysmal!} {update_chat %0}
 
 #NOP Elemental Planes
-#act {^The elemental flares brightly before emitting an explosion.} {#line log $monitor_file}
+#act {^The elemental flares brightly before emitting an explosion.} {update_chat %0}
 
 #NOP Zelligars
-#act {Zelligar molds some magical clay into a } {#line log $monitor_file}
+#act {Zelligar molds some magical clay into a %*} {update_chat %0}
 
 #class {mob_monitors} {close}
