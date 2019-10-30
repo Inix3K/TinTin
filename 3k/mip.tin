@@ -359,8 +359,9 @@
 	#IF {$mipgag == 0} {.mipProcessBAB %0}
 }
 
+#var chat[rows] 17
 #ALIAS {update_chat} {
-	#NOP #if {&chat[log][] > $chat[rows]}
+	#NOP #if {&chat[log][] > $chat[rows]};
 	#if {&chat[log][] > 100} {
 		#list chat[log] del 1
 	};
