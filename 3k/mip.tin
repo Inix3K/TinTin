@@ -96,10 +96,6 @@
 
 #EVENT {RECEIVED INPUT} {
 	#var idle 0;
-	#if {$clockon} {
-		#var clockon 0;
-		#sys tmux send-keys -t 0 q
-	}
 }
 
 #NOP ***** Individual Data Sections *****
@@ -364,13 +360,14 @@
 }
 
 #ALIAS {update_chat} {
-	#if {&chat[log][] > $chat[rows]} {
+	#NOP #if {&chat[log][] > $chat[rows]}
+	#if {&chat[log][] > 100} {
 		#list chat[log] del 1
 	};
 	#list chat[log] ins -1 {%0};
 
 	#class {chat} {write} {.tt/3k/vars/${mud}chat.var};
-	#line sub {var;esc} #draw {tile} 1 1 17 -47 $chat[log][%*]
+	#line sub {var;esc} #draw {tile} 1 1 $chat[rows] -47 $chat[log][-$chat[rows]..-1]
 }
 
 #ALIAS {.mipProcessBAB} {

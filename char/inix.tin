@@ -138,7 +138,7 @@ rtick
 #var {weapon_type}	{missile}
 #var {ammo_type}	{6}
 #var {ammo_buy}		{on}
-#var {ammo_donate}	{off}
+#var {ammo_donate}	{on}
 
 #act {After your discount, it will cost %1 coins.} {
 	#if {"$ammo_donate" == "on"} {
