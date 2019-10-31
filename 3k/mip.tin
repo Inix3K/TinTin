@@ -118,7 +118,7 @@
 		#CASE {"BBB"} {#NOP Guild Point2 Mask;#FORMAT {my[gp2][name]} {%s} {%2}};
 		#CASE {"BBC"} {#NOP Hit Point Mask;#FORMAT {my[hp][name]} {%s} {%2}};
 		#CASE {"BBD"} {#NOP Spell Point Mask;#FORMAT {my[sp][name]} {%s} {%2}};
-		#CASE {"CAA"} {#NOP Chat Messages;.mipProcessCAA {%2}};
+		#CASE {"CAA"} {#NOP Chat Messages;.mipProcessCAAgag {%2}};
 		#CASE {"CAP"} {#NOP Window Caption Text;#FORMAT {temp} {%h} {%2};#showme {$temp} {2}};
 		#CASE {"CCF"} {#NOP Send File Line};
 		#CASE {"CDF"} {#NOP Send File Begin};
@@ -346,15 +346,22 @@
 
 	#NOP Add cases for tells/emotes to gag from monitor, such as mob emotes;
 
-	#NOP Zelligar's Headband;
-	#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {#var mipgag 1};
+	#NOP Hell Cows;
+	#REGEX {%0} {~A~cow falls, but the herd continues on!} {#var mipgag 1};
 
 	#NOP Knights;
 	#REGEX {%0} {~Bela~} {#var mipgag 1};
 
+	#NOP Party Divvy;
+	#REGEX {%0} {[PARTY] GOLD divvy called by } {#var mipgag 1};
+	#REGEX {%0} {[PARTY] All gold divvied, total: } {#var mipgag 1};
+
 	#NOP Sii;
 	#REGEX {%0} {~Your~malicious attacks fade} {#var mipgag 1};
 	#REGEX {%0} {~The~corpse explodes as a small vicious lizard-like creature bursts forth!} {#var mipgag 1};
+
+	#NOP Zelligar's Headband;
+	#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {#var mipgag 1};
 
 	#IF {$mipgag == 0} {.mipProcessBAB %0}
 }
@@ -377,7 +384,8 @@
 	show_chat
 }
 #ALIAS {chatup} {
-	#if {$chat[rows]*{$chat[page]+1} <= $chat[max]} {
+	#if {$chat[rows]*{$chat[page]+1} <= $chat[max] &&
+	     $chat[rows]*{$chat[page]+1} <= &chat[log][]} {
 		#math chat[page] {$chat[page]+1};
 		show_chat
 	}
@@ -469,6 +477,15 @@
 }
 
 #NOP ***** Broadcast Communication (Chat/Shout) *****
+#ALIAS {.mipProcessCAAgag} {
+	#var mipgag 0;
+
+	#NOP Party Divvy gagsd	#NOP Party Divvy;
+        #REGEX {%0} {[PARTY] GOLD divvy called by } {#var mipgag 1};
+        #REGEX {%0} {[PARTY] All gold divvied, total: } {#var mipgag 1};
+
+	#IF {$mipgag == 0} {.mipProcessCAA %0}
+}
 #ALIAS {.mipProcessCAA} {
 	#REGEX {%1} {{(.*)\~(.*)\~(.*)\~(.*)}} {
 		#var {mip[comm][command]}	{&2};
