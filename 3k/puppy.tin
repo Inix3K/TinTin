@@ -1,0 +1,8 @@
+#class {puppy} open
+
+#act {^The %1 thinks he sees a squirrel and growls.$} {!rescue dog}
+#act {^The %1 puppy barks happily.$} {!rescue dog}
+#act {^The %1 snoozes quietly for a minute.$} {!rescue dog}
+#act {^The %1 pants heavily.$} {!rescue dog}
+
+#class {puppy} close

@@ -1,0 +1,207 @@
+#!/usr/local/bin/tt++
+
+#EVENT {PROGRAM START}
+{
+     #info system save;
+     #script {dir} {ls -d archive};
+     #if {&dir[] == 0}
+     {
+          #system mkdir archive;
+          #showme {<ffa>Created the <afa>archive<ffa> folder.}
+     };
+     #script {dir} {ls -d archive/bin};
+     #if {&dir[] == 0}
+     {
+          #system mkdir archive/bin;
+          #showme {<ffa>Created the <afa>archive/bin<ffa> folder.}
+     };
+     #draw {light orange} box 0 1 3 50 {<afa>TinTin++ $info[SYSTEM][CLIENT_VERSION] beta updater.};
+     #switch {{%3}}
+     {
+          #case {{adi}}
+          {
+               adi
+          };
+          #case {{archive}}
+          {
+               archive
+          };
+          #case {{download}}
+          {
+               download
+          };
+          #case {{install}}
+          {
+               install
+          };
+          #case {{history}}
+          {
+               history
+          };
+          #case {{revert}}
+          {
+               revert
+          };
+          #default
+          {
+               #draw {light orange} box 0 1 8 50 {<ffa><afa>     adi<ffa>: archive + download + install}{<ffa><afa> archive<ffa>: archive current source and binary}{<ffa><afa>download<ffa>: download the beta source code}{<ffa><afa> install<ffa>: install downloaded source code}{<ffa><afa> history<ffa>: history of compiled binaries}{<afa><afa>  revert<ffa>: revert to an archived binary}
+          }
+     }
+}
+
+
+#ALIAS {adi}
+{
+     archive;
+     download;
+     install
+}
+
+#ALIAS {archive}
+{
+     #script {file} {ls -l --time-style=full-iso tintin-beta.tar.gz};
+     #script {exec} {ls -l --time-style=full-iso tt/src/tt++};
+     #showme {};
+     #if {&file[]}
+     {
+          #regexp {$file[1]} {%d-%d-%d %d:%d:%d}
+          {
+               #var date {&1-&2-&3_&4:&5:&6};#system mv tintin-beta.tar.gz archive/${date}_tintin-beta.tar.gz;#showme {};#showme {<ffa>Archiving <afa>tintin-beta.tar.gz<ffa> dated <afa>$date}
+          }
+     };
+     #else
+     {
+          #showme {<ffa>No archivable sourcecode found.}
+     };
+     #if {&exec[]}
+     {
+          #regexp {$exec[1]} {%d-%d-%d %d:%d:%d}
+          {
+               #var date {&1-&2-&3_&4:&5:&6};#system mv tt/src/tt++ archive/bin/${date}_tt++;#showme {<ffa>Archiving <afa>tt++ executable   <ffa> dated <afa>$date};
+          }
+     };
+     #else
+     {
+          #showme {<ffa>No archivable binaries found.}
+     }
+}
+
+#ALIAS {download}
+{
+     archive;
+     #showme {};
+     #showme {<ffa>Retrieving <afa>tintin-beta.tar.gz<ffa> from <afa>https://mudhalla.net};
+     #system {wget https://mudhalla.net/tintin-beta.tar.gz};
+     #script {file} {ls -l --time-style=full-iso tintin-beta.tar.gz};
+     #if {&file[]}
+     {
+          #regexp {$file[1]} {%d-%d-%d %d:%d:%d}
+          {
+               #var date {&1-&2-&3_&4:&5:&6};#system cp tintin-beta.tar.gz archive/${date}_tintin-beta.tar.gz;#showme {};#showme {<ffa>Retrieved <afa>tintin-beta.tar.gz<ffa> dated <afa>$date}
+          };
+          #else
+          {
+               #showme {<ffa>Retrieved <afa>tintin-beta.tar.gz<ffa> dated <faa>unknown date}
+          }
+     };
+     #else
+     {
+          #showme {<ffa>Failed to retrieve <afa>tintin-beta.tar.gz<ffa> <faa>file not found};
+          #return
+     }
+}
+
+#ALIAS {install}
+{
+     #showme {<ffa>Building <afa>TinTin++<ffa>, please remain seated.};
+     #script {file} {ls tt/src/Makefile.in};
+     #if {&file[]}
+     {
+          #system {cp tt/src/Makefile.in tt/src/Makefile.bak}
+     };
+     #system {tar -zxf tintin-beta.tar.gz};
+     #script {diff} {diff tt/src/Makefile.in tt/src/Makefile.bak};
+     #script {file} {ls tt/src/Makefile};
+     #if {&diff[] == 0 && &file[]}
+     {
+          #showme {<ffa>Reconfiguration unnecessary.};
+          #system {cd tt/src/;touch Makefile;make install}
+     };
+     #else
+     {
+          #showme {<ffa>Reconfiguration necessary.};
+          #system {cd tt/src/;./configure;make install}
+     };
+     #showme {<ffa>Installation process finished.}
+}
+
+#ALIAS {history}
+{
+     #script {exec} {ls -l archive/bin};
+     #NOP #if {&exec[] == 0};
+     #if {"$exec[1]" == "total 0"}
+     {
+          #showme <ffa>No archived binaries found.;
+          #return
+     };
+     #math count 0;
+     #variable history {};
+     #foreach {$exec[-20..-1]} {binary}
+     {
+          #regexp {$binary} {%d-%d-%d_%d:%d:%d_tt++}
+          {
+               #var date {&1-&2-&3 &4:&5:&6};#math count $count + 1;#list history insert 1 {&0};#echo {<afa>%+3s<ffa> - <afa>tt++<ffa> - <afa>%s} {$count} {$date}
+          }
+     }
+}
+
+#ALIAS {revert}
+{
+     #if {{%0} == {}}
+     {
+          #script {exec} {ls -l archive/bin};
+          #if {&exec[] == 0}
+          {
+               #showme <ffa>No archived binaries found.;
+               #return
+          };
+          #showme {<ffa>You can revert to one of the following binaries:};
+          #math count 0;
+          #foreach {$exec[-20..-1]} {binary}
+          {
+               #regexp {$binary} {%d-%d-%d_%d:%d:%d_tt++}
+               {
+                    #var date {&1-&2-&3 &4:&5:&6};#math count $count + 1;#list history insert 1 {&0};#echo {<afa>%+3s<ffa> - <afa>tt++<ffa> - <afa>%s} {$count} {$date}
+               }
+          };
+          #showme <ffa>Use: revert <number> to revert.
+     };
+     #else
+     {
+          #if {%0 >= -20 && %0 < 0}
+          {
+               #script {exec} {ls -l archive/bin};
+               #if {&exec[] == 0}
+               {
+                    #showme <ffa>No archived binaries found.;
+                    #return
+               };
+               #foreach {$exec[-1..-20]} {binary}
+               {
+                    #regexp {$binary} {%d-%d-%d_%d:%d:%d_tt++}
+                    {
+                         #var date {&1-&2-&3 &4:&5:&6};#math count $count - 1;#list history insert 1 {&0};
+                    }
+               };
+               #if {&history[%0]}
+               {
+                    #system {cp -f /archive/bin/tt++_$history[%0] /usr/local/tt++};
+                    #showme {<afa>/archive/bin/tt++_$history[%0]<ffa> copied to <afa>/usr/local/tt++}
+               }
+          };
+          #else
+          {
+               #showme <ffa>Use: revert <number> to revert.
+          }
+     }
+}

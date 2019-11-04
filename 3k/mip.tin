@@ -348,6 +348,7 @@
 
 	#NOP Hell Cows;
 	#REGEX {%0} {~A~cow falls, but the herd continues on!} {#var mipgag 1};
+	#REGEX {%0} {~The~lonesome cow topples to the ground, the herd finally slain.} {#var mipgag 1};
 
 	#NOP Knights;
 	#REGEX {%0} {~Bela~} {#var mipgag 1};
