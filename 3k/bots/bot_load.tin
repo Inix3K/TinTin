@@ -7,6 +7,7 @@
 }
 
 #NOP Low priority aliases to mute output from mud
+#alias {.bot%*} {#showme !bot is not active} {9}
 #alias {.stop%*} {#showme !Bot is not active} {9}
 #alias {.resume%*} {#showme !Bot is not active} {9}
 #alias {killbot%*} {#showme !Bot is not active} {9}
