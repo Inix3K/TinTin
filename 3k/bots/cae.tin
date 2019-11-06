@@ -1,0 +1,10 @@
+#class {bot} {open}
+
+#var {botpath} {d;s;w;n;sw;w;w;w;w;d;n;s;u;e;e;e;e;ne;s;e;n;u}
+
+#act {^=M= {Big Vicious Rabbit|Vicious Rabbit|King of All Rabbits|Ganderei Cae, the Evil Alchemist}} {
+	#if {"%1"=="Ganderei Cae, the Evil Alchemist"} {#var mobname cae} {#var mobname rabbit};
+	_check_mob
+}
+
+#class {bot} {close}

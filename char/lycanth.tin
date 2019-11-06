@@ -28,7 +28,7 @@
 	};
 	#if {$my[gp1][current] < 30 || $my[gp2][current] < 30} {
 		#if {$my[relinquish][current] > 0} {
-			relinquish
+			#delay {relinquish} {relinquish} {0.5}
 		}; #elseif {$my[bioplasts] > 0} {
 			cb
 		}

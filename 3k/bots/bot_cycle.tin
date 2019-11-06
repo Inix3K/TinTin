@@ -99,7 +99,8 @@
 }
 
 
-#alias {bas} {ba {rim2;android;rim2;dundee8;rim2;dundee7;rim2;dundee6;rim2;dundee5}}
-#alias {bas2} {ba {whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;android;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee8;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee7;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee6}}
+#alias {bas}	{ba {rim2;android;rim2;dundee8;rim2;dundee7;rim2;dundee6;rim2;dundee5}}
+#alias {bas2}	{ba {whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;android;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee8;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee7;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee6}}
+#alias {basa}	{ba {aegis1;aegis2;aegis3;aegis4;aegis5}}
 
 #class {botcycle} {close}

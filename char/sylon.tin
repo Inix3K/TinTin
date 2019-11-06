@@ -1,0 +1,65 @@
+#class {sylon} {open}
+
+#var guild sii
+
+#act {^. o O \(HP:%d/%d SP:%d/%d FO:%d/%d CON:%d/%d EN:%*\(%*\) \) O o .$} {
+	#var {my[hp][current]}		{%1};
+	#var {my[hp][max]}		{%2};
+	#var {my[sp][current]}		{%3};
+	#var {my[sp][max]}		{%4};
+	#var {my[gp1][current]}		{%5};
+	#var {my[gp2][current]}		{%6};
+	#var {my[control][current]}	{%7};
+	#var {my[control][max]}		{%8};
+	update_status
+}
+
+
+#alias {update_status} {
+        #if {"$cooler" == "on" || $corpses[cooler] > 0} {
+                #format {sb1_cooler} {%+2s} {$corpses[cooler]};
+                #var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
+        } {
+                #var {sb1_cooler} {}
+        };
+        #if {"$freezer" == "on" || $corpses[freezer] > 0} {
+                #format {sb2_freezer} {%+2s} {$corpses[freezer]};
+                #var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
+        } {
+                #var {sb2_freezer} {}
+        };
+	#var	{my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
+	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
+	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var	{my[control][graph]}	{@graph{$my[control][current];$my[control][max]}};
+	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
+	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
+	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
+	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
+	#format {fo}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
+	#format {fo_max}		{%+4s} {<128>$my[gp1][max]<088>};
+	#format {co}			{%+4s} {@colscale{$my[control][current];$my[control][max]}};
+	#format {co_max}		{%+4s} {<128>$my[control][max]<088>};
+	#format {ehealth}		{%+6s} {@colscale{$enemy[hp];100}\%};
+        #format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
+        #format {corpses[truck]}	{%+2s} {$corpses[truck]};
+        #format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
+        #format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
+	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} FO:${fo}/${fo_max} CO:${co}/${co_max} E: ${ehealth}    IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} F:${my[gp1][graph]} C:${my[control][graph]} E:${enemy[graph]} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
+}
+
+
+#alias {corpsetrig} {
+	envelop emanating;
+	wrap;
+	get coins
+}
+
+#act {dealt the killing blow} {corpsetrig}
+
+
+#act {Your malicious attacks fade.} {malice}
+#class {sylon} {close}
