@@ -344,6 +344,10 @@
 #ALIAS {.mipProcessBABgag} {
 	#var mipgag 0;
 
+	#NOP Duplicate 'from' soul;
+	#REGEX {%0} {~you~} {#var mipgag 1};
+
+
 	#NOP Add cases for tells/emotes to gag from monitor, such as mob emotes;
 
 	#NOP Hell Cows;
