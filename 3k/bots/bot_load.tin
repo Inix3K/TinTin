@@ -6,4 +6,9 @@
 	#read .tt/3k/bots/bot_main.tin
 }
 
+#NOP Low priority aliases to mute output from mud
+#alias {.stop} {#showme !Bot is not active} {9}
+#alias {.resume} {#showme !Bot is not active} {9}
+#alias {killbot} {#showme !Bot is not active} {9}
+
 #class {botload} {close}
