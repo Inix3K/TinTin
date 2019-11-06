@@ -2,6 +2,7 @@
 #class {inixaw} {open}
 
 #read .tt/AW/draw.tin
+#read .tt/AW/chat.tin
 #read .tt/AW/gmcp.tin
 #read .tt/AW/mapper.tin
 #read .tt/AW/snd.tin
@@ -86,7 +87,8 @@
 
 /* Aliases */
 #var {cspell} {391}
-#alias {cc} {cast $cspell}
+#NOP #alias {cc} {cast $cspell}
+#alias {cc} {raven}
 #alias {qh} {get heal bag;quaff heal}
 #alias {qs} {get lotus bag;quaff lotus}
 #alias {ep} {wear duffle;enter;wear amulet}

@@ -1,12 +1,47 @@
-#class {awchat} {open}
+#class {chat} {open}
 
-#act {~\{chan ch=%w\}%1} {#line log {.tt/logs/AW.chat} {%1}}
-#sub {\{chan ch=%w\}} {}
+#var chat[row][start] 1
+#var chat[col][start] 1
+#var chat[row][end] 18
+#var chat[col][end] -32
+#math chat[rows] {$chat[row][end] - $chat[row][start] + 1}
+#var chat[page] 1
+#var chat[max] 100
 
-#act {~\{tell\}%1} {#line log {.tt/logs/AW.chat} {%1}}
-#sub {\{tell\}} {}
+#ALIAS {show_chat} {
+	#math chat[start]	{$chat[rows] * $chat[page]};
+	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
+	#line sub {var;esc} #draw tile $chat[row][start] $chat[col][start] $chat[row][end] $chat[col][end] $chat[log][-$chat[start]..-$chat[end]]
+}
 
-#act {~\{say\}%1} {#line log {.tt/logs/AW.chat} {%1}}
-#sub {\{say\}} {}
+#ALIAS {update_chat} {
+	#if {&chat[log][] > $chat[max]} {
+		#list chat[log] del 1
+	};
+	#list chat[log] ins -1 {%0};
 
-#class {awchat} {close}
+	#class {chat} {write} {.tt/AW/vars/${mud}chat.var};
+	show_chat
+}
+
+#ALIAS {chatup} {
+	#if {$chat[rows]*{$chat[page]+1} <= $chat[max] &&
+	     $chat[rows]*{$chat[page]+1} <= &chat[log][]} {
+		#math chat[page] {$chat[page]+1};
+		show_chat
+	}
+}
+
+#ALIAS {chatdown} {
+	#if {$chat[page] > 1} {
+		#math chat[page] {$chat[page]-1};
+		show_chat
+	}
+}
+
+#ALIAS {chatend} {
+	#math chat[page] 1;
+	show_chat
+}
+
+#class {chat} {close}

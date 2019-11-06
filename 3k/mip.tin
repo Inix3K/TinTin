@@ -353,6 +353,11 @@
 	#NOP Knights;
 	#REGEX {%0} {~Bela~} {#var mipgag 1};
 
+	#NOP Lost Soul;
+	#REGEX {%0} {~~You try to clasp onto the diamond spectacle, but your hands fall right through!} {#var mipgag 1};
+	#REGEX {%0} {~~Bursts of %w colored energy shoot off from the spectacle.} {#var mipgag 1};
+	#REGEX {%0} {~~The diamond-spectacle spins and turns on an unseen axis.} {#var mipgag 1};
+
 	#NOP Party Divvy;
 	#REGEX {%0} {[PARTY] GOLD divvy called by } {#var mipgag 1};
 	#REGEX {%0} {[PARTY] All gold divvied, total: } {#var mipgag 1};

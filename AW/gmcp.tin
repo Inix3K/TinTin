@@ -78,7 +78,9 @@
 
 #event {IAC SB GMCP comm.channel IAC SE} {
 	#var gmcp[comm][channel] {%0};
-	#line log {.tt/logs/AW.chat} {$gmcp[comm][channel][msg]}
+	#NOP Read chat.tin;
+	update_chat $gmcp[comm][channel][msg];
+	#NOP #line log {.tt/logs/AW.chat} {$gmcp[comm][channel][msg]}
 }
 
 #event {IAC SB GMCP comm.quest IAC SE} {
@@ -94,7 +96,7 @@
 	#format {tp_cap}	{%+2s}	{$gmcp[char][worth][tp]};
 	#format {tr_cap}	{%+1s}	{$gmcp[char][worth][trains]};
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
-        #line ignore #showme { <128>$world_cap <238>G<278>:<138>$gold_cap<278>\[<178>$bank_cap<278>\]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>} {1}
+	#draw tile 20 1 20 -32 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>\[<178>$bank_cap<278>\]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>}
 }
 
 #tick {update_status} {update_status} {2}
@@ -199,8 +201,8 @@
 	#math {name_len} {27-$roomvnum_len};
 	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]]};
 	#format {name_trunc} {%.${name_len}s} {$gmcp[room][info][name]};
-	#draw tile 3 -30 3 -1 {<020>$area_trunc<140> (<120>$room_cnt<140>)<099>};
-	#draw tile 4 -30 4 -1 {<140>[<030>$gmcp[room][info][num]<140>] <130>$name_trunc<099>}
+	#draw tile 22 -30 22 -1 {<020>$area_trunc<140> (<120>$room_cnt<140>)<099>};
+	#draw tile 23 -30 23 -1 {<140>[<030>$gmcp[room][info][num]<140>] <130>$name_trunc<099>}
 }
 
 

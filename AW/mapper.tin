@@ -1,15 +1,8 @@
 #class {awmap} {open}
 
-/* Cleanup Display TXT Files
-#sys rm .tt/map/AWmap.txt
-#sys rm .tt/map/AWmmap.txt
-#sys touch .tt/map/AWmap.txt
-#sys touch .tt/map/AWmmap.txt
-*/
-
 #map read .tt/map/AW.map
 #map goto 1
-#map offset 5 -30 -6 -1
+#map offset 24 -30 -6 -1
 
 /* Data Grab Triggers */
 #var longcap off
@@ -39,7 +32,7 @@
 	#var area %1;
         #if {"$areas[$gmcp[room][info][zone]]" == ""} {
                 #var areas $areas{$gmcp[room][info][zone]}{$area};
-		#class {var_areas} {write} {.tt/AW/var/areas.var}
+		#class {var_areas} {write} {.tt/AW/vars/areas.var}
         }
 }
 
@@ -126,10 +119,9 @@
 
 /* AW Map Capture */
 #act {^<MAPSTART>$} {
-	#sys rm .tt/map/AWmmap.txt;
-	#sys touch .tt/map/AWmmap.txt;
+	#list map clear;
 	#act {~%%1} {
-		#line {log} {.tt/map/AWmmap.txt} {%%1};
+		#list map ins -1 {%%1};
 		#line gag
 	};
 	#line gag
@@ -137,6 +129,7 @@
 
 #act {^<MAPEND>$} {
 	#unact {~%%1};
+	#draw tile 1 -30 20 -1 $map[%*];
 	#line gag
 } {1}
 

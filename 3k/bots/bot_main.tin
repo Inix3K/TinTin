@@ -113,8 +113,8 @@ prompt >$nl$
 
 #alias {v %1} {#if {%1 == "on"} {#var vacuum 1} {#var vacuum 0}}
 
-#act {#END OF PATH} {
-	#if {$no_loop | !$foundmob} {
+#act {#PATH WALK: #END OF PATH} {
+	#if {$no_loop || !$foundmob} {
 		killbot;
 		#if {&botcycle[] > 1} {
 			nextarea
@@ -128,7 +128,7 @@ prompt >$nl$
 		.bot
 	}
 }
-	
+
 
 
 
