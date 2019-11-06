@@ -1,0 +1,5 @@
+#class {var_mobs} {open}
+
+#var mobs {}
+
+#CLASS {var_mobs} {CLOSE}
