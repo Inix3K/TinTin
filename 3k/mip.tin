@@ -3,17 +3,16 @@
 
 #NOP ***** Set MIP ID Code **********
 #VAR {mip} {}
-#VAR {mip[Version]} {2.01.92b}
-#VAR {mip[id]} {}
 #LOOP {1} {5} {i} {
 	#MATH {temp[digit]} {1d10 - 1};
 	#VAR {mip[id]} {$mip[id]$temp[digit]}
 }
 #UNVAR {temp[digit]}
+#info system save
 
 #NOP ***** Kick Off MIP *************
 #DELAY {2} {
-	#SEND 3klient $mip[id]~~Tin$mip[Version];
+	#SEND 3klient $mip[id]~~$info[SYSTEM][CLIENT_NAME]$info[SYSTEM][CLIENT_VERSION];
 	#SEND 3klient LINEFEED on;
 	#SEND 3klient HAA off
 }
