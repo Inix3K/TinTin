@@ -14,19 +14,28 @@ prompt >$nl$
 
 
 #alias {.pause} {
-	#class {xbot} {kill};
-	#alias {_check_mob} {.pause}
+	#if {$bot} {
+		#class {xbot} {kill};
+		#alias {_check_mob} {.pause}
+	}
 }
 
 #alias {.stop} {
-	#map get {roomvnum} {botvnum};
-	#class {xbot} {kill};
-	#alias {xx} {#nop};
-	#alias {_check_mob} {#nop};
-	#var halt 1
+	#if {$bot} {
+		#map get {roomvnum} {botvnum};
+		#class {xbot} {kill};
+		#alias {xx} {#nop};
+		#alias {_check_mob} {#nop};
+		#var halt 1
+	}
 }
 
-#alias {_check_mob} {#nop}
+#alias {.resume} {
+	#map run $botvnum;
+	#delay {2} {..}
+}
+
+#alias {_check_mob} {#NOP}
 
 #alias {..} {
 	#undelay gohome;
@@ -83,10 +92,12 @@ prompt >$nl$
 }
 
 #alias {killbot} {
-	.stop;
-	#class bot kill;
-	#unalias {.bot};
-	#var bot 0;
+	#if {$bot} {
+		.stop;
+		#class bot kill;
+		#unalias {.bot};
+		#var bot 0
+	}
 }
 
 #alias {.bot} {
