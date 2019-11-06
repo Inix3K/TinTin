@@ -1,6 +1,5 @@
 #class {bot} {open}
 
-#var weapon axe
 #alias {dotaco} {e;grab shell}
 #act {Canislupus skips: a stale taco shell.} {get all;grab shell}
 #act {You try to grab a taco shell, but they all wriggle away from your grasp!} {e;grab lettuce}
@@ -19,6 +18,7 @@
 #act {Canislupus skips: a packet of hot sauce.} {get all;grab sauce}
 #act {You try to grab a packet of hot sauce, but it crinkles away from you.} {#nop}
 
+#var weapon axe
 #act {The melting cheese finally evaporates from %w.} {!wield $weapon}
 #act {The guacamole coating %w finally oozes off.} {!wear all}
 
