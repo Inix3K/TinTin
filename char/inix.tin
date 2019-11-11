@@ -91,7 +91,7 @@ rtick
 	} {
 		#var {sb2_freezer} {}
 	};
-	#var {my[hp][graph]}	{@graph{$my[hp][current];${my[hp][max]}}};
+	#var {my[hp][graph]}	{@graph{$my[hp][current];$my[hp][max]}};
 	#var {my[sp][graph]}	{@graph{$my[sp][current];$my[sp][max]}};
 	#var {my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
 	#var {my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};

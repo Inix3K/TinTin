@@ -47,9 +47,17 @@
 	#map list %3
 }
 
-#act {can be found in the vicinity of %1 which} {
-	#map find %1;
-	#map list %1
+#act {^%1 can be found in the vicinity of %2 which} {
+	#var quest[mob] %1;
+	#var quest[room] %2
+}
+
+#act {^is in the general area of %1.} {
+	#var quest[area] %1;
+	#list areas find {$quest[area]} {quest[index]};
+	#var quest[zone] *areas[+$quest[index]];
+	#map find {roomarea} {$quest[zone]} {roomname} {$quest[room]};
+	#map list {roomarea} {$quest[zone]} {roomname} {$quest[room]}
 }
 
 #alias {wf} {

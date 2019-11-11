@@ -70,21 +70,21 @@ prompt >$nl$
 				#path walk
 			} {
 				.pause;
-				k $mobname;
+				!kill $mobname;
 				#var foundmob 1;
 				#if {$itemfound && $vacuum} {
 					get all;
 					#if {"$world" == "inix"} {
-						truck get all
+						!truck get all
 					}
 				};
 				#if {$goldfound} {
-					get coins
+					!get coins
 				}
 			}
 		}
 	};
-	glance;
+	!glance;
 	#class {xbot} {close}
 }
 

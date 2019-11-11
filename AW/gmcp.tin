@@ -152,10 +152,13 @@
         #var gmcp[room][info] {%0};
 
         #if {$gmcp[room][info][num] == -1} {
-                #return
+		#map get {roomvnum} {roomvnum};
+		#var numcol {<488><238>}
+	} {
+		#var roomvnum $gmcp[room][info][num];
+		#var numcol {<038>};
+		#map goto {$gmcp[room][info][num]} {dig}
         };
-
-        #map goto {$gmcp[room][info][num]} {dig};
 
         #map get roomarea {result};
 
@@ -182,7 +185,7 @@
                         #map dig {$exit} {$gmcp[room][info][exits][$exit]};
 
                         #if {$result == 0} {
-                                #map set {roomcolor} {<110>} {$gmcp[room][info][exits][$exit]}
+                                #map set {roomcolor} {<118>} {$gmcp[room][info][exits][$exit]}
                         }
                 }
         };
@@ -196,13 +199,13 @@
 	#map list {roomarea} {$gmcp[room][info][zone]} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
 	#format {room_len} {%L} {$room_cnt};
-	#format {roomvnum_len} {%L} {$gmcp[room][info][num]};
+	#format {roomvnum_len} {%L} {$roomvnum};
 	#math {area_len} {27-$room_len};
 	#math {name_len} {27-$roomvnum_len};
 	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]]};
 	#format {name_trunc} {%.${name_len}s} {$gmcp[room][info][name]};
-	#draw tile 22 -30 22 -1 {<020>$area_trunc<140> (<120>$room_cnt<140>)<099>};
-	#draw tile 23 -30 23 -1 {<140>[<030>$gmcp[room][info][num]<140>] <130>$name_trunc<099>}
+	#draw tile 22 -30 22 -1 {<028>$area_trunc<148> (<128>$room_cnt<148>)<088>};
+	#draw tile 23 -30 23 -1 {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
 }
 
 

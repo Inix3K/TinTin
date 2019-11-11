@@ -201,6 +201,7 @@
 		#SWITCH {"$guild"} {
 			#CASE {"changeling"}	{.mipProcessGlineChangeling {%1}};
 			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
+			#CASE {"jedi"}		{.mipProcessGlineJedi {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
 			#CASE {"psicorp"}	{.mipProcessGlinePsicorp {%1}};
@@ -253,6 +254,14 @@
 	}
 }
 
+#ALIAS {.mipProcessGlineJedi} {
+	#IF {%1 == 1} {
+		#REGEX {GXP:%s{[\d\.]+}\%}		{#VAR {my[gxp][current]}	{&2}};
+	}; #ELSEIF {%1 == 2} {#NOP
+	}; #ELSE {
+		#ECHO {<171 Invalid Gline Number <088>}
+	}
+}
 #ALIAS {.mipProcessGlineJuggernaut} {
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]} {Ammo:\[%d/%d/%d/%d/%d\] <838>Gxp: %d.%d\%<099> Hits: \[%d\] <868>Coffin: %d/%d} {
@@ -524,6 +533,8 @@
 			#case {"Falcon"}		{#var {commcol} {<128>}};
 			#case {"Gamers"}		{#var {commcol} {<268>}};
 			#case {"High Mortal"}		{#var {commcol} {<108>}};
+			#case {"Jedi"}			{#var {commcol} {<158>}};
+			#case {"JEDI"}			{#var {commcol} {<128>}};
 			#case {"JuggAnnounce"}		{#var {commcol} {<118>}};
 			#case {"JuggMissiles"}		{#var {commcol} {<118>}};
 			#case {"JuggNewbie"}		{#var {commcol} {<258>}};

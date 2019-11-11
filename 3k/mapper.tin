@@ -5,7 +5,7 @@
 } {
 	#map read .tt/map/3k.map
 }
-#map offset 1 -45 17 -1
+#map offset 1 -45 15 -1
 #map goto {roomnote} {home}
 
 /* Move Event */
@@ -82,7 +82,7 @@
 	#var exits %3;
 	#if {"$mapping" == "on"} {
 		#replace exits {,} {;};
-		#foreach {$exits} {eachexit} {#map dig $eachexit}
+		#foreach {$exits} {eachexit} {#map dig $eachexit};
 		#map get {roomexit} {rexit};
 		#foreach {$rexit} {eachexit} {
 			#map at {$eachexit} {
@@ -110,8 +110,7 @@
 				}
 			} {2}
 		};
-		#map get {roomvnum} {gonum};
-		#map goto $gonum;
+		#delay 0 mapupdate
 	}
 }
 
