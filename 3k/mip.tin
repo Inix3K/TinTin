@@ -19,32 +19,9 @@
 
 #NOP ***** Extract Raw Data *********
 #ACTION {~{\#K\%$mip[id](.{3})(.{3})(.*)}} {
-	#VAR {mip[charcount]} {0};
-	#VAR {mip[out]} {};
-	#VAR {mip[overflow]} {};
 	#VAR {mip[source]} {%0};
-	#MATH {mip[%3][length]} {%2 - 3};
 	#VAR {mip[%3][data]} {%4};
-	#REPLACE {mip[%3][data]} {"} {'};
-	#PARSE {$mip[%3][data]} {i} {
-		#MATH {mip[charcount]} {$mip[charcount] + 1};
-		#VAR {mip[delta]} {$mip[%3][length]};
-		#IF {"${mip[char2]}${mip[char1]}${i}" == "x7B"} {#MATH {mip[delta]} {$mip[delta] + 3}};
-		#IF {"${mip[char2]}${mip[char1]}${i}" == "x7D"} {#MATH {mip[delta]} {$mip[delta] + 3}};
-		#IF {"$i" == ";"} {#MATH {mip[delta]} {$mip[delta] + 1}};
-		#IF {$mip[charcount] <= $mip[delta]} {
-			#VAR {mip[%3][length]} {$mip[delta]};
-			#VAR {mip[out]} {${mip[out]}${i}};
-		} {
-			#REGEXP {$mip[%3][data]} {^{.{$mip[delta]}}{.*}} {#VAR {mip[overflow]} &2} {};
-			#BREAK;
-		};
-		#VAR {mip[char2]} {$mip[char1]};
-		#VAR {mip[char1]} {$i}
-	};
-	#VAR {mip[%3][data]} {$mip[out]};
-	.mipProcessFlag {%3} {$mip[out]};
-	#IF {"${mip[overflow]}" != ""} {#SHOWME {${mip[overflow]}}};
+	.mipProcessFlag {%3} {%4};
 
 	#IF {"$mip[echo]" != "on"} {
 		#LINE GAG
@@ -390,7 +367,7 @@
 #ALIAS {show_chat} {
 	#math chat[start]	{$chat[rows] * $chat[page]};
 	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
-	#line sub {var;esc} #draw {tile} 1 1 $chat[rows] -47 $chat[log][-$chat[start]..-$chat[end]]
+	#line sub {var} #draw {tile} 1 1 $chat[rows] -47 $chat[log][-$chat[start]..-$chat[end]]
 }
 #ALIAS {update_chat} {
 	#if {&chat[log][] > $chat[max]} {

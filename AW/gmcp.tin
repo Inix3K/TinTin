@@ -16,8 +16,7 @@
 
 #config {debug telnet} {off}
 
-#var CLIENT_NAME TinTin++
-#var CLIENT_VERSION 2.01.92b
+#info system save
 
 #nop Utility function to generate color gradients, requires 256 color terminal.
 
@@ -38,13 +37,14 @@
 }
 
 #event {PROGRAM START} {
-        #var CLIENT_NAME %0;
-        #var CLIENT_VERSION %1
+        #NOP #var CLIENT_NAME %0;
+	#NOP #var CLIENT_VERSION %1;
+	#info system save
 }
 
 #event {IAC WILL GMCP} {
         #send {$IAC$DO$GMCP\};
-        #send {$IAC$SB$GMCP core.hello { "client": "$CLIENT_NAME", "version": "$CLIENT_VERSION" } $IAC$SE\};
+        #send {$IAC$SB$GMCP core.hello { "client": "$info[SYSTEM][CLIENT_NAME]", "version": "$info[SYSTEM][CLIENT_VERSION]" } $IAC$SE\};
         #send {$IAC$SB$GMCP core.supports.set [ "room 1", "comm 1", "char 1", "group 1" ] $IAC$SE\}
 }
 
