@@ -1,5 +1,7 @@
 #class {awmap} {open}
 
+#read .tt/AW/terrain.tin
+
 #map read .tt/map/AW.map
 #map goto 1
 #map offset 24 -30 -6 -1

@@ -3,7 +3,7 @@
 
 #function {graph}
 {
-	#regex {%1} {\d} {
+	#regex {%1} {%d} {
 		#math per {100.0*%1/%2};
 		#format {per} {%d} {$per};
 		#if {$per > 100} {#var graph {<006>   $per%%   <088>}};

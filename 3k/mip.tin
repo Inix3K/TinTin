@@ -18,7 +18,7 @@
 }
 
 #NOP ***** Extract Raw Data *********
-#ACTION {~{\#K\%$mip[id](.{3})(.{3})(.*)}} {
+#ACTION {{^\#K\%$mip[id](.{3})(.{3})(.*)}$} {
 	#VAR {mip[source]} {%0};
 	#VAR {mip[%3][data]} {%4};
 	.mipProcessFlag {%3} {%4};
