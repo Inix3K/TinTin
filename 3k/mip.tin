@@ -253,7 +253,7 @@
 			#VAR {corpses[coffinsize]}	{&10}
 		}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {$mip[gline][2]} {Nukes: \[%d/%d\]<099> Reset: \[%d\%\]} {
+		#REGEX {$mip[gline][2]} {Nukes: [%d/%d]<099> Reset: [%d\%]} {
 			#VAR {nukes}		{&1};
 			#VAR {nukes_max}	{&2};
 			#VAR {reset}		{&3}
