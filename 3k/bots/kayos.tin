@@ -5,8 +5,7 @@
 #var {botpath} {e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;s;s;s;s;s;s;s}
 
 #act {^=M= A {robotic lion|robotic hound|robotic tiger|robotic velociraptor|TANK|refugee|demon soldier|flameroller|tornado of Kayos energy|time-lost pirate|small imp}} {
-	#var mobname mob
-	};
+	#var mobname mob;
 	_check_mob
 }
 
