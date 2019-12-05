@@ -37,6 +37,10 @@ prompt >$nl$
 	#delay {2} {.bot}
 }
 
+#alias {.single} {
+	#var singlestep 1
+}
+
 #alias {_check_mob} {#NOP}
 
 #alias {..} {
