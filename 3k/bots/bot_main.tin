@@ -11,6 +11,7 @@ prompt >$nl$
 #var mobname 0
 #var bot 0
 #var vacuum 0
+#var singlestep 0
 
 
 #alias {.pause} {
@@ -110,7 +111,9 @@ prompt >$nl$
 
 #act {^%w dealt the killing blow to} {
 	corpsetrig;
-	.bot
+	#if {!$singlestep} {
+		.bot
+	}
 } {1}
 
 /* Detect Players */
