@@ -335,6 +335,16 @@
 
 	#NOP Add cases for tells/emotes to gag from monitor, such as mob emotes;
 
+	#NOP Byron crying OW;
+	#REGEX {%01} {~Byron~cries 'OW!!'} {#var mipgag 1};
+
+	#NOP Dundee;
+	#REGEX {%0} {~A~shiver runs through you as you successfully fight off an infection.} {#var mipgag 1};
+	#REGEX {%0} {~Your~head throbs briefly as you successfully fight off an infection.} {#var mipgag 1};
+	#REGEX {%0} {~Your~temperature spikes as you successfully fight off an infection.} {#var mipgag 1};
+	#REGEX {%0} {~Your~palms begin to sweat as you successfully fight off an infection.} {#var mipgag 1};
+	#REGEX {%0} {~Your~neck aches slightly as you successfully fight off an infection.} {#var mipgag 1};
+
 	#NOP Hell Cows;
 	#REGEX {%0} {~A~cow falls, but the herd continues on!} {#var mipgag 1};
 	#REGEX {%0} {~The~lonesome cow topples to the ground, the herd finally slain.} {#var mipgag 1};
