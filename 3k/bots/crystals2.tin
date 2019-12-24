@@ -1,0 +1,14 @@
+#class {bot} {open}
+
+#var no_loop 1
+
+#var {botpath} {se;se;e;e;e;e;se;se;e;e;e;e;e;e;e;se;se;se;e;e;e;e;e;e;e;se;se;se;se;se;se;se;s;s;nw;nw;nw;w;w;w;w;nw;n;nw;nw;nw;se;se;se;s;se;w;nw;nw;w;w;w;w;w;w;w;w;nw;nw;w;w;w;nw;nw;nw;nw;w;n;nw;se;s;s;se;s;se;se;e;se;se;e;se;e;e;e;e;e;e;e;se;e;e;e;e;e;e;e;se;se;e;se;e;e;e;se;sw;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;w;sw;sw;sw;sw;d}
+
+#act {{^=M= (Adamant of |Crystal |Living |A |An |)(Garnet|garnet|Quartz|quartz|Sapphire|sapphire|Jade|jade|Ruby|ruby|Spinel|spinel|Aquamarine|aquamarine|Amber|amber|Emerald|emerald|Amethyst|amethyst|Kyanite|kyanite|Diamond|diamond)( entity| creature|)?( \((shining|living|crystalline)\))*( \<[\<\>\|\X\\\/\-]+\>)?( \(demoralized\))?( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?( !*attacking ([A-z]+)!)*( \{([0-9]+)\})?\.$}} {
+	#var mobname crystal;
+	_check_mob
+}
+
+#act {=M= Crysmal, Prismatic God of Crystals} {xx}
+
+#class {bot} {close}

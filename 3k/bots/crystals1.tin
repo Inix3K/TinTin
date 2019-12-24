@@ -1,0 +1,16 @@
+#class {bot} {open}
+
+#var no_loop 1
+
+#var {botpath} {e;ne;n;n;ne;n;nw;n;n;ne;ne;ne;ne;ne;s;s;s;s;s;s;s;se;se;se;se;se;se;se;se;se;se;e;e;e;e;e;e;e;e;e;e;e;e;e;e;ne;ne;ne;ne;ne;ne;ne;ne;ne;ne;n;n;n;n;n;n;n;n;nw;nw;nw;nw;nw;nw;nw;nw;nw;nw;w;w;w;w;w;w;w;w;w;w;w;w;w;w;sw;sw;sw;sw;sw;sw;sw;sw;sw;sw;e;s;s;s;s;s;s;s;s;se;se;se;se;se;se;se;se;se;ne;e;e;e;w;w;w;sw;e;e;e;e;e;e;e;e;e;e;e;e;e;e;nw;w;w;w;e;e;e;se;ne;ne;ne;ne;ne;ne;ne;ne;ne;nw;sw;sw;sw;sw;ne;ne;ne;w;sw;sw;sw;sw;sw;sw;sw;w;w;w;w;w;w;w;w;w;w;w;w;nw;nw;nw;nw;nw;nw;nw;se;se;se;se;se;se;se;e;e;e;e;e;e;e;e;e;e;e;e;ne;ne;ne;ne;ne;ne;ne;ne;n;n;n;n;n;n;w;sw;s;s;s;s;s;sw;sw;sw;sw;sw;sw;sw;w;w;w;w;w;w;w;w;w;w;nw;nw;nw;nw;nw;nw;nw;e;e;n;n;ne;nw;n;n;ne;ne;ne;ne;ne;s;s;sw;w;sw;sw;s;s;n;n;ne;ne;e;e;ne;ne;sw;sw;sw;sw;sw;s;s;s;s;ne;ne;s;se;se;se;ne;ne;se;w;e;n;s;nw;nw;w;e;se;sw;nw;nw;nw;nw;s;nw;nw;ne;ne;ne;w;ne;n;n;e;e;e;e;e;nw;w;w;w;e;e;e;se;ne;e;e;e;se;w;w;w;w;e;e;e;e;se;se;se;se;nw;nw;nw;nw;s;s;se;e;se;se;s;s;n;n;nw;nw;w;nw;s;se;se;nw;nw;nw;nw;w;sw;s;e;w;w;w;n;nw;e;e;e;w;w;w;se;s;w;sw;sw;sw;ne;ne;ne;e;se;e;w;w;sw;sw;sw;n;s;s;n;ne;ne;se;sw;sw;n;s;e;e;ne;s;s;ne;e;e;s;n;sw;sw;se;ne;ne;n;s;s;n;sw;sw;sw;w;w;e;se;e;ne;ne;ne;sw;sw;sw;w;s;se;w;w;w;e;e;e;nw;n;w;w;w;e;s;sw;w;nw;nw;nw;nw;se;se;s;nw;w;nw;nw;n;n;s;s;se;se;e;se;s;s;nw;nw;nw;nw;se;se;se;se;e;e;e;e;w;w;w;w;se;e;e;e;ne;se;e;e;e;w;w;w;nw;e;e;e;e;e;n;n;ne;e;ne;ne;n;n;s;s;sw;sw;w;w;sw;sw;ne;ne;ne;ne;ne;n;n;n;n;sw;sw;n;nw;nw;nw;sw;sw;nw;e;w;s;n;se;se;e;w;nw;ne;se;se;se;se;n;se;se;sw;sw;sw;e;sw;s;s;ne;ne;ne;ne;ne;n;n;nw;ne;n;n;e;e;nw;nw;nw;nw;nw;nw;nw;w;w;w;w;w;w;w;w;w;w;sw;sw;sw;sw;sw;sw;sw;s;s;s;s;s;sw;w;n;n;n;n;n;n;ne;ne;ne;ne;ne;ne;ne;ne;e;e;e;e;e;e;e;e;e;e;e;e;se;se;se;se;se;se;se;nw;nw;nw;nw;nw;nw;nw;w;w;w;w;w;w;w;w;w;w;w;w;sw;sw;sw;sw;sw;sw;sw;w;ne;ne;ne;sw;sw;sw;sw;nw;ne;ne;ne;ne;ne;ne;ne;ne;ne;se;e;e;e;w;w;w;nw;e;e;e;e;e;e;e;e;e;e;e;e;e;e;se;se;se;se;se;se;se;se;se;s;s;s;s;s;s;s;n;n;n;n;n;n;n;nw;nw;nw;nw;nw;nw;nw;nw;nw;sw;w;w;w;d}
+
+#act {{^=M= (Adamant of |Crystal |Living |A |An |)(Garnet|garnet|Quartz|quartz|Sapphire|sapphire|Jade|jade|Ruby|ruby|Spinel|spinel|Aquamarine|aquamarine|Amber|amber|Emerald|emerald|Amethyst|amethyst|Kyanite|kyanite|Diamond|diamond)( entity| creature|)?( \((shining|living|crystalline)\))*( \<[\<\>\|\X\\\/\-]+\>)?( \(demoralized\))?( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?( !*attacking ([A-z]+)!)*( \{([0-9]+)\})?\.$}} {
+	#var mobname beast;
+	_check_mob
+}
+
+#act {=M= Crysmal, Prismatic God of Crystals} {xx}
+
+#class {bot} {close}
+
+

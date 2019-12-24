@@ -1,0 +1,16 @@
+#class {bot} {open}
+
+#var no_loop 1
+
+#var {botpath} {ne;n;e;nw;w;w;sw;s;e;w;n;sw;s;s;se;e;n;se;sw;e;e;ne;n;w;ne;se;n;n;se;e;e;nw;nw;nw;nw;nw;nw;sw;sw;sw;sw;sw;sw;se;se;se;se;se;se;ne;ne;ne;ne;ne;ne;n;nw;nw;nw;nw;nw;w;w;sw;sw;sw;sw;sw;s;s;se;se;se;se;se;e;e;ne;ne;ne;ne;ne;n;ne;nw;nw;nw;nw;nw;nw;w;w;sw;sw;sw;sw;sw;sw;s;s;se;se;se;se;se;se;e;e;ne;ne;ne;ne;ne;ne;ne;w;e;e;e;sw;sw;sw;sw;sw;sw;sw;sw;sw;s;sw;s;nw;nw;nw;nw;nw;nw;nw;nw;nw;nw;nw;nw;ne;ne;ne;ne;ne;ne;ne;ne;ne;ne;ne;sw;sw;sw;sw;sw;sw;sw;sw;sw;sw;sw;e;se;e;se;se;se;se;se;se;se;se;se;n;n;n;n;n;n;n;n;n;n;e;w;w;w;w;w;w;w;w;w;w;w;ne;ne;ne;ne;ne;ne;ne;ne;ne;n;ne;n;se;se;se;se;se;se;se;se;se;se;se;se;w;nw;w;nw;nw;nw;nw;nw;nw;nw;nw;nw;s;s;s;s;s;s;s;s;s;n;n;n;n;n;n;n;n;n;se;se;se;se;se;se;se;se;se;e;se;e;sw;sw;sw;sw;sw;sw;sw;sw;sw;sw;sw;ne;ne;ne;ne;ne;ne;ne;ne;ne;ne;ne;d}
+
+#act {{^=M= (Adamant of |Crystal |Living |A |An |)(Garnet|garnet|Quartz|quartz|Sapphire|sapphire|Jade|jade|Ruby|ruby|Spinel|spinel|Aquamarine|aquamarine|Amber|amber|Emerald|emerald|Amethyst|amethyst|Kyanite|kyanite|Diamond|diamond)( entity| creature|)?( \((shining|living|crystalline)\))*( \<[\<\>\|\X\\\/\-]+\>)?( \(demoralized\))?( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?( !*attacking ([A-z]+)!)*( \{([0-9]+)\})?\.$}} {
+	#var mobname crystal;
+	_check_mob
+}
+
+#act {=M= Crysmal, Prismatic God of Crystals} {xx}
+
+#class {bot} {close}
+
+

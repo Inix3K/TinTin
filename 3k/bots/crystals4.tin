@@ -1,0 +1,16 @@
+#class {bot} {open}
+
+#var no_loop 1
+
+#var {botpath} {ne;ne;n;n;nw;nw;n;nw;n;n;n;sw;sw;se;nw;ne;s;n;ne;se;s;se;nw;n;n;n;n;w;sw;n;n;sw;s;s;s;n;n;se;ne;sw;nw;n;ne;nw;s;sw;s;s;s;s;n;n;n;n;ne;n;n;sw;s;n;ne;ne;s;s;ne;n;ne;s;s;sw;s;n;ne;n;n;e;s;s;sw;s;se;s;s;s;s;n;n;n;se;s;s;n;se;sw;s;s;n;n;ne;nw;n;nw;n;n;n;ne;s;s;s;s;n;n;n;n;n;n;ne;s;n;ne;ne;ne;e;e;e;e;e;ne;e;e;e;e;e;e;se;se;e;e;ne;e;se;s;s;sw;sw;s;se;se;s;sw;s;se;s;s;sw;sw;w;w;w;sw;sw;w;w;nw;sw;nw;n;se;sw;nw;sw;w;nw;n;se;ne;se;n;sw;nw;ne;w;n;sw;sw;nw;n;ne;e;sw;ne;w;se;sw;ne;nw;ne;ne;s;e;s;se;e;s;se;e;nw;ne;se;n;sw;nw;ne;n;ne;ne;ne;ne;e;sw;ne;se;se;s;se;s;sw;nw;ne;s;sw;nw;ne;nw;nw;ne;se;nw;e;sw;se;sw;nw;nw;nw;nw;nw;nw;nw;n;ne;e;sw;ne;n;ne;e;se;s;n;sw;sw;sw;sw;sw;s;ne;nw;sw;s;se;e;n;se;se;se;se;se;n;s;s;sw;w;ne;sw;nw;e;ne;n;w;nw;n;sw;ne;se;se;w;ne;nw;ne;w;n;nw;nw;nw;ne;e;e;nw;ne;nw;e;sw;se;sw;se;sw;ne;s;nw;se;sw;sw;se;sw;sw;s;s;nw;nw;e;n;nw;se;s;ne;sw;sw;se;sw;e;nw;nw;ne;n;nw;nw;se;sw;se;n;nw;ne;n;s;sw;sw;sw;sw;n;se;ne;nw;e;nw;sw;ne;w;sw;s;n;ne;nw;nw;s;se;ne;ne;s;nw;nw;e;sw;se;sw;e;e;se;ne;nw;n;ne;sw;nw;e;ne;n;se;s;sw;ne;n;nw;sw;nw;sw;n;se;ne;nw;e;w;nw;d}
+
+#act {{^=M= (Adamant of |Crystal |Living |A |An |)(Garnet|garnet|Quartz|quartz|Sapphire|sapphire|Jade|jade|Ruby|ruby|Spinel|spinel|Aquamarine|aquamarine|Amber|amber|Emerald|emerald|Amethyst|amethyst|Kyanite|kyanite|Diamond|diamond)( entity| creature|)?( \((shining|living|crystalline)\))*( \<[\<\>\|\X\\\/\-]+\>)?( \(demoralized\))?( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?( !*attacking ([A-z]+)!)*( \{([0-9]+)\})?\.$}} {
+	#var mobname crystal;
+	_check_mob
+}
+
+#act {=M= Crysmal, Prismatic God of Crystals} {xx}
+
+#class {bot} {close}
+
+
