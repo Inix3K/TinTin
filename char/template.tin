@@ -1,0 +1,5 @@
+#class {character_name} {open}
+
+#var guild your_guild
+
+#class {character_name} {close}
