@@ -1,26 +1,53 @@
-#split 20 6 1 46
-#map offset 1 -45 17 -1
+#class {ui} {open}
+
+    #event {VARIABLE UPDATE map_offset} {
+	    #delay 0 #read .tt/3k/draw.tin
+    }
+
+#class {ui} {close}
+
+#math {map_offset_2} {$map_offset+2}
+#math {map_border} {$map_offset+1}
+#math {cycler_border} {$cycler_offset+1}
+
+#split 20 6 1 $cycler_border
+
+/* Mud status bar */
 #draw {green} {line} 18 1 18 -1
 #draw {green} {line} 20 1 20 -1
+
+/* Character status bar */
 #draw {line} -2 1 -2 -1
 #draw {line} -5 1 -5 -1
 #draw {line} -7 1 -7 -1
-#draw {line} 1 -46 17 -46
-#draw {line} 21 -46 -8 -46
-#showme {<228>\u2534<088>} 18 -46
-#showme {\u2534} -7 -46
-#showme {<228>\u252C<088>} 20 -46
+
+
+/* Map Window */
+#screen clear square 1 -$map_offset 17 -1
+#map offset 1 -$map_offset 17 -1
+#draw {line} 1 -$map_border 17 -$map_border
+#showme {<228>\u2534<088>} 18 -$map_border
+#delay {0.5} #draw {tile} 16 -$map_offset 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>}
+#delay {0.5} #draw {tile} 17 -$map_offset 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+
+
+/* Chat box */
+#line sub {var;esc} #draw {tile} 1 1 17 -$map_offset_2 $chat[log][%*]
+
+/* Area Cycler Window */
+#showme {<228>\u252C<088>} 20 -$cycler_border
+#draw {line} 21 -$cycler_border -8 -$cycler_border
+#showme {\u2534} -7 -$cycler_border
+
+/* Main output */
 #screen clear square 21 1 -8 1
-#screen clear square 21 -45 -8 -1
-#delay {0.5} #draw {tile} 16 -45 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>}
-#delay {0.5} #draw {tile} 17 -45 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
-#line sub {var;esc} #draw {tile} 1 1 17 -47 $chat[log][%*]
+#screen clear square 21 -$cycler_offset -8 -1
+botdraw
+
+
 
 
 /* Notes for 'T' drawings */
 #NOP #showme {<228>\u252C} 20 89
 #NOP #showme {<088>\u2534} -5 89
 
-
-/* Area Cycler */
-botdraw

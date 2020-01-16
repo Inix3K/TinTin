@@ -5,6 +5,9 @@
 #alias {mipon} {#read .tt/3k/mip.tin}
 #alias {mipoff} {#class mip kill}
 
+#alias {map+} {#math map_offset $map_offset+5}
+#alias {map-} {#math map_offset $map_offset-5}
+
 #alias {dg} {divvy gold}
 #alias {fol} {follow}
 #alias {ga} {get all}

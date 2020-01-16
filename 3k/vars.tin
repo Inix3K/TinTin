@@ -3,4 +3,8 @@
 #class chat kill
 #read .tt/3k/vars/3kchat.var
 
+/* Used by draw.tin */
+#var {map_offset} {60}
+#var {cycler_offset} {45}
+
 #CLASS {vars} CLOSE

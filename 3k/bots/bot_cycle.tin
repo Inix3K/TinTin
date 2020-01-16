@@ -52,7 +52,7 @@
 
 #alias {botdraw} {
 	#NOP Clear previous drawing;
-	#screen clear square 21 -45 -8 -1;
+	#screen clear square 21 -$cycler_offset -8 -1;
 
 	#if {&botcycle[] == 0} {
 		#var botareas {

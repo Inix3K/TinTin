@@ -49,3 +49,22 @@
 
 #### AW/snd.tin
 * Search and Destroy style mob hunting for TinTin
+
+
+## Helpful Aliases
+
+There are a number of pre-defined aliases, both for helping in-game as well as for manipulating tt++ itself. Note that not everything is document here yet!
+
+### General Aliases
+
+* **map+** - Increase the size of the map panel (horizontally)
+* **map-** - Decrease the size of the map panel (horizontally)
+
+### 3k/3s aliases
+
+#### Area Cycler
+
+#### Game
+
+
+### Aardwolf aliases
