@@ -52,7 +52,7 @@
 
 #alias {botdraw} {
 	#NOP Clear previous drawing;
-	#screen clear square 21 -45 -8 -1;
+	#screen clear square 21 -42 -8 -1;
 
 	#if {&botcycle[] == 0} {
 		#var botareas {
@@ -79,13 +79,13 @@
 			}
 		}
 	};
-	#draw green rounded box 22 -43 24 -3 {
+	#draw green rounded box 22 -41 24 -3 {
 		<138>              Area Cycler    <088>
 	};
-	#draw green rounded box 24 -43 25+$botheight -3 {
+	#draw green rounded box 24 -41 25+$botheight -3 {
 		$botareas
 	};
-	#showme {<228>\u251C} 24 -43;
+	#showme {<228>\u251C} 24 -41;
 	#showme {<228>\u2524} 24 -3;
 }
 

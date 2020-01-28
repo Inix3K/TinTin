@@ -1,20 +1,20 @@
-#split 20 6 1 46
-#map offset 1 -45 17 -1
+#split 20 6 1 43
+#map offset 1 -42 17 -1
 #draw {green} {line} 18 1 18 -1
 #draw {green} {line} 20 1 20 -1
 #draw {line} -2 1 -2 -1
 #draw {line} -5 1 -5 -1
 #draw {line} -7 1 -7 -1
-#draw {line} 1 -46 17 -46
-#draw {line} 21 -46 -8 -46
-#showme {<228>\u2534<088>} 18 -46
-#showme {\u2534} -7 -46
-#showme {<228>\u252C<088>} 20 -46
+#draw {line} 1 -43 17 -43
+#draw {line} 21 -43 -8 -43
+#showme {<228>\u2534<088>} 18 -43
+#showme {\u2534} -7 -43
+#showme {<228>\u252C<088>} 20 -43
 #screen clear square 21 1 -8 1
-#screen clear square 21 -45 -8 -1
-#delay {0.5} #draw {tile} 16 -45 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>}
-#delay {0.5} #draw {tile} 17 -45 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
-#line sub {var;esc} #draw {tile} 1 1 17 -47 $chat[log][%*]
+#screen clear square 21 -42 -8 -1
+#delay {0.5} #draw {tile} 16 -42 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>}
+#delay {0.5} #draw {tile} 17 -42 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+#line sub {var;esc} #draw {tile} 1 1 17 -44 $chat[log][%*]
 
 
 /* Notes for 'T' drawings */

@@ -32,3 +32,12 @@
 } {1}
 
 #class {bot} {close}
+
+#alias {kayos_reset} {
+	#map list {roomarea} {Kayos Wars} {variable} {kayos_rooms};
+	#foreach {*kayos_rooms[]} {kayos_cur_room} {
+		#map at $kayos_cur_room #map get roomsymbol kayos_cur_symbol;
+		#map at $kayos_cur_room #map set roomsymbol {};
+		#map at $kayos_cur_room #map set roomnote {};
+	}
+}

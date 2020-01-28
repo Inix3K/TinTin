@@ -377,7 +377,7 @@
 #ALIAS {show_chat} {
 	#math chat[start]	{$chat[rows] * $chat[page]};
 	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
-	#line sub {var} #draw {tile} 1 1 $chat[rows] -47 $chat[log][-$chat[start]..-$chat[end]]
+	#line sub {var} #draw {tile} 1 1 $chat[rows] -44 $chat[log][-$chat[start]..-$chat[end]]
 }
 #ALIAS {update_chat} {
 	#if {&chat[log][] > $chat[max]} {

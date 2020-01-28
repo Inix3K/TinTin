@@ -23,7 +23,7 @@
 #gag {The cocoon fuses with the attack and grows stronger!}
 
 #NOP Redaxe
-#gag {Chopping violently, the axe draws rancor from }
+#gag {Chopping violently, the axe draws {rancor|crimson|blood} from }
 #gag {You slice, and a flow of rancor falls from }
 #gag {You slice, and a flow of blood falls from }
 #gag {The blood from the wound flows into your soul through the Axe.}
@@ -58,6 +58,7 @@
 #NOP Big Game Hunter
 #gag {Your crazed ambition overflows!}
 #gag {Your ambition overflows as you try to bring down the big game with a spell!}
+#gag {Your ambition overflows as you try to bring down the big game with a ferocious attack!}
 #gag {Your wild ambition drives you ever onward!}
 #gag {Your wild ambition takes a back seat to prudence.}
 
@@ -82,6 +83,12 @@
 #gag {Your dog tears a chunk of flesh from }
 
 /* Mobs/Areas */
+#NOP Rimalkins
+#gag {^The small Rimalkin lunges at you with its needle-like fangs!}
+#gag {^The small Rimalkin scratches about the room.}
+#gag {^The small Rimalkin slashes at you with tis razor sharp claws!}
+
+#NOP Silver/Blue
 #gag {^Impediment shakes, fire burning.}
 
 #gag {^Shadow sees the light, frenzied screeching!}

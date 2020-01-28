@@ -5,7 +5,7 @@
 } {
 	#map read .tt/map/3k.map
 }
-#map offset 1 -45 15 -1
+#map offset 1 -42 17 -1
 #map goto {roomnote} {home}
 
 /* Move Event */
@@ -23,8 +23,8 @@
 	#unvar area_mapped;
 	#map list {} {} {} {$roomarea} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
-	#draw {tile} 16 -45 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-	#draw {tile} 17 -45 17 -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+	#draw {tile} 16 -42 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+	#draw {tile} 17 -42 17 -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
 }
 
 #event {MAP UPDATED VTMAP} {
@@ -172,8 +172,8 @@
 	};
 	#map get {roomvnum} {gonum};
 	#map goto $gonum;
-	#draw {tile} 16 -45 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-	#draw {tile} 17 -45 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+	#draw {tile} 16 -42 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+	#draw {tile} 17 -42 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
 }
 
 #alias {go} {
