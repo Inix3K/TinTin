@@ -331,6 +331,13 @@
 	}
 }
 
+#NOP Ravenloft Castle
+#act {^You warily step out onto the cold, damp ground.} {#map goto 20756}
+#act {^You then step out of the coach and find yourself back} {#map goto 4631}
+
+#NOP Sausage Dimensions
+#act {^The frankfurter SMACKS you so hard you wake up somewhere else!} {#map goto 17561}
+
 #NOP Science Shuttle
 #act {^The captain announces: Welcome to Midway Space Station.$} {exit}
 #act {^The captain announces: Welcome to Houston Transport Center.$} {exit2}
@@ -343,9 +350,6 @@
 
 #NOP The Lost Village of Willothorn
 #act {^You swim for your life for the surface and end up back where} {#map goto 14087}
-
-#NOP Sausage Dimensions
-#act {^The frankfurter SMACKS you so hard you wake up somewhere else!} {#map goto 17561}
 
 #NOP Xaxis
 #act {^Welcome to Xaxis!} {#map goto 15875}
