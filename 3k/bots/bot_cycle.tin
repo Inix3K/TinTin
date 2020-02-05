@@ -24,7 +24,10 @@
 	#delay {2} {..}
 }
 
-#alias {botclear} {#var botcycle {}}
+#alias {botclear} {
+	#var botcycle {};
+	#var cycle 0
+}
 
 #alias {bc} {
 	#echo {<228> +-------------------+}<088>;
