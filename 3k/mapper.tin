@@ -18,7 +18,7 @@
 	#format {roomvnum_len}	{%L} {$roomvnum};
 	#format {roomarea_len}	{%L} {$roomarea};
 	#format {roomdesc_len}	{%L} {$roomdesc};
-	#math {name_len} {42-$roomvnum_len};
+	#math {name_len} {42-$roomvnum_len-3};
 	#format {name_trunc} {%.${name_len}s} {$roomname};
 	#unvar area_mapped;
 	#map list {} {} {} {$roomarea} {variable} {area_mapped};
