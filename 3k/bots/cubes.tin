@@ -1,0 +1,15 @@
+#class {bot} {open}
+
+#var {botpath} {e;n;s;e;w;w;w;w;n;s;nw;w;e;s;w;w;n;s;s;n;e;se;w;e;ne;s;d;s;s;n;ne;sw;se;nw;e;e;e;w;w;w;n;u;n;e;e}
+
+#act {^=M= {A massive ochre jelly|A small gelatinous cube|A gigantic gelatinous cube}} {
+	#switch {"%1"} {
+		#case {"A massive ochre jelly"}		{#var mobname jelly};
+		#case {"A small gelatinous cube"}	{#var mobname cube};
+		#case {"A gigantic gelatinous cube"}	{#var mobname cube};
+		#default				{#var mobname slime}
+	};
+	_check_mob
+}
+
+#class {bot} {close}
