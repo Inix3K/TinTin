@@ -246,20 +246,7 @@
 #alias voidlink {
 	#var dir %1;
 	#var dest_num %2;
-	#switch {"$dir"} {
-		#case {"n"} {#var flip_dir s};
-		#case {"e"} {#var flip_dir w};
-		#case {"s"} {#var flip_dir n};
-		#case {"w"} {#var flip_dir e};
-		#case {"ne"} {#var flip_dir sw};
-		#case {"nw"} {#var flip_dir se};
-		#case {"se"} {#var flip_dir nw};
-		#case {"sw"} {#var flip_dir ne};
-		#case {"u"} {#var flip_dir d};
-		#case {"d"} {#var flip_dir u}
-	};
-	#map link $dir $dest_num;
-	#map at $dest_num #map link $flip_dir $roomvnum;
+	#map link $dir $dest_num both;
 	#map insert $dir void
 }
 
