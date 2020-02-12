@@ -338,6 +338,13 @@
 	#NOP Byron crying OW;
 	#REGEX {%01} {~Byron~cries 'OW!!'} {#var mipgag 1};
 
+	#NOP Bards;
+	#REGEX {%0} {~takes a deep breath.} {#var mipgag 1};
+	#REGEX {%0} {~takes a breath.} {#var mipgag 1};
+	#REGEX {%0} {~pauses for a moment...} {#var mipgag 1};
+	#REGEX {%0} {~ceases his performance.} {#var mipgag 1};
+	#REGEX {%0} {~finishes his performance with a bow.} {#var mipgag 1};
+
 	#NOP Dundee;
 	#REGEX {%0} {~A~shiver runs through you as you successfully fight off an infection.} {#var mipgag 1};
 	#REGEX {%0} {~Your~head throbs briefly as you successfully fight off an infection.} {#var mipgag 1};
