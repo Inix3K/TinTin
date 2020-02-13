@@ -67,7 +67,7 @@
 #var longcap off
 
 #function cartcheck {
-	#format cart {%.20s} {%0};
+	#format cart {%.60s} {%0};
 	#if {"$cart" == "                    " ||
 	     "$cart" == ""} {
 		#return 1
