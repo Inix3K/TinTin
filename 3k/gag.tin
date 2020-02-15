@@ -83,6 +83,13 @@
 #gag {Your dog tears a chunk of flesh from }
 
 /* Mobs/Areas */
+#NOP Cubes
+#gag {^Angered, the small cube sprays you with poison.}
+#gag {^The small cube tries to roll over you. Failing, it settles with}
+#gag {^infecting part of your leg instead.}
+
+#gag {^Strange and alien energies race around the edges of the cube.}
+
 #NOP Rimalkins
 #gag {^The small Rimalkin lunges at you with its needle-like fangs!}
 #gag {^The small Rimalkin scratches about the room.}

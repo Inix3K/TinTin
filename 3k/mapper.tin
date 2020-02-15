@@ -466,6 +466,9 @@
 #NOP SolChem
 #act {^The gang member shoves you back.} {#map undo}
 
+#NOP Tao Te Cheng
+#act {^Your understanding fails you and you cannot flee!!} {#map undo}
+
 #NOP Theatre of Souls
 #act {^A closed door blocks your way.} {#map undo}
 

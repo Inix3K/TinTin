@@ -12,4 +12,15 @@
 	_check_mob
 }
 
+#NOP Add retargets for phasing start/stop
+#NOP The cube starts to flicker in and out of existence! As a response to the
+#NOP new threat, a projection of Alister materializes into the room.
+#act {^The cube starts to flicker in and out of existence! As a response to the} {
+	!kill cube
+}
+
+#act {^The cube fades back into view!} {
+	!kill a gigantic gelatinous cube
+}
+
 #class {bot} {close}
