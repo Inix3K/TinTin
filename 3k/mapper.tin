@@ -67,8 +67,8 @@
 #var longcap off
 
 #function cartcheck {
-	#format cart {%.60s} {%0};
-	#if {"$cart" == "                    " ||
+	#format cart {%.40s} {%0};
+	#if {"$cart" == "                                        " ||
 	     "$cart" == ""} {
 		#return 1
 	} {
@@ -455,7 +455,8 @@
 #NOP Ravenloft
 #act {^You try to go down, but suddenly feel more terrified than} {#map undo}
 #act {^The trees move together and bar your path!} {#map undo}
-#act {^A deathly chill blows from the south, blasting into Inix!} {#map undo}
+#act {^A deathly chill blows from the south, blasting into} {#map undo}
+#act {^Four dragons swoop down from the rafters and attack, blocking the way west!} {#map undo}
 
 #NOP Rocky Hill
 #act {^Waving their rusty scimitars and growling loudly, the jackalmen} {#map undo}
