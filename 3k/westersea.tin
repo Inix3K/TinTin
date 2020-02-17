@@ -1,0 +1,87 @@
+#NOP Fishing
+
+#var fish[pool] n
+
+#act {^Suddenly something grabs hole of your line!!!} {reel}
+
+#act {^Even though you do everything right the catch manages to wriggle free} {fish}
+#act {^You fail to retreive your catch!} {fish}
+#act {^You successfully manage to retrieve your catch!} {fish}
+
+#act {^You're too tired to do that.} {catch;fish}
+
+#act {^As no fish appear to be interested in your line, you pull it back up.} {bait rod;fish}
+#act {^You notice that your bait is gone!} {bait rod;fish}
+
+#act {^You can't fish without a line!} {
+	thread rod;
+	bait rod;
+	fish
+}
+#act {^You hear a loud snap as your line breaks!} {
+	thread rod;
+	bait rod;
+	fish
+}
+#act {^With a loud 'thwang', your line snaps. Perhaps you should pay more} {
+	thread rod;
+	bait rod;
+	fish
+}
+
+#act {^Your fishing rod bends violenty and cracks intwo!} {
+	go abes;
+	buy 6;
+	go fishing;
+	fish $fish[pool];
+	thread rod;
+	bait rod;
+	fish
+}
+
+#act {^You have nothing to bait the rod with!} {
+	go abes;
+	buy 5;
+	go fishing;
+	fish $fish[pool];
+	bait rod;
+	fish
+}
+
+#act {^You have nothing to thread the rod with!} {
+	go abes;
+	buy 2;
+	go fishing;
+	fish $fish[pool];
+	thread rod;
+	fish
+}
+
+#act {{End:(\d+) E Req:(\d+|[LHM]) Dis:(\d+|[LHM])(?:cm)? Dir:([LRC+]+) Ten:(\d+|[LMH]) Line:(\d+|[LMH])+\%? Catch:(\d+|[LMH])+\%?}} {
+	#var fish[end]		%2;
+	#var fish[req]		%3;
+	#var fish[dist]		%4;
+	#var fish[dir]		%5;
+	#var fish[ten]		%6;
+	#var fish[line]		%7;
+	#var fish[catch]	%8;
+	#switch {"$fish[req]"} {
+		#case {"L"}	{#var fish[req] 40};
+		#case {"M"}	{#var fish[req] 60};
+		#case {"H"}	{#var fish[req] 80};
+		#default 	{#nop}
+	};
+	#if {"$fish[dist]" == "H"} {
+		#var fish[dist] 200
+	};
+	#if {$fish[end] < $fish[req]} {!catch};
+	#if {$fish[ten] > 30 || "$fish[ten]" == "H" } {!slack};
+	#if {$fish[catch] > 20} {!catch};
+	#if {$fish[dist] > 100} {!reel};
+		#elseif {"$fish[dir]" == "R"} {!pull left};
+		#elseif {"$fish[dir]" == "L"} {!pull right};
+		#elseif {$fish[dist] > 0} {!reel};
+	#if {$fish[req] + 40 > $fish[end] && $fish[catch] > 15} {!catch}
+}
+
+#gag {^You can't do another action yet.}
