@@ -29,7 +29,7 @@
 	fish
 }
 
-#act {^Your fishing rod bends violenty and cracks intwo!} {
+#act {^Your fishing rod bends violenty and cracks in two!} {
 	go abes;
 	buy 6;
 	go fishing;
