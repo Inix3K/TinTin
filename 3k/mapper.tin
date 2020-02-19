@@ -305,6 +305,15 @@
 #NOP Global Merc Training Theatre
 #act {^You have exited the simulation, thank you for playing.} {#map goto 15144}
 
+#NOP Greenhouse
+#act {^You embrace the plant and lose yourself among the vines.} {
+	#map get {roomvnum} {greenhouse_room};
+	#map goto 22315
+}
+#act {^You follow the trail away from the field.} {
+	#map goto $greenhouse_room
+}
+
 #NOP Kayos Portal
 #act {^You leap into the unknown!} {
 	#map get {roomvnum} {num};
@@ -337,6 +346,12 @@
 	} {
 		#map goto 16527
 	}
+}
+
+#NOP PG
+#act {^You eat the hamburger and your environment changes!} {
+	#map get {roomvnum} {pg_room};
+	#map goto 22330
 }
 
 #NOP Ravenloft Castle
