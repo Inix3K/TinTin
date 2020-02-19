@@ -353,6 +353,9 @@
 	#map get {roomvnum} {pg_room};
 	#map goto 22330
 }
+#act {^As you exit the joint you seem to reappear back in CHAOS!} {
+	#map goto $pg_room
+}
 
 #NOP Ravenloft Castle
 #act {^You warily step out onto the cold, damp ground.} {#map goto 20756}
