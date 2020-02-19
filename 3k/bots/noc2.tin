@@ -12,12 +12,12 @@
 		#case {"Hostile"}		{#var mobname hostile};
 		#case {"Impediment"}		{#var mobname impediment};
 		#case {"Mud"}			{#var mobname mud};
-		#case {"Rapid"}			{#var mobname rapid};
 		#case {"Shadow"}		{#var mobname shadow};
 		#NOP Good;
 		#NOP #case {"Paragon"}		{#var mobname paragon};
-		#NOP case {"Radiance"}		{#var mobname radiance};
-		#NOP case {"Resilient"}		{#var mobname resilient}
+		#NOP #case {"Radiance"}		{#var mobname radiance};
+		#NOP #case {"Rapid"}		{#var mobname rapid};
+		#NOP #case {"Resilient"}	{#var mobname resilient}
 	};
 	_check_mob
 }
