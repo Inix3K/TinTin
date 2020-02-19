@@ -1,0 +1,104 @@
+#function colscale
+{
+  #local red_shift {};
+  #local green_shift {};
+
+  #math red_shift 255 - 255 * %2 / %3;
+  #math green_shift 255 * %2 / %3;
+
+  #return {\e[38;2;$red_shift;$green_shift;0m}
+}
+
+#function redgreenscale
+{
+  #local red_shift {};
+  #local green_shift {};
+
+  #math red_shift 255 - 255 * %2 / %3;
+  #math green_shift 255 * %2 / %3;
+
+  #return {\e[38;2;0;$green_shift;0m\e[48;2;$red_shift;0;0m}
+}
+
+#function {draw_bar}
+{
+  #local bar_len %1;
+  #local cur_val %2;
+  #local max_val %3;
+
+  #local cur_len {};
+  #local bar_str {};
+  #local bar_tot {};
+
+  #math bar_tot $bar_len * 8;
+
+  #loop 1 $bar_len cur_len
+  {
+    #if {$bar_tot * $cur_val / $max_val >= $cur_len * 8}
+    {
+      #var bar_str ${bar_str}█;
+    };
+    #else
+    {
+      #switch {$cur_len * 8 - $bar_tot * $cur_val / $max_val}
+      {
+        #case {1} {#var bar_str {${bar_str}▉}};
+        #case {2} {#var bar_str {${bar_str}▊}};
+        #case {3} {#var bar_str {${bar_str}▋}};
+        #case {4} {#var bar_str {${bar_str}▌}};
+        #case {5} {#var bar_str {${bar_str}▍}};
+        #case {6} {#var bar_str {${bar_str}▎}};
+        #case {7} {#var bar_str {${bar_str}▏}};
+        #default  {#var bar_str {${bar_str} }};
+      }
+    }
+  };
+  #return $bar_str
+}
+
+#function {draw_redgreen_bar}
+{
+  #return <afa><FAA>@draw_bar{%1;%2;%3}<088>
+}
+
+#function {draw_scale_bar}
+{
+  #local bar_len %1;
+  #local cur_val %2;
+  #local max_val %3;
+  #local col_val {};
+
+  #math col_val 31 * $cur_val / $max_val;
+
+  #return {@colscale{%1;%2;%3}@draw_bar{%1;%2;%3}<088>}
+}
+
+#function {draw_redgreenscale_bar}
+{
+  #return {@redgreenscale{%1;%2;%3}@draw_bar{%1;%2;%3}<088>}
+}
+
+
+#alias {test}
+{
+  #local cnt;
+
+  #showme {};
+  #loop 1 50 cnt
+  {
+    #math cnt $cnt * 2;
+    #showme @draw_redgreen_bar{10;$cnt;100}
+  };
+  #showme {};
+  #loop 1 50 cnt
+  {
+    #math cnt $cnt * 2;
+    #showme @draw_scale_bar{10;$cnt;100}
+  };
+  #showme {};
+  #loop 1 50 cnt
+  {
+    #math cnt $cnt * 2;
+    #showme @draw_redgreenscale_bar{10;$cnt;100}
+  }
+}
