@@ -82,14 +82,16 @@
 	#var room %2;
 	#var exits %3;
 	#if {"$mapping" == "on"} {
-		#replace exits {,} {;};
-		#foreach {$exits} {eachexit} {#map dig $eachexit};
-		#map get {roomexit} {rexit};
-		#foreach {$rexit} {eachexit} {
-			#map at {$eachexit} {
-				#map get {roomarea} {eacharea};
-				#if {"$eacharea" == ""} {
-					#map set {roomcolor} {<118>}
+		#if {"$finding_here" == "off"} {
+			#replace exits {,} {;};
+			#foreach {$exits} {eachexit} {#map dig $eachexit};
+			#map get {roomexit} {rexit};
+			#foreach {$rexit} {eachexit} {
+				#map at {$eachexit} {
+					#map get {roomarea} {eacharea};
+					#if {"$eacharea" == ""} {
+						#map set {roomcolor} {<118>}
+					}
 				}
 			}
 		};
