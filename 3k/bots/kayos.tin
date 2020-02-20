@@ -4,7 +4,7 @@
 
 #var {botpath} {e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;s;s;s;s;s;s;s}
 
-#act {^=M= A {robotic lion|robotic hound|robotic tiger|robotic velociraptor|TANK|refugee|demon soldier|flameroller|tornado of Kayos energy|time-lost pirate|small imp}} {
+#act {^=M= A {robotic lion|robotic hound|robotic tiger|robotic velociraptor|TANK|refugee|demon soldier|flameroller|tornado of Kayos energy|time-lost pirate|small imp|Myrr the Robot Swarm|Harnem the Kayos-Twisted Giant|Karaket the Twisted God-King|Beaster the Kayotic CyberBot}} {
 	#var mobname mob;
 	_check_mob
 }
@@ -12,23 +12,74 @@
 #NOP Bunker Tags
 #var bunker_cnt 1
 #act {A squat bunker.} {
-	#map set roomsymbol <148>B<088>;
-	#map set {roomnote} {bunker${bunker_cnt}};
-	#math {bunker_cnt} {${bunker_cnt} + 1}
+	#map get roomnote roomnote;
+	#map get roomvnum roomvnum;
+	#if {"$roomnote" == ""} {
+		#map set roomsymbol <148>B<088>;
+		#map set {roomnote} {bunker${bunker_cnt}};
+		#map exit enter command {unlock bunker;enter};
+		#switch {$bunker_cnt} {
+			#case {1} {#map link enter 10343;#map at 10343 #map link out $roomvnum};
+			#case {2} {#map link enter 22673;#map at 22673 #map link out $roomvnum};
+			#case {3} {#map link enter 22675;#map at 22675 #map link out $roomvnum}
+		};
+		#math {bunker_cnt} {${bunker_cnt} + 1}
+	}
 }
 
 #act {A scorch-marked landing pad.} {
-	#map set roomsymbol <128>P<088>;
-	#map set {roomnote} {pad}
+	#map get roomnote roomnote;
+	#if {"$roomnote" == ""} {
+		#map set roomsymbol <128>P<088>;
+		#map set {roomnote} {pad};
+		#map link teleport 10348;
+		#map at 10348 #map link out $roomvnum
+	}
 }
 
 #act {A silver homing beacon.} {
-	#map set roomsymbol <188>B<088>;
-	#map set {roomnote} {beacon}
+	#map get roomnote roomnote;
+	#if {"$roomnote" == ""} {
+		#map set roomsymbol <188>B<088>;
+		#map set {roomnote} {beacon}
+	}
 }
 
+#NOP Cycle main area/bunkers/ship
+#var bunker_path {enter;n;w;e;e;n;{grab cell;s};w;s;out}
+#var ship_path {teleport;e;e;e;e}
+#var kayos_path main
+
 #act {#END OF PATH} {
-	#bell;
+	.stop;
+	#if {"$kayos_path" == "main"} {
+		#var kayos_path bunker1;
+		#var bunker_cnt 1;
+		go bunker1;
+		#path load $bunker_path;
+		#delay 2 ..
+	}; #elseif {"$kayos_path" == "ship"} {
+		killbot;
+		open briefcase;
+		#14 empower wis;
+		touch beacon;
+		plunge;
+		#delay 2 go home
+	}; #else {
+		#if {$bunker_cnt < 3} {
+			#math {bunker_cnt} {$bunker_cnt + 1};
+			#var kayos_path bunker${bunker_cnt};
+			go $kayos_path;
+			#path load $bunker_path;
+			#delay 2 ..
+		} {
+			#var kayos_path ship;
+			go pad;
+			#3 insert cell;
+			#path load $ship_path;
+			#delay 2 ..
+		}
+	}
 } {1}
 
 #class {bot} {close}
@@ -36,8 +87,25 @@
 #alias {kayos_reset} {
 	#map list {roomarea} {Kayos Wars} {variable} {kayos_rooms};
 	#foreach {*kayos_rooms[]} {kayos_cur_room} {
-		#map at $kayos_cur_room #map get roomsymbol kayos_cur_symbol;
-		#map at $kayos_cur_room #map set roomsymbol {};
-		#map at $kayos_cur_room #map set roomnote {};
-	}
+		#map at $kayos_cur_room {
+			#map set roomsymbol {};
+			#map set roomnote {};
+			#map get roomexits roomexits;
+			#list roomexits create $roomexits;
+			#list roomexits find enter roomindex;
+			#if {$roomindex > 0} {
+				#map unlink enter
+			};
+			#list roomexits find teleport roomindex;
+			#if {$roomindex > 0} {
+				#map unlink teleport
+			}
+		}
+	};
+	#map at 10348 #map set roomsymbol <148>O<088>;
+	#map at 10343 #map set roomsymbol <148>O<088>;
+	#map at 22673 #map set roomsymbol <148>O<088>;
+	#map at 22675 #map set roomsymbol <148>O<088>;
+	#map at 10279 #map set roomnote kayos;
+	#map at 10278 #map link enter 10279
 }

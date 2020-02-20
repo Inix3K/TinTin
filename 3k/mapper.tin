@@ -265,6 +265,12 @@
 #NOP Ascended
 #act {Arid environment (sw,n,s,e,climb)} {#map goto 16718} {1}
 
+#NOP Ashridge Acres
+#act {AREA NAME: Ashridge Acres} {
+	#map get {roomvnum} {ashridge_room};
+	#map goto 22486
+} {4}
+
 #NOP Chaos TV
 #act {AREA NAME: Simpsons [Doh]} {
 	#if {"$area" != "Simpsons"} {
