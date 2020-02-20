@@ -357,6 +357,12 @@
 	#map goto $pg_room
 }
 
+#NOP Puddle
+#act {^You sink deep into the mud puddle!  The mud presses in on you from all} {
+	#map get {roomvnum} {puddle_room};
+	#map goto 22485
+}
+
 #NOP Ravenloft Castle
 #act {^You warily step out onto the cold, damp ground.} {#map goto 20756}
 #act {^You then step out of the coach and find yourself back} {#map goto 4631}
