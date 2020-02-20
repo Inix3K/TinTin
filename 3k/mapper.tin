@@ -65,6 +65,7 @@
 
 /* Data Grab Trigger */
 #var longcap off
+#var finding_here off
 
 #function cartcheck {
 	#format cart {%.40s} {%0};
@@ -99,7 +100,7 @@
 			#map set roomarea {$area};
 			#map set roomcolor
 		};
-		#if {$roomdesc_len == 0} {
+		#if {$roomdesc_len == 0 || "$finding_here" == "on"} {
 			#var longcap on;
 			#unvar long;
 			#act {%%1} {
@@ -125,7 +126,7 @@
 			#map set roomarea {$area};
 			#map set roomcolor
 		};
-		#if {$roomdesc_len == 0} {
+		#if {$roomdesc_len == 0 || "$finding_here" == "on"} {
 			#var longcap on;
 			#unvar long;
 			#act {%%1} {
@@ -145,7 +146,9 @@
 	#if {"$longcap" == "on"} {
 		#var longcap off;
 		#unact {%%1};
-		#map set roomdesc {$long}
+		#if {"$finding_here" == "off"} {
+			#map set roomdesc {$long}
+		}
 	}
 } {1}
 
@@ -184,14 +187,20 @@
 #alias {mapgo} {#map goto {roomnote} {%0}}
 
 #alias {findhere} {
-	#if {"$room" == ""} {
-		look
-	};
-	#map list {roomarea} {$area} {roomname} {$room%*};
-	#map list {roomarea} {$area} {roomname} {$room%*} {variable} {findroom};
-	#if {&findroom[] == 1} {
-		#list {foundroom} {create} {$findroom};
-		#map goto $foundroom[1]
+	#var finding_here on;
+	rating;
+	#delay 1 mapon;
+	#delay 2 look;
+	#delay 3 {
+		#var findexits $exits;
+		#replace findexits {,} {;};
+		#map list {roomarea} {$area} {roomname} {$room%*} {roomexits} {$findexits} {roomdesc} {$long};
+		#map list {roomarea} {$area} {roomname} {$room%*} {roomexits} {$findexits} {roomdesc} {$long} {variable} {findroom};
+		#if {&findroom[] == 1} {
+			#map goto *findroom[1..1]
+		};
+		#var finding_here off;
+		mapoff
 	}
 }
 
@@ -258,6 +267,11 @@
 /* Transports */
 #NOP Abyss
 #act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
+
+#NOP Android
+#act {BING! The button light goes off and the elevator doors open.} {enter elevator}
+#act {The elevator jerks to a halt and the doors open.} {out}
+#act {The elevator is already here. How about you enter it?} {enter elevator}
 
 #NOP Ao
 #act {** The Docks of Ao ** (se)} {#map goto 15463} {1}

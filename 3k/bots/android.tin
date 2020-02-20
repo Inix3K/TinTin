@@ -4,32 +4,26 @@
 
 #act {^=M= {Nougat|Marshmallow|Oreo|Development|Android|Alpha|Beta|Gingerbread|Froyo|Eclair|Cupcake|Donut|Apple Fanboy|KitKat|Lollipop|Jellybean|Honeycomb|Ice Cream Sandwich}} {
 	#switch {"%1"} {
-		#case {"Nougat"}		{#var mobname android};
-		#case {"Marshmallow"}		{#var mobname android};
-		#case {"Oreo"}			{#var mobname android};
+		#case {"Apple Fanboy"}		{#var mobname boy};
+		#case {"Android"}		{#var mobname android};
 		#case {"Development"}		{#var mobname development};
 		#case {"Alpha"}			{#var mobname alpha};
 		#case {"Beta"}			{#var mobname beta};
-		#case {"Gingerbread"}		{#var mobname android};
-		#case {"Froyo"}			{#var mobname Froyo};
-		#case {"Eclair"}		{#var mobname android};
 		#case {"Cupcake"}		{#var mobname android};
 		#case {"Donut"}			{#var mobname android};
-		#case {"Apple Fanboy"}		{#var mobname boy};
-		#case {"KitKat"}		{#var mobname android};
-		#case {"Lollipop"}		{#var mobname android};
-		#case {"Jellybean"}		{#var mobname android};
-		#case {"Jellybean"}		{#var mobname android};
+		#case {"Eclair"}		{#var mobname android};
+		#case {"Froyo"}			{#var mobname Froyo};
+		#case {"Gingerbread"}		{#var mobname android};
 		#case {"Honeycomb"}		{#var mobname android};
 		#case {"Ice Cream Sandwich"}	{#var mobname android};
-		#case {"Android"}		{#var mobname android}
+		#case {"Jellybean"}		{#var mobname android};
+		#case {"KitKat"}		{#var mobname android};
+		#case {"Lollipop"}		{#var mobname android};
+		#case {"Marshmallow"}		{#var mobname android};
+		#case {"Nougat"}		{#var mobname android};
+		#case {"Oreo"}			{#var mobname android}
 	};
 	_check_mob
 }
-
-#act {Inside an elevator (out)} {#NOP}
-#act {BING! The button light goes off and the elevator doors open.} {enter elevator} 
-#act {The elevator jerks to a halt and the doors open.} {out}
-#act {The elevator is already here. How about you enter it?} {enter elevator}
 
 #class {bot} {close}
