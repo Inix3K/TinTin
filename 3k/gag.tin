@@ -26,6 +26,7 @@
 #gag {Chopping violently, the axe draws {rancor|crimson|blood} from }
 #gag {You slice, and a flow of rancor falls from }
 #gag {You slice, and a flow of blood falls from }
+#gag {You slice, and a flow of crimson falls from }
 #gag {The blood from the wound flows into your soul through the Axe.}
 
 #NOP Powerstone
@@ -38,7 +39,7 @@
 
 /* Mskills */
 #NOP Dodge
-#gag {ou nimbly dodge }
+#gag {You nimbly dodge }
 
 #NOP Critical Hit
 #gag {You critically hit }
@@ -95,12 +96,25 @@
 #gag {^The small Rimalkin scratches about the room.}
 #gag {^The small Rimalkin slashes at you with tis razor sharp claws!}
 
-#NOP Silver/Blue
+#NOP Night of Colour
 #gag {^Impediment shakes, fire burning.}
+#gag {^Impediment feels, but thinks not.}
+#gag {^Impediment crashes its boughs together.}
+#gag {^Thorns shine darkly in the moonlight, Impediment rakes}
+#gag {^soft flesh!}
+
+#gag {^Hostile hisses with pain, padding the wrong way.}
+#gag {^Hostile slides past, the blow slipping off its pelt.}
+#gag {^Fast and fearless, Hostile takes the blow.}
+#gag {^Such speed, Hostile pads to the left.}
 
 #gag {^Shadow sees the light, frenzied screeching!}
 #gag {^Shadow seeps into the ground, reappearing momentarily.}
 #gag {^Shadow slows, light sinking in, time flowing out.}
+#gag {^Shadow scrapes you with its icy claws!}
+#gag {^Shadow pierces you with the cold of death!}
+#gag {^Shadow slides up your leg.}
+#gag {^Caught in the light, Shadow withers.}
 
 #gag {^Shield askew, Bulwark screams, black blood flows.}
 #gag {^Glancing blow, Shield shudders.}

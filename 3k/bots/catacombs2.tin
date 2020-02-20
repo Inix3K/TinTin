@@ -1,10 +1,10 @@
 #class {bot} {open}
 
-#var {botpath} {n;n;e;e;se;nw;n;n;e;w;w;w;w;n;n;w;n;w;e;s;e;s;s;e;e;e;n;d;s;e;s;e;n;e;w;s;w;s;w;s;e;w;w;s;n;w;w;e;n;e;w;n;n;w;e;n;e;w;s;s;s;w;d;n;e;e;n;s;e;s;e;s;w;e;n;w;w;w;w;s;s;e;e;n;w;e;s;s;n;e;e;s;w;e;n;e;n;n;n;w;d;e;e;n;w;e;n;s;e;w;s;e;s;w;s;e;w;s;e;w;n;w;n;s;w;n;n;w;w;s;s;e;w;w;w;n;e;n;w;archway;{se;trace north rune;trace east rune;trace south rune;trace west rune};nw;stairs;e;n;e;e;n;e;s;s;u;e;s;s;s;w;w;w;w;w;n;n;u;e;n;n;n;e;e;u;s;w;w;s;s;s;s}
+#var {botpath} {n;n;e;e;se;nw;n;n;e;w;w;w;w;n;n;w;n;w;e;s;e;s;s;e;e;e;n;d;s;e;s;e;n;e;w;s;w;s;w;s;e;w;w;s;n;w;w;e;n;e;w;n;n;w;e;n;e;w;s;s;s;w;d;n;e;e;n;s;e;s;e;s;w;e;n;w;w;w;w;s;s;e;e;n;w;e;s;s;n;e;e;s;w;e;n;e;n;n;n;w;d;e;e;n;w;e;n;s;e;w;s;e;s;w;s;e;w;s;e;w;n;w;n;s;w;n;n;w;w;s;s;e;w;w;w;n;e;n;w;archway;{se;trace north rune;trace east rune;trace south rune;trace west rune;#delay {0.5} {gl}};nw;stairs;e;n;e;e;n;e;s;s;u;e;s;s;s;w;w;w;w;w;n;n;u;e;n;n;n;e;e;u;s;w;w;s;s;s;s}
 
 #NOP Good mobs
 #NOP A Guide of Catacombs|A happy Dwarf|An old Druid
-#act {^=M= {A large Rat|A goblin warrior|A Goblin Lord|A statue of a dwarf|A huge rotting corpse|An ancient skeleton|The powerful Sorceress|A ghoul|A Ghoul Militia|The Ghoul Battle Master|A Vampire|A vampire soldier|A wandering vampire|Duke of Vampires|A cloaked figure|A massive creature of iron|A massive creature of shimmering crystal|A featureless stone statue|A statue crafted of wood}} {
+#act {^=M= {A large Rat|A goblin warrior|A Goblin Lord|A statue of a dwarf|A rotting corpse|A huge rotting corpse|An ancient skeleton|The powerful Sorceress|A hideous demon from the lower planes|A ghoul|A Ghoul Militia|The Ghoul Battle Master|A Vampire|A vampire soldier|A wandering vampire|Duke of Vampires|A cloaked figure|A massive creature of iron|A massive creature of shimmering crystal|A featureless stone statue|A statue crafted of wood}} {
 	#switch {"%1"} {
 		#NOP Good;
 		#NOP #case {"A Guide of Catacombs"}			{#var mobname guide};
@@ -21,10 +21,12 @@
 		#case {"A large Rat"}					{#var mobname rat};
 		#case {"A goblin warrior"}				{#var mobname warrior};
 		#case {"A Goblin Lord"}					{#var mobname lord};
+		#case {"A rotting corpse"}				{#var mobname corpse};
 		#case {"A huge rotting corpse"}				{#var mobname corpse};
 		#case {"An ancient skeleton"}				{#var mobname skeleton};
 		#case {"A huge skeleton"}				{#var mobname skeleton};
 		#case {"The powerful Sorceress"}			{#var mobname sorceress};
+		#case {"A hideous demon from the lower planes"}		{#var mobname demon};
 		#case {"A ghoul"}					{#var mobname ghoul};
 		#case {"A Ghoul Militia"}				{#var mobname militia};
 		#case {"The Ghoul Battle Master"}			{#var mobname master};
