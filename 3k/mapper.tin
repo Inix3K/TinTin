@@ -287,6 +287,10 @@
 	#map goto 22486
 } {4}
 
+#NOP Calvin and Hobbes
+#act {^on the snow calls to you, and you dread another day at school.} {#map goto 23824}
+#act {^and eagerly await the freedom of the afternoon.} {#map goto 23814}
+
 #NOP Chaos TV
 #act {AREA NAME: Simpsons [Doh]} {
 	#if {"$area" != "Simpsons"} {
@@ -348,6 +352,9 @@
 }
 #act {^You touch the beacon, and a friendly ship belonging to The Vigilant swings by.} {#map goto 10278}
 
+#NOP The Lost Village of Willothorn
+#act {^You swim for your life for the surface and end up back where} {#map goto 14087}
+
 #NOP Necromancers
 #act {^You tumble down the river and find yourself on a rocky bank inside} {#map goto 7613}
 
@@ -379,6 +386,10 @@
 	#map goto $pg_room
 }
 
+#NOP The Princess Bride
+#act {^At last, the Cliffs of Insanity tower above you!} {#map goto 23763}
+#act {^At last, the shore of Florin!} {#map goto 23737}
+
 #NOP Puddle
 #act {^You sink deep into the mud puddle!  The mud presses in on you from all} {
 	#map get {roomvnum} {puddle_room};
@@ -401,9 +412,6 @@
 
 #NOP Starcraft:Broodwar
 #act {^Door number: 3, Access Code: %1$} {#var starcraft_code %1}
-
-#NOP The Lost Village of Willothorn
-#act {^You swim for your life for the surface and end up back where} {#map goto 14087}
 
 #NOP Xaxis
 #act {^Welcome to Xaxis!} {#map goto 15875}
@@ -442,6 +450,10 @@
 
 #NOP Body Mansion
 #act {^You bump into a locked door.} {#map undo}
+
+#NOP Calvin and Hobbes
+#act {^Calvin defends his fort!} {#map undo}
+#act {^Hobbes will not let you into G.R.O.S.S. headquarters!} {#map undo}
 
 #NOP Carnegie
 #act {^Woody Allen says: You're going to have to wait for security!} {#map undo}
@@ -494,6 +506,9 @@
 #NOP Night of Colour
 #act {^Impediment slaps you back, thorns tearing.} {#map undo}
 #act {^Serrated sword extended, Bulwark stops your progress.} {#map undo}
+
+#NOP The Princess Bride
+#act {^The guard won't allow you to pass!} {#map undo}
 
 #NOP Rabbit Fields
 #act {^The rabbit prevents you from going that way.} {#map undo}
