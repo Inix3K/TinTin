@@ -1,6 +1,6 @@
 #class {bot} {open}
 
-#var {botpath} {w;w;w;w;n;e;e;e;e;e;e;e;e;e;n;e;w;w;w;w;w;w;w;w;w;w;w;n;e;e;e;nw;w;w;nw;e;e;nw;n;s;se;se;se;e;n;se;ne;nw;s;n;n;w;ne;se;w;s;se;s;e;e;e;e;e;n;w;w;ne;e;e;nw;n;s;s;s;s;s;sw;s;w;w;w;w;w}
+#var {botpath} {e;e;e;e;e;n;w;w;w;w;w;n;e;e;e;e;e;e;n;w;n;e;ne;w;n;n;s;sw;sw;s;w;w;w;n;nw;n;e;nw;sw;e;s;s;s;nw;s;w;w;n;nw;nw;n;s;s;w;se;e;s;w;s;e;e;e;e;s;w;w;w;s;e;e;e;e}
 
 #act {^=M= {Blue Dolphin|Green Chinese Dragon|White Tiger|Black Tiger|Purple Butterfly|Red Butterfly|Sea Serpent|Golden Phoenix|Leaping Rat|Lumbering Ox|Charging Ram|Jade Phoenix|Red Rabbit|Red Chinese Dragon|Black Chinese Dragon|Gold Chinese Dragon|Winged Horse}} {
 	#switch {"%1"} {
