@@ -352,6 +352,10 @@
 }
 #act {^You touch the beacon, and a friendly ship belonging to The Vigilant swings by.} {#map goto 10278}
 
+#NOP Lost City
+#act {^With a final THUD, you fly out into a pile of metal!} {#map goto 24299}
+#act {^With a bit of difficulty you make your way back up the shaft} {#map goto 24297}
+
 #NOP The Lost Village of Willothorn
 #act {^You swim for your life for the surface and end up back where} {#map goto 14087}
 
