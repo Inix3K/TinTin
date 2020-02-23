@@ -197,7 +197,7 @@
 			#VAR {my[skill][name]}		{&1};
 			#VAR {my[skill][current]}	{&2.&3}
 		};
-		#REGEX {$mip[gline][1]}	{\[{FF|IL}\(%d\): %d.%d\%\]>  \[%D\]} {
+		#REGEX {$mip[gline][1]}	{\[{FF|IL}\(%d\): %d.%d\%\]<099>  \[%D\]} {
 			#VAR {my[ff][current]}		{&3.&4};
 			#VAR {my[form]}			{&5}
 		}
