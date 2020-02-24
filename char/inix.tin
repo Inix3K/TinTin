@@ -8,7 +8,7 @@
 #read .tt/api/stocks.tin
 
 #read .tt/3k/fodoor.tin
-#read .tt/3k/puppy.tin
+#NOP #read .tt/3k/puppy.tin
 #read .tt/3k/rtick.tin
 rtick
 
