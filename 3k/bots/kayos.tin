@@ -17,12 +17,12 @@
 	#if {"$roomnote" == ""} {
 		#map set roomsymbol <148>B<088>;
 		#map set {roomnote} {bunker${bunker_cnt}};
-		#map exit enter command {unlock bunker;enter};
 		#switch {$bunker_cnt} {
 			#case {1} {#map link enter 10343;#map at 10343 #map link out $roomvnum};
 			#case {2} {#map link enter 22673;#map at 22673 #map link out $roomvnum};
 			#case {3} {#map link enter 22675;#map at 22675 #map link out $roomvnum}
 		};
+		#map exit enter command {unlock bunker;enter};
 		#math {bunker_cnt} {${bunker_cnt} + 1}
 	}
 }

@@ -526,6 +526,7 @@
 			#case {"Explorer"}		{#var {commcol} {<178>}};
 			#case {"Falcon"}		{#var {commcol} {<128>}};
 			#case {"Gamers"}		{#var {commcol} {<268>}};
+			#case {"Gjugg"}			{#var {commcol} {<118>}};
 			#case {"High Mortal"}		{#var {commcol} {<108>}};
 			#case {"Jedi"}			{#var {commcol} {<158>}};
 			#case {"JEDI"}			{#var {commcol} {<128>}};
