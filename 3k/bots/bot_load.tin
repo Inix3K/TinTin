@@ -2,6 +2,8 @@
 #class {botload} {open}
 
 #alias {- %1} {
+	#var no_home 0;
+	#var no_loop 0;
 	#read .tt/3k/bots/%1.tin;
 	#read .tt/3k/bots/bot_main.tin
 }

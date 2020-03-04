@@ -136,7 +136,7 @@ prompt >$nl$
 		#if {&botcycle[] > 1} {
 			nextarea
 		}; #else {
-			go home
+			#if {!$no_home} {go home}
 		}
 	} {
 		#unact {^>$};
