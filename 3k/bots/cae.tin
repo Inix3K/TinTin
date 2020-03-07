@@ -3,7 +3,8 @@
 #var no_loop 1
 #var no_home 1
 
-#var {botpath} {d;s;w;n;sw;w;w;w;w;d;n;s;u;e;e;e;e;ne;s;e;n;u}
+#var {botpath} {d;s;w;n;sw;w;w;w;w;d;n}
+#NOP #var {botpath} {d;s;w;n;sw;w;w;w;w;d;n;s;u;e;e;e;e;ne;s;e;n;u}
 
 #act {^=M= {Big Vicious Rabbit|Vicious Rabbit|King of All Rabbits|Ganderei Cae, the Evil Alchemist}} {
 	#if {"%1"=="Ganderei Cae, the Evil Alchemist"} {#var mobname cae} {#var mobname rabbit};
