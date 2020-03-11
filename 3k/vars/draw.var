@@ -1,0 +1,5 @@
+#CLASS {drawvar} OPEN
+
+#VARIABLE         {draw}  {{alert}{on}{canvas}{on}{caption}{on}{chat}{on}{gline}{on}{hpbar}{on}{map}{on}}
+
+#CLASS {drawvar} CLOSE
