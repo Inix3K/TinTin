@@ -12,13 +12,13 @@
 	#read .tt/3k/bots/bot_load.tin;
 	#read .tt/3k/corpses.tin;
 	#read .tt/3k/dog.tin;
-	#read .tt/3k/draw.tin;
 	#read .tt/3k/gag.tin;
 	#read .tt/3k/mapper.tin;
 	#read .tt/3k/mip.tin;
 	#read .tt/3k/miphp.tin;
 	#read .tt/3k/mob_monitors.tin;
-	#read .tt/3k/trigs.tin
+	#read .tt/3k/trigs.tin;
+	#read .tt/3k/draw.tin
 }
 #if {"$world" != ""} {
 	#regex {$world} {AW} {} {load3k}

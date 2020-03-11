@@ -1,5 +1,6 @@
 #CLASS {mip} {kill}
 #CLASS {mip} {open}
+#NOP REQUIRED:  draw.tin  //Used for drawing chats and caption
 
 #NOP ***** Set MIP ID Code **********
 #VAR {mip} {}
@@ -46,7 +47,9 @@
 	} {
 		#var areacap {};	
 	};
-	#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {19}
+	#if {"$draw[caption]" == "on"} {
+		#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {$chat[height]+1}
+	}
 }
 
 #var clockon 0
@@ -384,7 +387,9 @@
 #ALIAS {show_chat} {
 	#math chat[start]	{$chat[rows] * $chat[page]};
 	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
-	#line sub {var} #draw {tile} 1 1 $chat[rows] -44 $chat[log][-$chat[start]..-$chat[end]]
+	#if {"$draw[chat]" == "on"} {
+		#line sub {var} #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
+	}
 }
 #ALIAS {update_chat} {
 	#if {&chat[log][] > $chat[max]} {

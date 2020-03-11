@@ -1,11 +1,15 @@
 #class {mapper} {open}
+#NOP REQUIRED:  draw.tin
 
 #regex {"$world"} {3s} {
 	#map read .tt/map/3s.map
 } {
 	#map read .tt/map/3k.map
 }
-#map offset 1 -42 17 -1
+
+#var map[height] 17
+#var map[width] 42
+
 #map goto {roomnote} {home}
 
 /* Move Event */
@@ -23,8 +27,10 @@
 	#unvar area_mapped;
 	#map list {} {} {} {$roomarea} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
-	#draw {tile} 16 -42 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-	#draw {tile} 17 -42 17 -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+	#if {"$draw[map]" == "on"} {
+		#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+		#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+	}
 }
 
 #event {MAP UPDATED VTMAP} {
@@ -177,8 +183,10 @@
 	};
 	#map get {roomvnum} {gonum};
 	#map goto $gonum;
-	#draw {tile} 16 -42 16 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-	#draw {tile} 17 -42 17 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+	#if {"$draw[map]" == "on"} {
+		#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+		#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+	}
 }
 
 #alias {go} {

@@ -34,8 +34,8 @@
 	#var world {%0};
 	#format logfile {.tt/logs/%0_%t.log} {%Y%m%d};
 	#LOG {APPEND} {$logfile};
-	#read .tt/start.tin;
-	#read .tt/char/%0.tin;
+	#delay 0 #read .tt/start.tin;
+	#delay 0 #read .tt/char/%0.tin
 }
 
 #var world {}
@@ -43,12 +43,12 @@
 /* Character Switching */
 #alias {switchto} {
         #zap;
-        #read .tt/start.tin;
         #if {"%0" == ""} {
                 connect inix
         } {
                 connect %0
-        }
+        };
+        #NOP #read .tt/start.tin
 }
 #alias {connect} {
         #regex {%0} {3s} {

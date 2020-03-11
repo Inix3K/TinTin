@@ -1,4 +1,5 @@
 #class {botcycle} {open}
+#NOP REQUIRED:  draw.tin  //canvas dimensions
 
 #var cycle 0
 
@@ -54,8 +55,9 @@
 }
 
 #alias {botdraw} {
+	#if {"$draw[canvas]" == "on"} {
 	#NOP Clear previous drawing;
-	#screen clear square 21 -42 -8 -1;
+	#screen clear square $chat[height]+$caption[height]+1 -$canvas[width]+1 -$status[height]-2 -1;
 
 	#if {&botcycle[] == 0} {
 		#var botareas {
@@ -63,33 +65,34 @@
 		};
 		#var botheight 1;
 	} {
-		#var botheight &botcycle[];
-		#var botareas {};
-		#var cnt 0;
-		#while {$cnt < &botcycle[]} {
-			#math {cnt} {$cnt + 1};
-			#if {$cnt == $cycle} {
-				#format {cntnum} {%+4s} {<128>$cnt.<088>};
-				#format {area_display} {%-12s} {<128>$botcycle[$cnt]<088>}
-			} {
-				#format {cntnum} {%+4s} {<178>$cnt.<088>};
-				#format {area_display} {%-12s} {<148>$botcycle[$cnt]<088>}
-			};
-			#if {$cnt == 1} {
-				#var botareas {$cntnum $area_display}
-			} {
-				#var botareas {$botareas\n$cntnum $area_display}
+			#var botheight &botcycle[];
+			#var botareas {};
+			#var cnt 0;
+			#while {$cnt < &botcycle[]} {
+				#math {cnt} {$cnt + 1};
+				#if {$cnt == $cycle} {
+					#format {cntnum} {%+4s} {<128>$cnt.<088>};
+					#format {area_display} {%-12s} {<128>$botcycle[$cnt]<088>}
+				} {
+					#format {cntnum} {%+4s} {<178>$cnt.<088>};
+					#format {area_display} {%-12s} {<148>$botcycle[$cnt]<088>}
+				};
+				#if {$cnt == 1} {
+					#var botareas {$cntnum $area_display}
+				} {
+					#var botareas {$botareas\n$cntnum $area_display}
+				}
 			}
-		}
-	};
-	#draw green rounded box 22 -41 24 -3 {
-		<138>              Area Cycler    <088>
-	};
-	#draw green rounded box 24 -41 25+$botheight -3 {
-		$botareas
-	};
-	#showme {<228>\u251C} 24 -41;
-	#showme {<228>\u2524} 24 -3;
+		};
+		#draw green rounded box $chat[height]+$caption[height]+2 -$canvas[width]+2 $chat[height]+$caption[height]+4 -3 {
+			<138>              Area Cycler    <088>
+		};
+		#draw green rounded box $chat[height]+$caption[height]+4 -$canvas[width]+2 $chat[height]+$caption[height]+5+$botheight -3 {
+			$botareas
+		};
+		#showme {<228>\u251C} $chat[height]+$caption[height]+4 -$canvas[width]+2;
+		#showme {<228>\u2524} $chat[height]+$caption[height]+4 -3
+	}
 }
 
 #event {VARIABLE UPDATE cycle} {

@@ -3,4 +3,7 @@
 #class chat kill
 #read .tt/3k/vars/3kchat.var
 
+#class drawvar kill
+#read .tt/3k/vars/draw.var
+
 #CLASS {vars} CLOSE
