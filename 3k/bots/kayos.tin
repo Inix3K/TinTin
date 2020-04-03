@@ -4,36 +4,7 @@
 
 #var {botpath} {e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;s;s;s;s;s;s;s}
 
-#act {^=M= {(A (demon soldier|
-		flameroller|
-		refugee|
-		robotic lion|
-		robotic hound|
-		robotic tiger|
-		robotic velociraptor|
-		small imp|
-		TANK|
-		time-lost pirate|
-		tornado of Kayos energy|
-		stowaway alien))|
-		Beaster the Kayotic CyberBot|
-		Beelz, the Demon King|
-		Captain Harneth|
-		Commander Garn|
-		Etherbren, The Dark Wizard|
-		Gorian the Cloud-Eater
-		Harnem the Kayos-Twisted Giant|
-		Karaket the Twisted God-King|
-		Myrr the Robot Swarm|
-		Omnicron the Devourer|
-		Q-97 the Android|
-		Ratl the Devil's Hand|
-		Shan the Night's Shadow|
-		Spacemancer Spiff|
-		Thill the Quill, Kayos Demon|
-		Thorion the Hammer|
-		Yttra the Great Worm
-	}} {
+#act {^=M= {(A (demon soldier|flameroller|refugee|robotic lion|robotic hound|robotic tiger|robotic velociraptor|small imp|TANK|time-lost pirate|tornado of Kayos energy|stowaway alien))|Beaster the Kayotic CyberBot|Beelz, the Demon King|Captain Harneth|Commander Garn|Etherbren, The Dark Wizard|Gorian the Cloud-EaterHarnem the Kayos-Twisted Giant|Karaket the Twisted God-King|Myrr the Robot Swarm|Omnicron the Devourer|Q-97 the Android|Ratl the Devil's Hand|Shan the Night's Shadow|Spacemancer Spiff|Thill the Quill, Kayos Demon|Thorion the Hammer|Yttra the Great Worm}} {
 	#var mobname mob;
 	_check_mob
 }
