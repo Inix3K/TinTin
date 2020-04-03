@@ -149,6 +149,9 @@
 
 #alias us {!unwrap;!bury corpse}
 
+/* Trigs */
+#act {^%w scurries over and hides behind you.} {!defend %1}
+
 /* Joust */
 #act {^You accept the challenge and you find yourself mounted on a horse with a lance.$} {mapgo jousts;#var {joust_dir} {n}}
 #act {%w accepts your challenge.  You find yourself mounted on a horse with a lance.$} {mapgo joustn;#var {joust_dir} {n}}

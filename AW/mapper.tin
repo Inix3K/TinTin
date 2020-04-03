@@ -58,7 +58,7 @@
 	#var quest[area] %1;
 	#list areas find {$quest[area]} {quest[index]};
 	#var quest[zone] *areas[+$quest[index]];
-	#map find {roomarea} {$quest[zone]} {roomname} {$quest[room]};
+	#map find {roomarea} {$quest[zone]} {roomname} {%*$quest[room]%*};
 	#delay 0 #map list {roomarea} {$quest[zone]} {roomname} {$quest[room]}
 }
 

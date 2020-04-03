@@ -4,7 +4,7 @@
 
 #var {botpath} {e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;s;s;s;s;s;s;s}
 
-#act {^=M= A {robotic lion|robotic hound|robotic tiger|robotic velociraptor|TANK|refugee|demon soldier|flameroller|tornado of Kayos energy|time-lost pirate|small imp|Myrr the Robot Swarm|Harnem the Kayos-Twisted Giant|Karaket the Twisted God-King|Beaster the Kayotic CyberBot}} {
+#act {^=M= {(A (robotic lion|robotic hound|robotic tiger|robotic velociraptor|TANK|refugee|demon soldier|flameroller|tornado of Kayos energy|time-lost pirate|small imp|stowaway alien))|Myrr the Robot Swarm|Harnem the Kayos-Twisted Giant|Karaket the Twisted God-King|Beaster the Kayotic CyberBot|Thorion the Hammer|Beelz, the Demon King|Yttra the Great Worm|Omnicron the Devourer|Etherbren, The Dark Wizard}} {
 	#var mobname mob;
 	_check_mob
 }

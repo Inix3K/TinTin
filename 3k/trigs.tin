@@ -11,3 +11,8 @@
 #act {^Leufarr whispers: The watchword is: %w} {#var {watchword} {%1}}
 
 #class {trigs} {close}
+
+/* Priest Guardian */
+#act {^Type 'accept' if you wish to be monitored.$} {
+	!accept
+}

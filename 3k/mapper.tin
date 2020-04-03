@@ -247,6 +247,13 @@
 
 #alias {ma} {#map set roomarea {$area}}
 
+#NOP List all Roomnotes for 'go' alias
+#alias {notelist} {
+	#map list {roomnote} {{\w+}} {variable} {noterooms};
+	#foreach {*noterooms[]} {room} {#map get {roomnote} {notes[$room]} {$room}};
+	#var notes
+}
+
 #NOP Search Room Nouns (built by MIP)
 #alias {sn} {
 	#var noun_cnt &nouns[];
