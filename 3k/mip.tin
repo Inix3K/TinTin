@@ -269,9 +269,13 @@
 
 #ALIAS {.mipProcessGlineKnight} {
 	#IF {%1 == 1} {
-		#REGEX {$mip[gline][1]} {Stance: %w | Method: %w} {
-			#VAR {knight[stance]}	{&1};
-			#VAR {knight[method]}	{&2}
+		#REGEX {$mip[gline][1]} {Stance: %w | Method: %w | Sec Wind: %d.%d\% | Guild Level: %d | Class: %w | Morale: %d} {
+			#VAR {knight[stance]}		{&1};
+			#VAR {knight[method]}		{&2};
+			#VAR {knight[sw][num]}		{&3.&4};
+			#VAR {knight[gl]}		{&5};
+			#VAR {knight[class]}		{&6};
+			#VAR {knight[morale][num]}	{&7}
 		};
 		#REPLACE {knight[stance]} {defensive}	{<148>D<088>};
 		#REPLACE {knight[stance]} {neutral}	{<138>N<088>};
@@ -280,13 +284,36 @@
 		#REPLACE {knight[method]} {focus}	{<168>F<088>};
 		#REPLACE {knight[method]} {charge}	{<128>C<088>};
 		#REPLACE {knight[method]} {standard}	{<138>S<088>};
-		#REPLACE {mip[gline][1]} {Stance: %w | Method: %w}	{S/M: $knight[stance]-$knight[method]};
-		#REPLACE {mip[gline][1]} {Sec Wind}			{SW};
+		#VAR	 {knight[sw][col]}		{@colscale{$knight[sw][num];100}};
+		#VAR	 {knight[morale][col]}		{@colscale{$knight[morale][num];5}};
+		#REPLACE {mip[gline][1]} { | }				{ };
+		#REPLACE {mip[gline][1]} {Stance: %w Method: %w}	{S/M:$knight[stance]/$knight[method]};
+		#REPLACE {mip[gline][1]} {Sec Wind: %d.%d}		{SW:$knight[sw][col]};
 		#REPLACE {mip[gline][1]} {Guild Level}			{GL};
-		#REPLACE {mip[gline][1]} {Class: %w |}			{};
-		#REPLACE {mip[gline][1]} {Morale}			{M}
+		#REPLACE {mip[gline][1]} {Class: %w }			{};
+		#REPLACE {mip[gline][1]} {Morale: %d}			{M:$knight[morale][col]};
+		#REPLACE {mip[gline][1]} {: }				{:}
 	}; #ELSEIF {%1 == 2} {
-		#NOP
+		#REGEX {$mip[gline][2]} {[GXN:%d] [HMN:%d.%d\%] [FSN:%d.%d\%] [OFN:%d.%d\%] [DFN:%d.%d\%] [LF:%d] [MOB:%w]} {
+			#VAR {knight[gxn]}	{&1};
+			#VAR {knight[hmn][num]}	{&2.&3};
+			#VAR {knight[fsn][num]}	{&4.&5};
+			#VAR {knight[ofn][num]}	{&6.&7};
+			#VAR {knight[dfn][num]}	{&8.&9};
+			#VAR {knight[lf]}	{&10};
+			#VAR {knight[mob]}	{&11}
+		};
+		#VAR	 {knight[hmn][col]}	{@colscale{$knight[hmn][num];100}};
+		#VAR	 {knight[fsn][col]}	{@colscale{$knight[fsn][num];100}};
+		#VAR	 {knight[ofn][col]}	{@colscale{$knight[ofn][num];100}};
+		#VAR	 {knight[dfn][col]}	{@colscale{$knight[dfn][num];100}};
+		#REPLACE {mip[gline][2]} {HMN:%d.%d}		{HMN:$knight[hmn][col]};
+		#REPLACE {mip[gline][2]} {FSN:%d.%d}		{FSN:$knight[fsn][col]};
+		#REPLACE {mip[gline][2]} {OFN:%d.%d}		{OFN:$knight[ofn][col]};
+		#REPLACE {mip[gline][2]} {DFN:%d.%d}		{DFN:$knight[dfn][col]};
+		#REPLACE {mip[gline][2]} {[}	{};
+		#REPLACE {mip[gline][2]} {]}	{};
+		#REPLACE {mip[gline][2]} {MOB}	{E}
 	}
 }
 
