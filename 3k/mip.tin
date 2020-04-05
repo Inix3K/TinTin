@@ -589,6 +589,7 @@
 			#case {"JuggAnnounce"}		{#var {commcol} {<118>}};
 			#case {"JuggMissiles"}		{#var {commcol} {<118>}};
 			#case {"JuggNewbie"}		{#var {commcol} {<258>}};
+			#case {"Knight Main"}		{#var {commcol} {<168>}};
 			#case {"Loremaster"}		{#var {commcol} {<274>}};
 			#case {"Lottery"}		{#var {commcol} {<178>}};
 			#case {"Main"}			{#var {commcol} {<118>}};
