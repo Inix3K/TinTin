@@ -183,6 +183,7 @@
 			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
 			#CASE {"jedi"}		{.mipProcessGlineJedi {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
+			#CASE {"knight"}	{.mipProcessGlineKnight {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
 			#CASE {"psicorp"}	{.mipProcessGlinePsicorp {%1}};
 			#CASE {"sii"}		{.mipProcessGlineSii {%1}}
@@ -263,6 +264,29 @@
 		}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineKnight} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {Stance: %w | Method: %w} {
+			#VAR {knight[stance]}	{&1};
+			#VAR {knight[method]}	{&2}
+		};
+		#REPLACE {knight[stance]} {defensive}	{<148>D<088>};
+		#REPLACE {knight[stance]} {neutral}	{<138>N<088>};
+		#REPLACE {knight[stance]} {offensive}	{<118>O<088>};
+		#REPLACE {knight[method]} {melee}	{<118>M<088>};
+		#REPLACE {knight[method]} {focus}	{<168>F<088>};
+		#REPLACE {knight[method]} {charge}	{<128>C<088>};
+		#REPLACE {knight[method]} {standard}	{<138>S<088>};
+		#REPLACE {mip[gline][1]} {Stance: %w | Method: %w}	{S/M: $knight[stance]-$knight[method]};
+		#REPLACE {mip[gline][1]} {Sec Wind}			{SW};
+		#REPLACE {mip[gline][1]} {Guild Level}			{GL};
+		#REPLACE {mip[gline][1]} {Class: %w |}			{};
+		#REPLACE {mip[gline][1]} {Morale}			{M}
+	}; #ELSEIF {%1 == 2} {
+		#NOP
 	}
 }
 
