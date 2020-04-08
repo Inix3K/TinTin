@@ -181,6 +181,7 @@
 		#SWITCH {"$guild"} {
 			#CASE {"changeling"}	{.mipProcessGlineChangeling {%1}};
 			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
+			#CASE {"gentech"}	{.mipProcessGlineGentech {%1}};
 			#CASE {"jedi"}		{.mipProcessGlineJedi {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"knight"}	{.mipProcessGlineKnight {%1}};
@@ -214,22 +215,50 @@
 
 #ALIAS {.mipProcessGlineElemental} {
 	#IF {%1 == 1} {
-		#REGEX {Emit<099> : <%d>%d<099>}	{#VAR {my[emit][level]}		{&2}};
-		#REGEX {Equipollent}			{#VAR {my[equip]}		{on}}
-							{#VAR {my[equip]}		{off}};
-		#REGEX {Form<099>: <869>%w<099>\(<819>%d<099>\)}		{
+		#REGEX {$mip[gline][1]} {Emit<099> : <%d>%d}	{#VAR {my[emit][level]}		{&2}};
+		#REGEX {$mip[gline][1]} {Equipollent}		{#VAR {my[equip]}		{on}}
+								{#VAR {my[equip]}		{off}};
+		#REGEX {$mip[gline][1]} {Form<099>: <869>%w<099>\(<819>%d<099>\)}		{
 			#VAR {my[form][type]}		{&1};
 			#VAR {my[form][size]}		{&2}
 		};
-		#REGEX {Rating<099>: <819>%d<099>}			{#VAR {my[rating]}		{&1}}
+		#REGEX {$mip[gline][1]} {Rating<099>: <819>%d<099>}			{#VAR {my[rating]}		{&1}}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {Stones/Waves/Shrouds<099>: <%d>%d<099>/<%d>%d<099>/<%d>%d<099>\(%d\%\)}
+		#REGEX {$mip[gline][2]} {Stones/Waves/Shrouds<099>: <%d>%d<099>/<%d>%d<099>/<%d>%d<099>\(%d\%\)}
 			#VAR {my[blasts]		{&2};
 			#VAR {my[waves]}		{&4};
 			#VAR {my[shrouds]}		{&6};
 			#VAR {my[reset]}		{&7}
 		};
-		#REGEX {G2N: <%d>%d<099>}		{#VAR {my[g2n]}			{&2}}
+		#REGEX {$mip[gline][2]} {G2N: <%d>%d<099>}		{#VAR {my[g2n]}			{&2}}
+	}; #ELSE {
+		#ECHO {<171> Invalid Gline Number <088>}
+	}
+}
+
+#ALIAS {.mipProcessGlineGentech} {
+	#IF {%1 == 1} {
+		#REGEX {$mip[gline][1]} {CPC:<%d>%d<099>/%d G2N:%d(%d\%) RC[%d] Reset(<%d>%d\%<099>) TS:%d/%d E-TS:%d} {
+			#VAR {gentech[cpc][current]}	{&2};
+			#VAR {gentech[cpc][max]}	{&3};
+			#VAR {gentech[gxp][tnl]}	{&4};
+			#VAR {gentech[gxp][per]}	{&5};
+			#VAR {gentech[rc]}		{&6};
+			#VAR {gentech[reset]}		{&8};
+			#VAR {gentech[ts][current]}	{&9};
+			#VAR {gentech[ts][max]}		{&10};
+			#VAR {gentech[ets]}		{&11}
+		};
+		#REPLACE {mip[gline][1]} {Reset} {R}
+	}; #ELSEIF {%1 == 2} {
+		#REGEX {$mip[gline][2]} {Bias[<%d>%w<099>] Atk(<%d>%d\%<099>) Def(<%d>%d\%<099>) <178>Efield<099>(<178>%dmin<099>) Edna(<178>%dsec<099>) Illum(<%d>%w<099>)} {
+			#VAR {gentech[bias][mode]}	{&2};
+			#VAR {gentech[bias][atk]}	{&4};
+			#VAR {gentech[bias][def]}	{&6};
+			#VAR {gentech[efield]}		{&7};
+			#VAR {gentech[edna]}		{&8};
+			#VAR {gentech[illum]}		{&10};
+		}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
@@ -240,7 +269,7 @@
 		#REGEX {GXP:%s{[\d\.]+}\%}		{#VAR {my[gxp][current]}	{&2}};
 	}; #ELSEIF {%1 == 2} {#NOP
 	}; #ELSE {
-		#ECHO {<171 Invalid Gline Number <088>}
+		#ECHO {<171> Invalid Gline Number <088>}
 	}
 }
 #ALIAS {.mipProcessGlineJuggernaut} {
