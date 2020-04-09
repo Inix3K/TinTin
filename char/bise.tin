@@ -1,0 +1,113 @@
+#class {bise} {open}
+
+#var guild gentech
+
+#act {HP:hp%d/%d SP:sp%d/%d PU:pu%d/%d(%d) CPC:cpc%d/%d E:%w} {
+	#var {my[hp][current]}		{%1};
+	#var {my[hp][max]}		{%2};
+	#var {my[sp][current]}		{%3};
+	#var {my[sp][max]}		{%4};
+	#var {my[gp1][current]}		{%5};
+	#var {my[gp1][max]}		{%6};
+	#var {my[gp2][current]}		{%7};
+	#var {gentech[cpc][current]}	{%8};
+	#var {gentech[cpc][max]}	{%9};
+	#var ehealth			{%10}
+}
+
+#act {G:%d/g2n%d(g2n%d\%) RC:rc%d Bias:warning( %d\% | %d\% )} {
+	#var {gentech[gxp][num]}	{%1};
+	#var {gentech[gxp][tnl]}	{%2};
+	#var {gentech[gxp][per]}	{%3};
+	#var {gentech[rc]}		{%4};
+	#var {gentech[bias][atk]}	{%5};
+	#var {gentech[bias][def]}	{%6}
+}
+
+#act {TS:tslide%d/%d(reset%d\%)} {
+	#var {gentech[ts][current]}	{%1};
+	#var {gentech[ts][max]}		{%2};
+	#var {gentech[reset]}		{%3}
+}
+
+#act {EField[efield%d min] EDNA[warning%d sec] Synth[synthorg%w]} {
+	#var {gentech[efield]}		{%1};
+	#var {gentech[edna]}		{%2};
+	#var {gentech[synthorg]}	{%3}
+}
+
+#act {EFF:gen-eff%d|tech-eff%d HG: hypergen%d(hypergent%d sec)} {
+	#var {gentech[geneff]}		{%1};
+	#var {gentech[techeff]}		{%2};
+	#var {gentech[hg][num]}		{%3};
+	#var {gentech[hg][time]}	{%4};
+	update_status
+}
+
+#alias {update_status} {
+        #if {"$cooler" == "on" || $corpses[cooler] > 0} {
+                #format {sb1_cooler} {%+2s} {$corpses[cooler]};
+                #var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
+        } {
+                #var {sb1_cooler} {}
+        };
+        #if {"$freezer" == "on" || $corpses[freezer] > 0} {
+                #format {sb2_freezer} {%+2s} {$corpses[freezer]};
+                #var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
+        } {
+                #var {sb2_freezer} {}
+        };
+	#switch {"$gentech[synthorg]"} {
+		#case {"LA"}		{#var synthorg {<118>LA<088>}};
+		#case {"SH"}		{#var synthorg {<138>SH<088>}};
+		#case {"SO"}		{#var synthorg {<258>SO<088>}};
+		#case {"GR"}		{#var synthorg {<168>GR<088>}};
+	};
+	#var	{my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
+	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
+	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
+	#var	{gentech[gxp][graph]}	{@graph{$gentech[gxp][per];100}};
+	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
+	#var	{cpc}			{@colscale{$gentech[cpc][current];$gentech[cpc][max]}};
+	#var	{cpc_max}		{<128>$gentech[cpc][max]<088>};
+	#math	{gentech[gxp][cost]}	{$gentech[gxp][tnl]*100/$gentech[gxp][per]};
+	#var	{gxp}			{<268>$gentech[gxp][num]<088>};
+	#var	{g2n}			{@colscale{$gentech[gxp][tnl];$gentech[gxp][cost]}};
+	#var	{gxp_per}		{@colscale{$gentech[gxp][per];100}};
+	#var	{reset}			{@colscale{$gentech[reset];100}};
+	#var	{geneff}		{@colscale{$gentech[geneff];100}};
+	#var	{techeff}		{@colscale{$gentech[techeff];100}};
+	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
+	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
+	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
+	#format {pu}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
+	#format {pu_max}		{%+4s} {<128>$my[gp1][max]<088>};
+	#format {spu}			{%+4s} {<128>$my[gp2][current]<088>};
+	#format {ehealth}		{%+8s} {@colscale{$enemy[hp];100}\%};
+        #format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
+        #format {corpses[truck]}	{%+2s} {$corpses[truck]};
+        #format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
+        #format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
+	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} PU:${pu}/${pu_max}(${spu})         IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} PU:${my[gp1][graph]} E:${enemy[graph]} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
+}
+
+/* Substitutes to fix duplicate hpbar tags */
+#NOP Using 'colorized' variables established in update_status
+#SUB {HP:hp%d/%d SP:sp%d/%d PU:pu%d/%d(%d) CPC:cpc%d/%d E:} {HP:$hp/$hp_max SP:$sp/$sp_max PU:$pu/${pu_max}($spu) CPC:$cpc/$cpc_max E:}
+#SUB {G:%d/g2n%d(g2n%d\%) RC:rc%d Bias:warning( %d\% | %d\% )} {G:$gxp/$g2n($gxp_per\%) RC:$gentech[rc] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% )}
+#SUB {TS:tslide%d/%d(reset%d\%)} {TS:$gentech[ts][current]/$gentech[ts][max]($reset\%)}
+#SUB {EField[efield%d min] EDNA[warning%d sec] Synth[synthorg%w]} {EField[$gentech[efield] min] EDNA[$gentech[edna] sec] Synth[$synthorg]}
+#SUB {EFF:gen-eff%d|tech-eff%d HG: hypergen%d(hypergent%d sec)} {EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] sec)}
+
+#alias {corpsetrig} {
+	wrap;
+	get coins
+}
+
+#act {dealt the killing blow} {corpsetrig}
+
+#class {bise} {close}
