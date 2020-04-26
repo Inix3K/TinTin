@@ -2,6 +2,9 @@
 #CLASS {mip} {open}
 #NOP REQUIRED:  draw.tin  //Used for drawing chats and caption
 
+/* !NOTE! */
+#NOP If your guild hides the hpbar with MIP turned on, try using the mud command 'forcehp'
+
 #NOP ***** Set MIP ID Code **********
 #VAR {mip} {}
 #LOOP {1} {5} {i} {

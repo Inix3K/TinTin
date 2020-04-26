@@ -13,6 +13,13 @@
 	botdraw
 }
 
+#alias {thisarea} {
+	#list {botcycle} {get} {$cycle} {currentarea};
+	go $currentarea;
+	#delay {1} {- $currentarea};
+	#delay {2} {..}
+}
+
 #alias {nextarea} {
 	#if {$cycle < &botcycle[]} {
 		#math cycle {$cycle+1}

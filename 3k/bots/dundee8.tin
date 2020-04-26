@@ -2,15 +2,16 @@
 
 #var {botpath} {e;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;w}
 
-#act {^=M= {Exotic Swamp Crocodile|Swamp Crocodile|Dark-Spotted Anaconda|Beaver|Barred Owl|Hippo|Greater Siren}} {
+#act {^=M= {Barred Owl|Beaver|Brown Bear|Dark-Spotted Anaconda|Exotic Swamp Crocodile|Greater Siren|Hippo|Swamp Crocodile}} {
 	#switch {"%1"} {
-		#case {"Exotic Swamp Crocodile"}	{#var mobname crocodile};
-		#case {"Swamp Crocodile"}		{#var mobname crocodile};
-		#case {"Dark-Spotted Anaconda"}		{#var mobname snake};
-		#case {"Beaver"}			{#var mobname beaver};
 		#case {"Barred Owl"}			{#var mobname owl};
-		#case {"Hippo"}				{#var mobname hippo};
+		#case {"Beaver"}			{#var mobname beaver};
+		#case {"Brown Bear"}			{#var mobname bear};
+		#case {"Dark-Spotted Anaconda"}		{#var mobname snake};
+		#case {"Exotic Swamp Crocodile"}	{#var mobname crocodile};
 		#case {"Greater Siren"}			{#var mobname siren};
+		#case {"Hippo"}				{#var mobname hippo};
+		#case {"Swamp Crocodile"}		{#var mobname crocodile}
 	};
 	_check_mob
 }

@@ -122,7 +122,7 @@
 			#default		{#var redraw[args][1] invalid;#showme REDRAW:  Invalid redraw option}
 		};
 		#if {"%2" != ""} {
-			#switch{"%2"} {
+			#switch {"%2"} {
 				#case {"on"}	{#var redraw[flag] on};
 				#case {"off"}	{#var redraw[flag] off};
 				#default	{#var redraw[args][2] invalid;#showme REDRAW:  Invalid redraw parameter (on or off)}

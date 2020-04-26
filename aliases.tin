@@ -19,7 +19,8 @@
 
 #alias {/calc} {
 	#math {math} {%1};
-	#echo $math
+	#format {math_format} {%g} {$math};
+	#echo $math_format
 }
 
 #class {aliases} {close}
