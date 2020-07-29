@@ -11,10 +11,10 @@
 		#case {"Gargamel"}		{#var mobname gargamel}
 	};
 	_check_mob
-};
+}
 
-#act {=M= Papa Smurf <?>} {mission ask;mission accept};
-#act {=M= Papa Smurf <!>} {mission return};
-#act {=M= Papa Smurf <.>} {#nop};
+#act {=M= Papa Smurf <?>} {mission ask;mission accept}
+#act {=M= Papa Smurf <!>} {mission return}
+#act {=M= Papa Smurf <.>} {#nop}
 
 #class {bot} {close}
