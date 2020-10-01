@@ -1,0 +1,40 @@
+ 5. Codename: Kodiak:
+ Incoming message from : Commander Ford, Command bunker 296-4497.
+ I regret to say this will be my last transmission.  Our supplies
+ are depleted and our forces torn to shreds.  We continue to fight
+ this unseen horror but each day more of our best and brightest
+ fall.  My only hope is to protect anyone passing within reach of
+ this planet.
+ A Renegade Mechwarrior from Clan Ghost Bear has landed on our
+ planet and has been slowly tearing us apart.  Our best mechwarriors
+ have gone to face the renegade and all have died.  I fear all hope
+ is lost.
+ Search in the Realms of Newbieland and Science
+ Thinking : (3/10)         Exploring : (7/10)         Fighting : (10/10)
+ Quest Point Value  : 5         Designed for Levels: 49+, or 4+ (newbie)
+ Created by         : Dynon
+ Once per Reboot    : No
+
+Newbieland Entrance:  3s, u, n, enter mirror 5
+2 nw, e
+search rubble
+3 nw
+exa elevator
+search elevator
+nw
+climb up
+say quest
+say accept
+down
+search floor
+climb down
+say ford sent me
+say <command code provided by ford>
+up
+4 se
+w
+2 se
+wear scanner
+search mountain
+se
+kill kodiak
