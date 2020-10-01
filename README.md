@@ -49,3 +49,15 @@
 
 #### AW/snd.tin
 * Search and Destroy style mob hunting for TinTin
+
+## Installation Instructions (Unix/Termux)
+pkg install tintin++
+pkg install tmux
+pkg install git
+git clone https://github.com/Inix3K/TinTin
+mv TinTin .tt
+mkdir .tt/logs
+touch .tt/logs/3k.chat
+touch .tt/map/map.txt
+cp .tt/scripts/.profile ~/.profile
+. .profile
