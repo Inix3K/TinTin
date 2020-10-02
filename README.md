@@ -57,6 +57,5 @@
 * git clone https://github.com/Inix3K/TinTin
 * mv TinTin .tt
 * mkdir .tt/logs
-* touch .tt/logs/3k.chat
 * cp .tt/scripts/.profile ~/.profile
 * . .profile
