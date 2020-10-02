@@ -60,7 +60,7 @@
 		#var corpses[inventory] 0
 	}
 }
-#alias {kac} {#var corpses[inventory] 0;!keep all corpse}
+#alias {kac} {#var corpses[inventory] 0;#send !keep all corpse}
 	
 /* Truck Counter */
 #act {{^A tank named CanisLupus}} {#var corpses[truck] 0;corpsecount truck}
@@ -95,9 +95,9 @@
 /* Aliases */
 #alias {cc} {
 	kac;
-	!keep coffin;
-	!keep freezer;
-	!exa cl;
-	!exa cooler
+	#send !keep coffin;
+	#send !keep freezer;
+	#send !exa cl;
+	#send !exa cooler
 }
 #class {corpses} {close}

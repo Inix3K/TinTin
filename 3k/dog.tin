@@ -11,27 +11,27 @@
 		#echo <001>!DOGGIE IS HURTING!<088>;
 		#bell
 	};
-	#if {$dog_hap < 95} {!dog pet};
+	#if {$dog_hap < 95} {#send !dog pet};
 	#if {$dog_hun > 40} {
-		#if 	{$corpses[inventory] > 10}	{!drop corpse};
-		#elseif {$corpses[truck] > 0}	{!truck drop corpse};
-		#elseif {$corpses[cooler] > 0}	{!uncooler corpse};
-		#elseif {$corpses[inventory] > 0}	{!drop corpse};
-		#elseif {$corpses[freezer] > 0}	{!deslab};
-		#elseif {$corpses[coffin] > 0}	{!unwrap};
+		#if 	{$corpses[inventory] > 10}	{#send !drop corpse};
+		#elseif {$corpses[truck] > 0}		{#send !truck drop corpse};
+		#elseif {$corpses[cooler] > 0}		{#send !uncooler corpse};
+		#elseif {$corpses[inventory] > 0}	{#send !drop corpse};
+		#elseif {$corpses[freezer] > 0}		{#send !deslab};
+		#elseif {$corpses[coffin] > 0}		{#send !unwrap};
 		#else	{#echo {<001>!NO CORPSES!<088>}};
-		!dog eat
+		#send !dog eat
 	}
 }
 
-#act {{(?:\w+) command(?:s)? (?:everyone|your audience) to HEEL\!}} {!dog heel}
-#act {has commanded you to HEEL!} {!dog heel}
-#act {woofs at you} {!dog stay}
-#act {You woof.$} {!dog stay}
-#act {woofs.$} {!dog stay}
-#act {Your dog lays down and places his head on his paws, looking sad\.$} {!say Kerensky is staying here.}
-#act {Your dog is so happy he can hardly stand it and runs around in circles\.$} {!say Kerensky is following me.}
-#act {Your dog looks disappointed, but slowly moves behind you\.$} {!say Kerensky is no longer assisting me in combat.}
-#act {Your dog is so happy he can hardly stand it and bounds in front of you\.$} {!say Kerensky is now assisting me in combat.}
+#act {{(?:\w+) command(?:s)? (?:everyone|your audience) to HEEL\!}} {#send !dog heel}
+#act {has commanded you to HEEL!} {#send !dog heel}
+#act {woofs at you} {#send !dog stay}
+#act {You woof.$} {#send !dog stay}
+#act {woofs.$} {#send !dog stay}
+#act {Your dog lays down and places his head on his paws, looking sad\.$} {#send !say Kerensky is staying here.}
+#act {Your dog is so happy he can hardly stand it and runs around in circles\.$} {#send !say Kerensky is following me.}
+#act {Your dog looks disappointed, but slowly moves behind you\.$} {#send !say Kerensky is no longer assisting me in combat.}
+#act {Your dog is so happy he can hardly stand it and bounds in front of you\.$} {#send !say Kerensky is now assisting me in combat.}
 
 #class {dog} {close}

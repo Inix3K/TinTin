@@ -227,8 +227,8 @@
 		};
 		#REGEX {$mip[gline][1]} {Rating<099>: <819>%d<099>}			{#VAR {my[rating]}		{&1}}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {$mip[gline][2]} {Stones/Waves/Shrouds<099>: <%d>%d<099>/<%d>%d<099>/<%d>%d<099>\(%d\%\)}
-			#VAR {my[blasts]		{&2};
+		#REGEX {$mip[gline][2]} {Stones/Waves/Shrouds<099>: <%d>%d<099>/<%d>%d<099>/<%d>%d<099>\(%d\%\)} {
+			#VAR {my[blasts]}		{&2};
 			#VAR {my[waves]}		{&4};
 			#VAR {my[shrouds]}		{&6};
 			#VAR {my[reset]}		{&7}
@@ -526,7 +526,7 @@
 				#NOP Chat Tools;
 				#if  {$idle <= 900} {
 					#NOP 8Inix;
-					#if {"$8inix" == "on"} {
+					#if {"$v8inix" == "on"} {
 						#regex {$mip[comm][data]} {%i8inix} {
 							do8inix
 						}
@@ -648,7 +648,7 @@
 
 		#if {$idle <= 900} {
 			#NOP 8Inix;
-			#if {"$8inix" == "on"} {
+			#if {"$v8inix" == "on"} {
 				#regex {$mip[comm][data]} {%i: 8inix} {
 					do8inix
 				}

@@ -57,12 +57,12 @@ prompt >$nl$
 		#act {^>$} {
 			#if {$itemfound && !$foundplayer && $vacuum} {
 				#if {"$world" == "inix"} {
-					!truck get all
+					#send !truck get all
 				};
-				!get all
+				#send !get all
 			};
 			#if {$goldfound && !$foundplayer} {
-				!get coins
+				#send !get coins
 			};
 			#path walk;
 			#unact {^>$}
@@ -75,21 +75,21 @@ prompt >$nl$
 				#path walk
 			} {
 				.pause;
-				!kill $mobname;
+				#send !kill $mobname;
 				#var foundmob 1;
 				#if {$itemfound && $vacuum} {
 					get all;
 					#if {"$world" == "inix"} {
-						!truck get all
+						#send !truck get all
 					}
 				};
 				#if {$goldfound} {
-					!get coins
+					#send !get coins
 				}
 			}
 		}
 	};
-	!glance;
+	#send !glance;
 	#class {xbot} {close}
 }
 

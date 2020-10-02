@@ -36,8 +36,8 @@ rtick
 	#if {$my[gp1][current] < 20} {stimheal};
 	#if {$my[gp1][current] < 25} {#bell};
 	#if {$my[gp1][current] < 95 && $my[sp][current] > 50} {
-		#if {$my[gp2][current] > 70} {!dissipate};
-		!transpose max;
+		#if {$my[gp2][current] > 70} {#send !dissipate};
+		#send !transpose max;
 	};
 	#if {$reset >= 95} {
 		#if {$clan > 0} {
@@ -63,15 +63,15 @@ rtick
 	#format {ammo_len} {%L} {$ammo};
 	#if {"$ammo_buy" == "on" && $ammo_len > 0} {
 		#if {$ammo[1] < 100} {
-			!truck ammo vbuy $weapon_type $ammo_type 1 $ammo_buy_amount
+			#send !truck ammo vbuy $weapon_type $ammo_type 1 $ammo_buy_amount
 		}; #elseif {$ammo[2] < 100} {
-			!truck ammo vbuy $weapon_type $ammo_type 2 $ammo_buy_amount
+			#send !truck ammo vbuy $weapon_type $ammo_type 2 $ammo_buy_amount
 		}; #elseif {$ammo[3] < 100} {
-			!truck ammo vbuy $weapon_type $ammo_type 3 $ammo_buy_amount
+			#send !truck ammo vbuy $weapon_type $ammo_type 3 $ammo_buy_amount
 		}; #elseif {$ammo[4] < 100} {
-			!truck ammo vbuy $weapon_type $ammo_type 4 $ammo_buy_amount
+			#send !truck ammo vbuy $weapon_type $ammo_type 4 $ammo_buy_amount
 		}; #elseif {$ammo[5] < 100} {
-			!truck ammo vbuy $weapon_type $ammo_type 5 $ammo_buy_amount
+			#send !truck ammo vbuy $weapon_type $ammo_type 5 $ammo_buy_amount
 		}
 	};
 	#if {$shp > 0 && $shp < 9} {dismiss};
@@ -132,7 +132,7 @@ rtick
 	}; #else {
 		#if {"$bot" == "on"} {
 			.stop;
-		}
+		};
 		#bell
 	};
 	#send !fdeener

@@ -1,6 +1,6 @@
 #class {8inix} {open}
 
-#var 8inix on
+#var v8inix on
 
 #alias {do8inix} {
 	

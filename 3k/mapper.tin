@@ -230,14 +230,14 @@
 
 #alias {mapsave} {#map write .tt/map/3k.map}
 #alias {mapon} {
-	!brief off yes;
+	#send !brief off yes;
 	#map flag static off;
 	#var mapstatic 1;
 	#var area %1;
 	#var mapping on;
 }
 #alias {mapoff}{
-	!brief on yes;
+	#send !brief on yes;
 	#map flag static on;
 	#unvar mapstatic;
 	#unvar mapping;
