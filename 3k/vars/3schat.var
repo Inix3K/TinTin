@@ -1,0 +1,5 @@
+#CLASS {chat} OPEN
+
+#var chat {}
+
+#CLASS {chat} CLOSE
