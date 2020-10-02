@@ -8,10 +8,12 @@
 #var corpses[truck] 0
 
 /* Coffin Counter */
-#act {{You keep An enchanted coffin \((\d+) corpses?\) \[(?:[\.\|\&]+)\] \[[\w\s]+\]\.}} {#var corpses[coffin] %2}
+#act {{You keep An enchanted coffin \((\d+) corpses?\)  \[(?:[\.\|\&]+)\]  \[[\w\s]+\]\.}} {#var corpses[coffin] %2}
 #act {The Mortician says: Your generous donation of } {#var {corpses[coffin]} {0}}
-#act {wrap it up into the coffin's protective hold!} {#math {corpses[coffin]} {$corpses[coffin] + 1}}
-#act {{The coffin expels (a|your selected) corpse onto the ground!}} {
+#act {There are no corpses in the coffin!} {#var {corpses[coffin]} {0}}
+#act {into the coffin's protective hold!} {#math {corpses[coffin]} {$corpses[coffin] + 1}}
+#act {The coffin expels all its corpses!} {#var {corspes[coffin]} {0}}
+#act {{The coffin expels (a|your selected) corpse!}} {
 	#if {$corpses[coffin] > 0} {
 		#math {corpses[coffin]} {$corpses[coffin] - 1}
 	} {
