@@ -58,6 +58,5 @@
 * mv TinTin .tt
 * mkdir .tt/logs
 * touch .tt/logs/3k.chat
-* touch .tt/map/map.txt
 * cp .tt/scripts/.profile ~/.profile
 * . .profile
