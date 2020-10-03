@@ -2,9 +2,9 @@
 
 /* Cove of the Three (Lost Soul) */
 #act {^an angelic temptress standing before you.$} {
-	!present raqna's gem;
-	!present tyra's gem;
-	!present brenan's gem
+	#send !present raqna's gem;
+	#send !present tyra's gem;
+	#send !present brenan's gem
 }
 
 /* Rohm Giddor (temper) */
@@ -14,5 +14,5 @@
 
 /* Priest Guardian */
 #act {^Type 'accept' if you wish to be monitored.$} {
-	!accept
+	#send !accept
 }
