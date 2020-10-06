@@ -28,11 +28,11 @@
 		#case {20}	{#var message {Very doubtful}};
 		#default	{#var message {WOW!  You must really suck at life...you broke the 8Inix!}}
 	};
-	#var 8line {$mip[comm][command]};
+	#var v8line {$mip[comm][command]};
 	#if {"$mip[comm][line]" == "Tell"} {
-		#delay 1 #send $8line (8)Inix : $message;
+		#delay 1 #send $v8line (8)Inix : $message;
 	} {
-		#delay 1 #send $8line [30\;1m([34\;1m8[30\;1m)[0mInix : $message;
+		#delay 1 #send $v8line [30\;1m([34\;1m8[30\;1m)[0mInix : $message;
 	}
 }
 
