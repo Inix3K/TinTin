@@ -276,6 +276,26 @@
 	#map insert $dir void
 }
 
+/* Highmortal Portals Toggles */
+#alias hmavoid {
+  #map exitflag {portal road} avoid on;
+  #map exitflag {portal eforest} avoid on;
+  #map exitflag {portal wforest} avoid on;
+  #map exitflag {efor} avoid on;
+  #map exitflag {portal desert} avoid on;
+  #map exitflag {portal ice} avoid on
+}
+
+#alias hmfollow {
+  #map exitflag {portal road} avoid off;
+  #map exitflag {portal eforest} avoid off;
+  #map exitflag {portal wforest} avoid off;
+  #map exitflag {efor} avoid off;
+  #map exitflag {portal desert} avoid off;
+  #map exitflag {portal ice} avoid off
+}
+
+
 /* Screen Sizing */
 #event {SCREEN RESIZE} {
 	#read .tt/3k/draw.tin
