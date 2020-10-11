@@ -7,5 +7,10 @@
 #send aset room_exits_pref [33\;1m=X=[0m
 #send aset room_exits_suff [33\;1m=X=[0m
 
+#send aset xp1 higreen
+#send aset xp2 hired
+#send aset xp3 hicyan
+#send aset xp4 cyan
+
 
 #class {ansi_setup} {close}

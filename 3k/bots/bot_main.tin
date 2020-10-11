@@ -75,7 +75,7 @@ prompt >$nl$
 				#path walk
 			} {
 				.pause;
-				#send !kill $mobname;
+				kill $mobname;
 				#var foundmob 1;
 				#if {$itemfound && $vacuum} {
 					get all;
@@ -110,8 +110,8 @@ prompt >$nl$
 	}
 }
 
-#alias {dogtank} {#alias {k} {#delay {2} {dog sicem %%0}}}
-#alias {nodogtank} {#unalias {k}};
+#alias {dogtank} {#alias {kill} {#delay {2} {dog sicem %%0}}}
+#alias {nodogtank} {#unalias {kill}};
 
 #act {^%w dealt the killing blow to} {
 	corpsetrig;
