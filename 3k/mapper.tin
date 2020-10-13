@@ -278,21 +278,31 @@
 
 /* Highmortal Portals Toggles */
 #alias hmavoid {
-  #map at 148 {#map exitflag {portal road} avoid on};
-  #map at 148 {#map exitflag {portal eforest} avoid on};
-  #map at 148 {#map exitflag {portal wforest} avoid on};
-  #map at 148 {#map exitflag {efor} avoid on};
-  #map at 148 {#map exitflag {portal desert} avoid on};
-  #map at 148 {#map exitflag {portal ice} avoid on}
+	#map at 148 {#map exitflag {portal road} avoid on};
+	#map at 148 {#map exitflag {portal eforest} avoid on};
+	#map at 148 {#map exitflag {portal wforest} avoid on};
+	#map at 148 {#map exitflag {efor} avoid on};
+	#map at 148 {#map exitflag {portal desert} avoid on};
+	#map at 148 {#map exitflag {portal ice} avoid on}
 }
 
 #alias hmfollow {
-  #map at 148 {#map exitflag {portal road} avoid off};
-  #map at 148 {#map exitflag {portal eforest} avoid off};
-  #map at 148 {#map exitflag {portal wforest} avoid off};
-  #map at 148 {#map exitflag {efor} avoid off};
-  #map at 148 {#map exitflag {portal desert} avoid off};
-  #map at 148 {#map exitflag {portal ice} avoid off}
+	#map at 148 {#map exitflag {portal road} avoid off};
+	#map at 148 {#map exitflag {portal eforest} avoid off};
+	#map at 148 {#map exitflag {portal wforest} avoid off};
+	#map at 148 {#map exitflag {efor} avoid off};
+	#map at 148 {#map exitflag {portal desert} avoid off};
+	#map at 148 {#map exitflag {portal ice} avoid off}
+}
+
+/* House avoid for followers */
+#NOP Using high weight instead of avoid so paths into house will still work, but pathing will avoid it going through town
+#alias homeavoid {
+	#map at 44 {#map set roomweight 100};
+}
+
+#alias homefollow {
+	#map at 44 {#map set roomweight 1};
 }
 
 
