@@ -1,18 +1,26 @@
 #class {bot} {open}
 
 #var no_loop 1
+#var hardmode 0
 
 #var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;w;s;w;w;w;w;w;s;e;e;e;e;w;s;w;w;w;s;e;e;w;s;w;s}
 
 #act {^=M= {A zombie bell hop waiting to carry your things|A zombie cook looking for something to chop|A zombie waiter offering drinks|A mindless vampire}} {
+	#var mobhard 0;
 	#switch {"%1"} {
 	#case {"A zombie bell hop waiting to carry your things"}	{#var mobname zombie};
 	#case {"A zombie cook looking for something to chop"}		{#var mobname zombie};
 	#case {"A zombie waiter offering drinks"}			{#var mobname zombie};
-	#case {"A mindless vampire"}					{#var mobname vampire};
+	#case {"A mindless vampire"}					{#var mobname vampire;#var mobhard 1};
 	#default							{#var mobname zombie}
 	};
-	_check_mob
+	#if {$mobhard} {
+		#if {$hardmode} {
+			_check_mob
+		}
+	} {
+		_check_mob
+	}
 }
 
 #class {bot} {close}
