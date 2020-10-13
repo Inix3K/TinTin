@@ -278,21 +278,21 @@
 
 /* Highmortal Portals Toggles */
 #alias hmavoid {
-  #map exitflag {portal road} avoid on;
-  #map exitflag {portal eforest} avoid on;
-  #map exitflag {portal wforest} avoid on;
-  #map exitflag {efor} avoid on;
-  #map exitflag {portal desert} avoid on;
-  #map exitflag {portal ice} avoid on
+  #map at 148 {#map exitflag {portal road} avoid on};
+  #map at 148 {#map exitflag {portal eforest} avoid on};
+  #map at 148 {#map exitflag {portal wforest} avoid on};
+  #map at 148 {#map exitflag {efor} avoid on};
+  #map at 148 {#map exitflag {portal desert} avoid on};
+  #map at 148 {#map exitflag {portal ice} avoid on}
 }
 
 #alias hmfollow {
-  #map exitflag {portal road} avoid off;
-  #map exitflag {portal eforest} avoid off;
-  #map exitflag {portal wforest} avoid off;
-  #map exitflag {efor} avoid off;
-  #map exitflag {portal desert} avoid off;
-  #map exitflag {portal ice} avoid off
+  #map at 148 {#map exitflag {portal road} avoid off};
+  #map at 148 {#map exitflag {portal eforest} avoid off};
+  #map at 148 {#map exitflag {portal wforest} avoid off};
+  #map at 148 {#map exitflag {efor} avoid off};
+  #map at 148 {#map exitflag {portal desert} avoid off};
+  #map at 148 {#map exitflag {portal ice} avoid off}
 }
 
 
