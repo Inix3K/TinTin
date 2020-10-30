@@ -44,7 +44,7 @@
 
 #alias {update_status} {
 	#if {"$method" == "Standard"} {#send !method melee};
-	#if {$my[hp][current] < $my[hp][max]*.8} {#send !staunch};
+	#if {$my[hp][current] < $my[hp][max]*.9} {#send !staunch};
 	#if {$my[sp][current] > $my[sp][max]*.9} {
 		#if {$my[gp1][current] < 90 || $my[gp2][current] > 10} {
 			#NOP #delay {willdelay} {#send !will} {0.05}

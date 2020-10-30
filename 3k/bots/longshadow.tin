@@ -6,7 +6,7 @@
 	#switch {"%1"} {
 		#case {"Archer"}		{#var mobname archer};
 		#case {"Blood Guard"}		{#var mobname guard};
-		#case {"Centurion"}		{#var mobname centurion}
+		#case {"Centurion"}		{#var mobname centurion};
 		#case {"Champion"}		{#var mobname champion};
 		#case {"General"}		{#var mobname general};
 		#case {"Grunt"}			{#var mobname grunt};
