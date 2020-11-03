@@ -75,7 +75,7 @@
 #alias corpsecount {
 	#class {corpse_count} {open};
 	#var {corpse_cnt} {0};
-	#act {{^[\[|\(](?:.*) corpse of (?:[\w\s\d\,\-]+)\{?(\d*)\}?(\: Ok)?\.}} { 
+	#act {{^[\[|\(](?:.*) corpse of (?:[\w\s\d\,\-\']+)\{?(\d*)\}?(\: Ok)?\.}} { 
 		#if {!%%3} {
 			#if {%%2} {
 				#var corpse_stack %%2
