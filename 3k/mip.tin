@@ -277,7 +277,7 @@
 }
 #ALIAS {.mipProcessGlineJuggernaut} {
 	#IF {%1 == 1} {
-		#REGEX {$mip[gline][1]} {Ammo:\[%d/%d/%d/%d/%d\] <838>Gxp: %d.%d\%<099> Hits: \[%d\] <868>Coffin: %d/%d} {
+		#REGEX {{$mip[gline][1]} {Ammo:\[(\d*)/?(\d*)/?(\d*)/?(\d*)/?(\d*)\] <838>Gxp: %d.%d\%<099> Hits: \[%d\] <868>Coffin: %d/%d}} {
 			#VAR {ammo[1]}			{&1};
 			#VAR {ammo[2]}			{&2};
 			#VAR {ammo[3]}			{&3};
