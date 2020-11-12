@@ -277,16 +277,16 @@
 }
 #ALIAS {.mipProcessGlineJuggernaut} {
 	#IF {%1 == 1} {
-		#REGEX {{$mip[gline][1]} {Ammo:\[(\d*)/?(\d*)/?(\d*)/?(\d*)/?(\d*)\] <838>Gxp: %d.%d\%<099> Hits: \[%d\] <868>Coffin: %d/%d}} {
-			#VAR {ammo[1]}			{&1};
-			#VAR {ammo[2]}			{&2};
-			#VAR {ammo[3]}			{&3};
-			#VAR {ammo[4]}			{&4};
-			#VAR {ammo[5]}			{&5};
-			#VAR {gxp}			{&6.&7};
-			#VAR {hits}			{&8};
-			#VAR {corpses[coffin]}		{&9};
-			#VAR {corpses[coffinsize]}	{&10}
+		#REGEX {$mip[gline][1]} {{Ammo:\[(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?\]} <838>Gxp: %d.%d\%<099> Hits: \[%d\] <868>Coffin: %d/%d} {
+			#VAR {ammo[1]}			{&2};
+			#VAR {ammo[2]}			{&3};
+			#VAR {ammo[3]}			{&4};
+			#VAR {ammo[4]}			{&5};
+			#VAR {ammo[5]}			{&6};
+			#VAR {gxp}			{&7.&8};
+			#VAR {hits}			{&9};
+			#VAR {corpses[coffin]}		{&10};
+			#VAR {corpses[coffinsize]}	{&11}
 		}
 	}; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]} {Nukes: [%d/%d]<099> Reset: [%d\%]} {
