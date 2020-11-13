@@ -45,7 +45,7 @@
 	#if	{$idle_min < 10}{#var idle_min 0$idle_min};
 	#if	{$idle_sec < 10}{#var idle_sec 0$idle_sec};
 	#format {idle_cap}	{%+4s}	{<268>[<128>$idle_hr<268>:<128>$idle_min<268>:<128>$idle_sec<268>]<088>};
-	#if	{&botcycle[] > 0} {
+	#if	{&{botcycle[]} > 0} {
 		#format {areacap} {<148>Cycle: <168>$cycle<148>\-<168>$botcycle[$cycle]<088>}
 	} {
 		#var areacap {};	
