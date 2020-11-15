@@ -6,6 +6,8 @@
 #send aset look_player_pref [32\;1m=P= [0m
 #send aset room_exits_pref [33\;1m=X=[0m
 #send aset room_exits_suff [33\;1m=X=[0m
+#send aset kill_pref [41m=K=
+#send aset kill_suff =K=[0m
 
 #send aset xp1 higreen
 #send aset xp2 hired

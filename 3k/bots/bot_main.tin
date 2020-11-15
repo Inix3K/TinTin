@@ -113,7 +113,7 @@ prompt >$nl$
 #alias {dogtank} {#alias {kill} {#delay {2} {dog sicem %%0}}}
 #alias {nodogtank} {#unalias {kill}};
 
-#act {^%w dealt the killing blow to} {
+#act {^=K=%1 dealt the killing blow to} {
 	corpsetrig;
 	#if {!$singlestep} {
 		.bot
