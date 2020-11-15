@@ -8,7 +8,7 @@
 #CONFIG           {CONNECT RETRY}	{15}
 #CONFIG           {HISTORY SIZE}	{1000}
 #CONFIG           {LOG MODE}		{RAW}
-#CONFIG           {MOUSE TRACKING}	{ON}
+#CONFIG           {MOUSE}		{ON}
 #CONFIG           {PACKET PATCH}	{0.80}
 #CONFIG           {REPEAT CHAR}		{!}
 #CONFIG           {REPEAT ENTER}	{ON}
