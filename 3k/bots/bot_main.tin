@@ -8,6 +8,7 @@ prompt >$nl$
 #var foundmob 0
 #var foundplayer 0
 #var goldfound 0
+#var itemfound 0
 #var mobname 0
 #var bot 0
 #var vacuum 0
@@ -95,6 +96,10 @@ prompt >$nl$
 
 #act { gold coins.$} {
 	#var goldfound 1
+}
+
+#act {^=I= } {
+	#var itemfound 1
 }
 
 #alias {killbot} {

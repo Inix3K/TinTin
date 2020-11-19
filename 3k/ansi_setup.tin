@@ -4,6 +4,10 @@
 #send aset room_short_suff [33\;1m=S=[0m
 #send aset look_monster_pref [36m=M= [0m
 #send aset look_player_pref [32\;1m=P= [0m
+#send aset look_weapon [34\;1m=I= [0m
+#send aset look_armor [34\;1m=I= [0m
+#send aset look_object [34\;1m=I= [0m
+#send aset look_other [34\;1m=I= [0m
 #send aset room_exits_pref [33\;1m=X=[0m
 #send aset room_exits_suff [33\;1m=X=[0m
 #send aset kill_pref [41m=K=
