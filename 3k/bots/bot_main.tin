@@ -11,7 +11,7 @@ prompt >$nl$
 #var itemfound 0
 #var mobname 0
 #var bot 0
-#var vacuum 0
+#var vacuum 1
 #var singlestep 0
 
 
@@ -57,9 +57,6 @@ prompt >$nl$
 		#var itemfound 0;
 		#act {^>$} {
 			#if {$itemfound && !$foundplayer && $vacuum} {
-				#if {"$world" == "inix"} {
-					#send !truck get all
-				};
 				#send !get all
 			};
 			#if {$goldfound && !$foundplayer} {
@@ -98,6 +95,12 @@ prompt >$nl$
 	#var goldfound 1
 }
 
+#act {^=A= } {
+	#var itemfound 1
+}
+#act {^=W= } {
+	#var itemfound 1
+}
 #act {^=I= } {
 	#var itemfound 1
 }
