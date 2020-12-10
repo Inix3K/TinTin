@@ -110,7 +110,7 @@
         #math {gxn_max} {$gxn/(1-(${gxn_per}/100))}
 }
 
-#act {^{\w*} dealt the killing blow to} {corpsetrig}
+#act {^{\w*} dealt the killing blow to} {corpsetrig} {5}
 #alias corpsetrig {
 	#if {$my[gp1][current] < $my[gp1][max]*.25 || $my[gp2][current] > 25} {
 		.pause

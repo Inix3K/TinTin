@@ -76,10 +76,7 @@ prompt >$nl$
 				kill $mobname;
 				#var foundmob 1;
 				#if {$itemfound && $vacuum} {
-					get all;
-					#if {"$world" == "inix"} {
-						#send !truck get all
-					}
+					get all
 				};
 				#if {$goldfound} {
 					#send !get coins
