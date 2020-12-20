@@ -182,17 +182,103 @@
 	#NOP GUILD SPECIFIC GLINE PROCESSING;
 	#IF {"%2" != ""} {
 		#SWITCH {"$guild"} {
+			#CASE {"adventurer"}	{.mipProcessGlineAdenturer {%1}};
+			#CASE {"android"}	{.mipProcessGlineAndroid {%1}};
+			#CASE {"angel"}		{.mipProcessGlineAngel {%1}};
+			#CASE {"ascended"}	{.mipProcessGlineAscended {%1}};
+			#CASE {"bard"}		{.mipProcessGlineBard {%1}};
+			#CASE {"bladesinger"}	{.mipProcessGlineBladesinger {%1}};
+			#CASE {"breed"}		{.mipProcessGlineBreed {%1}};
 			#CASE {"changeling"}	{.mipProcessGlineChangeling {%1}};
+			#CASE {"cleric"}	{.mipProcessGlineCleric {%1}};
+			#CASE {"cyborg"}	{.mipProcessGlineCyborg {%1}};
 			#CASE {"elemental"}	{.mipProcessGlineElemental {%1}};
+			#CASE {"fighter"}	{.mipProcessGlineFighter {%1}};
+			#CASE {"fremen"}	{.mipProcessGlineFremen {%1}};
 			#CASE {"gentech"}	{.mipProcessGlineGentech {%1}};
 			#CASE {"jedi"}		{.mipProcessGlineJedi {%1}};
 			#CASE {"juggernaut"}	{.mipProcessGlineJuggernaut {%1}};
 			#CASE {"knight"}	{.mipProcessGlineKnight {%1}};
+			#CASE {"mage"}		{.mipProcessGlineMage {%1}};
+			#CASE {"monk"}		{.mipProcessGlineMonk {%1}};
 			#CASE {"necromancer"}	{.mipProcessGlineNecromancer {%1}};
+			#CASE {"priest"}	{.mipProcessGlinePriest {%1}};
 			#CASE {"psicorp"}	{.mipProcessGlinePsicorp {%1}};
-			#CASE {"sii"}		{.mipProcessGlineSii {%1}}
+			#CASE {"sii"}		{.mipProcessGlineSii {%1}};
+			#CASE {"sorcerer"}	{.mipProcessGlineSorcerer {%1}}
 		}
 	}
+}
+
+#ALIAS {.mipProcessGlineAdventurer} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineAndroid} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+
+#ALIAS {.mipProcessGlineAngel} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineAscended} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineBard} {
+        #IF {%1 == 1} {
+		#NOP
+        }; #ELSEIF {%1 == 2} {
+		#NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineBladesinger} {
+        #IF {%1 == 1} {
+		#NOP
+        }; #ELSEIF {%1 == 2} {
+		#NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineBreed} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
 }
 
 #ALIAS {.mipProcessGlineChangeling} {
@@ -216,6 +302,26 @@
 	}
 }
 
+#ALIAS {.mipProcessGlineCleric} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineCyborg} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
 #ALIAS {.mipProcessGlineElemental} {
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]} {Emit<099> : <%d>%d}	{#VAR {my[emit][level]}		{&2}};
@@ -237,6 +343,26 @@
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
+}
+
+#ALIAS {.mipProcessGlineFighter} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineFremen} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
 }
 
 #ALIAS {.mipProcessGlineGentech} {
@@ -270,11 +396,13 @@
 #ALIAS {.mipProcessGlineJedi} {
 	#IF {%1 == 1} {
 		#REGEX {GXP:%s{[\d\.]+}\%}		{#VAR {my[gxp][current]}	{&2}};
-	}; #ELSEIF {%1 == 2} {#NOP
+	}; #ELSEIF {%1 == 2} {
+		#NOP
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
 }
+
 #ALIAS {.mipProcessGlineJuggernaut} {
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]} {{Ammo:\[(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?\]} <838>Gxp: %d.%d\%<099> Hits: \[%d\] <868>Coffin: %d/%d} {
@@ -349,6 +477,26 @@
 	}
 }
 
+#ALIAS {.mipProcessGlineMage} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
+#ALIAS {.mipProcessGlineMonk} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
+}
+
 #ALIAS {.mipProcessGlineNecromancer} {
 	#IF {%1 == 1} {
 		#REGEX {$mip[gline][1]} {C:%d}		{#VAR {corpses[inventory]}	{&1}};
@@ -372,6 +520,16 @@
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
+}
+
+#ALIAS {.mipProcessGlinePriest} {
+        #IF {%1 == 1} {
+		#NOP
+        }; #ELSEIF {%1 == 2} {
+		#NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
 }
 
 #ALIAS {.mipProcessGlinePsicorp} {
@@ -400,14 +558,14 @@
 	}
 }
 
-#ALIAS {.mipProcessGlineBard} {
-	#IF {%1 == 1} {
-		
-	}; #ELSEIF {%1 == 2} {
-		
-	}; #ELSE {
-		#ECHO {<171> Invalid Gline Number <088>}
-	}
+#ALIAS {.mipProcessGlineSorcerer} {
+        #IF {%1 == 1} {
+                #NOP
+        }; #ELSEIF {%1 == 2} {
+                #NOP
+        }; #ELSE {
+                #ECHO {<171> Invalid Gline Number <088>}
+        }
 }
 
 
