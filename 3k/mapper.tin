@@ -456,6 +456,9 @@
 #act {^The captain announces: Welcome to Midway Space Station.$} {exit}
 #act {^The captain announces: Welcome to Houston Transport Center.$} {exit2}
 
+#NOP Section Z
+#act {^You press PAUSE on the game, saving the rest for later.} {#map goto 24785}
+
 #NOP Serinth
 #act {^The World of Serinth Board containing } {#map goto 16722}
 
@@ -570,6 +573,9 @@
 
 #NOP Rocky Hill
 #act {^Waving their rusty scimitars and growling loudly, the jackalmen} {#map undo}
+
+#NOP Section Z
+#act {^The %1 will not let you pass!} {#map undo}
 
 #NOP Simpsons
 #act {^   The Guard stops you and says: Aww no...you can't go in there.} {#map undo}
