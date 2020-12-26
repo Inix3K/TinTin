@@ -2,8 +2,9 @@
 
 #var {botpath} {e;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;w}
 
-#act {^=M= {Barred Owl|Beaver|Brown Bear|Dark-Spotted Anaconda|Exotic Swamp Crocodile|Greater Siren|Hippo|Swamp Crocodile}} {
+#act {^=M= {Banded Bullfrog|Barred Owl|Beaver|Brown Bear|Dark-Spotted Anaconda|Exotic Swamp Crocodile|Greater Siren|Hippo|Swamp Crocodile}} {
 	#switch {"%1"} {
+		#case {"Banded Bullfrog"}		{#var mobname bullfrog};
 		#case {"Barred Owl"}			{#var mobname owl};
 		#case {"Beaver"}			{#var mobname beaver};
 		#case {"Brown Bear"}			{#var mobname bear};
