@@ -376,6 +376,9 @@
 #NOP Global Merc Training Theatre
 #act {^You have exited the simulation, thank you for playing.} {#map goto 15144}
 
+#NOP Good Humor Truck
+#act {^You enter the truck with one thing on your mind} {#map goto 24241}
+
 #NOP Greenhouse
 #act {^You embrace the plant and lose yourself among the vines.} {
 	#map get {roomvnum} {greenhouse_room};
