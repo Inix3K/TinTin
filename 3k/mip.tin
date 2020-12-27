@@ -620,6 +620,26 @@
 	#REGEX {%0} {~Your~malicious attacks fade} {#var mipgag 1};
 	#REGEX {%0} {~The~corpse explodes as a small vicious lizard-like creature bursts forth!} {#var mipgag 1};
 
+	#NOP Tomb of King Alaren;
+	#REGEX {%0} {~With~a mighty heave you shoulder charge into the eastern wall.} {#var mipgag 1};
+	#REGEX {%0} {~~With a slow rumble the wall finally crumbles, filling the room in a cloud of} {#var mipgag 1};
+	#REGEX {%0} {~His~service to his King complete, the guard clatters to the floor, the dark magic} {#var mipgag 1};
+	#REGEX {%0} {~The~skeletal royal guard steps in front of you barring your progress.} {#var mipgag 1};
+	#REGEX {%0} {~Harakir~slumps to the floor, defeated, perhaps now his soul will find} {#var mipgag 1};
+	#REGEX {%0} {~With~a few swings of your } {#var mipgag 1};
+	#REGEX {%0} {~With~a mighty heave you push the [stone|golden] lid sliding it back from the coffin} {#var mipgag 1};
+	#REGEX {%0} {~Turning~to leave you hear Mircarla's sultry voice calling you back} {#var mipgag 1};
+	#REGEX {%0} {~Caught~unaware by her turn of pace as you attack, you} {#var mipgag 1};
+	#REGEX {%0} {~Before~your very eyes you stare in amazement as Mircarla} {#var mipgag 1};
+	#REGEX {%0} {~Her~meal completed, she clambers off you licking her now ruby red lips} {#var mipgag 1};
+	#REGEX {%0} {~Mircarla~sighs, the last of her energy expended as she slumps to the floor} {#var mipgag 1};
+	#REGEX {%0} {~Sumaren~crumples to the ground, destroyed, perhaps at last his soul will find} {#var mipgag 1};
+	#REGEX {%0} {~Someone~has already pushed the lid open, there's no need to push it again.} {#var mipgag 1};
+	#REGEX {%0} {~Straining~with all your might you give the ring a mighty heave, at first} {#var mipgag 1};
+	#REGEX {%0} {~Reaching~out, you give the gates a firm push. With an echoing screech the} {#var mipgag 1};
+	#REGEX {%0} {~Alaren~begins to slowly lose cohesion, glowing ever brighter until, suddenly} {#var mipgag 1};
+	#REGEX {%0} {~The~skeletal guard steps in front of you barring your progress.} {#var mipgag 1};
+
 	#NOP Zelligar's Headband;
 	#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {#var mipgag 1};
 

@@ -592,6 +592,10 @@
 #NOP Theatre of Souls
 #act {^A closed door blocks your way.} {#map undo}
 
+#NOP Tomb of Kingn Alaren
+#act {^The skeletal royal guard steps in front of you barring your progress.} {#map undo}
+#act {^The skeletal guard steps in front of you barring your progress.} {#map undo}
+
 #NOP Underdark
 #act {^The {drow|guard} prevents you from going that way.} {#map undo}
 #act {^The troll will not let you pass.} {#map undo}
