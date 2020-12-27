@@ -21,7 +21,7 @@
 }
 
 #alias {nextarea} {
-	#if {$cycle < &botcycle[]} {
+	#if {$cycle < &{botcycle[]}} {
 		#math cycle {$cycle+1}
 	} {
 		#var cycle 1
@@ -41,12 +41,12 @@
 	#echo {<228> +-------------------+}<088>;
 	#echo {<228> |<138>    Area Cycler    <228>|<088>};
 	#echo {<228> +-------------------+}<088>;
-	#if {&botcycle[] == 0} {
+	#if {&{botcycle[]} == 0} {
 		#echo {<228> |<178>  No areas loaded  <228>|<088>};
 		#echo {<228> +-------------------+}<088>
 	} {
 		#var cnt 0;
-		#while {$cnt < &botcycle[]} {
+		#while {$cnt < &{botcycle[]}} {
 			#math {cnt} {$cnt + 1};
 			#if {$cnt == $cycle} {
 				#format {cntnum} {%+4s} {<128>$cnt\.<088>};
@@ -72,10 +72,10 @@
 		};
 		#var botheight 1;
 	} {
-			#var botheight &botcycle[];
+			#var botheight &{botcycle[]};
 			#var botareas {};
 			#var cnt 0;
-			#while {$cnt < &botcycle[]} {
+			#while {$cnt < &{botcycle[]}} {
 				#math {cnt} {$cnt + 1};
 				#if {$cnt == $cycle} {
 					#format {cntnum} {%+4s} {<128>$cnt.<088>};
