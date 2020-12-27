@@ -155,7 +155,7 @@ prompt >$nl$
 #act {#PATH WALK: #END OF PATH} {
 	#if {$no_loop || !$foundmob} {
 		killbot;
-		#if {&botcycle[] > 1} {
+		#if {&{botcycle[]} > 1} {
 			nextarea
 		}; #else {
 			#if {!$no_home} {go home}

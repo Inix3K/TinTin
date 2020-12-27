@@ -21,7 +21,7 @@
 		#case {"stone golem"}			{#var mobname golem};
 		#case {"troll"}				{#var mobname troll};
 		#case {"unicorn"}			{#var mobname unicorn};
-		#case {"valkyrie"}			{#var mobname valkyrie};
+		#case {"valkyrie"}			{#var mobname valkyrie}
 	};
 	_check_mob
 }

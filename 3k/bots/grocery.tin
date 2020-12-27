@@ -1,0 +1,49 @@
+#class {bot} {open}
+
+#var {botpath} {w;s;w;n;n;w;s;s;w;n;n;w;s;s;w;n;n;w;s;s;w;n;n;w;s;s;n;n;e;e;e;e;e;e;e;e;s;e}
+
+#act {^=M= {An annoying little girl|The Trix Rabbit|A Thirsty Girl|The Kool-Aid Man|The famous Ray Charles|A very health conscious cow|A Keebler Elf|Frito Bandito|Jay Leno|A Blonde|A Brunette|Kelly Lebrock|A Screaming Baby|A Booming Voice|Madge|A Lady who wishes she were Madge|Mr. Clean|A Cute Little Boy|A Really Fat Man|A Rather Slim Lady|A Chorus|Northern Bath Tissue Girl|Brawny, the Paper Towel Giant|Mr. Whipple|Polar Bear|A Weight Watcher's Lady|Bill Cosby|Campbell's Soup Kid|Chef Boyardee|Sprout|Jolly Green Giant|Mr. Lucky Charm|Snuggles the Bear|The Cashier}} {
+	#switch {"%1"} {
+		#case {"An annoying little girl"}		{#var mobname girl};
+		#case {"The Trix Rabbit"}			{#var mobname rabbit};
+		#case {"A Thirsty Girl"}			{#var mobname girl};
+		#case {"The Kool-Aid Man"}			{#var mobname man};
+		#case {"The famous Ray Charles"}		{#var mobname ray};
+		#case {"A very health conscious cow"}		{#var mobname cow};
+		#case {"A Keebler Elf"}				{#var mobname elf};
+		#case {"Frito Bandito"}				{#var mobname frito};
+		#case {"Jay Leno"}				{#var mobname leno};
+		#case {"A Blonde"}				{#var mobname blonde};
+		#case {"A Brunette"}				{#var mobname brunette};
+		#case {"Kelly Lebrock"}				{#var mobname kelly};
+		#case {"A Screaming Baby"}			{#var mobname baby};
+		#case {"A Booming Voice"}			{#var mobname voice};
+		#case {"Madge"}					{#var mobname madge};
+		#case {"A Lady who wishes she were Madge"}	{#var mobname lady};
+		#case {"Mr. Clean"}				{#var mobname clean};
+		#case {"A Cute Little Boy"}			{#var mobname boy};
+		#case {"A Really Fat Man"}			{#var mobname man};
+		#case {"A Rather Slim Lady"}			{#var mobname lady};
+		#case {"A Chorus"}				{#var mobname chorus};
+		#case {"Northern Bath Tissue Girl"}		{#var mobname girl};
+		#case {"Brawny, the Paper Towel Giant"}		{#var mobname giant};
+		#case {"Mr. Whipple"}				{#var mobname whipple};
+		#case {"Polar Bear"}				{#var mobname bear};
+		#case {"A Weight Watcher's Lady"}		{#var mobname lady};
+		#case {"Bill Cosby"}				{#var mobname bill};
+		#case {"Campbell's Soup Kid"}			{#var mobname kid};
+		#case {"Chef Boyardee"}				{#var mobname chef};
+		#case {"Sprout"}				{#var mobname sprout};
+		#case {"Jolly Green Giant"}			{#var mobname giant};
+		#case {"Mr. Lucky Charm"}			{#var mobname charm};
+		#case {"Snuggles the Bear"}			{#var mobname bear};
+		#case {"The Cashier"}				{#var mobname cashier}
+	};
+	_check_mob
+}
+
+#act {^=M= Toucan Sam <?>} {mission ask}
+#act {^=M= Toucan Sam <!>} {mission return}
+#act {^You have been offered the mission} {mission accept}
+
+#class {bot} {close}
