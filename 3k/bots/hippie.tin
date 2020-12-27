@@ -1,0 +1,20 @@
+#class {bot} {open}
+
+#var {botpath} {e;s;n;n;s;w;w;door;climb tree;d;e;e;n;e;gate;barn;w;n;w;e;n;enter;w;d;u;e;e;u;w;e;e;w;s;w;e;e;w;s;n;u;n;s;d;n;d;w;n;e;w;w;door;w;ne;e;s;s;sw;out;e;n;n;e;s;s;se;nw;n;n;w;w;w;sw;e;door;e;s;s;s;s;s}
+
+#act {^=M= {A chicken|A Horse|A huge cow|A little sheepie|A Mole|A Mouse|A Rabbit|A Raccoon|Birch the Handy Hippie|Charlie the Hippie Kitty|Ferrah the Sewing Hippie|Grampa the Old Hippie|Granny the Nagging Hippie|Honeycomb the Teaching Hippie|Ironbark the Tree-Hugging Hippie|Jobe the Harvesting Hippie|Joy the Baby Hippie|Lizzie the Pottery Hippie|Loam the Stoner Hippie|Magenta the Artistic Hippie|Magnolia the Flower Child|Maryjane the Skippie Hippie|Moonbeam the Horny Hippie|Neil the Smelly Hippie|Roan the Groovy Hippie|Sally the Sewing Hippie|Shadowstar the Easy Hippie|Steamroller the Pipe Child|Sunny the Cooking Hippie|Wheatfeld the Farming Hippie|Windfare the Hippie Poet}} {
+	#switch {"%1"} {
+		#case {"A chicken"}		{#var mobname chicken};
+		#case {"A Horse"}		{#var mobname Horse};
+		#case {"A huge cow"}		{#var mobname cow};
+		#case {"A little sheepie"}	{#var mobname sheep};
+		#case {"A Mole"}		{#var mobname mole};
+		#case {"A Mouse"}		{#var mobname mouse};
+		#case {"A Rabbit"}		{#var mobname rabbit};
+		#case {"A Raccoon"}		{#var mobname raccoon};
+		#default			{#var mobname hippie}
+	};
+        _check_mob
+}
+
+#class {bot} {close}
