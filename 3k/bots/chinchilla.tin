@@ -1,0 +1,18 @@
+#class {bot} {open}
+
+#var no_home 1
+
+#var {botpath} {out;w;w;w;w;w;s;e;e;e;e;s;w;w;w;w;s;e;e;e;e;s;w;w;w;w;s;e;e;e;e;e;n;n;n;n;n;enter}
+
+#act {=M= {A|An} {Baby|Young|Mature|Old} Chinchilla} {
+	#var mobname chinchilla;
+	_check_mob
+}
+
+#act {=M= Manager <?>} {mission ask}
+#act {=M= Manager <!>} {mission return}
+#act {^You have been offered the mission} {mission accept}
+
+#class {bot} {close}
+
+
