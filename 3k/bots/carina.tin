@@ -1,0 +1,25 @@
+#class {bot} {open}
+
+#var noloop 1
+
+#var {botpath} {n;w;e;e;n;n;e;stairs;s;w;e;n;stairs;w;w;n;{w;search rings;get key};s;s;w;n;out;e;e;s;s}
+
+#act {^=M= {A rude tourist|A tourist that looks confused|A tourist who forgot to shower|A wandering tourist|Carina the leading Astronomer|Cepheus the Stargazer|Observatory scientist|Observatory specialist|Observatory technician|Observatory Tour Guide}} {
+	#switch {"%1"} {
+		#case {"A rude tourist"}			{#var mobname tourist};
+		#case {"A tourist that looks confused"}		{#var mobname tourist};
+		#case {"A tourist who forgot to shower"}	{#var mobname tourist};
+		#case {"A wandering tourist"}			{#var mobname tourist};
+		#case {"Carina the leading Astronomer"}		{#var mobname carina};
+		#case {"Cepheus the Stargazer"}			{#var mobname cepheus};
+		#case {"Observatory scientist"}			{#var mobname scientist};
+		#case {"Observatory specialist"}		{#var mobname specialist};
+		#case {"Observatory technician"}		{#var mobname technician};
+		#case {"Observatory Tour Guide"}		{#var mobname guide}
+	};
+        _check_mob
+}
+
+#NOP human will also work for all mobs in this area
+
+#class {bot} {close}

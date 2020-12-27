@@ -590,6 +590,9 @@
 	#REGEX {%0} {~ceases his performance.} {#var mipgag 1};
 	#REGEX {%0} {~finishes his performance with a bow.} {#var mipgag 1};
 
+	#NOP Carina's Observatory;
+	#REGEX {%0} {~~Carina looks up at you as if to say something, but shrugs it off.} {#var mipgag 1};
+
 	#NOP Dundee;
 	#REGEX {%0} {~A~shiver runs through you as you successfully fight off an infection.} {#var mipgag 1};
 	#REGEX {%0} {~Your~head throbs briefly as you successfully fight off an infection.} {#var mipgag 1};
