@@ -1,0 +1,29 @@
+#class {bot} {open}
+
+#var {botpath} {w;w;w;s;e;e;e;s;w;w;w;s;s;e;n;e;s;e;n;e;s;e;n;e;s;e;n;n;w;w;w;n;e;e;e;n;w;w;w;n;e;e;e;n;w;w;w;n;e;e;e;n;w;w;w;w;w;w;w;s;e;e;e;s;w;w;w;s;e;e;e;s}
+
+#act {^=M= {A|An} {archer|banshee|basilisk|benevolent wizard|djinni|dragon|evil looking juggernaut|evil sorceress|goblin|Huge Fire Elemental|knight|manticore|phoenix|stone golem|troll|unicorn|valkyrie}} {
+	#switch {"%2"} {
+		#case {"archer"}			{#var mobname archer};
+		#case {"banshee"}			{#var mobname banshee};
+		#case {"basilisk"}			{#var mobname basilisk};
+		#case {"benevolent wizard"}		{#var mobname wizard};
+		#case {"djinni"}			{#var mobname djinni};
+		#case {"dragon"}			{#var mobname dragon};
+		#case {"evil looking changeling"}	{#var mobname changeling};
+		#case {"evil looking juggernaut"}	{#var mobname juggernaut};
+		#case {"evil sorceress"}		{#var mobname sorceress};
+		#case {"goblin"}			{#var mobname goblin};
+		#case {"Huge Fire Elemental"}		{#var mobname elemental};
+		#case {"knight"}			{#var mobname knight};
+		#case {"manticore"}			{#var mobname manticore};
+		#case {"phoenix"}			{#var mobname phoenix};
+		#case {"stone golem"}			{#var mobname golem};
+		#case {"troll"}				{#var mobname troll};
+		#case {"unicorn"}			{#var mobname unicorn};
+		#case {"valkyrie"}			{#var mobname valkyrie};
+	};
+	_check_mob
+}
+
+#class {bot} {close}
