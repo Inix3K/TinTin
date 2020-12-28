@@ -23,7 +23,7 @@
 		#case {"White King"}		{#var mobname human};
 		#case {"White Priest"}		{#var mobname human};
 		#case {"Angry Horse"}		{#var mobname {angry horse};#var mobhard 1};
-		#case {"Angry War Elephant"}	{#var mobname elephant;#var mobhard 1};
+		#case {"Angry War Elephant"}	{#var mobname elephant;#var mobhard 1}
 	};
 	#if {$mobhard} {
 		#if {$hardmode} {

@@ -1,0 +1,133 @@
+/* Bot Path Expanded for Ease of Reading */
+
+#NOP 01
+w;s;n;n;se;e;n;s;s;d;
+w;w;s;e;w;s;e;e;u;
+#NOP 02
+s;s;e;e;d;
+#NOP 03
+n;n;se;e;nw;e;d;
+#NOP 04
+w;e;e;w;n;ne;w;w;u;
+#NOP 06
+n;n;sw;nw;s;s;u;
+#NOP 05
+n;e;e;s;n;nw;u;
+#NOP 07
+e;e;w;s;s;u;
+#NOP 08
+se;nw;ne;w;w;s;s;d;
+#NOP 11
+s;n;n;se;se;n;n;s;d;
+#NOP 10
+e;e;w;s;sw;e;e;d;
+#NOP 09
+e;e;sw;s;d;
+#NOP 06
+n;n;sw;w;s;d;
+#NOP 12
+w;w;s;s;e;e;n;w;u;
+#NOP 13
+w;w;e;s;s;d;
+#NOP 14
+s;s;e;w;ne;ne;w;e;s;s;u;
+#NOP 16
+w;w;n;n;e;s;n;e;u;
+#NOP 15
+n;n;e;sw;e;se;nw;ne;d;
+#NOP 18
+w;w;s;s;e;e;d;
+#NOP 17
+se;s;n;w;w;s;d;
+#NOP 19
+s;n;n;s;e;e;s;n;n;se;e;e;se;se;proceed;
+#NOP 20
+se;s;nw;w;s;u;
+#NOP 22
+e;e;sw;s;u;
+#NOP 21
+n;n;se;se;n;n;u;
+#NOP 24
+s;s;nw;sw;n;n;u;
+#NOP 23
+s;s;e;w;ne;ne;w;e;s;s;u;
+#NOP 25
+e;e;sw;w;s;e;e;d;
+#NOP 26
+s;e;n;n;w;w;s;s;n;u;
+#NOP 27
+s;s;e;e;n;n;u;
+#NOP 28
+e;e;sw;s;u;
+#NOP 29
+w;w;s;e;e;s;w;w;d
+#NOP 20
+sw;s;d;
+#NOP 21
+n;e;se;n;n;d;
+#NOP 30
+e;e;w;s;s;e;w;w;d;
+#NOP 31
+e;ne;w;w;n;e;d;
+#NOP 32
+w;ne;e;w;w;s;s;e;e;d;
+#NOP 33
+n;ne;w;w;d;
+#NOP 34
+s;s;n;w;nw;s;s;d
+#NOP 20
+sw;s;u;
+#NOP 22
+se;s;d
+#NOP 35
+e;w;w;n;e;nw;e;e;d;
+#NOP 37
+s;n;ne;se;w;se;u;
+#NOP 36
+w;w;s;s;e;e;n;w;u;
+#NOP 38
+n;n;se;ne;s;s;d;
+#NOP 39
+e;w;w;s;e;sw;e;e;e;e;proceed;
+#NOP 40
+ne;w;w;e;s;s;e;w;w;u;
+#NOP 42
+w;w;s;e;sw;e;e;u;
+#NOP 41
+s;se;n;e;n;u;
+#NOP 44
+w;w;s;e;w;s;e;e;d;
+#NOP 45
+e;e;w;w;n;e;nw;e;e;d;
+#NOP 46
+s;n;n;se;se;n;n;u;
+#NOP 50
+e;sw;s;e;ne;sw;u;
+#NOP 48
+w;w;s;e;w;s;e;e;d;
+#NOP 47
+n;n;s;w;nw;s;s;enter portal;
+#NOP 49
+w;w;n;n;u;
+#NOP 41
+s;se;ne;n;d;
+#NOP 43
+w;n;e;se;nw;ne;w;w;d;
+#NOP 51
+se;n;n;s;w;w;s;n;n;d;
+#NOP 52
+w;n;n;se;se;n;n;w;d;
+#NOP 53
+w;w;s;e;e;s;w;w;d;
+#NOP 55
+nw;e;nw;sw;s;d;
+#NOP 54
+sw;s;n;n;w;enter portal
+#NOP 56
+n;e;s;w;w;n;n;e;e;d;
+#NOP 57
+e;e;w;w;se;w;s;e;e;d;
+#NOP 58
+s;e;nw;ne;w;w;s;s;n;d;
+#NOP 59
+n;nw;se;ne;e;e;e;se;se;e;e;ne;e
