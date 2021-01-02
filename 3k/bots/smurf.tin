@@ -1,6 +1,8 @@
 #class {bot} {open}
 
-#var {botpath} {s;s;s;w;e;e;w;s;w;e;e;e;w;sw;se;w;e;s;w;w;n;s;e;e;n;e;s;s;s;s;e;w;w;w;w;e;e;e;s;s;enter;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;s;w;e;e;w;n;e;out;n}
+#NOP TRIM PATH - Avoids smurf-eaters and squirrel
+#var {botpath} {s;s;s;w;e;e;w;s;w;e;e;e;w;sw;se;w;e;s;w;w;n;s;e;e;e;s;s;s;s;s;enter;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;s;w;e;e;w;n;e;out;n}
+#NOP FULL PATH #var {botpath} {s;s;s;w;e;e;w;s;w;e;e;e;w;sw;se;w;e;s;w;w;n;s;e;e;n;e;s;s;s;s;e;w;w;w;w;e;e;e;s;s;enter;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;e;w;s;w;e;s;w;e;e;w;n;e;out;n}
 
 #act {=M= %*{Smurf|A very large rat|A large furry spider|Azrael|Gargamel}} {
 	#switch {"%2"} {
