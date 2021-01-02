@@ -1,0 +1,5 @@
+#class {bot} {open}
+
+#var {botpath} {killbot}
+
+#class {bot} {close}
