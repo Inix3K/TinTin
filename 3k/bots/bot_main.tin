@@ -126,13 +126,6 @@ prompt >$nl$
 } {1}
 
 /* Detect Players */
-#alias pa {#list party add %0}
-#alias pr {
-	#list party find %0 party_index;
-	#list party delete $party_index
-}
-
-
 #act {^=P= %*} {
 	#var party_simple $party;
 	#list party_simple simplify;

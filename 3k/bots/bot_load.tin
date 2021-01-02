@@ -8,6 +8,13 @@
 	#read .tt/3k/bots/bot_main.tin
 }
 
+#NOP Party Variable
+#alias pa {#list party add %0}
+#alias pr {
+        #list party find %0 party_index;
+        #list party delete $party_index
+}
+
 #NOP Low priority aliases to mute output from mud
 #alias {.bot%*} {#showme !bot is not active} {9}
 #alias {.stop%*} {#showme !Bot is not active} {9}
