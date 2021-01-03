@@ -3,7 +3,7 @@
 #var idefine {on}
 
 #alias {dodefine} {
-	#var data {$mip[comm][data]};
+	#format {data} {%l} {$mip[comm][data]};
 	#replace {data} {idefine} {#};
 	#var data_cnt 0;
 	#parse {$data} {char} {

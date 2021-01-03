@@ -3,7 +3,7 @@
 #var adds on;
 
 #alias {doadds} {
-	#var data {$mip[comm][data]};
+	#format {data} {%l} {$mip[comm][data]};
 	#replace {data} {iwx} {#};
 	#var data_cnt 0;
 	#parse {$data} {char} {
