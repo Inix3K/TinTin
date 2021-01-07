@@ -2,7 +2,7 @@
 
 #var guild gentech
 
-#act {HP:hp%d/%d SP:sp%d/%d PU:pu%d/%d(%d) CPC:cpc%d/%d E:%w} {
+#act {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d/%d E:%w} {
 	#var {my[hp][current]}		{%1};
 	#var {my[hp][max]}		{%2};
 	#var {my[sp][current]}		{%3};
@@ -15,32 +15,27 @@
 	#var ehealth			{%10}
 }
 
-#act {G:%d/g2n%d(g2n%d\%) RC:rc%d Bias:warning( %d\% | %d\% )} {
+#act {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {
 	#var {gentech[gxp][num]}	{%1};
 	#var {gentech[gxp][tnl]}	{%2};
 	#var {gentech[gxp][per]}	{%3};
 	#var {gentech[rc]}		{%4};
 	#var {gentech[bias][atk]}	{%5};
-	#var {gentech[bias][def]}	{%6}
+	#var {gentech[bias][def]}	{%6};
+	#var {gentech[ts][current]}	{%7};
+	#var {gentech[ts][max]}		{%8};
+	#var {gentech[reset]}		{%9}
 }
 
-#act {TS:tslide%d/%d(reset%d\%)} {
-	#var {gentech[ts][current]}	{%1};
-	#var {gentech[ts][max]}		{%2};
-	#var {gentech[reset]}		{%3}
-}
-
-#act {EField[efield%d min] EDNA[warning%d sec] Synth[synthorg%w]} {
+#act {EField[%d min] EDNA[%d sec] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {
 	#var {gentech[efield]}		{%1};
 	#var {gentech[edna]}		{%2};
-	#var {gentech[synthorg]}	{%3}
-}
-
-#act {EFF:gen-eff%d|tech-eff%d HG: hypergen%d(hypergent%d sec)} {
-	#var {gentech[geneff]}		{%1};
-	#var {gentech[techeff]}		{%2};
-	#var {gentech[hg][num]}		{%3};
-	#var {gentech[hg][time]}	{%4};
+	#var {gentech[synthorg]}	{%3};
+	#var {gentech[geneff]}		{%4};
+	#var {gentech[techeff]}		{%5};
+	#var {gentech[hg][num]}		{%6};
+	#var {gentech[hg][time]}	{%7};
+	#var {gentech[hq][unit]}	{%8};
 	update_status
 }
 
@@ -97,11 +92,9 @@
 
 /* Substitutes to fix duplicate hpbar tags */
 #NOP Using 'colorized' variables established in update_status
-#SUB {HP:hp%d/%d SP:sp%d/%d PU:pu%d/%d(%d) CPC:cpc%d/%d E:} {HP:$hp/$hp_max SP:$sp/$sp_max PU:$pu/${pu_max}($spu) CPC:$cpc/$cpc_max E:}
-#SUB {G:%d/g2n%d(g2n%d\%) RC:rc%d Bias:warning( %d\% | %d\% )} {G:$gxp/$g2n($gxp_per\%) RC:$gentech[rc] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% )}
-#SUB {TS:tslide%d/%d(reset%d\%)} {TS:$gentech[ts][current]/$gentech[ts][max]($reset\%)}
-#SUB {EField[efield%d min] EDNA[warning%d sec] Synth[synthorg%w]} {EField[$gentech[efield] min] EDNA[$gentech[edna] sec] Synth[$synthorg]}
-#SUB {EFF:gen-eff%d|tech-eff%d HG: hypergen%d(hypergent%d sec)} {EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] sec)}
+#SUB {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d/%d E:} {HP:$hp/$hp_max SP:$sp/$sp_max PU:$pu/${pu_max}($spu) CPC:$cpc/$cpc_max E:}
+#SUB {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {G:$gxp/$g2n($gxp_per\%) RC:$gentech[rc] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% ) TS:$gentech[ts][current]/%gentech[ts][max]($reset\%)}
+#SUB {EField[%d min] EDNA[%d sec] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[$gentech[efield] min] EDNA[$gentech[edna] sec] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][num]($gentech[hg][time] $gentech[hg][unit]}
 
 #alias {corpsetrig} {
 	wrap;

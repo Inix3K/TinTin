@@ -780,6 +780,7 @@
 		#var {commcol} {<178>};
 		#switch {"$mip[comm][line]"} {
 			#case {"ADMIN"}			{#var {commcol} {<158>}};
+			#case {"Alpha"}			{#var {commcol} {<168>}};
 			#case {"Auction"}		{#var {commcol} {<108>}};
 			#case {"Bear"}			{#var {commcol} {<168>}};
 			#case {"Bloodname"}		{#var {commcol} {<218>}};
@@ -808,6 +809,7 @@
 			#case {"Lottery"}		{#var {commcol} {<178>}};
 			#case {"Main"}			{#var {commcol} {<118>}};
 			#case {"Newbie"}		{#var {commcol} {<138>}};
+			#case {"Notify"}		{#var {commcol} {<168>}};
 			#case {"Party"}			{#var {commcol} {<128>}};
 			#case {"Poll"}			{#var {commcol} {<178>}};
 			#case {"Professions"}		{#var {commcol} {<178>}};
