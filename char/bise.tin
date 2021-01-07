@@ -47,33 +47,37 @@
 		#delay {recharge} {#send !recharge} {0.1}
 	};
 	#NOP Refill SPU from corpses if empty;
-	#if {$my[gp2][current] == 0 && "$recently_reclaimed == "no"} {
+	#if {$my[gp2][current] == 0 && "$recently_reclaimed" == "no"} {
 		#if {$corpses[cooler] > 0} {
 			#delay {use_corpse} {
 				#send !uncooler corpse;
+				#send !reclaim;
 				#var recently_reclaimed yes
 			} {0.1}
 		}; #elseif {$corpses[inventory] > 0} {
 			#delay {use_corpse} {
 				#send !drop corpse;
+				#send !reclaim;
 				#var recently_reclaimed yes
 			} {0.1}
 		}; #elseif {$corpses[coffin] > 0} {
 			#delay {use_corpse} {
 				#send !unwrap;
+				#send !reclaim;
 				#var recently_reclaimed yes
 			} {0.1}
 		}; #elseif {$corpses[freezer] > 0} {
 			#delay {use_corpse} {
 				#send !deslab;
+				#send !reclaim;
 				#var recently_reclaimed yes
 			} {0.1}
-		};
-		#if {"$recently_reclaimed" == "yes"} {
-			#send !reclaim;
-			#delay {reclaim} {#var recently_reclaimed no} {4}
 		}
 	};
+	#if {"$recently_reclaimed" == "yes"} {
+		#delay {reclaim} {#var recently_reclaimed no} {4}
+	};
+
 	#NOP Build HP Bars;
         #if {"$cooler" == "on" || $corpses[cooler] > 0} {
                 #format {sb1_cooler} {%+2s} {$corpses[cooler]};
