@@ -35,7 +35,7 @@
 	#var {gentech[techeff]}		{%5};
 	#var {gentech[hg][num]}		{%6};
 	#var {gentech[hg][time]}	{%7};
-	#var {gentech[hq][unit]}	{%8};
+	#var {gentech[hg][unit]}	{%8};
 	update_status
 }
 
@@ -94,7 +94,7 @@
 #NOP Using 'colorized' variables established in update_status
 #SUB {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d/%d E:} {HP:$hp/$hp_max SP:$sp/$sp_max PU:$pu/${pu_max}($spu) CPC:$cpc/$cpc_max E:}
 #SUB {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {G:$gxp/$g2n($gxp_per\%) RC:$gentech[rc] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% ) TS:$gentech[ts][current]/%gentech[ts][max]($reset\%)}
-#SUB {EField[%d min] EDNA[%d sec] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[$gentech[efield] min] EDNA[$gentech[edna] sec] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][num]($gentech[hg][time] $gentech[hg][unit]}
+#SUB {EField[%d min] EDNA[%d sec] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[$gentech[efield] min] EDNA[$gentech[edna] sec] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] $gentech[hg][unit])}
 
 #alias {corpsetrig} {
 	wrap;
