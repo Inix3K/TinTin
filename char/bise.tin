@@ -31,20 +31,30 @@
 	#math {gentech[rc][last]}	{$gentech[rc][num] - $gentech[rc][prev]}
 }
 
-#act {EField[%d min] EDNA[%d sec] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {
-	#var {gentech[efield]}		{%1};
-	#var {gentech[edna]}		{%2};
-	#var {gentech[synthorg]}	{%3};
-	#var {gentech[geneff]}		{%4};
-	#var {gentech[techeff]}		{%5};
-	#var {gentech[hg][num]}		{%6};
-	#var {gentech[hg][time]}	{%7};
-	#var {gentech[hg][unit]}	{%8};
+#act {EField[%d %w] EDNA[%d %w] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {
+	#var {gentech[efield][num]}	{%1};
+	#var {gentech[efield][unit]}	{%2};
+	#var {gentech[edna][num]}	{%3};
+	#var {gentech[edna][unit]}	{%4};
+	#var {gentech[synthorg]}	{%5};
+	#var {gentech[geneff]}		{%6};
+	#var {gentech[techeff]}		{%7};
+	#var {gentech[hg][num]}		{%8};
+	#var {gentech[hg][time]}	{%9};
+	#var {gentech[hg][unit]}	{%10};
 	update_status
 }
 
 #var recently_reclaimed no
 #alias {update_status} {
+	#NOP Adrenaline Surge to heal;
+	#if {$my[hp][current] < $my[hp][max] * .8} {
+		#delay {surge} {#send !surge} {0.1}
+	};
+	#NOP Reactivate EDNA;
+	#if {$gentech[edna][num] == 0} {
+		#delay {edna} {#send !edna} {0.1}
+	};
 	#NOP Recharge PU from SPU;
 	#if {$my[gp1][max] - $my[gp1][current] > $my[gp2][current] &&
 	     $my[gp2][current] > 0} {
@@ -79,7 +89,7 @@
 		}
 	};
 	#if {"$recently_reclaimed" == "yes"} {
-		#delay {reclaim} {#var recently_reclaimed no} {4}
+		#delay {reclaim} {#var recently_reclaimed no} {2}
 	};
 
 	#NOP Build HP Bars;
@@ -161,7 +171,7 @@
 #NOP Using 'colorized' variables established in update_status
 #SUB {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d/%d E:} {HP:$hp/$hp_max SP:$sp/$sp_max PU:$pu/${pu_max}($spu) CPC:$cpc/$cpc_max E:}
 #SUB {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {G:$gxp_col/$g2n($gxp_per\%) RC:$gentech[rc][num] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% ) TS:$gentech[ts][current]/$gentech[ts][max]($reset\%)}
-#SUB {EField[%d min] EDNA[%d sec] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[$gentech[efield] min] EDNA[$gentech[edna] sec] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] $gentech[hg][unit])}
+#SUB {EField[%d %w] EDNA[%d %w] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[${gentech[efield][num]} $gentech[efield][unit]] EDNA[$gentech[edna][num] $gentech[edna][unit]] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] $gentech[hg][unit])}
 
 #alias {corpsetrig} {
 	wrap;

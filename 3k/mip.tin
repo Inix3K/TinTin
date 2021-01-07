@@ -380,13 +380,15 @@
 		};
 		#REPLACE {mip[gline][1]} {Reset} {R}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {$mip[gline][2]} {Bias[<%d>%w<099>] Atk(<%d>%d\%<099>) Def(<%d>%d\%<099>) <178>Efield<099>(<178>%dmin<099>) Edna(<178>%dsec<099>) Illum(<%d>%w<099>)} {
+		#REGEX {$mip[gline][2]} {Bias[<%d>%w<099>] Atk(<%d>%d\%<099>) Def(<%d>%d\%<099>) <178>Efield<099>(<178>%d%w<099>) Edna(<178>%d%w<099>) Illum(<%d>%w<099>)} {
 			#VAR {gentech[bias][mode]}	{&2};
 			#VAR {gentech[bias][atk]}	{&4};
 			#VAR {gentech[bias][def]}	{&6};
-			#VAR {gentech[efield]}		{&7};
-			#VAR {gentech[edna]}		{&8};
-			#VAR {gentech[illum]}		{&10};
+			#VAR {gentech[efield][num]}	{&7};
+			#VAR {gentech[efield][unit]}	{&8};
+			#VAR {gentech[edna][num]}	{&9};
+			#VAR {gentech[edna][unit]}	{&10};
+			#VAR {gentech[illum]}		{&11};
 		}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
