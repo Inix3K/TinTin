@@ -130,6 +130,7 @@
 	#var	{cpc}			{@colscale{$gentech[cpc][current];$gentech[cpc][max]}};
 	#var	{cpc_max}		{<128>$gentech[cpc][max]<088>};
 	#math	{gentech[gxp][cost]}	{$gentech[gxp][tnl]*100/$gentech[gxp][per]};
+	#var	{gxp_col}		{<268>$gentech[gxp][num]<088>};
 	#var	{g2n}			{@colscale{$gentech[gxp][tnl];$gentech[gxp][cost]}};
 	#var	{gxp_per}		{@colscale{$gentech[gxp][per];100}};
 	#var	{reset}			{@colscale{$gentech[reset];100}};
@@ -159,7 +160,7 @@
 /* Substitutes to colorize hpbar */
 #NOP Using 'colorized' variables established in update_status
 #SUB {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d/%d E:} {HP:$hp/$hp_max SP:$sp/$sp_max PU:$pu/${pu_max}($spu) CPC:$cpc/$cpc_max E:}
-#SUB {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {G:$gxp/$g2n($gxp_per\%) RC:$gentech[rc][num] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% ) TS:$gentech[ts][current]/$gentech[ts][max]($reset\%)}
+#SUB {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {G:$gxp_col/$g2n($gxp_per\%) RC:$gentech[rc][num] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% ) TS:$gentech[ts][current]/$gentech[ts][max]($reset\%)}
 #SUB {EField[%d min] EDNA[%d sec] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[$gentech[efield] min] EDNA[$gentech[edna] sec] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] $gentech[hg][unit])}
 
 #alias {corpsetrig} {
