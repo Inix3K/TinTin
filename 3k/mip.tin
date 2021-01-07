@@ -372,7 +372,7 @@
 			#VAR {gentech[cpc][max]}	{&3};
 			#VAR {gentech[gxp][tnl]}	{&4};
 			#VAR {gentech[gxp][per]}	{&5};
-			#VAR {gentech[rc]}		{&6};
+			#NOP #VAR {gentech[rc][num]}		{&6};
 			#VAR {gentech[reset]}		{&8};
 			#VAR {gentech[ts][current]}	{&9};
 			#VAR {gentech[ts][max]}		{&10};
