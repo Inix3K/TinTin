@@ -6,9 +6,10 @@
 #read .tt/api/define.tin
 #read .tt/api/udefine.tin
 #read .tt/api/stocks.tin
+#read .tt/3k/reforger.tin
 
 #read .tt/3k/fodoor.tin
-#NOP #read .tt/3k/puppy.tin
+#read .tt/3k/puppy.tin
 #read .tt/3k/rtick.tin
 rtick
 
@@ -203,13 +204,4 @@ rtick
 
 #alias ff {fire 5 $mobname}
 
-#alias rburn {
-	go bern;
-	#12 {
-		buy knife;
-		reforge knife little edged penetrate;
-		dec knife
-	};
-	go home
-}
 #class {inix} {close}

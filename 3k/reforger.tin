@@ -20,6 +20,16 @@
 	}
 }
 
+#alias rburn {
+        go bern;
+        #12 {
+                buy knife;
+                reforge knife with little from edged to penetrate;
+                dec knife
+        };
+        go home
+}
+
 /* Triggers here for failure/success messages */
 #act {^BOOM SHAKA LAKA! You} {#var reforged yes}
 #act {^That item has already been reforged\.} {#var reforged yes}
