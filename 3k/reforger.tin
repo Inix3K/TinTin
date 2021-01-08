@@ -10,7 +10,7 @@
 /* reforge <item> <amount> from <ac> to <defense> */
 #function {forge_do} {
 	#if {$reforged == "no"} {
-                reforge $reforge_item $reforge_amt $reforge_from $reforge_to;
+                reforge $reforge_item with $reforge_amt from $reforge_from to $reforge_to;
 		#switch {"$reforge_amt"} {
 			#case {"loads"} {#var reforge_amt lots};
 			#case {"lots"} {#var reforge_amt some};

@@ -47,9 +47,13 @@
 
 #var recently_reclaimed no
 #alias {update_status} {
-	#NOP Adrenaline Surge to heal;
+	#NOP Adrenaline Surge to heal HP;
 	#if {$my[hp][current] < $my[hp][max] * .8} {
 		#delay {surge} {#send !surge} {0.1}
+	};
+	#NOP Meditate to heal SP;
+	#if {$my[sp][current] < $my[sp][max] * .5} {
+		#delay {mediate} {#send !meditate} {0.1}
 	};
 	#NOP Reactivate EDNA;
 	#if {$gentech[edna][num] == 0} {
@@ -174,6 +178,7 @@
 #SUB {EField[%d %w] EDNA[%d %w] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[${gentech[efield][num]} $gentech[efield][unit]] EDNA[$gentech[edna][num] $gentech[edna][unit]] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] $gentech[hg][unit])}
 
 #alias {corpsetrig} {
+	slab;
 	wrap;
 	get coins
 }
