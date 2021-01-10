@@ -8,6 +8,11 @@
 #gag {YOU FRENZY!!!}
 #gag {Your feral rage allows you to shrug off some of the blow.}
 
+#NOP Priests
+#gag { screams in agony!$}
+#gag { soul to a foray of crippling mind subversion!$}
+#gag { recites ancient verses of his deity.$}
+
 /* Item Gags */
 #NOP CMC
 #gag {The armour infuses you with chemicals, augmenting your abilities.}

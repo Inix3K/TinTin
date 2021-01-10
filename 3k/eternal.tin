@@ -1,0 +1,13 @@
+#class {eternal} {open}
+
+#var {eternal[quicken][tier]} {7}
+#var {eternal[quicken][cooldown]} {180}
+
+#if {$eternal[quicken][tier] > 0} {
+	#ticker {quicken} {
+		#if {$mip[round] > 0} {
+			#send !(quicken} {$eternal[quicken][cooldown]}
+		}
+}
+
+#class {eternal} {close}

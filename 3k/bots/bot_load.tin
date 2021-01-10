@@ -15,6 +15,24 @@
         #list party delete $party_index
 }
 
+#action {^Name         Location                                  Creator$} {
+	#echo {PARTY WHO};
+	#action {^%w %+ (%+)} {
+		#ECHO {PARTY MEMBER};
+		#var {party_member} {%1};
+		#ECHO {$party_member};
+		#var party_found 0;
+		#list party find $party_member party_found;
+		#if {$party_found == 0} {
+			#ECHO {PARTY ADD};
+			#list party add $party_member
+		}
+	} {1};
+	#delay {party_capture} {
+		#unaction {^%w %+ (%+)};
+	} {2}
+}
+
 #NOP Low priority aliases to mute output from mud
 #alias {.bot%*} {#showme !bot is not active} {9}
 #alias {.stop%*} {#showme !Bot is not active} {9}
