@@ -133,9 +133,7 @@ prompt >$nl$
 	#foreach {$party_simple} {party_member} {
 		#REGEX {%0} {$party_member} {#var party_found 1}
 	};
-	#if {${party_found}} {
-		#NOP
-	} {
+	#if {!${party_found}} {
 		#var foundplayer 1
 	}
 } {6}

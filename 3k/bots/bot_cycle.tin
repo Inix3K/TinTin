@@ -111,10 +111,6 @@
 	#delay 0 botdraw
 }
 
-/* Party List Creation */
-#list party create $world
-
-
 #alias {bas}	{ba {rim2;android;dundee8;dundee7;dundee6;dundee5}}
 #NOP #alias {bas2}	{ba {whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;android;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee8;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee7;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee6}}
 #alias {bas2}	{ba {whorehouse;mahjongg;rim2;whorehouse;mahjongg;dundee8;whorehouse;mahjongg;dundee7;whorehouse;mahjongg;dundee6}}
