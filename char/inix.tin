@@ -6,10 +6,11 @@
 #read .tt/api/define.tin
 #read .tt/api/udefine.tin
 #read .tt/api/stocks.tin
-#read .tt/3k/reforger.tin
 
+#read .tt/3k/eternal.tin
 #read .tt/3k/fodoor.tin
 #read .tt/3k/puppy.tin
+#read .tt/3k/reforger.tin
 #read .tt/3k/rtick.tin
 rtick
 

@@ -6,8 +6,9 @@
 #if {$eternal[quicken][tier] > 0} {
 	#ticker {quicken} {
 		#if {$mip[round] > 0} {
-			#send !(quicken} {$eternal[quicken][cooldown]}
+			#send {!(quicken}
 		}
+	} {$eternal[quicken][cooldown]}
 }
 
 #class {eternal} {close}
