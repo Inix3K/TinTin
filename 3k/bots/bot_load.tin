@@ -23,7 +23,6 @@
 		#var party_found 0;
 		#list party find $party_member party_found;
 		#if {$party_found == 0} {
-			#ECHO {PARTY ADD};
 			#list party add $party_member
 		}
 	} {1};

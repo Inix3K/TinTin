@@ -592,6 +592,10 @@
 	#REGEX {%0} {~ceases his performance.} {#var mipgag 1};
 	#REGEX {%0} {~finishes his performance with a bow.} {#var mipgag 1};
 
+	#NOP Changelings;
+	#REGEX {%0} {~The~%w's wounds close rapidly.} {#var mipgag 1};
+	#REGEX {%0} {~The~%w performs a rather incomprehensible action on the corpse.} {#var mipgag 1};
+
 	#NOP Carina's Observatory;
 	#REGEX {%0} {~~Carina looks up at you as if to say something, but shrugs it off.} {#var mipgag 1};
 
@@ -641,6 +645,9 @@
 	#REGEX {%0} {~Reaching~out, you give the gates a firm push. With an echoing screech the} {#var mipgag 1};
 	#REGEX {%0} {~Alaren~begins to slowly lose cohesion, glowing ever brighter until, suddenly} {#var mipgag 1};
 	#REGEX {%0} {~The~skeletal guard steps in front of you barring your progress.} {#var mipgag 1};
+
+	#NOP Wrapping with no corpse in room;
+	#REGEX {%0} {~%w~wraps his arms around you.} {#var mipgag 1};
 
 	#NOP Zelligar's Headband;
 	#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {#var mipgag 1};
