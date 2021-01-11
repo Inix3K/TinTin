@@ -9,6 +9,8 @@
 }
 
 #NOP Party Variable
+#var party {}
+
 #alias pa {#list party add %0}
 #alias pr {
         #list party find %0 party_index;
