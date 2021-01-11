@@ -16,11 +16,8 @@
 }
 
 #action {^Name         Location                                  Creator$} {
-	#echo {PARTY WHO};
-	#action {^%w %+ (%+)} {
-		#ECHO {PARTY MEMBER};
-		#var {party_member} {%1};
-		#ECHO {$party_member};
+	#action {^%w %+ (%w%s)} {
+		#var {party_member} {%%1};
 		#var party_found 0;
 		#list party find $party_member party_found;
 		#if {$party_found == 0} {
@@ -29,8 +26,8 @@
 		}
 	} {1};
 	#delay {party_capture} {
-		#unaction {^%w %+ (%+)};
-	} {2}
+		#unaction {^%w %+ (%w%s)};
+	} {0.5}
 }
 
 #NOP Low priority aliases to mute output from mud
