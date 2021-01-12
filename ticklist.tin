@@ -1,0 +1,24 @@
+#class {ticklist} {open}
+
+#alias {ticklist}
+{
+        #info tickers save;
+
+        #echo {<128>%-20s %+20s %+20s} {Name} {Interval} {Remaining};
+
+        #draw Yellow scroll line 1 1 1 62;
+
+        #format utime %U;
+
+        #loop 1 &info[TICKERS][] index
+        {
+                #math uval $info[TICKERS][+$index][arg3] * 1000000;
+
+                #echo {%-20s %+20s %+20m}
+                        {$info[TICKERS][+$index][arg1]}
+                        {$info[TICKERS][+$index][arg3]}
+                        {($uval - ($utime - $info[TICKERS][+$index][arg4]) % $uval) / 1000000}
+        }
+}
+
+#class {ticklist} {close}
