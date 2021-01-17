@@ -1,7 +1,7 @@
 #class {eternal} {open}
 
 #var {eternal[quicken][tier]} {7}
-#var {eternal[quicken][cooldown]} {180}
+#var {eternal[quicken][cooldown]} {184}
 
 #if {$eternal[quicken][tier] > 0} {
 	#ticker {quicken} {

@@ -583,6 +583,9 @@
 
 	#NOP Byron crying OW;
 	#REGEX {%0} {~Byron~cries 'OW!!'} {#var mipgag 1};
+	#REGEX {%0} {~%w~smiles happily.'} {#var mipgag 1};
+	#REGEX {%0} {~%w~takes a deep breath and prepares to perform a song for %w.} {#var mipgag 1};
+	#REGEX {%0} {~%w~sings soulfully} {#var mipgag 1};
 
 	#NOP Bards;
 	#REGEX {%0} {~ceases his performance.} {#var mipgag 1};
@@ -595,7 +598,7 @@
 	#REGEX {%0} {~Great~cheer fills you, it's almost overwhelming!} {#var mipgag 1};
 
 	#NOP Changelings;
-	#REGEX {%0} {~The~%w's wounds close rapidly.} {#var mipgag 1};
+	#REGEX {%0} {~The~%*'s wounds close rapidly.} {#var mipgag 1};
 	#REGEX {%0} {~The~%w performs a rather incomprehensible action on the corpse.} {#var mipgag 1};
 
 	#NOP Carina's Observatory;
@@ -619,6 +622,10 @@
 	#REGEX {%0} {~~You try to clasp onto the diamond spectacle, but your hands fall right through!} {#var mipgag 1};
 	#REGEX {%0} {~~Bursts of %w colored energy shoot off from the spectacle.} {#var mipgag 1};
 	#REGEX {%0} {~~The diamond-spectacle spins and turns on an unseen axis.} {#var mipgag 1};
+
+	#NOP Necromancer;
+	#REGEX {%0} {~The~spirit of the beast leaves your body, slightly weakening you.} {#var mipgag 1};
+	#REGEX {%0} {~%w~appears slightly drained.} {#var mipgag 1};
 
 	#NOP Party Divvy;
 	#REGEX {%0} {[PARTY] GOLD divvy called by } {#var mipgag 1};
@@ -649,7 +656,7 @@
 	#REGEX {%0} {~The~skeletal guard steps in front of you barring your progress.} {#var mipgag 1};
 
 	#NOP Wrapping with no corpse in room;
-	#REGEX {%0} {~%w~wraps his arms around you.} {#var mipgag 1};
+	#REGEX {%0} {~%w~wraps %w arms around you.} {#var mipgag 1};
 
 	#NOP Zelligar's Headband;
 	#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {#var mipgag 1};

@@ -4,6 +4,7 @@
 #read .tt/graph.tin
 
 #alias {load3k} {
+	#read .tt/ticklist.tin;
 	#read .tt/3k/vars.tin;
 	#read .tt/3k/aliases.tin;
 	#read .tt/3k/ansi.tin;

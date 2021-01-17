@@ -4,6 +4,9 @@
 mapoff
 prompt >$nl$
 
+/* Build Party Variable */
+#send !pwho
+
 /* Initialize Variables */
 #var foundmob 0
 #var foundplayer 0
