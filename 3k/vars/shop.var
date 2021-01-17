@@ -1,0 +1,9 @@
+#CLASS {shopvar} OPEN
+
+#VARIABLE {shops}
+{
+    {blingdenwood} {19836}
+    {cancer} {2}
+}
+
+#CLASS {shopvar} CLOSE

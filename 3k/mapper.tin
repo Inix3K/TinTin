@@ -190,8 +190,7 @@
 }
 
 #alias {go} {
-	#map find {roomnote} {%0%*};
-	#path run
+	#map run {{roomnote} {%0%*}}
 }
 
 #alias {mapgo} {#map goto {roomnote} {%0}}
@@ -251,18 +250,19 @@
 #alias {notelist} {
 	#map list {roomnote} {{\w+}} {variable} {noterooms};
 	#foreach {*noterooms[]} {room} {#map get {roomnote} {notes[$room]} {$room}};
+	#list notes sort;
 	#var notes
 }
 
 #NOP Search Room Nouns (built by MIP)
 #alias {sn} {
-	#var noun_cnt &nouns[];
-	#loop 1 &nouns[] cnt {
+	#var noun_cnt &{nouns[]};
+	#loop 1 &{nouns[]} cnt {
 		exa $nouns[$cnt];
 		search $nouns[$cnt]
 	};
 	#delay 0.5 {
-		#if {$noun_cnt < &nouns[]} {
+		#if {$noun_cnt < &{nouns[]}} {
 			#echo {<128>New items found!  Search again!<088>}
 		}
 	}
@@ -538,6 +538,9 @@
 #NOP Dragon Realms
 #act {^You cannot get past the dragon guards.} {#map undo}
 
+#NOP Elven Woods
+#act {^The elf {pushes|shoves} you back, refusing to let you pass{!|.}} {#map undo}
+
 #NOP Fallout Shelter
 #act {^Core Guard jumps in your way, blocking your path!} {#map undo}
 
@@ -603,5 +606,6 @@
 #NOP Whorehouse
 #act {^Doh shoves you backwards with a scowl.} {#map undo}
 #act {^Your feet are mired in the bird poop, you can't seem to move!!} {#map undo}
+
 
 #class {mapper} {close}

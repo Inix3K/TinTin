@@ -6,4 +6,11 @@
 #class drawvar kill
 #read .tt/3k/vars/draw.var
 
+#class shopvar kill
+#read .tt/3k/vars/shop.var
+
+#event {SESSION DISCONNECTED} {
+	#class shopvar write .tt/3k/vars/shop.var
+}
+
 #CLASS {vars} CLOSE
