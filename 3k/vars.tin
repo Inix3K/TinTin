@@ -9,8 +9,12 @@
 #class shopvar kill
 #read .tt/3k/vars/shop.var
 
+#class pubvar kill
+#read .tt/3k/vars/pub.var
+
 #event {SESSION DISCONNECTED} {
 	#class shopvar write .tt/3k/vars/shop.var
+	#class pubvar write .tt/3k/vars/pub.var
 }
 
 #CLASS {vars} CLOSE
