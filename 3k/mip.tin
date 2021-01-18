@@ -604,6 +604,12 @@
 	#NOP Carina's Observatory;
 	#REGEX {%0} {~~Carina looks up at you as if to say something, but shrugs it off.} {#var mipgag 1};
 
+	#NOP Duke Nukem;
+	#REGEX {%0} {~~As you land upon the rooftop, you see your ship crash into a building in the} {#var mipgag 1};
+	#REGEX {%0} {~~You break the fan, revealing an exit!} {#var mipgag 1};
+	#REGEX {%0} {~~You see the assault trooper and taunt him, WHO'S YOUR DADDY!!??} {#var mipgag 1};
+	#REGEX {%0} {~~The room shakes.......And a piece of the wall is blown away!} {#var mipgag 1};
+
 	#NOP Dundee;
 	#REGEX {%0} {~A~shiver runs through you as you successfully fight off an infection.} {#var mipgag 1};
 	#REGEX {%0} {~Your~head throbs briefly as you successfully fight off an infection.} {#var mipgag 1};
@@ -671,7 +677,7 @@
 	#math chat[start]	{$chat[rows] * $chat[page]};
 	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
 	#if {"$draw[chat]" == "on"} {
-		#line sub {var} #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
+		#line sub var #line sub esc #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
 	}
 }
 #ALIAS {update_chat} {
@@ -709,18 +715,22 @@
 			#var mip[comm][line]	{Tell};
 			#var mip[comm][command]	{tell $mip[comm][source]};
 			#format {timestamp} {%t} {<108>[<268>%H<108>:<268>%M<108>]<088> };
+
+			#NOP Revert ^^ back to ~;
+			#REPLACE {mip[comm][data]} {\^\^} {~};
+
 			#IF {"&2" == "x"} {
 				#NOP Message to another player;
 				#var mip[comm][twoway] {to};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
 				#line log {.tt/logs/3k.chat} {<178>To &3<088>: &4};
-				update_chat ${timestamp}<178>To &3<088>: &4
+				update_chat ${timestamp}<178>To $mip[comm][source]<088>: $mip[comm][data]
 			} {
 				#NOP Message from another player;
 				#var mip[comm][twoway] {from};
 				#line log {.tt/logs/3k.chat} {$timestamp\};
 				#line log {.tt/logs/3k.chat} {<178>&3<088>: &4};
-				update_chat ${timestamp}<178>&3<088>: &4;
+				update_chat ${timestamp}<178>$mip[comm][source]<088>: $mip[comm][data];
 				#bell;
 
 				#NOP Chat Tools;
@@ -793,6 +803,9 @@
 		#var {mip[comm][source]}	{&4};
 		#var {mip[comm][data]}		{&5};
 		#format {timestamp} {%t} {<108>[<268>%H<108>:<268>%M<108>]<088> };
+
+		#NOP Revert ^^ back to ~;
+		#REPLACE {mip[comm][data]} {\^\^} {~};
 
 		#NOP Ansify lines;
 		#var {commcol} {<178>};
