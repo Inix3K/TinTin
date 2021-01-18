@@ -6,6 +6,9 @@
 #class drawvar kill
 #read .tt/3k/vars/draw.var
 
+#class farmvar kill
+#read .tt/3k/vars/farm.var
+
 #class shopvar kill
 #read .tt/3k/vars/shop.var
 
@@ -13,8 +16,9 @@
 #read .tt/3k/vars/pub.var
 
 #event {SESSION DISCONNECTED} {
+	#class farmvar write .tt/3k/vars/farm.var;
+	#class pubvar write .tt/3k/vars/pub.var;
 	#class shopvar write .tt/3k/vars/shop.var
-	#class pubvar write .tt/3k/vars/pub.var
 }
 
 #CLASS {vars} CLOSE

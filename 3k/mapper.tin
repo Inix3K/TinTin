@@ -440,6 +440,18 @@
 	}
 }
 
+#NOP Overlands
+#act {^After an unknown amount of time, you wake up and find yourself on} {#map goto 26024}
+#act {^=S=At an underground lake} {
+	#var overlands_raft yes
+}
+#act {^=I= A wooden sign.} {
+	#if {"$overlands_raft" == "yes"} {
+		#map goto 26022;
+		#var overlands_raft no
+	}
+}
+
 #NOP PG
 #act {^You eat the hamburger and your environment changes!} {
 	#map get {roomvnum} {pg_room};
