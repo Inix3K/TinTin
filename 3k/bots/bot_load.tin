@@ -4,8 +4,16 @@
 #alias {- %1} {
 	#var no_home 0;
 	#var no_loop 0;
+	#var bots[stepper] %1;
 	#read .tt/3k/bots/%1.tin;
 	#read .tt/3k/bots/bot_main.tin
+}
+
+#NOP Resume a stepper after a disconnect DisConnectResume
+#alias {.dcr} {
+        - $bots[stepper];
+        #path goto $bots[position];
+        #delay {stepper_start} {..} {2}
 }
 
 #NOP Party Variable

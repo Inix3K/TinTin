@@ -24,9 +24,9 @@ prompt >$nl$
 }
 
 #alias {.stop} {
-	#map get {roomvnum} {stop[vnum]};
-	#path save forward stop[path];
-	#path save position stop[pos];
+	#map get {roomvnum} {bots[vnum]};
+	#path save forward bots[path];
+	#path save position bots[position];
 	#class {xbot} {kill};
 	#alias {xx} {#nop};
 	#alias {_check_mob} {#nop};
@@ -34,9 +34,9 @@ prompt >$nl$
 }
 
 #alias {.resume} {
-	#map run $stop[vnum];
-	#path load $stop[path];
-	#path goto $stop[pos];
+	#map run $bots[vnum];
+	#path load $bos[path];
+	#path goto $bots[pos];
 	#var halt 0;
 	#delay {2} {.bot}
 }
