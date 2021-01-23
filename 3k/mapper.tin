@@ -10,7 +10,11 @@
 #var map[height] 17
 #var map[width] 42
 
-#map goto {roomnote} {home}
+#if {"$map[$world][position]" == ""} {
+	#map goto {roomnote} {home}
+} {
+	#map goto $map[$world][position]
+}
 
 /* Move Event */
 #alias {mapupdate} {

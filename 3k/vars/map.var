@@ -1,0 +1,13 @@
+#CLASS {mapvar} OPEN
+
+#VARIABLE {map}
+{
+    {height} {17}
+    {inix} 
+    {
+        {position} {24785}
+    }
+    {width} {42}
+}
+
+#CLASS {mapvar} CLOSE

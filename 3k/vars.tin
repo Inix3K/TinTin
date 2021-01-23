@@ -12,6 +12,9 @@
 #class farmvar kill
 #read .tt/3k/vars/farm.var
 
+#class mapvar kill
+#read .tt/3k/vars/map.var
+
 #class shopvar kill
 #read .tt/3k/vars/shop.var
 
@@ -19,8 +22,15 @@
 #read .tt/3k/vars/pub.var
 
 #event {SESSION DISCONNECTED} {
+	#NOP Save Bot PATH and POSITION;
+	#path get position bots[position];
+	#path save bots[path];
+	#NOP Save Map vnum per world;
+	#map get roomvnum {map[$world][position]};
+	#NOP Write var classes;
 	#class botvar write .tt/3k/vars/bots.var;
 	#class farmvar write .tt/3k/vars/farm.var;
+	#class mapvar write .tt/3k/vars/map.var;
 	#class pubvar write .tt/3k/vars/pub.var;
 	#class shopvar write .tt/3k/vars/shop.var
 }
