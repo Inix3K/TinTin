@@ -19,6 +19,7 @@
 #read .tt/3k/vars/pub.var
 
 #event {SESSION DISCONNECTED} {
+	#class botvar write .tt/3k/vars/bots.var;
 	#class farmvar write .tt/3k/vars/farm.var;
 	#class pubvar write .tt/3k/vars/pub.var;
 	#class shopvar write .tt/3k/vars/shop.var
