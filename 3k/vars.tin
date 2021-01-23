@@ -24,7 +24,7 @@
 #event {SESSION DISCONNECTED} {
 	#NOP Save Bot PATH and POSITION;
 	#path get position bots[position];
-	#path save bots[path];
+	#path save forward bots[path];
 	#NOP Save Map vnum per world;
 	#map get roomvnum {map[$world][position]};
 	#NOP Write var classes;

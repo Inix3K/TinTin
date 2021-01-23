@@ -612,6 +612,7 @@
 
 #NOP Section Z
 #act {^The %1 will not let you pass!} {#map undo}
+#act {^The portal %w is electrified and ZAPS you!} {#map undo}
 
 #NOP Simpsons
 #act {^   The Guard stops you and says: Aww no...you can't go in there.} {#map undo}

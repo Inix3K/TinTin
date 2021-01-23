@@ -5,7 +5,15 @@
     {height} {17}
     {inix} 
     {
-        {position} {24785}
+        {position} {152}
+    }
+    {plasma} 
+    {
+        {position} {152}
+    }
+    {thomdril} 
+    {
+        {position} {152}
     }
     {width} {42}
 }

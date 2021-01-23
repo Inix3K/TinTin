@@ -11,6 +11,8 @@
 
 
 /* TT Aliases */
+
+#NOP ascii <chatline> <filename>
 #alias {ascii} {
 	converse %1;
 	#textin .tt/ascii/%2;
