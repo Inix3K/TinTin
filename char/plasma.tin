@@ -28,18 +28,29 @@
 }
 
 #alias {update_status} {
-	#if {($my[hp][max]+$my[sp][max])-($my[hp][current]+$my[sp][current]) > 300} {
-		dream zzzz
+	#NOP Use SPFUSE;
+	#if {"$my[sp][fuse][current]" == ""} {#var my[sp][fuse][current] 0};
+	#if {$my[sp][max] - $my[sp][current] > $my[sp][fuse][current] &&
+	     $my[sp][fuse][current] > 0} {
+		#delay {spfuse} {#send !spfuse $my[sp][fuse][current]} {0.5};
 	};
-	#if {$my[gp1][current] < $my[gp1][max]*.9 && $corpses[inventory] > 0} {
+	#NOP Use dream;
+	#math {my[hp][open]} {$my[hp][max] - $my[hp][current]};
+	#if {$my[hp][open] < 0} {#var my[hp][open] 0};
+	#math {my[sp][open]} {$my[sp][max] - $my[sp][current] + $my[sp][fuse][max] - $my[sp][fuse][current]};
+	#if {$my[sp][open] < 0} {#var my[sp][open] 0};
+	#if {($my[hp][open] + $my[sp][open]) > 500} {
+		#delay {dream} {#send !dream zzzz} {0.5}
+	};
+	#if {$my[gp1][current] < $my[gp1][max]*.8 && $corpses[inventory] > 0} {
 		#if {$my[sp][fuse][current] > 0} {
 			spfuse $my[sp][fuse][current]
 		};
-		ab
+		#delay {absorb} {#send !absorb} {0.5}
 	};
 	#if {$my[hp][current] < 400 && $corpses[inventory] > 0} {
 		ab2
-	}
+	};
 	#if {"$cooler" == "on" || $corpses[cooler] > 0} {
 		#format {sb1_cooler} {%+2s} {$corpses[cooler]};
 		#var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
@@ -67,7 +78,7 @@
 	#format {corpses[inventory]}	{%+2s} {$corpses[inventory]};
 	#format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
 	#format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
-	#showme {<088>HP:$hp/$hp_max SP:$sp($sp_inf)/$sp_max NP:$np/$np_max  E:$ehealth   IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#showme {<088>HP:$hp/$hp_max SP:$sp($sp_inf)/$sp_max NP:$np/$np_max  E:$ehealth    IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
 	#showme {H:$my[hp][graph] SP:$my[sp][graph]     NP:$my[gp1][graph]   E:$enemy[graph] CF:<138>$corpses[coffin]<088>${sb2_freezer}} {-3};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }

@@ -1,0 +1,13 @@
+#class {bot} {open}
+
+#var no_loop 1
+#var no_home 1
+
+#var {botpath} {enter $sectionz[20];proceed;sw;s;u;se;s;d;w;n;n;e;e;d;e;se;d;n;e;ne;s;s;d;w;s;s;e;e;e;e;proceed;s;w;u;w;w;s;s;e;e;d;s;s;e;e;d;s;w;n;d;n;ne;e;e;e;se;se;e;e;ne;e}
+
+#act {^=M= {A Clone Soldier|A Cloud Eye|A Groma|A Leago|A Leeva|A Massive Generator|A Ripper|A Spiral Gun|Balba|Brain|Galga|Zamuza}} {
+	#var mobname balangool;
+        _check_mob
+}
+
+#class {bot} {close}

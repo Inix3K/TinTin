@@ -5,6 +5,9 @@
 #NOP Farsight Tag
 #act {^You notice that %*} {update_chat %0}
 
+#NOP Firebat
+#act {^A surge of powerful electricity runs screaming through your veins} {update_chat <118>FIREBAT TAG RECEIVED!<088>}
+
 #NOP Crysmal
 #act {^In a mighty shattering, The %w casing cracks apart from Crysmal!} {update_chat %0}
 

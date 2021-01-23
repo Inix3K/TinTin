@@ -1,5 +1,8 @@
 #CLASS {vars} OPEN
 
+#class botvar kill
+#read .tt/3k/vars/bots.var
+
 #class chat kill
 #read .tt/3k/vars/3kchat.var
 
