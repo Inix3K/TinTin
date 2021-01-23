@@ -12,7 +12,7 @@
 #NOP Resume a stepper after a disconnect DisConnectResume
 #alias {.dcr} {
         - $bots[stepper];
-        #path goto $bots[position];
+        #delay {path_position} {#path goto $bots[position]} {0.5};
         #delay {stepper_start} {..} {2}
 }
 
