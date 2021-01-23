@@ -1,12 +1,14 @@
 #CLASS {botvar} OPEN
 
-#NOP Capture Section Z Continue Codes
-#act {^Just a reminder, your continue code for Section %d is %w} {
-	#var {sectionz[%1]} {%2};
+#ACTION {^Just a reminder, your continue code for Section %d is %w}
+{
+    #variable {sectionz[%1]} {%2}
 }
 
 #VARIABLE {sectionz}
 {
+    {20} {XertzBibbleAnencephalous}
+    {40} {CodswallopAnencephalousFlibbertigibbet}
 }
 
 #CLASS {botvar} CLOSE
