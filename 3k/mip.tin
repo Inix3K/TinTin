@@ -22,6 +22,7 @@
 }
 
 #NOP ***** Extract Raw Data *********
+#var mip[echo] off
 #ACTION {{^\#K\%$mip[id](.{3})(.{3})(.*)}$} {
 	#VAR {mip[source]} {%0};
 	#VAR {mip[%3][data]} {%4};
