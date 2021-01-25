@@ -1,0 +1,20 @@
+#CLASS {farmvar} OPEN
+
+#VARIABLE {farms}
+{
+    {blingdenwood} {19847}
+    {hippie} {1198}
+    {hippie2} {1175}
+    {jeremys} {825}
+    {luddite} {26176}
+    {macdonalds} {228}
+    {macdonalds2} {234}
+    {mahjongg} {1959}
+    {overlands} {25594}
+    {science} {15347}
+    {valley} {966}
+    {veggie} {19448}
+    {veggie2} {19470}
+}
+
+#CLASS {farmvar} CLOSE
