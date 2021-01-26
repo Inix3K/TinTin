@@ -686,7 +686,11 @@
 	#if {&chat[log][] > $chat[max]} {
 		#list chat[log] del 1
 	};
-	#list chat[log] ins -1 {${timestamp}%0};
+	#NOP remove esc chars;
+	#var chat[text] %0;
+	#replace {chat[text]} {\\x7B} {\uFF5B};
+	#replace {chat[text]} {\\x7D} {\uFF5D};
+	#list chat[log] ins -1 {${timestamp}$chat[text]};
 
 	#class {chat} {write} {.tt/3k/vars/${mud}chat.var};
 	show_chat
