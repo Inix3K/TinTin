@@ -2,8 +2,16 @@
 
 #VARIABLE {map}
 {
+    {adonai} 
+    {
+        {position} {152}
+    }
     {height} {17}
     {inix} 
+    {
+        {position} {152}
+    }
+    {lasma} 
     {
         {position} {152}
     }
@@ -11,11 +19,35 @@
     {
         {position} {152}
     }
+    {psion} 
+    {
+        {position} {152}
+    }
     {psylon} 
     {
         {position} {152}
     }
+    {swt tyriel} 
+    {
+        {position} {152}
+    }
+    {sylvan} 
+    {
+        {position} {152}
+    }
+    {tesla} 
+    {
+        {position} {152}
+    }
+    {thomdirl} 
+    {
+        {position} {152}
+    }
     {thomdril} 
+    {
+        {position} {152}
+    }
+    {tyriel} 
     {
         {position} {152}
     }

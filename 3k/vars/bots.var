@@ -7,10 +7,10 @@
 
 #VARIABLE {bots}
 {
-    {path} {leave;w;e;e;e;vortex;home}
+    {path} {u;u;home}
     {position} {1}
-    {stepper} {tol2}
-    {vnum} {152}
+    {stepper} {findtv}
+    {vnum} {196}
 }
 #VARIABLE {sectionz}
 {
