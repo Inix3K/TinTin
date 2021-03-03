@@ -12,7 +12,6 @@ prompt >$nl$
 #var foundplayer 0
 #var goldfound 0
 #var itemfound 0
-#var mobname 0
 #var bot 0
 #var vacuum 1
 #var singlestep 0
@@ -109,7 +108,8 @@ prompt >$nl$
 	.stop;
 	#class bot kill;
 	#unalias {.bot};
-	#var bot 0
+	#var bot 0;
+	#var mobname {};
 }
 
 #alias {.bot} {

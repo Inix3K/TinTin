@@ -5,17 +5,23 @@
     #variable {sectionz[%1]} {%2}
 }
 
+#ACTION {^You press PAUSE on the game, saving the rest for later.}
+{
+    #map goto 24785
+}
+
 #VARIABLE {bots}
 {
-    {path} {u;u;home}
-    {position} {1}
-    {stepper} {findtv}
-    {vnum} {196}
+    {path} {e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;w}
+    {position} {20}
+    {stepper} {dundee1}
+    {vnum} {3134}
 }
 #VARIABLE {sectionz}
 {
-    {20} {GoombahBumfuzzleBowyang}
-    {40} {DoozyNambypambyCollywobbles}
+    {pause} {24810}
+    {20} {NudiustertianAbibliophobiaCattywampus}
+    {40} {HobbledehoyImpignorateErinaceous}
 }
 
 #CLASS {botvar} CLOSE

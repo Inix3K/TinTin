@@ -1,6 +1,10 @@
 #class {botload} {kill}
 #class {botload} {open}
 
+#NOP Global Bot Variable Initialization
+#var mobname {}
+
+#NOP Load specific stepper file
 #alias {- %1} {
 	#var no_home 0;
 	#var no_loop 0;
