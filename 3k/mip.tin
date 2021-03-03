@@ -169,7 +169,9 @@
 #ALIAS {.mipProcessFFFK} {
 	#IF {"%1" != ""} {
 		#VAR {enemy} {};
-		#VAR {enemy[name]} {%1}
+		#VAR {enemy[name]} {%1};
+		#NOP Lowercase version of enemy name;
+		#format {enemy[lc]} {%l} {$enemy[name]}
 	} {
 		#VAR {enemy[hp]} {}
 	}
