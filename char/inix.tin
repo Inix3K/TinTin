@@ -49,6 +49,8 @@ rtick
 			frenzy
 		}; #elseif {$nukes > 0 && $mip[round] > 0 && "$mobname" != ""} {
 			fire $nukes $mobname
+		}; #elseif {$nukes > 0 %% $mip[round] > 0 && "$mobname" == ""} {
+			fire $nukes $enemy[lc]
 		}
 	}
 }
