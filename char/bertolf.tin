@@ -17,7 +17,8 @@
 	#var {stn_lvl}		{%9};
 	#var {sw}		{%10};
 	#var {stance}		{%11};
-	#var {method}		{%12}
+	#var {method}		{%12};
+	#var knight[staunch]	{0};
 }
 
 #act {PPD(%w) End(%w) Cry(%p) Dfl(%w) Study(%w) Dodge(%w) Brawl(%w) Shield(%w) Parry(%w)} {
@@ -44,7 +45,11 @@
 
 #alias {update_status} {
 	#if {"$method" == "Standard"} {#send !method melee};
-	#if {$my[hp][current] < $my[hp][max]*.9} {#send !staunch};
+	#if {$my[hp][current] < $my[hp][max]*.9 &&
+	     $knight[staunch] < 3} {
+		#send !staunch;
+		#math {knight[staunch]} {$knight[staunch] + 1}
+	};
 	#if {$my[sp][current] > $my[sp][max]*.9} {
 		#if {$my[gp1][current] < 90 || $my[gp2][current] > 10} {
 			#NOP #delay {willdelay} {#send !will} {0.05}

@@ -12,10 +12,10 @@
 
 #VARIABLE {bots}
 {
-    {path} {e;n;n;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;w;w;n;n;n;n;n;w}
-    {position} {20}
-    {stepper} {dundee1}
-    {vnum} {3134}
+    {path} {s;s;s;s;s;w;s}
+    {position} {8}
+    {stepper} {trans}
+    {vnum} {1860}
 }
 #VARIABLE {sectionz}
 {

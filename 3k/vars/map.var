@@ -6,12 +6,24 @@
     {
         {position} {152}
     }
+    {bertolf} 
+    {
+        {position} {1850}
+    }
+    {bise} 
+    {
+        {position} {152}
+    }
     {height} {17}
     {inix} 
     {
-        {position} {3134}
+        {position} {152}
     }
     {lasma} 
+    {
+        {position} {152}
+    }
+    {lycanth} 
     {
         {position} {152}
     }
@@ -32,6 +44,10 @@
         {position} {152}
     }
     {swt tyriel} 
+    {
+        {position} {152}
+    }
+    {sylon} 
     {
         {position} {152}
     }
