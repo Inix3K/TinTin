@@ -55,7 +55,16 @@
 			#NOP #delay {willdelay} {#send !will} {0.05}
 		}
 	};
-	#if {$my[gp2][current] > 50 && $corpses[coffin] > 1} {#send !unwrap;#send !bury corpse};
+	#if {$my[gp2][current] > 50} {
+		#if {$corpses[cooler] > 0} {
+			#send !uncooler corpse;
+			#send !bury corpse
+		};
+		#elseif {$corpses[coffin] > 1} {
+			#send !unwrap;
+			#send !bury corpse
+		}
+	};
 	#if {$sw > 99.9} {
 		#if {$my[gp1][current] < 10 || $my[gp2][current] > 90} {
 			#send !secondwind

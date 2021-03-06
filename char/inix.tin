@@ -208,6 +208,12 @@ rtick
 /* Aliases */
 #alias corpsetrig {#nop}
 
-#alias ff {fire 5 $mobname}
+#alias ff {
+	#if {"$mobname" != ""} {
+		#send !fire $nukes $mobname
+	}; #else {
+		#send !fire $nukes $enemy[lc]
+	}
+}
 
 #class {inix} {close}
