@@ -12,16 +12,16 @@
 
 #VARIABLE {bots}
 {
-    {path} {killbot}
-    {position} {2}
-    {stepper} {home}
-    {vnum} {152}
+    {path} {exit;s;e;s;s;s;d;out;home}
+    {position} {10}
+    {stepper} {mahjongg}
+    {vnum} {1916}
 }
 #VARIABLE {sectionz}
 {
     {pause} {24810}
-    {20} {PandiculationRigmaroleCattywampus}
-    {40} {SnoolCattywampusGubbins}
+    {20} {NudiustertianAbibliophobiaCattywampus}
+    {40} {HobbledehoyImpignorateErinaceous}
 }
 
 #CLASS {botvar} CLOSE

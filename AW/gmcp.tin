@@ -1,6 +1,6 @@
 #class {gmcp} {open}
 
-#read .tt/AW/terrainb.tin
+#read .tt/AW/terrain.tin
 
 #format IAC  %a 255
 #format DONT %a 254
@@ -9,7 +9,6 @@
 #format WILL %a 251
 #format SB   %a 250
 #format SE   %a 240
-
 #format GMCP %a 201
 
 #nop Turn telnet debug off once everything works as it's spammy.
@@ -79,7 +78,9 @@
 #event {IAC SB GMCP comm.channel IAC SE} {
 	#var gmcp[comm][channel] {%0};
 	#NOP Read chat.tin;
-	update_chat $gmcp[comm][channel][msg];
+	#replace {gmcp[comm][channel][msg]} {;%dm} {[&1m};
+	#replace {gmcp[comm][channel][msg]} {;%d\\} {[&1m};
+	update_chat $gmcp[comm][channel][msg][0m;
 	#NOP #line log {.tt/logs/AW.chat} {$gmcp[comm][channel][msg]}
 }
 
@@ -96,12 +97,12 @@
 	#format {tp_cap}	{%+2s}	{$gmcp[char][worth][tp]};
 	#format {tr_cap}	{%+1s}	{$gmcp[char][worth][trains]};
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
-	#draw tile 20 1 20 -32 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>\[<178>$bank_cap<278>\]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>}
+	#draw tile 20 1 20 -32 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>}
 }
 
 #tick {update_status} {update_status} {2}
 #alias {update_status} {
-	#if {&gmcp[char][] != 5} {
+	#if {&{gmcp[char][]} != 5} {
 		prot gmcp sendchar;
 		#return;
 	};

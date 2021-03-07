@@ -11,7 +11,7 @@ API='&apikey=VCZ7LEKXP24L9TLQ'
 DATA='&datatype=json'
 SYM='&symbol='$TICKER
 
-INPUT=~/.scripts/stock.json
+INPUT=~/bin/stock.json
 
 URL=$URL_BASE$FUNC$SYM$INTERVAL$API$DATA
 
@@ -37,8 +37,8 @@ LOW=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$LOW")
 CLOSE=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$CLOSE")
 VOLUME=$(sed -e 's/^"//' -e 's/"$//' -e 's/.\{2\}$//' <<<"$VOLUME")
 
-echo "#var stock {" > ~/.scripts/stock.tin
-echo "$TICKER O:$OPEN H:$HIGH L:$LOW C:$CLOSE V:$VOLUME" >> ~/.scripts/stock.tin
-echo "}" >> ~/.scripts/stock.tin
+echo "#var stock {" > ~/bin/stock.tin
+echo "$TICKER O:$OPEN H:$HIGH L:$LOW C:$CLOSE V:$VOLUME" >> ~/bin/stock.tin
+echo "}" >> ~/bin/stock.tin
 
-rm ~/.scripts/stock.json
+rm ~/bin/stock.json

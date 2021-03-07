@@ -21,8 +21,8 @@
 	#regex {"$ticker"} { } {
 		#delay 1 {#send $stockline Only one ticker, please.}
 	} {
-		#sys {~/.scripts/stock.tt $ticker};
-		#read .scripts/stock.tin;
+		#sys {~/bin/stock.tt $ticker};
+		#read bin/stock.tin;
 		#delay 1 {#send $stockline $stock}
 	}
 }
@@ -42,7 +42,7 @@
         #format {tickers} {%.${cut}s} {$tickers};
         #format {tickers} {%r} {$tickers};
 	
-	#sys {~/.scripts/stocks.tt $tickers};
+	#sys {~/bin/stocks.tt $tickers};
 	#var stocksapproved no;
 	#var stockslinename {$mip[comm][line]};
 	#switch {"$stockslinename"} {
@@ -64,7 +64,7 @@
                 #var line {$mip[comm][command]};
                 #delay 1 {
                         #send converse $line;
-                        #read .scripts/stocks.tin;
+                        #read bin/stocks.tin;
                         #send **;
                 }
         }

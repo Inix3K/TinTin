@@ -111,10 +111,11 @@
 	#delay 0 botdraw
 }
 
-#alias {bas}	{ba {rim2;android;dundee8;dundee7;dundee6;dundee5}}
+#alias {bas}		{ba {rim2;android;dundee8;dundee7;dundee6;dundee5}}
 #NOP #alias {bas2}	{ba {whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;android;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee8;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee7;whorehouse;puppy;mahjongg;rim2;whorehouse;puppy;mahjongg;dundee6}}
-#alias {bas2}	{ba {whorehouse;mahjongg;rim2;whorehouse;mahjongg;dundee8;whorehouse;mahjongg;dundee7;whorehouse;mahjongg;dundee6}}
-#alias {bas3}	{ba {whorehouse;rim2;whorehouse;dundee8;whorehouse;dundee7;whorehouse;dundee6}}
-#alias {basa}	{ba {aegis1;aegis2;aegis3;aegis4;aegis5}}
+#alias {bas2}		{ba {whorehouse;mahjongg;rim2;whorehouse;mahjongg;dundee8;whorehouse;mahjongg;dundee7;whorehouse;mahjongg;dundee6}}
+#alias {bas3}		{ba {whorehouse;rim2;whorehouse;dundee8;whorehouse;dundee7;whorehouse;dundee6}}
+#alias {basa}		{ba {aegis1;aegis2;aegis3;aegis4;aegis5}}
+#alias {badundee}	{ba {dundee1;dundee2;dundee3;dundee4;dundee5;dundee6;dundee7;dunddd8}}
 
 #class {botcycle} {close}

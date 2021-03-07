@@ -95,7 +95,11 @@
 	}; #else {
 		#var {gxn_time} {<120>0<020>m<088>}
 	};
-	#if {&{gxn_max} == 0} {#send !gs};
+	#if {&{gxn_max} == 0} {
+		#delay {first_hp}  {#send !hp} {2};
+		#delay {first_gs}  {#send !gs} {4};
+		#delay {second_hp} {#send !hp} {6}
+	};
 	#math {gxn_earned} {$gxn_max - $gxn};
 	#var {my[hp][graph]}	{@graph{$my[hp][current];$my[hp][max]}};
 	#var {my[sp][graph]}	{@graph{$my[sp][current];$my[sp][max]}};
@@ -124,7 +128,7 @@
         #math {gxn_max} {$gxn/(1-(${gxn_per}/100))}
 }
 
-#act {^{\w*} dealt the killing blow to} {corpsetrig} {5}
+#act {^%+ dealt the killing blow to} {corpsetrig} {5}
 #alias corpsetrig {
 	#if {$my[gp1][current] < $my[gp1][max]*.25 || $my[gp2][current] > 25} {
 		.pause
