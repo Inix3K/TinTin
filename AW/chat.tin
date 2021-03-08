@@ -18,7 +18,8 @@
 	#if {&chat[log][] > $chat[max]} {
 		#list chat[log] del 1
 	};
-	#list chat[log] ins -1 {%0};
+	#format {timestamp} {%t} {<108>[<268>%H<108>:<268>%M<108>]<088> };
+	#list chat[log] ins -1 {${timestamp}%0};
 
 	#class {chat} {write} {.tt/AW/vars/${mud}chat.var};
 	show_chat
