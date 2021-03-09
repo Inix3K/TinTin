@@ -17,7 +17,7 @@
 	#format {icao} {%.${cut}s} {$icao};
 	#format {icao} {%r} {$icao};
 	
-	#sys ~/.scripts/adds.tt $icao;
+	#sys ~/bin/adds.tt $icao;
 
 	#var addsapproved no;
 	#var addslinename {$mip[comm][line]};
@@ -40,7 +40,7 @@
 		#var line {$mip[comm][command]};
 		#delay 1 {
 			#send converse $line;
-			#read .scripts/adds.txt;
+			#read bin/adds.txt;
 			#send **;
 		}
 	}

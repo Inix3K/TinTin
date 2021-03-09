@@ -95,11 +95,6 @@
 	}; #else {
 		#var {gxn_time} {<120>0<020>m<088>}
 	};
-	#if {&{gxn_max} == 0} {
-		#delay {first_hp}  {#send !hp} {2};
-		#delay {first_gs}  {#send !gs} {4};
-		#delay {second_hp} {#send !hp} {6}
-	};
 	#math {gxn_earned} {$gxn_max - $gxn};
 	#var {my[hp][graph]}	{@graph{$my[hp][current];$my[hp][max]}};
 	#var {my[sp][graph]}	{@graph{$my[sp][current];$my[sp][max]}};
@@ -202,5 +197,10 @@
 		}
 	}
 }
+
+/* Delays on read to initialize gxp variables */
+#delay {first_hp}  {#send !hp} {4}
+#delay {first_gs}  {#send !gs} {6}
+#delay {second_hp} {#send !hp} {8}
 
 #class {bertolf} {close}
