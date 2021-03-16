@@ -12,10 +12,10 @@
 
 #VARIABLE {bots}
 {
-    {path} {n;out;home}
-    {position} {4}
-    {stepper} {dundee8}
-    {vnum} {10454}
+    {path} {nw;w;sw;sw;w;w;w;w;w;w;w;w;w;w;nw;w;w;w;w;w;w;w;w;w;w;w;w;leave;n;e;vortex;home}
+    {position} {33}
+    {stepper} {dundee5}
+    {vnum} {3476}
 }
 #VARIABLE {sectionz}
 {

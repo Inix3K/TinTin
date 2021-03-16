@@ -42,8 +42,8 @@
 #act {There is no one here by that name.} {
 	#if {$sndtouch && &rooms[] > 0} {
 		sndr
-	}
-	#unvar sndtouch;
+	};
+	#unvar sndtouch
 }
 
 #alias snds {

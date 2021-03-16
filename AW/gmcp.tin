@@ -80,8 +80,11 @@
 	#NOP Read chat.tin;
 	#replace {gmcp[comm][channel][msg]} {;%dm} {[&1m};
 	#replace {gmcp[comm][channel][msg]} {;%d\\} {[&1m};
-	update_chat $gmcp[comm][channel][msg][0m;
-	#NOP #line log {.tt/logs/AW.chat} {$gmcp[comm][channel][msg]}
+	#replace {gmcp[comm][channel][msg]} {\\/} {/};
+	#if {"$gmcp[comm][channel][chan]" != "mobsay"} {
+		update_chat $gmcp[comm][channel][msg][0m;
+		#NOP #line log {.tt/logs/AW.chat} {$gmcp[comm][channel][msg]}
+	}
 }
 
 #event {IAC SB GMCP comm.quest IAC SE} {
@@ -151,6 +154,7 @@
 
 #event {IAC SB GMCP room.info IAC SE} {
         #var gmcp[room][info] {%0};
+	#replace {gmcp[room][info][name]} {;%dm} {[&1m};
 
         #if {$gmcp[room][info][num] == -1} {
 		#map get {roomvnum} {roomvnum};
