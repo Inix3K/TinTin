@@ -675,7 +675,6 @@
 	#IF {$mipgag == 0} {.mipProcessBAB %0}
 }
 
-#var chat[rows] 17
 #var chat[page] 1
 #var chat[max] 100
 #ALIAS {show_chat} {

@@ -3,7 +3,7 @@
 #VARIABLE {draw}
 {
     {alert} {on}
-    {canvas} {on}
+    {canvas} {off}
     {caption} {on}
     {chat} {on}
     {gline} {on}

@@ -12,10 +12,10 @@
 
 #VARIABLE {bots}
 {
-    {path} {u;u;u;u;u;s;se;e;s;s;s;s;s;s;s;u;u;u;u;u;w;w;w;w;n;n;w;w;w;nw;n;n;u;u;s;s;s;s;s;s;s;s;s;s;s;s;s;e;e;s;s;s;s;s;s;s;path;w;u;w;w;w;d;out;home}
-    {position} {66}
+    {path} {s;e;e;u;portal;n;n;n;n;n;nw;n;n;n;e;e;e;se;s;s;s;u;u;u;n;ne;ne;n;n;n;n;n;n;n;ne;n;n;n;n;w;portal;home}
+    {position} {43}
     {stepper} {fo}
-    {vnum} {152}
+    {vnum} {3105}
 }
 #VARIABLE {sectionz}
 {
