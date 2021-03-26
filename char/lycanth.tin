@@ -30,7 +30,7 @@
 		#if {$my[relinquish][current] > 0} {
 			#delay {relinquish} {relinquish} {0.5}
 		}; #elseif {$my[bioplasts] > 0} {
-			cb
+			#delay {consume_bioplast} {#send !consume bioplast} {0.5}
 		}
 	};
         #if {"$cooler" == "on" || $corpses[cooler] > 0} {
@@ -77,6 +77,6 @@
 	get coins
 }
 
-#act {dealt the killing blow} {corpsetrig}
+#act {^=K=%1 dealt the killing blow to} {corpsetrig}
 
 #class {lycanth} {close}

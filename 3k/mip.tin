@@ -603,6 +603,7 @@
 	#NOP Changelings;
 	#REGEX {%0} {~The~%*'s wounds close rapidly.} {#var mipgag 1};
 	#REGEX {%0} {~The~%w performs a rather incomprehensible action on the corpse.} {#var mipgag 1};
+	#REGEX {%0} {~The~small wolf sighs.} {#var mipgag 1};
 
 	#NOP Cove of the Three (Lost Soul);
 	#REGEX {%0} {~~You try to clasp onto the diamond spectacle, but your hands fall right through!} {#var mipgag 1};
