@@ -75,15 +75,15 @@
 #alias corpsecount {
 	#class {corpse_count} {open};
 	#var {corpse_cnt} {0};
-	#act {{^[\[|\(](?:.*) corpse of (?:.+)\{?(\d*)\}?(\: Ok)?}} { 
-		#if {!%%3} {
+		#NOP #if {!%%3} {;
+		#NOP };
+	#act {{^(?:=I= )?[\[\(](?:.*) corpse of (?:[\w\d\s]+)\{?(\d*)\}?}} {
 			#if {%%2} {
 				#var corpse_stack %%2
 			} {
 				#var corpse_stack 1
 			};
 			#math {corpse_cnt} {$corpse_cnt + $corpse_stack}
-		}
 	};
 	#act {^>$} {
 		#var {corpses[%1]} {$corpse_cnt};
