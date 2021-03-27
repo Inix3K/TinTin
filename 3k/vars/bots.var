@@ -12,10 +12,10 @@
 
 #VARIABLE {bots}
 {
-    {path} {portal;s;exit;n;n;e;e;vortex;home}
-    {position} {10}
-    {stepper} {mahjongg}
-    {vnum} {1902}
+    {path} {killbot}
+    {position} {2}
+    {stepper} {home}
+    {vnum} {152}
 }
 #VARIABLE {sectionz}
 {
