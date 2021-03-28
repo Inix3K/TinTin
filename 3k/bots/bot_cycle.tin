@@ -10,6 +10,9 @@
 
 #alias {br} {
 	#list {botcycle} {del} {%1};
+	#if {%1 < $cycle} {
+		#math {cycle} {$cycle - 1}
+	};
 	botdraw
 }
 
