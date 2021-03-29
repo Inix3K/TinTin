@@ -1,6 +1,18 @@
 #class vars open
 
+#class var_areas kill
 #read .tt/AW/vars/areas.var
+
+#class var_mobs
 #read .tt/AW/vars/mobs.var
+
+#class var_chat kill
+#read .tt/AW/vars/AWchat.var
+
+#event {SESSION DISCONNECTED} {
+        #NOP Write var classes;
+	#class {var_areas} write .tt/AW/vars/areas.var;
+	#class {var_mobs}  write .tt/AW/vars/mobs.var;
+}
 
 #class vars close
