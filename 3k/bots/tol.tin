@@ -1,0 +1,24 @@
+#class {bot} {open}
+
+#var no_loop 1
+#var no_home 1
+
+#var {botpath} {doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;light;will}
+
+#act {^=M= {Sandalphon, archangel of Malkuth|Gabriel, archangel of Yesod|Michael, archangel of Hod|Haniel, archangel of Netzach|Raphael, archangel of Tipharet|Khamael, archangel of Geburah|Tzadkiel, archangel of Chesed|Tzaphkiel, archangel of Binah|Ratziel, archangel of Chockmah|Metatron, archangel of Keter}} {
+	#switch {"%1"} {
+		#case {"Sandalphon, archangel of Malkuth"}	{#var mobname sandalphon};
+		#case {"Gabriel, archangel of Yesod"}		{#var mobname gabriel};
+		#case {"Michael, archangel of Hod"}		{#var mobname michael};
+		#case {"Haniel, archangel of Netzach"}		{#var mobname haniel};
+		#case {"Raphael, archangel of Tipharet"}	{#var mobname raphael};
+		#case {"Khamael, archangel of Geburah"}		{#var mobname khamael};
+		#case {"Tzadkiel, archangel of Chesed"}		{#var mobname tzadkiel};
+		#case {"Tzaphkiel, archangel of Binah"}		{#var mobname tzaphkiel};
+		#case {"Ratziel, archangel of Chockmah"}	{#var mobname ratziel};
+		#case {"Metatron, archangel of Keter"}		{#var mobname metatron}
+	};
+	_check_mob
+}
+
+#class {bot} {close}
