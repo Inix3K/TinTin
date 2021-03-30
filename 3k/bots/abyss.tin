@@ -6,10 +6,10 @@
 
 #act {^=M= %1\.} {
 	#var mobname demon;
-	#regex {%1} {Inix\'s Jugger Support Mech}	{#var mobname {}};
-	#regex {%1} {Inix\'s Guardian Angel}		{#var mobname {}};
-	#regex {%1} {A tank named CanisLupus}		{#var mobname {}};
-	#regex {%1} {small fire mite}			{#var mobname {}};
+	#regex {%1} {\'s Jugger Support Mech}	{#var mobname {}};
+	#regex {%1} {\'s Guardian Angel}	{#var mobname {}};
+	#regex {%1} {A tank named}		{#var mobname {}};
+	#regex {%1} {small fire mite}		{#var mobname {}};
 
 	#if {"$mobname" == ""} {
 		#nop
