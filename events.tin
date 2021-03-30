@@ -1,0 +1,22 @@
+#class {events} {open}
+
+/* Screen Sizing */
+#event {SCREEN RESIZE} {
+        #read .tt/3k/draw.tin;
+	#var screen[rows] %0;
+	#var screen[cols] %1;
+	#var screen[height] %2;
+	#var screen[width] %3
+}
+
+/* Mouse buffer scrolling */
+#NOP for single line scrolling, replace $screen[rows] with 1
+#event {SCROLLED MOUSE WHEEL UP} {
+	#buffer up $screen[rows]
+}
+
+#event {SCROLLED MOUSE WHEEL DOWN} {
+	#buffer down $screen[rows]
+}
+
+#class {events} {close}

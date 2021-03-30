@@ -309,12 +309,6 @@
 	#map at 44 {#map set roomweight 1};
 }
 
-
-/* Screen Sizing */
-#event {SCREEN RESIZE} {
-	#read .tt/3k/draw.tin
-}
-
 /* Transports */
 #NOP Abyss
 #act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
