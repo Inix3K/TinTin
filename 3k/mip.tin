@@ -602,7 +602,7 @@
 
 	#NOP Changelings;
 	#REGEX {%0} {~The~%*'s wounds close rapidly.} {#var mipgag 1};
-	#REGEX {%0} {~The~%w performs a rather incomprehensible action on the corpse.} {#var mipgag 1};
+	#REGEX {%0} {~The~%1 performs a rather incomprehensible action on the corpse.} {#var mipgag 1};
 	#REGEX {%0} {~The~small wolf sighs.} {#var mipgag 1};
 
 	#NOP Cove of the Three (Lost Soul);
@@ -667,7 +667,7 @@
 	#REGEX {%0} {~The~skeletal guard steps in front of you barring your progress.} {#var mipgag 1};
 
 	#NOP Wrapping with no corpse in room;
-	#REGEX {%0} {~%w~wraps %w arms around you.} {#var mipgag 1};
+	#REGEX {%0} {~%w~wraps %w arms around %w.} {#var mipgag 1};
 
 	#NOP Zelligar's Headband;
 	#REGEX {%0} { stumbles in confusion as the headband hypnotizes } {#var mipgag 1};
