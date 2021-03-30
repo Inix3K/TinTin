@@ -61,11 +61,12 @@
 	}
 }
 #alias {kac} {#var corpses[inventory] 0;#send !keep all corpse}
-	
+
 /* Truck Counter */
-#act {{^A tank named CanisLupus}} {#var corpses[truck] 0;corpsecount truck}
-#act {{Canislupus takes: (?:.*) corpse of }} {#math {corpses[truck]} {$corpses[truck] + 1}}
-#act {{Canislupus drops (?:.*)[corpse|preservation|remains]}} {
+#NOP Variable truck[name] and truck[first_cap] set in Juggernaut player file
+#act {{^A [jeep|truck|ambulance|tank] named $tuck[name]}} {#var corpses[truck] 0;corpsecount truck}
+#act {{$truck[first_cap] takes: (?:.*) corpse of }} {#math {corpses[truck]} {$corpses[truck] + 1}}
+#act {{$truck[first_cap] drops (?:.*)[corpse|preservation|remains]}} {
 	#if {$corpses[truck] > 0} {
 		#math {corpses[truck]} {$corpses[truck] - 1}
 	}
