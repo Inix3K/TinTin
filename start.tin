@@ -1,6 +1,7 @@
 #NOP
 /* Load Common Files */
 #read .tt/aliases.tin
+#read .tt/events.tin
 #read .tt/graph.tin
 
 #alias {load3k} {
@@ -13,7 +14,6 @@
 	#read .tt/3k/bots/bot_load.tin;
 	#read .tt/3k/corpses.tin;
 	#read .tt/3k/dog.tin;
-	#read .tt/3k/events.tin;
 	#read .tt/3k/gag.tin;
 	#read .tt/3k/mapper.tin;
 	#read .tt/3k/mip.tin;
