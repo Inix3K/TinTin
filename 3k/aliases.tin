@@ -67,9 +67,9 @@
 
 /* Boosts */
 #alias {einstein} {
-#nop        go einsteins_cottage;
-#NOP        ne;
-#NOP        climb gate;
+	go einsteins_cottage;
+	ne;
+	climb gate;
         w;
         search tree;
         e;

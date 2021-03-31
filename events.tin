@@ -2,7 +2,7 @@
 
 /* Screen Sizing */
 #event {SCREEN RESIZE} {
-        #read .tt/3k/draw.tin;
+        #read .tt/${mud}/draw.tin;
 	#var screen[rows] %0;
 	#var screen[cols] %1;
 	#var screen[height] %2;
@@ -10,13 +10,21 @@
 }
 
 /* Mouse buffer scrolling */
-#NOP for single line scrolling, replace $screen[rows] with 1
+#var screen[scroll] page
 #event {SCROLLED MOUSE WHEEL UP} {
-	#buffer up $screen[rows]
+	#if {"$screen[scroll]" == "page"} {
+		#buffer up $screen[rows]
+	}; #elseif {"$screen[scroll]" == "line"} {
+		#buffer up 1
+	}
 }
 
 #event {SCROLLED MOUSE WHEEL DOWN} {
-	#buffer down $screen[rows]
+	#if {"$screen[scroll]" == "page"} {
+		#buffer down $screen[rows]
+	}; #elseif {"$screen[scroll]" == "line"} {
+		#buffer down 1
+	}
 }
 
 #class {events} {close}

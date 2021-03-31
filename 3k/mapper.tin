@@ -9,6 +9,7 @@
 
 #var map[height] 17
 #var map[width] 42
+#NOP #var map[position] top
 
 #if {"$map[$world][position]" == ""} {
 	#map goto {roomnote} {home}
@@ -32,8 +33,13 @@
 	#map list {} {} {} {$roomarea} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
 	#if {"$draw[map]" == "on"} {
-		#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-		#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+		#if {"$map[position]" == "top"} {
+			#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+			#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+		}; #elseif {"$map[position]" == "bottom"} {
+			#draw {tile} -$status[height]-$map[height]-3 -$map[width] -$status[height]-$map[height]-3 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+			#draw {tile} -$status[height]-$map[height]-2 -$map[width] -$status[height]-$map[height]-2 -1 {<140>[<030>$roomvnum<140>] <130>$name_trunc<099>}
+		}
 	}
 }
 
@@ -63,6 +69,7 @@
 		#case {"west"}	{#var foldir w};
 		#case {"down"}	{#var foldir d};
 		#case {"up"}	{#var foldir u};
+		#default %2
 	}
 }
 
@@ -170,6 +177,26 @@
 
 
 /* Aliases */
+#NOP Map position toggle
+#alias {mappos} {
+	#if {"%1" == "top"} {
+		#screen clear square -$status[height]-$map[height]-3 -$map[width] -$status[height]-$map[height]-2 -1;
+		#var map[position] top;
+	}; #elseif {"%1" == "bottom"} {
+		#delay 0 #screen clear square $map[height]-1 -$map[width] $map[height] -1;
+		#var map[position] bottom
+	}; #elseif {"%1" == ""} {
+		#if {"$map[position]" == "top"} {
+			#var map[position] bottom;
+		} {
+			#var map[position] top
+		}
+	}; #else {
+		#echo {!INVALID MAP POSITION!}
+	};
+	#read .tt/3k/draw.tin
+}
+		
 #NOP count the # of rooms mapped
 #alias {area_mapped %1} {
 	#unvar area_mapped;
@@ -188,8 +215,13 @@
 	#map get {roomvnum} {gonum};
 	#map goto $gonum;
 	#if {"$draw[map]" == "on"} {
-		#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-		#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+		#if {"$map[position]" == "top"} {
+			#draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+			#draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+		}; #elseif {"$map[position]" == "bottom"} {
+			#draw {tile} -$status[height]-$map[height]-3 -$map[width] -$status[height]-$map[height]-3 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+			#draw {tile} -$status[height]-$map[height]-2 -$map[width] -$status[height]-$map[height]-2 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+		}
 	}
 }
 

@@ -14,7 +14,12 @@
 }
 
 #if {"$draw[canvas]" == "on"} {
-	#var canvas[width] 43
+	#var canvas[width] 43;
+	#if {"$map[position]" == "bottom"} {
+		#if {$map[width] + 1 < $canvas[width]} {
+			#math {canvas[width} {$map[width] + 1}
+		}
+	}
 } {
 	#var canvas[width] 0
 }
@@ -28,7 +33,7 @@
 #var chat[rows] 17
 #if {"$draw[chat]" == "on"} {
 	#math chat[height] {$chat[rows] + 1};
-	#if {"$draw[map]" == "on"} {
+	#if {"$draw[map]" == "on" && "$map[position]" == "top"} {
 		#math {chat[right]} {-$map[width]-2}
 	} {
 		#var chat[right] -1
@@ -96,14 +101,25 @@
 }
 
 #if {"$draw[map]" == "on"} {
-	#draw line 1 -$map[width]-1 $map[height] -$map[width]-1;
-	#if {"$draw[caption]" == "on"} {
-		#showme {<228>\u2534<088>} $map[height]+1 -$map[width]-1
-	};
-	#map flag vtmap on;
-	#map offset 1 -$map[width] $map[height] -1;
-	#delay 0 #draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
-	#delay 0 #draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+	#if {"$map[position]" == "top"} {
+		#draw line 1 -$map[width]-1 $map[height] -$map[width]-1;
+		#if {"$draw[caption]" == "on"} {
+			#showme {<228>\u2534<088>} $map[height]+1 -$map[width]-1
+		};
+		#map flag vtmap on;
+		#map offset 1 -$map[width] $map[height] -1;
+		#delay 0 #draw {tile} $map[height]-1 -$map[width] $map[height]-1 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+		#delay 0 #draw {tile} $map[height] -$map[width] $map[height] -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+	}; #elseif {"$map[position]" == "bottom"} {
+		#draw line -$status[height]-$map[height]-4 -$map[width] -$status[height]-$map[height]-4 -1;
+		#showme {\u251C} -$status[height]-$map[height]-4 -$canvas[width];
+		#map flag vtmap on;
+		#map offset -$status[height]-$map[height]-1 -$map[width] -$status[height]-1 -1;
+		#delay 0 #draw {tile} -$status[height]-$map[height]-3 -$map[width] -$status[height]-$map[height]-3 -1 {<020>$roomarea <140>(<120>$room_cnt<140>)<099>};
+		#delay 0 #draw {tile} -$status[height]-$map[height]-2 -$map[width] -$status[height]-$map[height]-2 -1 {<140>[<030>$roomvnum<140>] <130>$roomname<099>}
+	}; #else {
+		#echo {"!INVALID MAP POSITION!"}
+	}
 } {
 	#map flag vtmap off
 }
