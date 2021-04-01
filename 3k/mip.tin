@@ -62,11 +62,11 @@
 	#math {idle} {$idle + 1};
 	#if {$idle > 900 && "$draw[alert]" == "on"} {
 		#draw tile 21 1 -8 1 {<BF00>}
-	}; #elseif {$idle > 840} {
+	}; #elseif {$idle > 840 && "$draw[alert]" == "on} {
 		#draw tile 21 1 -8 1 {<BFF0>}
-	}; #elseif {$idle > 600} {
+	}; #elseif {$idle > 600 && "$draw[alert]" == "on} {
 		#draw tile 21 1 -8 1 {<B0F0>}
-	}; #elseif {$idle < 600} {
+	}; #elseif {$idle < 600 && "$draw[alert]" == "on} {
 		#screen clear square 21 1 -8 1
 	};
 	#if {$bot && $idle > $IdleLimit} {
