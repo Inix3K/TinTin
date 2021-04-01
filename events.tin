@@ -27,4 +27,12 @@
 	}
 }
 
+#event {DOUBLE-CLICKED MOUSE BUTTON ONE} {
+	#if {"$screen[scroll]" == "page"} {
+		#var screen[scroll] line
+	} {
+		#var screen[scroll] page
+	}
+}
+
 #class {events} {close}
