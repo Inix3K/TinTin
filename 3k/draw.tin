@@ -166,6 +166,4 @@
 #NOP #showme {<228>\u252C} 20 89
 #NOP #showme {<088>\u2534} -5 89
 
-
-
 #CLASS draw {close}

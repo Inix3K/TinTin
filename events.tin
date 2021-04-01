@@ -9,7 +9,6 @@
 	#var screen[height] %2;
 	#var screen[width] %3
 }
-#screen raise SCREEN RESIZE
 
 /* Mouse buffer scrolling */
 #var screen[scroll] page
