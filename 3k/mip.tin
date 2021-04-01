@@ -675,12 +675,24 @@
 	#IF {$mipgag == 0} {.mipProcessBAB %0}
 }
 
-#var chat[page] 1
-#var chat[offset] 0
 #var chat[max] 100
+#var chat[offset] 0
+#var chat[page] 1
+#var chat[scroll] page
+
+/*
 #ALIAS {show_chat} {
 	#math chat[start]	{$chat[rows] * $chat[page]};
 	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
+	#if {"$draw[chat]" == "on"} {
+		#line sub var #line sub esc #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
+	}
+}
+*/
+
+#ALIAS {show_chat} {
+	#math chat[start]	{$chat[rows] + $chat[offset]};
+	#math chat[end]		{$chat[offset] + 1};
 	#if {"$draw[chat]" == "on"} {
 		#line sub var #line sub esc #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
 	}
@@ -700,20 +712,38 @@
 	show_chat
 }
 #ALIAS {chatup} {
-	#if {$chat[rows]*{$chat[page]+1} <= $chat[max] &&
-	     $chat[rows]*{$chat[page]+1} <= &chat[log][]} {
-		#math chat[page] {$chat[page]+1};
-		show_chat
+	#if {"$chat[scroll]" == "page"} {
+		#if {$chat[rows]*{$chat[page]+1} <= $chat[max] &&
+		     $chat[rows]*{$chat[page]+1} <= &chat[log][]} {
+			#math chat[page] {$chat[page] + 1};
+			#math chat[offset] {$chat[page] * $chat[rows] - $chat[rows]};
+			show_chat
+		}
+	}; #elseif {"$chat[scroll]" == "line"} {
+		#if {$chat[offset] <= $chat[max] &&
+		     $chat[offset] <= &chat[log][]} {
+			#math chat[offset] {$chat[offset] + 1};
+			show_chat
+		}
 	}
 }
 #ALIAS {chatdown} {
-	#if {$chat[page] > 1} {
-		#math chat[page] {$chat[page]-1};
-		show_chat
+	#if {"$chat[scroll]" == "page"} {
+		#if {$chat[page] > 1} {
+			#math chat[page] {$chat[page] - 1};
+			#math chat[offset] {$chat[page] * $chat[rows] - $chat[rows]};
+			show_chat
+		}
+	}; #elseif {"$chat[scroll]" == "line"} {
+		#if {$chat[offset] > 0} {
+			#math chat[offset] {$chat[offset] - 1};
+			show_chat
+		}
 	}
 }
 #ALIAS {chatend} {
-	#math chat[page] 1;
+	#var chat[page] 1;
+	#var chat[offset] 0;
 	show_chat
 }
 
