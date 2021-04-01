@@ -30,7 +30,6 @@
 	#var caption[height] 0
 }
 
-#var chat[rows] 17
 #if {"$draw[chat]" == "on"} {
 	#math chat[height] {$chat[rows] + 1};
 	#if {"$draw[map]" == "on" && "$map[position]" == "top"} {

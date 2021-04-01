@@ -79,7 +79,7 @@
 
 #act {%1 leaves following %2} {
 	#format {follower} {%l} {%1};
-	#if {"$follower" == "$world" && %2 == "$following"} {
+	#if {"$follower" == "$world" && "%2" == "$following"} {
 		#map move $foldir
 	}
 } {4}

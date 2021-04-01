@@ -16,7 +16,6 @@
 #event {SCROLLED MOUSE WHEEL UP} {
 	#if {%0 > $screen[rows] - $split[bottom]} {
 		#cursor {HISTORY PREV};
-		#return
 	};
 	#if {%0 > $split[top]} {
 		#if {"$screen[scroll]" == "page"} {
@@ -33,7 +32,6 @@
 #event {SCROLLED MOUSE WHEEL DOWN} {
 	#if {%0 > $screen[rows] - $split[bottom]} {
 		#cursor {HISTORY NEXT};
-		#return
 	};
 	#if {%0 > $split[top]} {
 		#if {"$screen[scroll]" == "page"} {
@@ -47,6 +45,7 @@
 	}
 }
 
+/* Double Click to toggle scrolling method per pane */
 #event {DOUBLE-CLICKED MOUSE BUTTON ONE} {
 	#if {%0 > $scren[rows] - $split[bottom]} {
 		#return
@@ -65,6 +64,10 @@
 			#var chat[scroll] page
 		}
 	}
+}
+
+#event {MAP DOUBLE-CLICKED MOUSE BUTTON ONE} {
+	
 }
 
 #class {events} {close}
