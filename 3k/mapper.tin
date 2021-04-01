@@ -69,7 +69,7 @@
 		#case {"west"}	{#var foldir w};
 		#case {"down"}	{#var foldir d};
 		#case {"up"}	{#var foldir u};
-		#default %2
+		#default 	#var foldir %2
 	}
 }
 
