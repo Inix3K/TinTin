@@ -1,4 +1,5 @@
 #class {events} {open}
+#NOP REQUIRED:  draw.tin	//split variable
 
 /* Screen Sizing */
 #event {SCREEN RESIZE} {
@@ -8,30 +9,61 @@
 	#var screen[height] %2;
 	#var screen[width] %3
 }
+#screen raise SCREEN RESIZE
 
 /* Mouse buffer scrolling */
 #var screen[scroll] page
 #event {SCROLLED MOUSE WHEEL UP} {
-	#if {"$screen[scroll]" == "page"} {
-		#buffer up $screen[rows]
-	}; #elseif {"$screen[scroll]" == "line"} {
-		#buffer up 1
+	#if {%0 > $screen[rows] - $split[bottom]} {
+		#cursor {HISTORY PREV};
+		#return
+	};
+	#if {%0 > $split[top]} {
+		#if {"$screen[scroll]" == "page"} {
+			#buffer up $screen[rows]
+		}; #elseif {"$screen[scroll]" == "line"} {
+			#buffer up 1
+		}
+	};
+	#if {%0 < $split[top]} {
+		chatup
 	}
 }
 
 #event {SCROLLED MOUSE WHEEL DOWN} {
-	#if {"$screen[scroll]" == "page"} {
-		#buffer down $screen[rows]
-	}; #elseif {"$screen[scroll]" == "line"} {
-		#buffer down 1
+	#if {%0 > $screen[rows] - $split[bottom]} {
+		#cursor {HISTORY NEXT};
+		#return
+	};
+	#if {%0 > $split[top]} {
+		#if {"$screen[scroll]" == "page"} {
+			#buffer down $screen[rows]
+		}; #elseif {"$screen[scroll]" == "line"} {
+			#buffer down 1
+		}
+	};
+	#if {%0 < $split[top]} {
+		chatdown
 	}
 }
 
 #event {DOUBLE-CLICKED MOUSE BUTTON ONE} {
-	#if {"$screen[scroll]" == "page"} {
-		#var screen[scroll] line
-	} {
-		#var screen[scroll] page
+	#if {%0 > $scren[rows] - $split[bottom]} {
+		#return
+	};
+	#if {%0 > $split[top]} {
+		#if {"$screen[scroll]" == "page"} {
+			#var screen[scroll] line
+		} {
+			#var screen[scroll] page
+		}
+	};
+	#if {%0 < $split[top]} {
+		#if {"$chat[scroll]" == "page"} {
+			#var chat[scroll] line
+		} {
+			#var chat[scroll] page
+		}
 	}
 }
 
