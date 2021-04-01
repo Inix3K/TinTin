@@ -676,6 +676,7 @@
 }
 
 #var chat[page] 1
+#var chat[offset] 0
 #var chat[max] 100
 #ALIAS {show_chat} {
 	#math chat[start]	{$chat[rows] * $chat[page]};
