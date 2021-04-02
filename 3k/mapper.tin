@@ -74,10 +74,11 @@
 		#case {"southeast"}	{#var foldir se};
 		#case {"southwest"}	{#var foldir sw};
 		#default 	#var foldir %2
-	}
+	};
+	#echo {FOLDIR:  $foldir}
 }
 
-#act {%1 leaves following %2} {
+#act {%w leaves following %w\.} {
 	#format {follower} {%l} {%1};
 	#if {"$follower" == "$world" && "%2" == "$following"} {
 		#map move $foldir
