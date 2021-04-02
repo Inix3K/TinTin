@@ -584,12 +584,12 @@
 
 	#NOP Add cases for tells/emotes to gag from monitor, such as mob emotes;
 
-	#NOP Player specific gags
+	#NOP Player specific gags;
 	#NOP Byron crying OW;
 	#REGEX {%0} {~Byron~cries 'OW!!'} {#var mipgag 1};
 	#REGEX {%0} {~%w~pokes %w in the ribs.} {#var mipgag 1};
 
-	#NOP Guilds and Areas
+	#NOP Guilds and Areass;
 	#NOP Bards;
 	#REGEX {%0} {~ceases his performance.} {#var mipgag 1};
 	#REGEX {%0} {~takes a deep breath.} {#var mipgag 1};

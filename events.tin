@@ -74,7 +74,6 @@
 
 /* Screen Split resize on Mouse drag */
 #EVENT {PRESSED MOUSE BUTTON ONE} {
-	#echo {0: %0 1: %1 2: %2 3: %3};
 	#if {%0 == $split[top]} {
 		#if {%3 == -$split[right]} {
 			#var DRAG 2
