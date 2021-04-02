@@ -75,7 +75,6 @@
 		#case {"southwest"}	{#var foldir sw};
 		#default 	#var foldir %2
 	};
-	#echo {FOLDIR:  $foldir}
 }
 
 #act {%w leaves following %w\.} {
