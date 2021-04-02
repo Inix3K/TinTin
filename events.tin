@@ -86,7 +86,7 @@
 
 #EVENT {RELEASED MOUSE BUTTON ONE} {
 	#variable DRAG 0;
-	#screen raise SCREEN RESIZE
+	#NOP #screen raise SCREEN RESIZE
 }
 
 #EVENT {MOVED MOUSE BUTTON ONE} {
