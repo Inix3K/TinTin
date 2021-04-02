@@ -10,6 +10,12 @@
 	#var screen[width] %3
 }
 
+/* Initialize Screen Variables */
+#screen get rows screen[rows]
+#screen get cols screen[cols]
+#NOP #screen get height screen[height]
+#NOP #screen get width screen[width]
+
 /* Mouse buffer scrolling */
 #var screen[scroll] page
 #event {SCROLLED MOUSE WHEEL UP} {
@@ -65,8 +71,16 @@
 	}
 }
 
+#event {MAP SHORT-CLICKED MOUSE BUTTON ONE} {
+	#map info %0
+}
+
 #event {MAP DOUBLE-CLICKED MOUSE BUTTON ONE} {
-	
+	#map goto %0
+}
+
+#event {MAP TRIPLE-CLICKED MOUSE BUTTON ONE} {
+	#map run %0
 }
 
 #class {events} {close}
