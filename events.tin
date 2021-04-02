@@ -16,7 +16,7 @@
 #NOP #screen get height screen[height]
 #NOP #screen get width screen[width]
 
-/* Mouse buffer scrolling */
+/* Mouse input/buffer/chat scrolling */
 #var screen[scroll] page
 #event {SCROLLED MOUSE WHEEL UP} {
 	#if {%0 > $screen[rows] - $split[bottom]} {
@@ -71,14 +71,55 @@
 	}
 }
 
-#event {MAP SHORT-CLICKED MOUSE BUTTON ONE} {
-	#map info %0
+
+/* Screen Split resize on Mouse drag */
+#EVENT {PRESSED MOUSE BUTTON ONE} {
+	#echo {0: %0 1: %1 2: %2 3: %3};
+	#if {%0 == $split[top]} {
+		#if {%3 == -$split[right]} {
+			#var DRAG 2
+		} {
+			#var DRAG 1
+		}
+	}
 }
 
+#EVENT {RELEASED MOUSE BUTTON ONE} {
+	#variable DRAG 0;
+	#screen raise SCREEN RESIZE
+}
+
+#EVENT {MOVED MOUSE BUTTON ONE} {
+	#switch {$DRAG} {
+		#case {0} {
+			#return
+		};
+		#case {1} {
+			#screen clear square 1 1 $split[top] -1;
+			#variable split[top] %0
+		};
+		#case {2} {
+			#screen clear square 1 1 $split[top] -1;
+			#screen clear square $split[top] -$split[right] -$split[bottom]-2 -1;
+			#var split[top] %0;
+			#var canvas[width] -%3
+		}
+	};
+}
+
+/* Map mouse clicks*/
+
+#NOP Display room info on single-click
+#event {MAP SHORT-CLICKED MOUSE BUTTON ONE} {
+	#map at %0 #map info
+}
+
+#NOP Map goto room on double-click
 #event {MAP DOUBLE-CLICKED MOUSE BUTTON ONE} {
 	#map goto %0
 }
 
+#NOP Map run on triple-click
 #event {MAP TRIPLE-CLICKED MOUSE BUTTON ONE} {
 	#map run %0
 }
