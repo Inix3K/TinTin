@@ -1,0 +1,8 @@
+#alias secz_pause {
+	#loop 24785 25240 cnt {
+		#map get {roomarea} {temp} {$cnt};
+		#if {"$temp" == "Section Z"} {
+			#map at {$cnt} {#map link {pause game} {24785}}
+		}
+	}
+}
