@@ -22,7 +22,7 @@
 	#if {%0 > $screen[rows] - $split[bottom]} {
 		#cursor {HISTORY PREV};
 	};
-	#if {%0 > $split[top]} {
+	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
 		#if {"$screen[scroll]" == "page"} {
 			#buffer up $screen[rows]
 		}; #elseif {"$screen[scroll]" == "line"} {
@@ -38,7 +38,7 @@
 	#if {%0 > $screen[rows] - $split[bottom]} {
 		#cursor {HISTORY NEXT};
 	};
-	#if {%0 > $split[top]} {
+	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
 		#if {"$screen[scroll]" == "page"} {
 			#buffer down $screen[rows]
 		}; #elseif {"$screen[scroll]" == "line"} {
@@ -55,7 +55,7 @@
 	#if {%0 > $scren[rows] - $split[bottom]} {
 		#return
 	};
-	#if {%0 > $split[top]} {
+	#if {%0 > $split[top] && %0 < $split[rows] - $split[bottom]} {
 		#if {"$screen[scroll]" == "page"} {
 			#var screen[scroll] line
 		} {
