@@ -55,7 +55,7 @@
 	#if {%0 > $scren[rows] - $split[bottom]} {
 		#return
 	};
-	#if {%0 > $split[top] && %0 < $split[rows] - $split[bottom]} {
+	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
 		#if {"$screen[scroll]" == "page"} {
 			#var screen[scroll] line
 		} {

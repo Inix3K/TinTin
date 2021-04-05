@@ -1,5 +1,5 @@
-#class {var_mobs} {open}
+#CLASS {var_mobs} OPEN
 
-#var mobs {}
+#VARIABLE {mobs} {}
 
-#CLASS {var_mobs} {CLOSE}
+#CLASS {var_mobs} CLOSE
