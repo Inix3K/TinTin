@@ -519,13 +519,6 @@
 #act {^The captain announces: Welcome to Midway Space Station.$} {exit}
 #act {^The captain announces: Welcome to Houston Transport Center.$} {exit2}
 
-#NOP Section Z
-#act {^You press PAUSE on the game, saving the rest for later.} {
-	#map get roomvnum {sectionz[pause]};
-	#map at 24786 {#map link {unpause game} $sectionz[pause]};
-	#map goto 24785
-}
-
 #NOP Serinth
 #act {^The World of Serinth Board containing } {#map goto 16722}
 

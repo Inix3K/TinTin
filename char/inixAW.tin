@@ -8,6 +8,8 @@
 #read .tt/AW/snd.tin
 #read .tt/AW/var.tin
 
+#var tnl_prev 0
+
 #act {{^HP:(\d+)/(\d+) SP:(\d+)/(\d+) MV:(\d+)/(\d+) QT:(\d+) A:(\-?\d+) G:(\d+) XP:(\d+)/(\d+)(?: E:)?(\d*)?}} {
 	#var {hp}	{%2};
 	#var {hp_max}	{%3};
