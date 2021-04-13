@@ -134,12 +134,11 @@ General stepper commands:
 
 ## Mouse Commands
 Mouse scrolling has been enabled!  Default is scrolling one page at a time.
-
 * Chat Monitor:  Mouse wheel up/down will scroll up or down one unit
 * Buffer:  Mouse wheel up/down will scroll up or down one unit
 * Input:  The hpbar and gline are considered in the 'input' area for this function.  Mouse wheel up/down will scroll up or down through a single command history.
 
-* Double-Click:
+Double-Click
 	* Double-click the chat monitor will toggle between 'page' and 'line' scrolling for the chat monitor
 		* This sets the $chat[scroll] variable to 'page' or 'line'
 	* Double-click the main buffer will toggle between 'page' and 'line' scrolling for the buffer.
