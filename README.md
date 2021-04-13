@@ -73,23 +73,23 @@ Now that you have the initial setup done, it's time to get playing!<br/>
 Type "cd" to return to the home directory
 
 TMUX Connection Aliases:
-	* 3k:  This will start a tmux session named '3K' and open TinTin++ with rc.tin configuration file
+* 3k:  This will start a tmux session named '3K' and open TinTin++ with rc.tin configuration file
 		* If a tmux session is already started, this alias will also disconnect the tmux session from any other devices and reconnect you to it.  You can use this to swap from desktop to mobile, etc.
-	* 3kx:  This is similar to the '3k' alias, except it will leave other sessions connected.  If you want to be connected on mobile AND desktop, for instance.
-	* trcc:  This is the script that the '3k' alias calls (located in your ~/bin/ folder).  However, if you want tmux sessions other than '3K' you can use this.
-		* I.E.: trcc 3s:  This will start a tmux session called '3s' and connect you to it.
-	* trcx:  Similar to '3kx' above, except you must pass the session name.
-		* I.E.: trcx 3s:  reconnect to session named '3s' while leaving other sessions attached.
+* 3kx:  This is similar to the '3k' alias, except it will leave other sessions connected.  If you want to be connected on mobile AND desktop, for instance.
+* trcc:  This is the script that the '3k' alias calls (located in your ~/bin/ folder).  However, if you want tmux sessions other than '3K' you can use this.
+	* I.E.: trcc 3s:  This will start a tmux session called '3s' and connect you to it.
+* trcx:  Similar to '3kx' above, except you must pass the session name.
+	* I.E.: trcx 3s:  reconnect to session named '3s' while leaving other sessions attached.
 
 Now that you're at the TinTin++ screen, connect to your character
-	* connect <player_name>:	This will attempt to log you into 3K with the player name you pass and your password saved in .tt/.pass
-		* If you want to connect to 3S, append '3s' to the end of the player name.
-			* I.E.:  connect inix3s
-			* Once the alias detects '3s' as the last two characters of the player name, it will connect to 3s instead of 3k, and will load the 3s character file.  In this example, it will load '.tt/char/inix3s.tin' instead of '.tt/char/inix.tin'
+* connect <player_name>:	This will attempt to log you into 3K with the player name you pass and your password saved in .tt/.pass
+	* If you want to connect to 3S, append '3s' to the end of the player name.
+		* I.E.:  connect inix3s
+		* Once the alias detects '3s' as the last two characters of the player name, it will connect to 3s instead of 3k, and will load the 3s character file.  In this example, it will load '.tt/char/inix3s.tin' instead of '.tt/char/inix.tin'
 
 ## MUD ANSI Setup
 Certain ANSI flags are set for mapper and stepper functions.  To load these flags:
-	* #read .tt/3k/ansi_setup.tin
+* #read .tt/3k/ansi_setup.tin
 
 ## MAP Commands
 mapon:  This will set variables to collect room shorts, room exits, room descriptions, etc., as well as set the mud brief mode appropriately to begin mapping.
@@ -102,14 +102,14 @@ go <note>:  Run to the position of the passed roomnote.
 ## Draw Commands
 rs:  Reads the draw.tin file.  Useful to redraw the screen if something gets fubared.
 redraw <pane> [on|off]:  This will toggle a pane off or on, or set it to off or on specifically if that argument is passed.
-	* Panes:
-		* chat:  The chat monitor (top or top-left)
-		* map:  The map (top-right by default, can be bottom right [see mappos below])
-		* caption:  The caption bar showing uptime/reboot/lag/idle/cycle
-		* alert:  The alert bar 1-column wide, on the left of the main MUD buffer.  This will turn green after 10min idle, yellow after 14min idle, and red after 15min idle.
-		* canvas:  This is the area on the right of the MUD buffer were Area Cycler is shown, or where the map is shown if in bottom position.
-		* gline:  Guild Line data, just above the hpbar.
-		* hpbar:  HP Bar, below gline and above input.
+* Panes:
+	* chat:  The chat monitor (top or top-left)
+	* map:  The map (top-right by default, can be bottom right [see mappos below])
+	* caption:  The caption bar showing uptime/reboot/lag/idle/cycle
+	* alert:  The alert bar 1-column wide, on the left of the main MUD buffer.  This will turn green after 10min idle, yellow after 14min idle, and red after 15min idle.
+	* canvas:  This is the area on the right of the MUD buffer were Area Cycler is shown, or where the map is shown if in bottom position.
+	* gline:  Guild Line data, just above the hpbar.
+	* hpbar:  HP Bar, below gline and above input.
 mappos [top|bottom]:  Alone it will toggle the map from the top or bottom position, or set it to the specific position if passed.  It remains on the right side.
 		
 
