@@ -45,7 +45,7 @@ Clone the git
 * git clone https://github.com/Inix3K/TinTin
 
 Copy git repo into .tt folder (this will allow you to copy files from the repo and allow manual overwrite of local files)
-* cp TinTin .tt
+* cp -r TinTin .tt
 
 Copy .profile to home directory and initialize it
 * cp .tt/scripts/.profile ~/
