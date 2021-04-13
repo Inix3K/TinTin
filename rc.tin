@@ -71,5 +71,5 @@
                 }
         };
         $ses_name;
-        #read .tt/.pass
+        #textin .tt/.pass
 }
