@@ -203,4 +203,12 @@
 #delay {first_gs}  {#send !gs} {6}
 #delay {second_hp} {#send !hp} {8}
 
+/* Corpse give triggers */
+#act {^%w begs you.%} {
+	#25 uncooler corpse
+}
+#act {^%w belches at you.$} {
+	#10 unwrap
+}
+
 #class {bertolf} {close}

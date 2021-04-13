@@ -105,6 +105,10 @@
 	}
 }
 
+#alias {cycle} {
+	#var cycle %1
+}
+
 #event {VARIABLE UPDATE cycle} {
 	#delay 0 botdraw
 }
