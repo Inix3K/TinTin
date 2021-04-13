@@ -17,7 +17,7 @@
 #alias {.dcr} {
         - $bots[stepper];
         #delay {path_position} {#path goto $bots[position]} {0.5};
-	#map goto $bots[vnum];
+	#map run $bots[vnum];
         #delay {stepper_start} {..} {2}
 }
 
