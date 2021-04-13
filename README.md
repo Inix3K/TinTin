@@ -69,7 +69,7 @@ Make your initial character file
 		* _I.E.: cp char/inix.tin char/inix3s.tin_
 
 ## Connect to the MUD
-Now that you have the initial setup done, it's time to get playing!
+Now that you have the initial setup done, it's time to get playing!<br/>
 Type "cd" to return to the home directory
 
 TMUX Connection Aliases:
