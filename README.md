@@ -92,16 +92,16 @@ Certain ANSI flags are set for mapper and stepper functions.  To load these flag
 * #read .tt/3k/ansi_setup.tin
 
 ## MAP Commands
-mapon:  This will set variables to collect room shorts, room exits, room descriptions, etc., as well as set the mud brief mode appropriately to begin mapping.
-mapoff:  This will stop the active mapping mode.
-mapsave:  Write the map to file.  There are no 'automatic' saves for the map intentionally, to allow for testing and mistakes to not overwrite your hard-earned 3K map.  Therefore, be sure to 'mapsave' after any intentional map updates.
-notelist:  List all current roomnotes.  These are used as 'waypoints' go the 'go' alias so you can go to specific areas in the mud.  You can add a 'roomnote' to set any other specific 'waypoints' you want.
-mapgo <note>:  This will move your position in the map to the passed roomnote.
-go <note>:  Run to the position of the passed roomnote.
+* mapon:  This will set variables to collect room shorts, room exits, room descriptions, etc., as well as set the mud brief mode appropriately to begin mapping.
+* mapoff:  This will stop the active mapping mode.
+* mapsave:  Write the map to file.  There are no 'automatic' saves for the map intentionally, to allow for testing and mistakes to not overwrite your hard-earned 3K map.  Therefore, be sure to 'mapsave' after any intentional map updates.
+* notelist:  List all current roomnotes.  These are used as 'waypoints' go the 'go' alias so you can go to specific areas in the mud.  You can add a 'roomnote' to set any other specific 'waypoints' you want.
+* mapgo <note>:  This will move your position in the map to the passed roomnote.
+* go <note>:  Run to the position of the passed roomnote.
 
 ## Draw Commands
-rs:  Reads the draw.tin file.  Useful to redraw the screen if something gets fubared.
-redraw <pane> [on|off]:  This will toggle a pane off or on, or set it to off or on specifically if that argument is passed.
+rs:  Reads the draw.tin file.  Useful to redraw the screen if something gets fubared.<br/>
+redraw <pane> [on|off]:  This will toggle a pane off or on, or set it to off or on specifically if that argument is passed.<br/>
 * Panes:
 	* chat:  The chat monitor (top or top-left)
 	* map:  The map (top-right by default, can be bottom right [see mappos below])
@@ -114,38 +114,38 @@ mappos [top|bottom]:  Alone it will toggle the map from the top or bottom positi
 		
 
 ## Stepper (bot) Commands
-Single area mode:
-- <stepper name>:  Load an area stepper
-..:  Step through the loaded stepper
+* Single area mode:<
+* - <stepper name>:  Load an area stepper
+* ..:  Step through the loaded stepper
 
 Multi-area mode (aka Bot Cycler)
-ba <stepper>:  bot-add, add an area stepper to the cycler list.
-br <index>:  bot-remove, remove an area from the cycler list.  Note you pass the index number, not the area name for this.
-thisarea:  Run to start of current area (the one highlighted on the cycle list) and start the stepper.
-nextarea:  Run to start of next area on the cycle list and start the stepper.
-botclear:  Clear the bot cycle list.
-cycle <index>:  Sets the bot cycle to the passed index.
+* ba <stepper>:  bot-add, add an area stepper to the cycler list.
+* br <index>:  bot-remove, remove an area from the cycler list.  Note you pass the index number, not the area name for this.
+* thisarea:  Run to start of current area (the one highlighted on the cycle list) and start the stepper.
+* nextarea:  Run to start of next area on the cycle list and start the stepper.
+* botclear:  Clear the bot cycle list.
+* cycle <index>:  Sets the bot cycle to the passed index.
 
 General stepper commands:
-.stop:  stops the stepper, but keeps it 'active'.
-.resume:  Run to current room of the stepper and restarts it
-killbot:  stops the stepper and closes it.  This unsets many variables, and as such, you cannot '.resume' after a killbot
-.dcr:  DisConnect Resume, if you disconnect (normally, a crash will not write variables) and have not loaded a stepper on another character or anything, then this will re-load the last saved bot variables, run to the stopped room, and resume the stepper.  After a normal disconnect, stepper and path variables are written.  This will load those variables, and then act as a normal '.resume'.
+* .stop:  stops the stepper, but keeps it 'active'.
+* .resume:  Run to current room of the stepper and restarts it
+* killbot:  stops the stepper and closes it.  This unsets many variables, and as such, you cannot '.resume' after a killbot
+* .dcr:  DisConnect Resume, if you disconnect (normally, a crash will not write variables) and have not loaded a stepper on another character or anything, then this will re-load the last saved bot variables, run to the stopped room, and resume the stepper.  After a normal disconnect, stepper and path variables are written.  This will load those variables, and then act as a normal '.resume'.
 
 ## Mouse Commands
 Mouse scrolling has been enabled!  Default is scrolling one page at a time.
 
-	* Chat Monitor:  Mouse wheel up/down will scroll up or down one unit
-	* Buffer:  Mouse wheel up/down will scroll up or down one unit
-	* Input:  The hpbar and gline are considered in the 'input' area for this function.  Mouse wheel up/down will scroll up or down through a single command history.
+* Chat Monitor:  Mouse wheel up/down will scroll up or down one unit
+* Buffer:  Mouse wheel up/down will scroll up or down one unit
+* Input:  The hpbar and gline are considered in the 'input' area for this function.  Mouse wheel up/down will scroll up or down through a single command history.
 
-	* Double-Click:
-		* Double-click the chat monitor will toggle between 'page' and 'line' scrolling for the chat monitor
-			* This sets the $chat[scroll] variable to 'page' or 'line'
-		* Double-click the main buffer will toggle between 'page' and 'line' scrolling for the buffer.
-			* This sets the $screen[scroll] variable to 'page' or 'line'
+* Double-Click:
+	* Double-click the chat monitor will toggle between 'page' and 'line' scrolling for the chat monitor
+		* This sets the $chat[scroll] variable to 'page' or 'line'
+	* Double-click the main buffer will toggle between 'page' and 'line' scrolling for the buffer.
+		* This sets the $screen[scroll] variable to 'page' or 'line'
 
 Map Mouse Functions
-	* Single-click on Map room:  display `#map info` for the clicked room
-	* Double-click on Map room:  move map to clicked room
-	* Triple-click on Map room:  run to clicked room
+* Single-click on Map room:  display `#map info` for the clicked room
+* Double-click on Map room:  move map to clicked room
+* Triple-click on Map room:  run to clicked room
