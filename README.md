@@ -9,8 +9,8 @@
 
 First, you need to determine your desired method of using TinTin++.  My recommendations, in order of preference:
 1. Use a VPS with LINUX (free tier)
-* Google Cloud Platform (GCP) - https://cloud.google.com/compute/docs/quickstart-linux
-* Amazon Web Services (AWS)
+	* Google Cloud Platform (GCP) - https://cloud.google.com/compute/docs/quickstart-linux
+	* Amazon Web Services (AWS)
 2. Local Linux Install
 3. Windows Subsystem for Linux (WSL)
 4. WinTin
