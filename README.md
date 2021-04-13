@@ -115,8 +115,8 @@ mappos [top|bottom]:  Alone it will toggle the map from the top or bottom positi
 
 ## Stepper (bot) Commands
 * Single area mode:
-* - \<stepper name\>:  Load an area stepper
-* ..:  Step through the loaded stepper
+* \- \<stepper name\> :  Load an area stepper
+* .. :  Step through the loaded stepper
 
 Multi-area mode (aka Bot Cycler)
 * ba \<stepper\>:   bot-add, add an area stepper to the cycler list.
