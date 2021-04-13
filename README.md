@@ -20,19 +20,19 @@ The VPS will allow you to connect to your session from any device, makes swappin
 The majority of instructions will assume VPS with Ubuntu.
 
 Once VPS with Ubuntu is setup, below are the install directions from:  https:/tintin.mudhalla.net/install.php#Ubuntu
-	* sudo apt install zlib1g-dev
-	* sudo apt install libpcre3-dev
-	* sudo apt install libgnutls28-dev
-	* sudo apt install wget
-	* sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
-	* sudo apt update
-	* sudo apt install build-essential
-	* sudo apt build-dep tintin++
-	* wget https://downloads.sf.net/tintin/tintin-2.02.10.tar.gz
-	* tar-zxvf tintin-2.02.10.tar.gz
-	* cd tt/src
-	* ./configure
-	* sudo make install
+* sudo apt install zlib1g-dev
+* sudo apt install libpcre3-dev
+* sudo apt install libgnutls28-dev
+* sudo apt install wget
+* sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+* sudo apt update
+* sudo apt install build-essential
+* sudo apt build-dep tintin++
+* wget https://downloads.sf.net/tintin/tintin-2.02.10.tar.gz
+* tar-zxvf tintin-2.02.10.tar.gz
+* cd tt/src
+* ./configure
+* sudo make install
 
 Change directory back to home directory
 	cd
