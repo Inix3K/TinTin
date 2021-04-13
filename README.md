@@ -35,38 +35,38 @@ Once VPS with Ubuntu is setup, below are the install directions from:  https:/ti
 * sudo make install
 
 Change directory back to home directory
-*cd
+* cd
 
 Install git and tmux
-*sudo apt install git
-*sudo apt install tmux
+* sudo apt install git
+* sudo apt install tmux
 
 Clone the git
-*git clone https://github.com/Inix3K/TinTin
+* git clone https://github.com/Inix3K/TinTin
 
 Copy git repo into .tt folder (this will allow you to copy files from the repo and allow manual overwrite of local files)
-*cp TinTin .tt
+* cp TinTin .tt
 
 Copy .profile to home directory and initialize it
-*cp .tt/scripts/.profile ~/
-*. .profile
+* cp .tt/scripts/.profile ~/
+* . .profile
 
 Create bin folder and copy scripts to it
-*mkdir bin
-*cp .tt/scripts/* ~/bin/
+* mkdir bin
+* cp .tt/scripts/* ~/bin/
 
 Save your 3k password
-*cd .tt
-*vi .pass
-*_Use any text editor you like here, I use VIM.  Just create the file, put your password in it, and save it.  Nothing else in the file_
+* cd .tt
+* vi .pass
+* _Use any text editor you like here, I use VIM.  Just create the file, put your password in it, and save it.  Nothing else in the file_
 
 Make your initial character file
-*_I will update this later for guild files instead of you having to know my characters_
-*Copy a character file of the same guild as yours for some initial function, or create your own specific character file
+* _I will update this later for guild files instead of you having to know my characters_
+* Copy a character file of the same guild as yours for some initial function, or create your own specific character file
 *	I.E.: For jugger
-	*cp char/inix.tin char/<your_player_name>.tin
-	*_NOTE:  connect alias will assume MUD is 3K.  For 3S, append "3s" to your character file name._
-		*_I.E.: cp char/inix.tin char/inix3s.tin_
+	* cp char/inix.tin char/<your_player_name>.tin
+	* _NOTE:  connect alias will assume MUD is 3K.  For 3S, append "3s" to your character file name._
+		* _I.E.: cp char/inix.tin char/inix3s.tin_
 
 Connect to the MUD
 ------------------
