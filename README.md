@@ -53,7 +53,7 @@ Copy .profile to home directory and initialize it
 
 Create bin folder and copy scripts to it
 * mkdir bin
-* cp .tt/scripts/* ~/bin/
+* cp .tt/scripts/\* ~/bin/
 
 Save your 3k password
 * cd .tt
