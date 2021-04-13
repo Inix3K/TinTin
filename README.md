@@ -64,7 +64,7 @@ Make your initial character file
 * _I will update this later for guild files instead of you having to know my characters_
 * Copy a character file of the same guild as yours for some initial function, or create your own specific character file
 *	I.E.: For jugger
-	* cp char/inix.tin char/<your_player_name>.tin
+	* cp char/inix.tin char/\<your\_player\_name\>.tin
 	* _NOTE:  connect alias will assume MUD is 3K.  For 3S, append "3s" to your character file name._
 		* _I.E.: cp char/inix.tin char/inix3s.tin_
 
@@ -82,26 +82,26 @@ TMUX Connection Aliases:
 	* I.E.: trcx 3s:  reconnect to session named '3s' while leaving other sessions attached.
 
 Now that you're at the TinTin++ screen, connect to your character
-* connect <player_name>:	This will attempt to log you into 3K with the player name you pass and your password saved in .tt/.pass
+* connect \<player\_name\>:	This will attempt to log you into 3K with the player name you pass and your password saved in .tt/.pass
 	* If you want to connect to 3S, append '3s' to the end of the player name.
 		* I.E.:  connect inix3s
 		* Once the alias detects '3s' as the last two characters of the player name, it will connect to 3s instead of 3k, and will load the 3s character file.  In this example, it will load '.tt/char/inix3s.tin' instead of '.tt/char/inix.tin'
 
 ## MUD ANSI Setup
 Certain ANSI flags are set for mapper and stepper functions.  To load these flags:
-* #read .tt/3k/ansi_setup.tin
+* #read .tt/3k/ansi\_setup.tin
 
 ## MAP Commands
 * mapon:  This will set variables to collect room shorts, room exits, room descriptions, etc., as well as set the mud brief mode appropriately to begin mapping.
 * mapoff:  This will stop the active mapping mode.
 * mapsave:  Write the map to file.  There are no 'automatic' saves for the map intentionally, to allow for testing and mistakes to not overwrite your hard-earned 3K map.  Therefore, be sure to 'mapsave' after any intentional map updates.
 * notelist:  List all current roomnotes.  These are used as 'waypoints' go the 'go' alias so you can go to specific areas in the mud.  You can add a 'roomnote' to set any other specific 'waypoints' you want.
-* mapgo <note>:  This will move your position in the map to the passed roomnote.
-* go <note>:  Run to the position of the passed roomnote.
+* mapgo \<note\>:  This will move your position in the map to the passed roomnote.
+* go \<note\>:  Run to the position of the passed roomnote.
 
 ## Draw Commands
 rs:  Reads the draw.tin file.  Useful to redraw the screen if something gets fubared.<br/>
-redraw <pane> [on|off]:  This will toggle a pane off or on, or set it to off or on specifically if that argument is passed.<br/>
+redraw \<pane\> [on|off]:  This will toggle a pane off or on, or set it to off or on specifically if that argument is passed.<br/>
 * Panes:
 	* chat:  The chat monitor (top or top-left)
 	* map:  The map (top-right by default, can be bottom right [see mappos below])
@@ -114,17 +114,17 @@ mappos [top|bottom]:  Alone it will toggle the map from the top or bottom positi
 		
 
 ## Stepper (bot) Commands
-* Single area mode:<
-* - <stepper name>:  Load an area stepper
+* Single area mode:
+* - \<stepper name\>:  Load an area stepper
 * ..:  Step through the loaded stepper
 
 Multi-area mode (aka Bot Cycler)
-* ba <stepper>:  bot-add, add an area stepper to the cycler list.
-* br <index>:  bot-remove, remove an area from the cycler list.  Note you pass the index number, not the area name for this.
-* thisarea:  Run to start of current area (the one highlighted on the cycle list) and start the stepper.
-* nextarea:  Run to start of next area on the cycle list and start the stepper.
-* botclear:  Clear the bot cycle list.
-* cycle <index>:  Sets the bot cycle to the passed index.
+* ba \<stepper\>:   bot-add, add an area stepper to the cycler list.
+* br \<index\>:     bot-remove, remove an area from the cycler list.  Note you pass the index number, not the area name for this.
+* thisarea:       Run to start of current area (the one highlighted on the cycle list) and start the stepper.
+* nextarea:       Run to start of next area on the cycle list and start the stepper.
+* botclear:       Clear the bot cycle list.
+* cycle \<index\>:  Sets the bot cycle to the passed index.
 
 General stepper commands:
 * .stop:  stops the stepper, but keeps it 'active'.
