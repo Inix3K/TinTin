@@ -47,7 +47,7 @@ Clone the git
 Copy git repo into .tt folder (this will allow you to copy files from the repo and allow manual overwrite of local files)
 * cp -r TinTin .tt
 
-Copy .profile to home directory and initialize it
+Copy .profile to home directory and initialize it.  This adds aliases to connect to TMUX (explained below).
 * cp .tt/scripts/.profile ~/
 * . .profile
 
@@ -58,7 +58,7 @@ Create bin folder and copy scripts to it
 Save your 3k password
 * cd .tt
 * vi .pass
-* _Use any text editor you like here, I use VIM.  Just create the file, put your password in it, and save it.  Nothing else in the file_
+* _Use any text editor you like here, I use VIM.  Just create the file, put your password in it, and save it.  Nothing else in the file._
 
 Make your initial character file
 * _I will update this later for guild files instead of you having to know my characters_
