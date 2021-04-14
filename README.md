@@ -30,7 +30,7 @@ Once VPS with Ubuntu is setup, below are the install directions from:  https:/ti
 * sudo apt install build-essential
 * sudo apt build-dep tintin++
 * wget https://downloads.sf.net/tintin/tintin-2.02.10.tar.gz
-* tar-zxvf tintin-2.02.10.tar.gz
+* tar -zxvf tintin-2.02.10.tar.gz
 * cd tt/src
 * ./configure
 * sudo make install
