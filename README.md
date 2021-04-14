@@ -16,6 +16,7 @@ First, you need to determine your desired method of using TinTin++.  My recommen
 4. WinTin
 
 The VPS will allow you to connect to your session from any device, makes swapping from desktop to mobile, etc., much easier and allows your session to continue running with no need to do multiple setups for multiple devices.
+_Recommend using minimal Ubuntu install (I.E.:  Ubuntu 20.04 LTS Minimal) on free-tier VPS to minimize additional installs that aren't needed and can bog down the free-tier server._
 
 The majority of instructions will assume VPS with Ubuntu.
 
