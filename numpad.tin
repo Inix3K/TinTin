@@ -1,0 +1,20 @@
+#class {numpad} {open}
+
+/* Number Pad Movement */
+#macro {\eOq} {sw}
+#macro {\eOr} {s}
+#macro {\eOs} {se}
+#macro {\eOt} {w}
+#macro {\eOu} {look;search}
+#macro {\eOv} {e}
+#macro {\eOw} {nw}
+#macro {\eOx} {n}
+#macro {\eOy} {ne}
+#macro {\e0p} {d}
+#macro {\e0n} {n}
+
+/* Alternate up/down using - for up and + for down
+#NOP #macro {\eOS} {u}
+#NOP #macro {\eOl} {d}
+
+#class {numpad} {close}

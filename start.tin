@@ -3,6 +3,7 @@
 #read .tt/aliases.tin
 #read .tt/events.tin
 #read .tt/graph.tin
+#NOP #read .tt/numpad.tin
 
 #alias {load3k} {
 	#read .tt/ticklist.tin;
