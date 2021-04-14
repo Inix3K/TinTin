@@ -1,4 +1,5 @@
 #class {numpad} {open}
+#NOP If using PuTTy, be sure "Disable application keypad mode" is unchecked in Settings -> Terminal -> Features
 
 /* Number Pad Movement */
 #macro {\eOq} {sw}
