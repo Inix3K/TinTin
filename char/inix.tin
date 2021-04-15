@@ -113,14 +113,14 @@ rtick
 	#format {gp1}		{%+3s} {@colscale{$my[gp1][current];$my[gp1][max]}};
 	#format {ehealth}	{%+6s} {@colscale{$enemy[hp];100}};
 	#format {nukes}		{%+2s} {$nukes};
-	#format {gxp_col}	{%+7s} {@colscale{$gxp;100}};
+	#format {gxp_col}	{%+9s} {@colscale{$gxp;100}};
 	#format {reset}		{%+2s} {$reset};
 	#format {corpses[inventory]}	{%+2s} {$corpses[inventory]};
 	#format {corpses[truck]}	{%+2s} {$corpses[truck]};
 	#format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
 	#format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
 	#if {"$draw[hpbar]" == "on"} {
-		#showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max ST:   $gp1\%    G: $gxp_col\%  N:  $nukes/$clan/$reset\%   E:$ehealth\%    IC:<130>${corpses[inventory]}<088> TC:<130>${corpses[truck]}<088>${sb1_cooler}} {-4};
+		#showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max ST:   $gp1\%    G:$gxp_col\%  N: $nukes/$clan/$reset\%   E:$ehealth\%    IC:<130>${corpses[inventory]}<088> TC:<130>${corpses[truck]}<088>${sb1_cooler}} {-4};
 		#showme {HP:${my[hp][graph]}  S:${my[sp][graph]} ST:${my[gp1][graph]} G:${gxp_graph} SH:${shp_graph}  E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	};
 	#if {"$draw[gline]" == "on"} {
