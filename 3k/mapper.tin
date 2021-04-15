@@ -58,7 +58,7 @@
 }
 
 /* Map Follow on Following Others */
-#act {^%w begings to follow %w\.} {
+#act {^%w begins to follow %w\.} {
 	#format {follower} {%l} {%1};
 	#if {"%1" == "$world"} {
 		#var {following} {%2}
