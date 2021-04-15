@@ -12,7 +12,7 @@
 #macro {\eOx} {n}
 #macro {\eOy} {ne}
 #macro {\e0p} {d}
-#macro {\e0n} {n}
+#macro {\e0n} {u}
 
 /* Alternate up/down using - for up and + for down
 #NOP #macro {\eOS} {u}
