@@ -14,7 +14,7 @@
 #macro {\e0p} {d}
 #macro {\e0n} {u}
 
-/* Alternate up/down using - for up and + for down
+/* Alternate up/down using - for up and + for down */
 #NOP #macro {\eOS} {u}
 #NOP #macro {\eOl} {d}
 
