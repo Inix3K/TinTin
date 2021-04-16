@@ -1,5 +1,9 @@
 #class {bot} {open}
 
+#var {no_loop} {0}
+#var {no_home} {0}
+#var {hardmode} {0}
+
 #var {botpath} {w;s;w;n;n;w;s;s;w;n;n;w;s;s;w;n;n;w;s;s;w;n;n;w;s;s;n;n;e;e;e;e;e;e;e;e;s;e}
 
 #act {^=M= {An annoying little girl|The Trix Rabbit|A Thirsty Girl|The Kool-Aid Man|The famous Ray Charles|A very health conscious cow|A Keebler Elf|Frito Bandito|Jay Leno|A Blonde|A Brunette|Kelly Lebrock|A Screaming Baby|A Booming Voice|Madge|A Lady who wishes she were Madge|Mr. Clean|A Cute Little Boy|A Really Fat Man|A Rather Slim Lady|A Chorus|Northern Bath Tissue Girl|Brawny, the Paper Towel Giant|Mr. Whipple|Polar Bear|A Weight Watcher's Lady|Bill Cosby|Campbell's Soup Kid|Chef Boyardee|Sprout|Jolly Green Giant|Mr. Lucky Charm|Snuggles the Bear|The Cashier}} {

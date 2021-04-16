@@ -1,5 +1,9 @@
 #class {bot} {open}
 
+#var {no_loop} {0}
+#var {no_home} {0}
+#var {hardmode} {0}
+
 #var {botpath} {e;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;w}
 
 #act {^=M= {Banded Bullfrog|Barred Owl|Beaver|Brown Bear|Dark-Spotted Anaconda|Exotic Swamp Crocodile|Greater Siren|Hippo|Swamp Crocodile}} {

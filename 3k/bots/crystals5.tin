@@ -1,6 +1,8 @@
 #class {bot} {open}
 
-#var no_loop 1
+#var {no_loop} {1}
+#var {no_home} {0}
+#var {hardmode} {0}
 
 #act {{^=M= (Adamant of |Crystal |Living |A |An |)(Garnet|garnet|Quartz|quartz|Sapphire|sapphire|Jade|jade|Ruby|ruby|Spinel|spinel|Aquamarine|aquamarine|Amber|amber|Emerald|emerald|Amethyst|amethyst|Kyanite|kyanite|Diamond|diamond)( entity| creature|)?( \((shining|living|crystalline)\))*( \<[\<\>\|\X\\\/\-]+\>)?( \(demoralized\))?( \[(scratched|wounded|dying)\])?( \[[0-9]*%\])?( !*attacking ([A-z]+)!)*( \{([0-9]+)\})?\.$}} {
 	#var mobname crystal;
@@ -10,5 +12,3 @@
 #act {=M= Crysmal, Prismatic God of Crystals} {xx}
 
 #class {bot} {close}
-
-

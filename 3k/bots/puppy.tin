@@ -1,10 +1,12 @@
 #class {bot} {open}
 
-#var no_loop 1
+#var {no_loop} {1}
+#var {no_home} {0}
+#var {hardmode} {0}
 
 #var {botpath} {n;e;w;s}
 
-#act {^=M= {Some moron with a lead pipe|Rocko the redneck.}} {
+#act {^=M= {Some moron with a lead pipe|Rocko the redneck}} {
 	#var mobname human;
 	_check_mob
 }

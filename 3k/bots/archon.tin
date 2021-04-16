@@ -1,5 +1,9 @@
 #class {bot} {open}
 
+#var {no_loop} {0}
+#var {no_home} {0}
+#var {hardmode} {0}
+
 #var {botpath} {w;w;w;s;e;e;e;s;w;w;w;s;s;e;n;e;s;e;n;e;s;e;n;e;s;e;n;n;w;w;w;n;e;e;e;n;w;w;w;n;e;e;e;n;w;w;w;n;e;e;e;n;w;w;w;w;w;w;w;s;e;e;e;s;w;w;w;s;e;e;e;s}
 
 #act {^=M= {A|An} {archer|banshee|basilisk|benevolent wizard|djinni|dragon|evil looking juggernaut|evil sorceress|goblin|Huge Fire Elemental|knight|manticore|phoenix|stone golem|troll|unicorn|valkyrie}} {

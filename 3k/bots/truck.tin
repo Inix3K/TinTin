@@ -1,6 +1,8 @@
 #class {bot} {open}
 
-#var no_home 1
+#var {no_loop} {0}
+#var {no_home} {1}
+#var {hardmode} {0}
 
 #var {botpath} {open freezer 1;out;open freezer 2;out;open freezer 3;out;open freezer 4;out;open freezer 5;out;open freezer 6;out;open freezer 7;out;open freezer 8;out}
 

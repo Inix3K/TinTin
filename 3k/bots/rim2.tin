@@ -1,14 +1,17 @@
 #class {bot} {open}
 
-#var {botpath} {e;ne;se;n;nw;se;s;se;nw;w;s;w;s;e;ne;n;w;s;d;n;nw;ne;sw;se;s;u;n;w;w}
+#var {no_loop} {0}
+#var {no_home} {0}
 #var {hardmode} {0}
+
+#var {botpath} {e;ne;se;n;nw;se;s;se;nw;w;s;w;s;e;ne;n;w;s;d;n;nw;ne;sw;se;s;u;n;w;w}
 
 #act {^=M= {A small|A large|A very large} Rimalkin} {
 	#var mobhard 0;
 	#switch {"%1"} {
 		#case {"A small"}	{#var mobname {small rimalkin}};
 		#case {"A large"}	{#var mobname {large rimalkin};#var mobhard 1};
-		#case {"A very large" }	{#var mobname {very large rimalkin};#var mobhard 1};
+		#case {"A very large" }	{#var mobname {very large rimalkin};#var mobhard 1}
 	};
 	#if {$mobhard} {
 		#if {$hardmode} {

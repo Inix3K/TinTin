@@ -1,5 +1,9 @@
 #class {bot} {open}
 
+#var {no_loop} {0}
+#var {no_home} {0}
+#var {hardmode} {0}
+
 #var {botpath} {n;w;n;n;w;w;s;s;e;n;s;e;e;e;e;n;s;e;n;n;w;w;s;s;w;stairs;w;n;s;e;e;n;s;w;stairs;s}
 
 #act {^=M= {Nougat|Marshmallow|Oreo|Development|Android|Alpha|Beta|Gingerbread|Froyo|Eclair|Cupcake|Donut|Apple Fanboy|KitKat|Lollipop|Jellybean|Honeycomb|Ice Cream Sandwich}} {

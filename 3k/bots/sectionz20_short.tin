@@ -1,7 +1,8 @@
 #class {bot} {open}
 
-#var no_loop 1
-#var no_home 1
+#var {no_loop} {1}
+#var {no_home} {1}
+#var {hardmode} {0}
 
 #var {botpath} {enter $sectionz[20];sw;s;d;n;e;se;n;n;u;s;s;nw;nw;d;s;s;e;e;u;e;s;s;u;w;w;se;s;w;d;sw;s;d;n;e;se;n;n;d;se;s;w;d;e;ne;nw;d;w;s;e;e;d;n;nw;d;s;w;w;s;d;sw;s;u;se;s;d;w;n;n;e;e;d;e;se;d;n;e;ne;s;s;d;w;s;s;e;e;e;e;proceed;s;w;d;s;se;ne;n;u;w;s;w;s;e;e;d;n;n;e;e;d;e;se;n;n;u;s;se;d;n;w;w;s;enter portal;w;nw;n;u;s;se;ne;n;d;n;w;n;d;w;n;d;w;n;n;e;d;w;s;s;w;u;w;w;enter portal;w;n;n;e;e;d;s;s;e;e;d;s;w;n;d;n;ne;e;e;e;se;se;e;e;ne;e}
 

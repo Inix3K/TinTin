@@ -1,5 +1,9 @@
 #class {bot} {open}
 
+#var {no_loop} {0}
+#var {no_home} {0}
+#var {hardmode} {0}
+
 #var {botpath} {ne;e;n;n;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;n;n;w;w;w;w;w;w;w;w;sw}
 
 #act {^=M= {Mature Swamp Crocodile|Star-nosed Mole|Three-toed Amphiuma|Purple Swamphen|Purple Swamphen|Golden-Crowned Snake}} {

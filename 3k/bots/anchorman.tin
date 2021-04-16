@@ -1,5 +1,9 @@
 #class {bot} {open}
 
+#var {no_loop} {1}
+#var {no_home} {0}
+#var {hardmode} {0}
+
 #var {botpath} {ne;sw;n;n;w;e;n;e;w;n;enter;e;u;d;se;nw;e;w;w;n;w;e;n;s;s;s;s;s;s;s}
 
 #act {^=M= {Brick Tamland|Wes Mantooth|Frank Vitchard|Arturo Mendes|Brian Fantana|Ed Harken|Champ Kind|Garth Holladay|Veronica Corningstone|Ron Burgundy}} {

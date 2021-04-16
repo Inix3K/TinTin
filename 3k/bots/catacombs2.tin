@@ -1,5 +1,9 @@
 #class {bot} {open}
 
+#var {no_loop} {0}
+#var {no_home} {0}
+#var {hardmode} {0}
+
 #var {botpath} {n;n;e;e;se;nw;n;n;e;w;w;w;w;n;n;w;n;w;e;s;e;s;s;e;e;e;n;d;s;e;s;e;n;e;w;s;w;s;w;s;e;w;w;s;n;w;w;e;n;e;w;n;n;w;e;n;e;w;s;s;s;w;d;n;e;e;n;s;e;s;e;s;w;e;n;w;w;w;w;s;s;e;e;n;w;e;s;s;n;e;e;s;w;e;n;e;n;n;n;w;d;e;e;n;w;e;n;s;e;w;s;e;s;w;s;e;w;s;e;w;n;w;n;s;w;n;n;w;w;s;s;e;w;w;w;n;e;n;w;archway;{se;trace north rune;trace east rune;trace south rune;trace west rune;#delay {0.5} {gl}};nw;stairs;e;n;e;e;n;e;s;s;u;e;s;s;s;w;w;w;w;w;n;n;u;e;n;n;n;e;e;u;s;w;w;s;s;s;s}
 
 #NOP Good mobs
@@ -38,8 +42,5 @@
 	};
 	_check_mob
 }
-
-#NOP Hunter green
-#NOP Handle shadows?
 
 #class {bot} {close}
