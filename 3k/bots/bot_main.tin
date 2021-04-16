@@ -15,10 +15,12 @@ prompt >$nl$
 #var bot 0
 #var vacuum 1
 #var singlestep 0
+#var stepping 0
 
 
 #alias {.pause} {
 	#class {xbot} {kill};
+	#var stepping 0;
 	#alias {_check_mob} {.pause}
 }
 
@@ -29,6 +31,7 @@ prompt >$nl$
 	#class {xbot} {kill};
 	#alias {xx} {#nop};
 	#alias {_check_mob} {#nop};
+	#var stepping 0;
 	#var halt 1
 }
 
@@ -54,6 +57,7 @@ prompt >$nl$
 	#delay {4};
 	#act {{^=S=}} {xx} {1};
 	#alias {xx} {
+		#var stepping 1;
 		#var foundplayer 0;
 		#var goldfound 0;
 		#var itemfound 0;
@@ -69,6 +73,7 @@ prompt >$nl$
 		} {1}
 	};
 	#alias {_check_mob} {
+		#var stepping 0;
 		#act {^>$} {
 			#unact {^>$};
 			#if {$foundplayer} {
