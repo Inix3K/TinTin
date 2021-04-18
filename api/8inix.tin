@@ -30,8 +30,10 @@
 	};
 	#var v8line {$mip[comm][command]};
 	#if {"$mip[comm][line]" == "Tell"} {
-		#delay 1 #send $v8line (8)Inix : $message;
-	} {
+		#delay 1 #send $v8line (8)Inix : $message
+	}; #elseif {"$mip[comm][line]" == "Eternal Main"} {
+		#delay 1 #send (cm [30\;1m([34\;1m8[30\;1m)[0mInix : $message
+	}; #else {
 		#delay 1 #send $v8line [30\;1m([34\;1m8[30\;1m)[0mInix : $message;
 	}
 }
