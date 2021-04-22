@@ -23,7 +23,7 @@
 
 #NOP ***** Extract Raw Data *********
 #var mip[echo] off
-#ACTION {{^\#K\%$mip[id](.{3})(.{3})(.*)}$} {
+#ACTION {{^(?:\] )?\#K\%$mip[id](.{3})(.{3})(.*)}$} {
 	#VAR {mip[source]} {%0};
 	#VAR {mip[%3][data]} {%4};
 	.mipProcessFlag {%3} {%4};
@@ -587,7 +587,7 @@
 	#NOP Player specific gags;
 	#NOP Byron crying OW;
 	#REGEX {%0} {~Byron~cries 'OW!!'} {#var mipgag 1};
-	#REGEX {%0} {~%w~pokes %w in the ribs.} {#var mipgag 1};
+	#REGEX {%0} {~%w~pokes %w in the ribs} {#var mipgag 1};
 
 	#NOP Guilds and Areass;
 	#NOP Bards;
@@ -799,6 +799,13 @@
 						}
 					};
 
+					#NOP Google Wiki Search;
+					#if {"$google" == "on"} {
+						#regex {$mip[comm][data]} {%iigoogle} {
+							dogoogle
+						}
+					};
+
 					#NOP ADDS;
 					#if {"$adds" == "on"} {
 						#regex {$mip[comm][data]} {%iiwx} {
@@ -878,6 +885,7 @@
 			#case {"JuggAnnounce"}		{#var {commcol} {<118>}};
 			#case {"JuggMissiles"}		{#var {commcol} {<118>}};
 			#case {"JuggNewbie"}		{#var {commcol} {<258>}};
+			#case {"Knight Announce"}	{#var {commcol} {<168>}};
 			#case {"Knight Main"}		{#var {commcol} {<168>}};
 			#case {"Loremaster"}		{#var {commcol} {<274>}};
 			#case {"Lottery"}		{#var {commcol} {<178>}};
@@ -923,6 +931,13 @@
 			#if {"$udefine" == "on"} {
 				#regex {$mip[comm][data]} {%i: udefine} {
 					doudefine
+				}
+			};
+
+			#NOP Google Wiki Search;
+			#if {"$google" == "on"} {
+				#regex {$mip[comm][data]} {%iigoogle} {
+					dogoogle
 				}
 			};
 
