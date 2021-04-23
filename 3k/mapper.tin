@@ -60,7 +60,7 @@
 /* Map Follow on Following Others */
 #act {^%w begins to follow %w\.} {
 	#format {follower} {%l} {%1};
-	#if {"%1" == "$world"} {
+	#if {"$follower" == "$world"} {
 		#var {following} {%2}
 	}
 }
