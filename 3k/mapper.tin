@@ -76,16 +76,17 @@
 		#var foldir %2;
 
 		#switch {"$foldir"} {
-			#case {"north"}		{#var foldir n};
-			#case {"south"}		{#var foldir s};
-			#case {"east"}		{#var foldir e};
-			#case {"west"}		{#var foldir w};
-			#case {"down"}		{#var foldir d};
-			#case {"up"}		{#var foldir u};
-			#case {"northeast"} 	{#var foldir ne};
-			#case {"northwest"}	{#var foldir nw};
-			#case {"southeast"}	{#var foldir se};
-			#case {"southwest"}	{#var foldir sw};
+			#case {"north"}			{#var foldir n};
+			#case {"south"}			{#var foldir s};
+			#case {"east"}			{#var foldir e};
+			#case {"west"}			{#var foldir w};
+			#case {"down"}			{#var foldir d};
+			#case {"up"}			{#var foldir u};
+			#case {"northeast"} 		{#var foldir ne};
+			#case {"northwest"}		{#var foldir nw};
+			#case {"southeast"}		{#var foldir se};
+			#case {"southwest"}		{#var foldir sw};
+			#case {"through the portal"}	{#var foldir portal};
 			#default 	#var foldir %2
 		}
 	}
