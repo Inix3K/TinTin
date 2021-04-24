@@ -360,6 +360,13 @@
 	#map at 44 {#map set roomweight 1};
 }
 
+/* Area Specific Actions */
+#NOP Section Z
+#ACTION {^Just a reminder, your continue code for Section %d is %w}
+{
+    #variable {sectionz[%1]} {%2}
+}
+
 /* Transports */
 #NOP Abyss
 #act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
