@@ -25,7 +25,11 @@
         #12 {
                 buy knife;
                 reforge knife with little from edged to penetrate;
-                dec knife
+		#if {"$guild" == "juggernaut"} {
+			#send !deconstruct knife
+		} {
+			#send !dispose knife
+		}
         };
         go home
 }
