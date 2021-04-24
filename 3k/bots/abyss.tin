@@ -8,16 +8,17 @@
 
 #act {^=M= %1\.} {
 	#var mobname demon;
-	#regex {%0} {attacking you}             {#alias {k} {#NOP}};
-	#regex {%1} {A cargo truck named}       {#var mobname {}};
-	#regex {%1} {A ambulance named}         {#var mobname {}};
-	#regex {%1} {A rover named}             {#var mobname {}};
-	#regex {%1} {Jugger Support Mech}       {#var mobname {}};
-	#regex {%1} {A tank named}              {#var mobname {}};
-	#regex {%1} {small fire mite}           {#var mobname {}};
-	#regex {%1} {bound by}                  {#var mobname {}};
-	#regex {%1} {Blob the blob golem}       {#var mobname {}};
-	#regex {%1} {bound by}                  {#var mobname {}};
+	#regex {%0} {attacking you}		{#alias {k} {#NOP}};
+	#regex {%1} {A jeep named}		{#var mobname {}};
+	#regex {%1} {A truck named}		{#var mobname {}};
+	#regex {%1} {A cargo truck named}	{#var mobname {}};
+	#regex {%1} {A ambulance named}		{#var mobname {}};
+	#regex {%1} {A rover named}		{#var mobname {}};
+	#regex {%1} {Jugger Support Mech}	{#var mobname {}};
+	#regex {%1} {A tank named}		{#var mobname {}};
+	#regex {%1} {small fire mite}		{#var mobname {}};
+	#regex {%1} {bound by}			{#var mobname {}};
+	#regex {%1} {Blob the blob golem}	{#var mobname {}};
 
 	#if {"$mobname" == ""} {
 		#nop
@@ -44,7 +45,7 @@
 	#math {radius} {%0 / 3};
 	#math {width} {$radius * 2};
 
-	#local temp {${radius}w${radius}d};
+	#local temp {${radius}w${radius}s};
 
 	#$width #cat temp2 ${width}e1n${width}w1n;
 
