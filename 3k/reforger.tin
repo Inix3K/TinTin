@@ -1,3 +1,8 @@
+#class {reforger} {open}
+
+/* forge alias */
+#NOP Type:  forge <item> <from> <to>
+#NOP It will attempt loads, then lots, then some, then little.
 #alias forge {
 	#var reforged no;
 	#var reforge_amt loads;
@@ -20,6 +25,9 @@
 	}
 }
 
+/* Burn reforger charges for pxp */
+#NOP Must have Westersea access to get to Bern
+#NOP This will go to Bern, buy 12 knives and reforge them, then deconstruct or dispose of them
 #alias rburn {
         go bern;
         #12 {
@@ -40,4 +48,8 @@
 #act {^The {.*} does not have sufficient } {forge_do}
 #act {^You are not yet powerful enough to reforge } {forge_do}
 
-#NOP You adjust your reforger's kit slightly, ready to do more business.
+#act {^You adjust your reforger's kit slightly, ready to do more business.} {
+	update_chat %0
+}
+
+#class {reforger close}
