@@ -1,64 +1,7 @@
 #class {valithan} open
 
-#var guild jedi
-
-#NOP  W:[%w][%s%d%%] G:[%s{[\d\.]+}%%]
-#act {^HP:[%d/%d] SP:[%d/%d] C:[%s{[\d\.]+}%%] F:[%s{[\d\.]+}%%] D:[%d] W:[%w][%s{[\d\.]+}%%] G:[%s{[\d\.]+}%%]} {
-	#var my[hp][current]	%1;
-	#var my[hp][max]	%2;
-	#var my[sp][current]	%3;
-	#var my[sp][max]	%4;
-	#var my[gp1][current]	%6;
-	#var my[gp2][current]	%8;
-	#var my[dissipate][cnt]	%9;
-	#var my[mode]		%10;
-	#var my[charge]		%12;
-	#var my[gxp][current]	%14;
-	#echo {HPBAR};
-	update_status
-}
-
-#alias {update_status} {
-	#if {"$cooler" == "on" || $corpses[cooler] > 0} {
-		#format {sb1_cooler} {%+2s} {$corpses[cooler]};
-		#var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
-	} {
-		#var {sb1_cooler} {}
-	};
-	#if {"$freezer" == "on" || $corpses[freezer] > 0} {
-		#format {sb2_freezer} {%+2s} {$corpses[freezer]};
-		#var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
-	} {
-		#var {sb2_freezer} {}
-	};
-	#var {my[hp][graph]}	{@graph{$my[hp][current];$my[hp][max]}};
-	#var {my[sp][graph]}	{@graph{$my[sp][current];$my[sp][max]}};
-	#var {my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
-	#var {my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
-	#var {my[gxp][graph]}	{@graph{$my[gxp][current];100}};
-	#var {enemy[graph]}	{@graph{$enemy[hp];100}};
-	#format {hp}		{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
-	#format {hp_max}	{%+4s} {<128>$my[hp][max]<088>};
-	#format {sp}		{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
-	#format {sp_max}	{%+4s} {<128>$my[sp][max]<088>};
-	#format {gp1}		{%d}   {$my[gp1][current];
-	#format {gp1}		{%+3s} {@colscale{$gp1;$my[gp1][max]}};
-	#format {gp2}		{%+3s} {@colscale{$my[gp2][current];$my[gp2][max]}};
-	#format {gxp}		{%+6s} {@colscale{$my[gxp][current];100}};
-	#format {ehealth}	{%+6s} {@colscale{$enemy[hp];100}};
-	#format {corpses_inv}	{%+2s} {<138>$corpses[inventory]<088>};
-	#format {corpses_cof}	{%+2s} {<138>$corpses[coffin]<088>};
-	#format {corpses_fz}	{%+2s} {<138>$corpses[freezer]<088>};
-	#showme {$mip[gline][1]  $mip[gline][2]} {-6};
-	#showme {HP:$hp/$hp_max SP:$sp/$sp_max C:   $gp1\% F:   $gp2\%   G:$gxp\%    E:$ehealth\%    IC:$corpses_inv$sb1_cooler} {-4};
-	#showme {H:$my[hp][graph] S:$my[sp][graph] C:$my[gp1][graph] F:$my[gp2][graph] G:$my[gxp][graph] E:$enemy[graph] CF:$corpses_cof$sb2_freezer} {-3};
-}
-
-#alias corpsetrig {
-	wrap;
-	slab;
-	focus absorb energy;
-	get coins
-}
+/* Read in files */
+#NOP Primary Guild File
+#read .tt/3k/guilds/jedi.tin
 
 #class {valithan} close

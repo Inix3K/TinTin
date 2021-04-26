@@ -1,0 +1,77 @@
+#class {priest} {open}
+
+#var guild priest
+
+#act {{HP: (\d+)/(\d+) SP: (\d+)/(\d+) MANA: (\d+)/(\d+) PTY: \((\d+)\%\) E: \[([\w\s\-\~\,\(\)\']+)(?: : )?(\w+)?\]}} {
+	#var {my[hp][current]}	{%2};
+	#var {my[hp][max]}	{%3};
+	#var {my[sp][current]}	{%4};
+	#var {my[sp][max]}	{%5};
+	#var {my[gp1][current]}	{%6};
+	#var {my[gp1][max]}	{%7};
+	#var {my[gp2][current]}	{%8};
+	#var {ehealth}		{%9};
+}
+
+#act {{GXP\%: \[(\d+.\d+)\%\] PROT: (ON|OFF) VEST: (ON|OFF) BARK: (ON|OFF)}} {
+	#var {gxp}	{%2};
+	#var {prot}	{%3};
+	#var {vest}	{%4};
+	#var {bark}	{%5};
+}
+
+#alias {update_status} {
+	#if {my[hp][current] < my[hp][max]} {
+		!lifeforce
+	};
+	#if {my[sp][current] < my[sp][max]} {
+		!soulforce
+	};
+
+	#var    {my[hp][graph]}         {@graph{$my[hp][current];${my[hp][max]}}};
+	#var    {my[sp][graph]}         {@graph{$my[sp][current];$my[sp][max]}};
+	#var    {my[gp1][graph]}        {@graph{$my[gp1][current];$my[gp1][max]}};
+	#var    {my[gp2][graph]}        {@graph{$my[gp2][current];$my[gp2][max]}};
+	#var    {enemy[graph]}          {@graph{$enemy[hp];100}};
+	#format {hp}                    {%+4s} {$my[hp][current]};
+	#format {hp_max}                {%+4s} {$my[hp][max]};
+	#format {sp}                    {%+4s} {$my[sp][current]};
+	#format {sp_max}                {%+4s} {$my[sp][max]};
+	#format {gp1}                   {%+4s} {$my[gp1][current]};
+	#format {gp1_max}               {%+4s} {$my[gp1][max]};
+	#format {gp2}                   {%+4s} {$my[gp2][current]};
+	#format {gp2_max}               {%+4s} {$my[gp2][max]};
+	#format {ehealth}               {%+7s} {$enemy[hp]%%};
+
+	#showme {HP:$hp/$hp_max SP:$sp/$sp_max MN:$gp1/$gp1_max PY:$gp2/$gp2_max E:$ehealth} {-4};
+	#showme {H:$my[hp][graph] S:$my[sp][graph] M:$my[gp1][graph] P:$my[gp2][graph] E:$enemy[graph]} {-3};
+	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
+}
+
+
+
+/* Heals */
+#NOP Guardian
+#unvar guard
+#act {%w\'s health status: HP: [%d/%d] SP: [%d/%d]} {
+	#format {guard[name]} {%l} {%1};
+	#var {guard[hp][cur]}	{%2};
+	#var {guard[hp][max]}	{%3};
+	#var {guard[sp][cur]}	{%4};
+	#var {guard[sp][max]}	{%5};
+
+
+	#if {"$guard[hp][lim]" != "" && $guard[hp][cur] < $guard[hp][lim] } {
+		!invigorate $guard[name]
+	};
+	#if {"$guard[sp][lim]" != "" && $guard[sp][cur] < $guard[sp][lim] } {
+		!radiance $guard[name]
+	}
+}
+
+#alias {guard %1 %2} {
+	#var {guard[hp][lim]} {%1};
+	#var {guard[sp][lim]} {%2}
+}
+
+#class {preist} {close}

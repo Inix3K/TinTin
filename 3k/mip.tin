@@ -591,6 +591,7 @@
 
 	#NOP Guilds and Areass;
 	#NOP Bards;
+	#REGEX {%0} {~cracks %w knuckles and gets ready to play for } {#var mipgag 1};
 	#REGEX {%0} {~ceases his performance.} {#var mipgag 1};
 	#REGEX {%0} {~takes a deep breath.} {#var mipgag 1};
 	#REGEX {%0} {~takes a breath.} {#var mipgag 1};
@@ -887,6 +888,7 @@
 			#case {"JuggNewbie"}		{#var {commcol} {<258>}};
 			#case {"Knight Announce"}	{#var {commcol} {<168>}};
 			#case {"Knight Main"}		{#var {commcol} {<168>}};
+			#case {"Lich"}			{#var {commcol} {<158>}};
 			#case {"Loremaster"}		{#var {commcol} {<274>}};
 			#case {"Lottery"}		{#var {commcol} {<178>}};
 			#case {"Main"}			{#var {commcol} {<118>}};

@@ -1,45 +1,7 @@
 #class {psylon} {open}
 
-#var guild elemental
-
-/* HP Bars */
-#act {{ HP:(\d+)/(\d+) C:(\d+)\%  NRG:(\d+)/(\d+)\((\d+)([\+\-]*)\)  SP:(\d+)/(\d+)  S:(\d+)\((\d+)\%\) G2N:(\d+)(\w+)(?:   T:)?([\w\s]*)\:?(\d*)\%?}} {
-	#var my[hp][current]		{%2};
-	#var my[hp][max]		{%3};
-	#var my[cohesion]		{%4};
-	#var my[gp1][current]		{%5};
-	#var my[gp1][max]		{%6};
-	#var my[emit][level]		{%7};
-	#var my[emit][mod]		{%8};
-	#var my[sp][current]		{%9};
-	#var my[sp][max]		{%10};
-	#var my[blasts]			{%11};
-	#var my[reset]			{%12};
-	#var my[g2n]			{%13};
-	#var g2n_mod			{%14};
-	#var enemy[name]		{%15};
-	#var enemy[hp]			{%16}
-}
-
-#alias {update_status} {
-	#var {my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
-	#var {my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
-	#var {my[gp1][graph]}		{@graph{$my[gp1][current];$my[gp1][max]}};
-	#var {enemy[graph]}		{@graph{$enemy[hp];100}};
-	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
-	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
-	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
-	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
-	#format {nrg}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
-	#format {nrg_max}		{%+4s} {<128>$my[gp1][max]<088>};
-	#format {ehealth}		{%+3s} {@colscale{$enemy[hp];100}};
-	#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  E:   ${ehealth}%} {-4};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} N:${my[gp1][graph]} E:${enemy[graph]}} {-3};
-	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
-}
-
-
-#alias {corpsetrig} {slab;wrap;mdc;cd;get coins}
-
+/* Read in files */
+#NOP Primary Guild File
+#read .tt/3k/elemental.tin
 
 #class {psylon} {close}

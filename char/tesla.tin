@@ -1,74 +1,7 @@
 #class {tesla} {open}
 
-#var guild cyborg
-
-#act {{HP: (\d+)\[(\d+)\]\((\d+)\) PWR: (\d+)\[(\d+)\]\(([\d\-]+)\) HT: \[(\d+)\%\] SI: \[([\d\.]+)\%\]}} {
-	#var my[hp][current]	%2;
-	#var my[hp][max]	%3;
-	#var my[hp][delta]	%4;
-	#var my[gp1][current]	%5;
-	#var my[gp1][max]	%6;
-	#var my[gp1][delta]	%7;
-	#var my[gp2][current]	%8;
-	#var gxp		%9;
-	#format {glvl} {%d} {$gxp};
-	#math {gxp_per} {($gxp-$glvl)*100}
-}
-
-#act {{C: \[([\d\.]+)(\w)\] TARG: (\d+)\%}} {
-	#var credits	%2%3;
-	#var enemy[hp]	%4;
-	update_status
-}
-
-#alias {update_status} {
-	#if {$my[gp1][current] < $my[gp1][max] * .5} {
-		#if {$corpses[cooler] > 0} {
-			uncooler corpse
-		}; #elseif {$corpses[inventory] > 0} {
-			drop corpse
-		}; #elseif {$corpses[freezer] > 0} {
-			deslab
-		}; #elseif {$corpses[coffin] > 0} {
-			unwrap
-		};
-		decompose
-	};
-        #if {"$cooler" == "on" || $corpses[cooler] > 0} {
-                #format {sb1_cooler} {%+2s} {$corpses[cooler]};
-                #var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
-        } {
-                #var {sb1_cooler} {}
-        };
-        #if {"$freezer" == "on" || $corpses[freezer] > 0} {
-                #format {sb2_freezer} {%+2s} {$corpses[freezer]};
-                #var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
-        } {
-                #var {sb2_freezer} {}
-        };
-        #var {my[hp][graph]}    {@graph{$my[hp][current];${my[hp][max]}}};
-        #var {my[gp1][graph]}   {@graph{$my[gp1][current];$my[gp1][max]}};
-        #var {my[gp2][graph]}   {@graph{$my[gp2][current];$my[gp2][max]}};
-        #var {gxp_graph}        {@graph{$gxp_per;100}};
-        #var {enemy[graph]}     {@graph{$enemy[hp];100}};
-        #format {hp}            {%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
-        #format {hp_max}        {%+4s} {<128>$my[hp][max]<088>};
-        #format {gp1}           {%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
-        #format {gp1_max}	{%+4s} {<128>$my[gp1][max]<088>};
-        #format {gp2}           {%+3s} {@colscale{$my[gp2][current];$my[gp2][max]}};
-        #format {ehealth}       {%+6s} {@colscale{$enemy[hp];100}};
-        #format {gxp_col}       {%+7s} {@colscale{$gxp;100}};
-        #format {corpses[inventory]}     {%+2s} {$corpses[inventory]};
-        #format {corpses[coffin]}  {%+2s} {$corpses[coffin]};
-        #format {corpses[freezer]} {%+2s} {$corpses[freezer]};
-        #showme {<088>HP:$hp/$hp_max PR:$gp1/$gp1_max HT:   $gp2\%    G: $gxp_col\%  E:$ehealth\%    IC:<130>${corpses[inventory]}<088> ${sb1_cooler}} {-4};
-        #showme {H:${my[hp][graph]} P:${my[gp1][graph]} HT:${my[gp2][graph]} G:${gxp_graph} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3};
-	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
-}
-
-#alias {corpsetrig} {
-	!wrap;
-	!get all
-}
+/* Read in files */
+#NOP Primary Guild File
+#read .tt/3k/guilds/cyborg.tin
 
 #class {tesla} {close}

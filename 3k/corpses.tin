@@ -98,7 +98,9 @@
 	kac;
 	#send !keep coffin;
 	#send !keep freezer;
-	#send !exa cl;
+	#if {"$guild" == "juggernaut"} {
+		#send !exa $truck[name]
+	};
 	#send !exa cooler
 }
 #class {corpses} {close}

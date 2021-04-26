@@ -2,11 +2,11 @@
 
 /* 3K Aliases */
 
+#NOP MIP off/on alias
 #alias {mipon} {#read .tt/3k/mip.tin}
 #alias {mipoff} {#class mip kill}
 
-#alias {dg} {divvy gold}
-#alias {fol} {follow}
+#NOP Generic Aliases
 #alias {ga} {get all}
 #alias {gac} {get all from corpse}
 #alias {gc} {get coins}
@@ -14,15 +14,34 @@
 #alias {gl} {glance}
 #alias {k} {kill}
 #alias {los} {lineofsight}
+#alias {rem} {remove}
+
+#NOP Chatline Aliases
 #alias {cl} {ctell}
 #alias {pt} {ptell}
 #alias {pth} {ptell -h}
 #alias {th} {tellhist}
-#alias {rem} {remove}
+
+#NOP HM Portal Aliase
 #alias {efor} {portal eforest}
 #alias {wfor} {portal wforest}
-#alias {pnam} {pname Whiteout}
 
+#NOP Party Aliases
+#alias {pnam} {pname Whiteout}
+#alias {dg} {divvy gold}
+#alias {fol} {follow}
+#alias {corpse} {
+	#format {corpsetrig_flag} {%l} {%1};
+	#if {"${corpsetrig_flag}" == "off"} {
+		#alias corpsetrig {#NOP}
+	}; #elseif {"${corpsetrig_flag}" == "on"} {
+		#read ${world}.tin
+	}; #else {
+		#echo {!INVALID INPUT:  on or off!}
+	}
+}
+
+#NOP Initial Login
 #alias {/start} {
         d;
         touch post;
@@ -35,8 +54,10 @@
 	mapgo home
 }
 
+#NOP Character Swapping
 #alias {swt} {switchto}
 
+#NOP Shansabyk
 #alias {shankey} {
         search bed;
         pull lever;
@@ -46,10 +67,12 @@
         keep key
 }
 
+#NOP Westersea Crypt
 #alias {i1} {insert hand into left hole}
 #alias {i2} {insert hand into centre hole}
 #alias {i3} {insert hand into right hole}
 
+#NOP Cloud Bag
 #alias {getcloud} {
         go cloud;
         gaze into mirror;
@@ -59,13 +82,14 @@
         go home
 }
 
+#NOP Run
 #alias {/run} {
         #config speedwalk on;
         %0;
         #config speedwalk off
 }
 
-/* Boosts */
+#NOP Boosts
 #alias {einstein} {
 	go einsteins_cottage;
 	ne;
