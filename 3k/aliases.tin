@@ -57,12 +57,14 @@
 #NOP Character Swapping
 #alias {swt} {switchto}
 
-#NOP Guild Swapping
+/* Guild Swapping */
+#NOP Overwrite gswap command to use alias and call gload
 #alias {gswap} {
 	#send gswap %1;
 	gload %1
 }
 
+#NOP Remove old guild file and load new guild file
 #alias {gload} {
 	#class ${guild} kill;
 	#var guild %1;
