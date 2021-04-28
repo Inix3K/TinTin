@@ -140,7 +140,7 @@
 		};
 		#if {$roomdesc_len == 0 || "$finding_here" == "on"} {
 			#var longcap on;
-			#unvar long;
+			#var long {};
 			#act {%%1} {
 				#if {@cartcheck{%%1}} {
 						#nop
@@ -282,7 +282,20 @@
 	#map write .tt/map/3k.map
 }
 
-#alias {mapsave} {#map write .tt/map/3k.map}
+#alias {mapsave} {
+	#regex {"$world"} {3s} {
+		#map write .tt/map/3s.map
+	} {
+		#if {"$area" == "Breed"} {
+			#map write .tt/map/breed.map
+		} {
+			#map write .tt/map/3k.map
+		}
+	}
+}
+
+#alias {bmapsave} {#map write .tt/map/breed.map}
+
 #alias {mapon} {
 	#send !brief off yes;
 	#map flag static off;
@@ -303,7 +316,7 @@
 
 #NOP List all Roomnotes for 'go' alias
 #alias {notelist} {
-	#map list {roomnote} {{\w+}} {variable} {noterooms};
+	#map list {roomnote} {%+} {variable} {noterooms};
 	#foreach {*noterooms[]} {room} {#map get {roomnote} {notes[$room]} {$room}};
 	#list notes sort;
 	#var notes

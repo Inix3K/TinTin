@@ -52,4 +52,4 @@
 	update_chat %0
 }
 
-#class {reforger close}
+#class {reforger} {close}

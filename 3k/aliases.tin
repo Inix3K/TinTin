@@ -57,6 +57,19 @@
 #NOP Character Swapping
 #alias {swt} {switchto}
 
+#NOP Guild Swapping
+#alias {gswap} {
+	#send gswap %1;
+	gload %1
+}
+
+#alias {gload} {
+	#class ${guild} kill;
+	#var guild %1;
+	#read .tt/3k/guilds/${guild}.tin
+}
+
+/* Area Specific Aliases */
 #NOP Shansabyk
 #alias {shankey} {
         search bed;
