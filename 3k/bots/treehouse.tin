@@ -1,0 +1,29 @@
+#class {bot} {open}
+
+#var {no_loop} {0}
+#var {no_home} {0}
+#var {hardmode} {0}
+
+#var {botpath} {n;w;w;w;ne;ne;n;n;nw;sw;n;sw;n;nw;w;e;ne;se;nw;sw;se;s;ne;s;sw;nw;nw;nw;ne;ne;ne;ne;se;s;n;ne;sw;se;se;nw;nw;nw;ne;ne;e;e;se;se;sw;nw;se;s;n;sw;sw;ne;ne;ne;se;se;se;se;sw;sw;sw;nw;n;se;n;ne;e;w; nw;n;s;nw;se;sw;ne;s;n;se;sw;s;nw;s;nw;sw;s;s;se;se;w;w;w;s}
+
+#act {^=M= {An Earthen Spirit|A Root Warrior|A Guardian Branch|Earth Elemental|Minor Earth Elemental|Earth Elemental Lord|Tree Guardian}} {
+	#var mobhard 0;
+	#switch {"%1"} {
+		#case {"An Earthen Spirit"}		{#var mobname spirit};
+		#case {"A Root Warrior"}		{#var mobname warrior};
+		#case {"A Guardian Branch"}		{#var mobname branch};
+		#case {"Earth Elemental"}		{#var mobname elemental};
+		#case {"Minor Earth Elemental"}		{#var mobname elemental};
+		#case {"Earth Elemental Lord"}		{#var mobname lord;#var mobhard 1};
+		#case {"Tree Guardian"}			{#var mobname guardian};
+	};
+	#if {$mobhard} {
+		#if {$hardmode} {
+			_check_mob
+		}
+	} {
+		_check_mob
+	}
+}
+
+#class {bot} {close}
