@@ -3,7 +3,7 @@
 #var {no_loop} {0}
 #var {no_home} {0}
 #var {hardmode} {0}
-#var {vacumm} {1}
+#var {vacuum} {1}
 
 #var {botpath} {e;s;n;n;s;w;w;door;climb tree;d;e;e;n;e;gate;barn;w;n;w;e;n;enter;w;d;u;e;e;u;w;e;e;w;s;w;e;e;w;s;n;u;n;s;d;n;d;w;n;e;w;w;door;w;ne;e;s;s;sw;out;e;n;n;e;s;s;se;nw;n;n;w;w;w;sw;e;door;e;s;s;s;s;s}
 
