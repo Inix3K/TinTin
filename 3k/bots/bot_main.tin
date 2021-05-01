@@ -167,6 +167,20 @@ prompt >$nl$
 }
 
 
+/* Coffin Auto-Donate */
+#var {coffinbot} {off}
+#act {^The coffin is full!} {
+	#if {"$coffinbot" == "on"} {
+		.stop;
+		#delay {coffin_donate} {
+			go morgue;
+			donate coffin
+		} {1};
+		#delay {coffin_return} {
+			.resume
+		} {2}
+	}
+}
 
 
 #path load botpath
