@@ -100,7 +100,32 @@
 } {4}
 
 /* Map Update on Wimpy */
-#NOP #act 
+#act {^Your legs run away with you %w.} {
+	#var wimpy[dir] %1;
+
+	#switch {"$wimpy[dir]"} {
+		#case {"north"}                 {#var wimpy[dir] n};
+		#case {"south"}                 {#var wimpy[dir] s};
+		#case {"east"}                  {#var wimpy[dir] e};
+		#case {"west"}                  {#var wimpy[dir] w};
+		#case {"down"}                  {#var wimpy[dir] d};
+		#case {"up"}                    {#var wimpy[dir] u};
+		#case {"northeast"}             {#var wimpy[dir] ne};
+		#case {"northwest"}             {#var wimpy[dir] nw};
+		#case {"southeast"}             {#var wimpy[dir] se};
+		#case {"southwest"}             {#var wimpy[dir] sw};
+		#default        		#var wimpy[dir] %1
+	};
+
+	#NOP If stepper is on, stop stepper before moving map;
+	#if {$bot == 1} {
+		.stop
+	};
+
+	#NOP Update map with wimpied direction;
+	#map move $wimpy[dir];
+}
+	
 
 /* Data Grab Trigger */
 #var longcap off
