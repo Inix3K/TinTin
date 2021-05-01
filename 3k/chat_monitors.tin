@@ -1,0 +1,53 @@
+#class {chat_monitors} {open}
+
+#var monitor_file {.tt/logs/3k.chat}
+
+/* Eternal Powers */
+#NOP Refresh Room
+#act {^With a swirl of energy from %w, everything in the room looks shiny and} {update_chat %1 refreshed the room!}
+
+
+/* Mud Skills */
+#NOP Farsight Tag
+#act {^You notice that %*} {update_chat %0}
+
+#NOP Lore
+#act {^You see a ghostly image of %w appear then dissolve away...} {update_chat <158>Atrifact Found By <138>%1<088>}
+
+/* Mob Lives */
+#NOP Crysmal
+#act {^In a mighty shattering, The %w casing cracks apart from Crysmal!} {update_chat %0}
+
+#NOP Elemental Planes
+#act {^The elemental flares brightly before emitting an explosion.} {update_chat %0}
+
+#NOP Zelligars
+#act {Zelligar molds some magical clay into a %*} {update_chat %0}
+
+
+/* Mob Tags */
+#NOP Firebat
+#act {^A surge of powerful electricity runs screaming through your veins} {update_chat <118>FIREBAT TAG RECEIVED!<088>}
+
+
+/* Professions */
+#NOP Marshall Reset
+#act {A surge of leadership rushes through your veins, the %* gem on your staff begins to glow, and you feel ready to rally your teammates!$} {update_chat %0}
+
+#NOP Reforger Reset
+#act {^You adjust your reforger's kit slightly, ready to do more business.} {update_chat %0}
+
+#NOP Transmuter Reset
+#act {^Your transmuter's stone bursts with %d new colours!} {update_chat %0}
+
+/* Wipes */
+#NOP Player self-wife
+#act {%w screams in ultimate agony as %w tears %w very soul out.} {update_chat %0}
+
+#NOP Player wiped by wizard
+#act {3K = 3K - %w} {update_chat %0}
+
+/* World Drops */
+#act {^You have found %1!} {update_chat <158>World Drop Found: <138>%1<088>}
+
+#class {chat_monitors} {close}
