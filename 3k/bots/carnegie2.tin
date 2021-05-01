@@ -3,6 +3,7 @@
 #var {no_loop} {1}
 #var {no_home} {0}
 #var {hardmode} {0}
+#var {vacuum} {1}
 
 #var {botpath} {ne;u;nw;n;e;ne;n;n;n;s;s;s;sw;w;w;w;w;w;nw;n;n;n;s;s;s;se;e;s;e;e;e;se;d;sw}
 

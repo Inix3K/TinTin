@@ -3,6 +3,7 @@
 #var {no_loop} {1}
 #var {no_home} {1}
 #var {hardmode} {0}
+#var {vacumm} {1}
 
 #var {botpath} {enter $sectionz[40];s;w;d;s;se;ne;n;u;w;s;w;s;e;e;d;n;n;e;e;d;e;se;n;n;u;s;se;d;n;w;w;s;enter portal;w;nw;n;u;s;se;ne;n;d;n;w;n;d;w;n;d;w;n;n;e;d;w;s;s;w;u;w;w;enter portal;w;n;n;e;e;d;s;s;e;e;d;s;w;n;d;n;ne;e;e;e;se;se;e;e;ne;e}
 

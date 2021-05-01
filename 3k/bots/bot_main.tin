@@ -13,7 +13,6 @@ prompt >$nl$
 #var goldfound 0
 #var itemfound 0
 #var bot 0
-#var vacuum 1
 #var singlestep 0
 #var stepping 0
 

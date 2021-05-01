@@ -3,6 +3,7 @@
 #var {no_loop} {0}
 #var {no_home} {0}
 #var {hardmode} {1}
+#var {vacumm} {1}
 
 #var {botpath} {doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;onward;doorway;light;will}
 

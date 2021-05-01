@@ -99,6 +99,9 @@
 	}
 } {4}
 
+/* Map Update on Wimpy */
+#NOP #act 
+
 /* Data Grab Trigger */
 #var longcap off
 #var finding_here off

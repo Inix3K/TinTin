@@ -3,6 +3,7 @@
 #var {no_loop} {0}
 #var {no_home} {0}
 #var {hardmode} {0}
+#var {vacumm} {1}
 
 #var {botpath} {n;e;s;s;se;se;se;ne;w;nw;e;e;e;ne;w;w;w;w;w;n;e;e;e;e;e;e;e;se;s;se;sw;ne;nw;ne;nw;e;ne;w;w;w;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;e;nw;w;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;nw;w;w;w;w;w;ne;e;e;e;nw;w;n;sw;sw;sw;sw;s;s;w;w;n;n;n;nw;n;ne;climb;u;d;d;sw;s;s;s;s;s;w;n;nw;nw;s;w;sw;e;e;e;s;w;w;w;w;sw;e;e;e;e;e;e;e;s;w;w;w;w;w;w;se;e;e;e;e;sw;w;w;se;s;se;n;n;ne;se;n;n;e;n;n;e;s}
 

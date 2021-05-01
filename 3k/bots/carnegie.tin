@@ -3,6 +3,7 @@
 #var {no_loop} {0}
 #var {no_home} {0}
 #var {hardmode} {0}
+#var {vacuum} {1}
 
 #var {botpath} {w;w;w;nw;ne;e;e;e;se;nw;n;e;e;out;w;w;w;w;w;nw;nw;n;e;s;se;e;e;e;e;e;ne;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;s;sw;sw;ne;ne;n;w;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;n;ne;sw;w;w;w;w;w;w;w;nw;se;s;s;s;s;s;s;se;e;s;s;sw;u;se;e;e;e;ne;nw;w;w;w;sw;u;ne;nw;nw;nw;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;e;e;e;e;e;e;e;n;n;n;n;n;n;n;e;sw;sw;se;sw;w;w;w;w;w;nw;d;d;se;e;e}
 
