@@ -2,15 +2,25 @@
 
 #var guild sii
 
-#act {^. o O \(HP:%d/%d SP:%d/%d FO:%d/%d CON:%d/%d EN:%*\(%*\) \) O o .$} {
+#act {^. o O (HP:%d/%d SP:%d/%d FO:%d/%d CON:%d/%d EN:%*) O o .$} {
 	#var {my[hp][current]}		{%1};
 	#var {my[hp][max]}		{%2};
 	#var {my[sp][current]}		{%3};
 	#var {my[sp][max]}		{%4};
 	#var {my[gp1][current]}		{%5};
-	#var {my[gp2][current]}		{%6};
+	#var {my[gp1][max]}		{%6};
 	#var {my[control][current]}	{%7};
-	#var {my[control][max]}		{%8};
+	#var {my[control][max]}		{%8}
+}
+
+#act {^. o O (GL:%d.%d Gxp:%d FI: Brood:%d) O o . $} {
+	#var {my[gxp][per]}		{%1.%2};
+	#var {my[gxp][last]}		{%3};
+	#var {my[fi]}			{%4};
+	#var {my[brood]}		{%5};
+	#if {$mip[round] == 1} {
+		#send !malice
+	};
 	update_status
 }
 
@@ -31,6 +41,7 @@
 	#var	{my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
 	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
 	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
 	#var	{my[control][graph]}	{@graph{$my[control][current];$my[control][max]}};
 	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
 	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
@@ -41,13 +52,15 @@
 	#format {fo_max}		{%+4s} {<128>$my[gp1][max]<088>};
 	#format {co}			{%+4s} {@colscale{$my[control][current];$my[control][max]}};
 	#format {co_max}		{%+4s} {<128>$my[control][max]<088>};
-	#format {ehealth}		{%+6s} {@colscale{$enemy[hp];100}\%};
+	#format {ol}			{%+5s} {@colscale{$my[gp2][current];100}};
+	#format {ol_max}		{%+3s} {<128>$my[gp2][max]<088>};
+	#format {ehealth}		{%+7s} {@colscale{$enemy[hp];100}\%};
         #format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
         #format {corpses[truck]}	{%+2s} {$corpses[truck]};
         #format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
         #format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
-	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} FO:${fo}/${fo_max} CO:${co}/${co_max} E: ${ehealth}    IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} F:${my[gp1][graph]} C:${my[control][graph]} E:${enemy[graph]} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} FO:${fo}/${fo_max} CO:${co}/${co_max} OL:${ol}/${ol_max} E: ${ehealth}    IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} F:${my[gp1][graph]} C:${my[control][graph]} O:${my[gp2][graph]} E:${enemy[graph]} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
@@ -55,6 +68,7 @@
 #alias {corpsetrig} {
 	envelop emanating;
 	wrap;
+	cdc;
 	get coins
 }
 

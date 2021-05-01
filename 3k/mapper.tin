@@ -394,11 +394,11 @@
 /* House avoid for followers */
 #NOP Using high weight instead of avoid so paths into house will still work, but pathing will avoid it going through town
 #alias homeavoid {
-	#map at 44 {#map set roomweight 100};
+	#map at 152 {#map set roomweight 100};
 }
 
 #alias homefollow {
-	#map at 44 {#map set roomweight 1};
+	#map at 152 {#map set roomweight 1};
 }
 
 /* Area Specific Actions */
