@@ -12,7 +12,7 @@
 #act {The Mortician says: Your generous donation of } {#var {corpses[coffin]} {0}}
 #act {There are no corpses in the coffin!} {#var {corpses[coffin]} {0}}
 #act {into the coffin's protective hold!} {#math {corpses[coffin]} {$corpses[coffin] + 1}}
-#act {The coffin expels all its corpses!} {#var {corspes[coffin]} {0}}
+#act {The coffin expels all its corpses!} {#var {corpses[coffin]} {0}}
 #act {{The coffin expels (a|your selected) corpse!}} {
 	#if {$corpses[coffin] > 0} {
 		#math {corpses[coffin]} {$corpses[coffin] - 1}
