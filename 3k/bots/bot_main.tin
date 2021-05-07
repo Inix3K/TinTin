@@ -168,7 +168,7 @@ prompt >$nl$
 
 
 /* Coffin Auto-Donate */
-#var {coffinbot} {off}
+#var {coffinbot} {on}
 #act {^The coffin is full!} {
 	#if {"$coffinbot" == "on"} {
 		.stop;
