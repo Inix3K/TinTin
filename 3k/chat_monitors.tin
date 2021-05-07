@@ -3,8 +3,11 @@
 #var monitor_file {.tt/logs/3k.chat}
 
 /* Eternal Powers */
+#NOP Energy Well
+#act {^A shimmering ball of energy appears magically when %w snap} {update_chat <158>Energy Well Actived<088> by <138>%1<088>!}
+
 #NOP Refresh Room
-#act {^With a swirl of energy from %w, everything in the room looks shiny and} {update_chat %1 refreshed the room!}
+#act {^With a swirl of energy from %w, everything in the room looks shiny and} {update_chat <168>Room Refreshed<088> by <138>%1<088>!}
 
 
 /* Mud Skills */
