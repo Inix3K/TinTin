@@ -1,0 +1,19 @@
+#class {bot} {open}
+
+#var {no_loop} {1}
+#var {no_home} {1}
+#var {hardmode} {0}
+#var {vacuum} {1}
+
+#var {botpath} {w;w;w;w;w;w;w;w;w;s;s;e;e;sw;w;w;e;e;e;e;e;e;e;e;n;w;w;w;w;e;e;e;e;n;w;w;w;w;w;w;e;e;e;e;e;e;e;e;n}
+
+#act {^=M= {Mischievous ruffian|Tough looking brigand|Shady leader}} {
+	#switch {"%1"} {
+		#case {"Mischievous ruffian"}		{#var mobname ruffian};
+		#case {"Tough looking brigand"}		{#var mobname brigand};
+		#case {"Shady leader"}			{#var mobname leader}
+	};
+	_check_mob
+}
+
+#class {bot} {close}
