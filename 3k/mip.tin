@@ -494,9 +494,19 @@
 
 #ALIAS {.mipProcessGlineMonk} {
         #IF {%1 == 1} {
-                #NOP
+		#REGEX {$mip[gline][1]} {<868>Method<099>: <838>%w<099>{?:\s+}<868>Crits<099>: <{?:\d+}>%w<099>{?:\s+}<868>Stun<099>: <{?:\d+}>%w<099>{?:\s+}<868>Hide<099>: <{?:\d+}>%w<099>} {
+			#var	{monk[method]}		{&1};
+			#var	{monk[crits]}		{&2};
+			#var	{monk[stun]}		{&3};
+			#var	{monk[hide]}		{&4}
+		}
         }; #ELSEIF {%1 == 2} {
-                #NOP
+		#REGEX {$mip[gline][2]} {G2N: <838>%d<099>{?:\s+}<868>Chi Focus<099>: <{?:\d+}>%w<099>{?:\s+}<838>AE<099>: <{\d+}>%d<099>/%d%%} {
+			#var	{monk[g2n]}		{&1};
+			#var	{monk[chifocus]}	{&2};
+			#var	{monk[ae][current]}	{&3};
+			#var	{monk[ae][reset]}	{&4}
+		}
         }; #ELSE {
                 #ECHO {<171> Invalid Gline Number <088>}
         }
@@ -898,6 +908,7 @@
 			#case {"Loremaster"}		{#var {commcol} {<274>}};
 			#case {"Lottery"}		{#var {commcol} {<178>}};
 			#case {"Main"}			{#var {commcol} {<118>}};
+			#case {"Monk"}			{#var {commcol} {<238>}};
 			#case {"Newbie"}		{#var {commcol} {<138>}};
 			#case {"Notify"}		{#var {commcol} {<168>}};
 			#case {"Party"}			{#var {commcol} {<128>}};

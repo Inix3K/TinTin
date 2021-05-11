@@ -13,12 +13,18 @@
 #act {^[BOOM!] %w has eternally reached level %d!} {update_chat %0}
 
 
+/* Guilds */
+#NOP Monk
+#act {^[!ADVANCE!] %w has reached Monk Level %d.} {update_chat %0}
+
+
 /* Mud Skills */
 #NOP Farsight Tag
 #act {^You notice that %*} {update_chat %0}
 
 #NOP Lore
 #act {^You see a ghostly image of %w appear then dissolve away...} {update_chat <158>Atrifact Found By <138>%1<088>}
+
 
 /* Mob Lives */
 #NOP Crysmal
@@ -46,12 +52,14 @@
 #NOP Transmuter Reset
 #act {^Your transmuter's stone bursts with %d new colours!} {update_chat %0}
 
+
 /* Wipes */
 #NOP Player self-wife
 #act {%w screams in ultimate agony as %w tears %w very soul out.} {update_chat %0}
 
 #NOP Player wiped by wizard
 #act {3K = 3K - %w} {update_chat %0}
+
 
 /* World Drops */
 #act {^You have found %1!} {update_chat <158>World Drop Found: <138>%1<088>}

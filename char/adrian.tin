@@ -1,0 +1,7 @@
+#class {adrian} {open}
+
+/* Read in files */
+#NOP Primary Guild Files
+#read .tt/3k/guilds/monk.tin
+
+#class {adrian} {close}
