@@ -502,11 +502,31 @@
 		}
         }; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]} {G2N: <838>%d<099>{?:\s+}<868>Chi Focus<099>: <{?:\d+}>%w<099>{?:\s+}<838>AE<099>: <{\d+}>%d<099>/%d%%} {
-			#var	{monk[g2n]}		{&1};
+			#var	{monk[g2n][prev]}	{$monk[g2n][current]};
+			#var	{monk[g2n][current]}	{&1};
 			#var	{monk[chifocus]}	{&2};
 			#var	{monk[ae][current]}	{&3};
-			#var	{monk[ae][reset]}	{&4}
-		}
+			#var	{monk[ae][reset]}	{&4};
+			#math	{monk[gxp][last]}	{$monk[g2n][prev] - $monk[g2n][current]};
+			#format {monk[gxp][last_col]}	{%+3s} {$monk[gxp][last]};
+			#if {$monk[gxp][last] > 0} {
+				#math {monk[g2n][rounds]} {$monk[g2n][current] / $monk[gxp][last]}
+			};
+			#math {monk[gxp][day]}	{$monk[g2n][rounds] / 43200};
+			#math {monk[gxp][hour]}	{$monk[g2n][rounds] % 43200 / 1800};
+			#math {monk[gxp][min]}	{$monk[g2n][rounds] % 1800 / 30};
+			#math {monk[gxp][sec]}	{$monk[g2n][rounds] % 30 * 2};
+			#if {$monk[gxp][day] > 0} {
+				#var {monk[gxp][time]} {<120>${monk[gxp][day]}<020>d <120>${monk[gxp][hour]}<020>h<099>}
+			}; #elseif {$monk[gxp][hour] > 0} {
+				#var {monk[gxp][time]} {<120>${monk[gxp][hour]}<020>h <120>${monk[gxp][min]}<020>m<099>}
+			}; #elseif {$monk[gxp][min] > 0} {
+				#var {monk[gxp][time]} {<120>${monk[gxp][min]}<020>m <120>${monk[gxp][sec]}<020>s<099>}
+			}; #else {
+				#var {monk[gxp][time]} {<120>${monk[gxp][sec]}<020>s<099>}
+			}
+		};
+		#REPLACE {mip[gline][2]} {G2N: <838>%d<099>} {G2N: <838>&1<099>[<138>${monk[gxp][last_col]}<099>][${monk[gxp][time]}]}
         }; #ELSE {
                 #ECHO {<171> Invalid Gline Number <088>}
         }

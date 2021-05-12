@@ -1,7 +1,14 @@
 #class {monk} {open}
 
+/* Set Guild Variable */
 #var guild monk
 
+
+/* Initialize Variables */
+#var monk[g2n][prev] 0
+
+
+/* HP Bars */
 #act {HP: %d/%d PP: %d/%d Chi: %d/%d G2:{[\d\-]+} Mind: %d AE:%d/%d%% CF:%w} {
 	#var {my[hp][current]}	{%1};
 	#var {my[hp][max]}	{%2};
@@ -16,6 +23,8 @@
 	#var {my[cf]}		{%11}
 }
 
+
+/* Update Status Alias */
 #alias {update_status} {
 	#if {$my[hp][current] < $my[hp][max] *.8} {
 		#delay {hands1} {#send !hands} {0.5}
@@ -62,6 +71,8 @@
 	}
 }
 
+
+/* Corpse Trigger */
 #alias corpsetrig {
 	slab;
 	wrap;
