@@ -133,7 +133,8 @@
 
 /* Set truck name */
 #var truck[name] {CanisLupus}
-#format {truck[first_cap]} {%n} {$truck[name]}
+#format {truck[lower]} {%l} {$truck[name]}
+#format {truck[first_cap]} {%n} {$truck[lower]}
 
 /* Set Ammo Defaults */
 #var {ammo_buy_amount}	{5000}

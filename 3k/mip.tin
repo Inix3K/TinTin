@@ -499,7 +499,8 @@
 			#var	{monk[crits]}		{&2};
 			#var	{monk[stun]}		{&3};
 			#var	{monk[hide]}		{&4}
-		}
+		};
+		#REPLACE {mip[gline][1]} {    } {  }
         }; #ELSEIF {%1 == 2} {
 		#REGEX {$mip[gline][2]} {G2N: <838>%d<099>{?:\s+}<868>Chi Focus<099>: <{?:\d+}>%w<099>{?:\s+}<838>AE<099>: <{\d+}>%d<099>/%d%%} {
 			#var	{monk[g2n][prev]}	{$monk[g2n][current]};
@@ -526,7 +527,8 @@
 				#var {monk[gxp][time]} {<120>${monk[gxp][sec]}<020>s<099>}
 			}
 		};
-		#REPLACE {mip[gline][2]} {G2N: <838>%d<099>} {G2N: <838>&1<099>[<138>${monk[gxp][last_col]}<099>][${monk[gxp][time]}]}
+		#REPLACE {mip[gline][2]} {G2N: <838>%d<099>} {G2N: <838>&1<099>[<138>${monk[gxp][last_col]}<099>][${monk[gxp][time]}]};
+		#REPLACE {mip[gline][2]} {    } {  }
         }; #ELSE {
                 #ECHO {<171> Invalid Gline Number <088>}
         }
