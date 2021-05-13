@@ -64,9 +64,9 @@
 
 /* Truck Counter */
 #NOP Variable truck[name] and truck[first_cap] set in Juggernaut player file
-#act {{^A [jeep|truck|ambulance|tank] named $tuck[name]}} {#var corpses[truck] 0;corpsecount truck}
-#act {{$truck[first_cap] takes: (?:.*) corpse of }} {#math {corpses[truck]} {$corpses[truck] + 1}}
-#act {{$truck[first_cap] drops (?:.*)[corpse|preservation|remains]}} {
+#act {^A {jeep|truck|ambulance|tank} named $truck[name]} {#var corpses[truck] 0;corpsecount truck}
+#act {$truck[first_cap] takes: %+ corpse of } {#math {corpses[truck]} {$corpses[truck] + 1}}
+#act {$truck[first_cap] drops %+ {[corpse|preservation|remains]}} {
 	#if {$corpses[truck] > 0} {
 		#math {corpses[truck]} {$corpses[truck] - 1}
 	}
@@ -76,8 +76,6 @@
 #alias corpsecount {
 	#class {corpse_count} {open};
 	#var {corpse_cnt} {0};
-		#NOP #if {!%%3} {;
-		#NOP };
 	#act {{^(?:=I= )?[\[\(](?:.*) corpse of (?:[\w\d\s]+)\{?(\d*)\}?}} {
 			#if {%%2} {
 				#var corpse_stack %%2
