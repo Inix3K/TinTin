@@ -52,7 +52,7 @@
 
 /* Double Click to toggle scrolling method per pane */
 #event {DOUBLE-CLICKED MOUSE BUTTON ONE} {
-	#if {%0 > $scren[rows] - $split[bottom]} {
+	#if {%0 > $screen[rows] - $split[bottom]} {
 		#return
 	};
 	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
