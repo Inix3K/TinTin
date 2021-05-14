@@ -32,9 +32,9 @@
 	#switch {"%1"} {
 		#case {"garnet"}	{#var crysmal[casing] {<218>}};
 		#case {"quartz"}	{#var crysmal[casing] {<178>}};
-		#case {"sapphire"}	{#var crysmal[casing] {<248>}};
-		#case {"jade"}		{#var crysmal[casing] {<228>}};
-		#case {"spinel"}	{#var crysmal[casing] {<258>}};
+		#case {"sapphire"}	{#var crysmal[casing] {<148>}};
+		#case {"jade"}		{#var crysmal[casing] {<128>}};
+		#case {"spinel"}	{#var crysmal[casing] {<158>}};
 		#default		{#var crysmal[casing] {<099>}}
 	};
 	update_chat ${crysmal[casing]}%0
