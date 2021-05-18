@@ -10,7 +10,7 @@
 #act {^With a swirl of energy from %w, everything in the room looks shiny and} {update_chat <168>Room Refreshed<088> by <138>%1<088>!}
 
 #NOP Eternal Level Up
-#act {^[BOOM!] %w has eternally reached level %d!} {update_chat %0}
+#act {^[BOOM!] %w has eternally reached level %d!} {update_chat <168>%0<099>}
 
 
 /* Guilds */

@@ -24,7 +24,11 @@
 	#read .tt/3k/draw.tin
 }
 #if {"$world" != ""} {
-	#regex {$world} {AW} {} {load3k}
+	#regex {$world} {AW} {
+		#NOP
+	} {
+		load3k
+	}
 }
 
 #sub {~\t} {       }

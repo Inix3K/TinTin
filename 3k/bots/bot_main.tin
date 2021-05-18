@@ -148,7 +148,7 @@ prompt >$nl$
 /* Skip room on Mob */
 #NOP #act {Crikey} {#var foundplayer 1}
 
-#alias {v %1} {#if {%1 == "on"} {#var vacuum 1} {#var vacuum 0}}
+#alias {v %1} {#if {"%1" == "on"} {#var vacuum 1} {#var vacuum 0}}
 
 #act {#PATH WALK: #END OF PATH} {
 	#if {$no_loop || !$foundmob} {
@@ -168,7 +168,7 @@ prompt >$nl$
 
 
 /* Coffin Auto-Donate */
-#var {coffinbot} {on}
+#var {coffinbot} {off}
 #act {^The coffin is full!} {
 	#if {"$coffinbot" == "on"} {
 		.stop;

@@ -636,6 +636,10 @@
 	#REGEX {%0} {~%w~takes a deep breath and prepares to perform a song for %w.} {#var mipgag 1};
 	#REGEX {%0} {~%w~sings soulfully} {#var mipgag 1};
 
+	#NOP Breed;
+	#REGEX {%0} {looks visibly weaker!} {#var mipgag 1};
+	#REGEX {%0} {looks more vulnerable!} {#var mipgag 1};
+
 	#NOP Changelings;
 	#REGEX {%0} {~The~%*'s wounds close rapidly.} {#var mipgag 1};
 	#REGEX {%0} {~The~%* performs a rather incomprehensible action on the corpse.} {#var mipgag 1};

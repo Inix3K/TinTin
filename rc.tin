@@ -65,10 +65,10 @@
                         #format {ses_name} {%.${ses_len}s} {%0};
                         #var {mud} {AW}
                 } {
-                        #ses {%0} {3k.org} {3000};
-                        #var {ses_name} {%0};
-                        #var {mud} {3k}
-                }
+			#ses {%0} {3k.org} {3000};
+			#var {ses_name} {%0};
+			#var {mud} {3k}
+		}
         };
         $ses_name;
         #textin .tt/.pass
