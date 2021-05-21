@@ -79,7 +79,9 @@ prompt >$nl$
 				#path walk
 			} {
 				.pause;
-				kill $mobname;
+				#if {"$mobname" != ""} {
+					kill $mobname
+				};
 				#var foundmob 1;
 				#if {$itemfound && $vacuum} {
 					get all
