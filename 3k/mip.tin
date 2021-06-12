@@ -492,6 +492,11 @@
         }
 }
 
+#NOP Initialization for Monk Gline Variables
+#var monk[gxp][count] 50
+#var monk[gxp][average] 0
+#list {monk[gxp][history][list]} create {}
+
 #ALIAS {.mipProcessGlineMonk} {
         #IF {%1 == 1} {
 		#REGEX {$mip[gline][1]} {<868>Method<099>: <838>%w<099>{?:\s+}<868>Crits<099>: <{?:\d+}>%w<099>{?:\s+}<868>Stun<099>: <{?:\d+}>%w<099>{?:\s+}<868>Hide<099>: <{?:\d+}>%w<099>} {
@@ -509,9 +514,21 @@
 			#var	{monk[ae][current]}	{&3};
 			#var	{monk[ae][reset]}	{&4};
 			#math	{monk[gxp][last]}	{$monk[g2n][prev] - $monk[g2n][current]};
+			#list {monk[gxp][history][list]} {size} {monk[gxp][history][size]};
+			#if {$monk[gxp][history][size] >= $monk[gxp][count]} {
+				#list {monk[gxp][history][list]} del 1
+			};
+			#list {monk[gxp][history][list]} add $monk[gxp][last];
+			#var monk[gxp][history][simple] $monk[gxp][history][list];
+			#list monk[gxp][history][simple] simplify;
+			#var monk[gxp][history][total] 0;
+			#foreach {$monk[gxp][history][simple]} {cnt} {
+				#math {monk[gxp][history][total]} {$monk[gxp][history][total] + $cnt}
+			};
+			#math {monk[gxp][average]} {$monk[gxp][history][total] / $monk[gxp][history][size]};
 			#format {monk[gxp][last_col]}	{%+3s} {$monk[gxp][last]};
-			#if {$monk[gxp][last] > 0} {
-				#math {monk[g2n][rounds]} {$monk[g2n][current] / $monk[gxp][last]}
+			#if {$monk[gxp][average] > 0} {
+				#math {monk[g2n][rounds]} {$monk[g2n][current] / $monk[gxp][average]}
 			};
 			#math {monk[gxp][day]}	{$monk[g2n][rounds] / 43200};
 			#math {monk[gxp][hour]}	{$monk[g2n][rounds] % 43200 / 1800};
