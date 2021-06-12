@@ -34,7 +34,7 @@
 	     $my[hp][current] > $my[hp][max] * 0.5} {
 		#delay {enervate} {#send !enervate 50} {0.5}
 	};
-	#if {$my[gp2][current] < $my[gp2][max] * 0.5 && $my[gp1][current] > 100} {
+	#if {$my[gp2][current] < $my[gp2][max] * 0.1 && $my[gp1][current] > 100} {
 		#math {focus_amt} {$my[gp1][max] * 0.5};
 		#delay {focus} {#send !focus 100} {0.5}
 	};
