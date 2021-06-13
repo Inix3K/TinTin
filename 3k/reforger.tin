@@ -20,7 +20,7 @@
 			#case {"loads"} {#var reforge_amt lots};
 			#case {"lots"} {#var reforge_amt some};
 			#case {"some"} {#var reforge_amt little};
-			#case {"little"} {#NOP}
+			#case {"little"} {#var reforged yes}
 		}
 	}
 }
