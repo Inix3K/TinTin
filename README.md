@@ -61,7 +61,7 @@ cp .tt/scripts/.profile ~/
 Create bin folder and copy scripts to it
 ```
 mkdir bin
-cp .tt/scripts/\* ~/bin/
+cp .tt/scripts/* ~/bin/
 ```
 
 Save your 3k password
@@ -74,9 +74,9 @@ vi .pass
 Make your initial character file
 ```
 cd 3k/char
-vi \<player\_name\>.tin
+vi <player_name>.tin
 	* i   (enters Insert mode)
-	* #read .tt/3k/guilds/\<guild\_name\>.tin
+	* #read .tt/3k/guilds/<guild_name>.tin
 	* Esc (this will exit Insert mode)
 	* ZZ  (this will save and close the file)
 * I.E.: For jugger
