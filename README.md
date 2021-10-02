@@ -37,7 +37,7 @@ cd tt/src
 sudo make install
 ```
 
-Change directory back to home directory
+Change directory back to home directory<br/>
 `cd`
 
 Install git and tmux
