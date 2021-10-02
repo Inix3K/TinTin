@@ -130,7 +130,7 @@
 	};
 	#send !rest;
 	#send !wrap;
-	#send !bury corpse;
+	#NOP #send !bury corpse;
 	#send !get coins;
 	#send !get component;
 	#NOP #send !pet bela

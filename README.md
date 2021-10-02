@@ -62,12 +62,19 @@ Save your 3k password
 * _Use any text editor you like here, I use VIM.  Just create the file, put your password in it, and save it.  Nothing else in the file._
 
 Make your initial character file
-* _I will update this later for guild files instead of you having to know my characters_
-* Copy a character file of the same guild as yours for some initial function, or create your own specific character file
+* cd 3k/char
+* vi \<player\_name\>.tin
+	* i   (enters Insert mode)
+	* #read .tt/3k/guilds/\<guild\_name\>.tin
+	* Esc (this will exit Insert mode)
+	* ZZ  (this will save and close the file)
 *	I.E.: For jugger
-	* cp char/inix.tin char/\<your\_player\_name\>.tin
+	* vi inix.tin
+	* #read .tt/3k/guilds/juggernaut.tin
+	* Esc
+	* ZZ
 	* _NOTE:  connect alias will assume MUD is 3K.  For 3S, append "3s" to your character file name._
-		* _I.E.: cp char/inix.tin char/inix3s.tin_
+		* _I.E.: vi inix3s.tin_
 
 ## Connect to the MUD
 Now that you have the initial setup done, it's time to get playing!<br/>
