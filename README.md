@@ -3,7 +3,7 @@
 ## Required Version
 * TinTin++ version 2.01.90 or higher required
 
-    Certain aspects are not backwards compatible with older versions of TinTin++ due to syntax changes within the client.  Notably, the #map and #showme commands.
+    Certain aspects are not backwards compatible with older versions of TinTin++ due to syntax changes within the client.  Notably, the `#map` and `#showme` commands.
 
 ## Initial Setup
 
@@ -102,7 +102,7 @@ TMUX Connection Aliases:
 	* I.E.: `trcx 3s`:  reconnect to session named '3s' while leaving other sessions attached.
 
 Now that you're at the TinTin++ screen, connect to your character
-* `connect <player_name>:`	This will attempt to log you into 3K with the player name you pass and your password saved in .tt/.pass
+* `connect <player_name>`:	This will attempt to log you into 3K with the player name you pass and your password saved in .tt/.pass
 	* If you want to connect to 3S, append '3s' to the end of the player name.
 		* I.E.:  `connect inix3s`
 		* Once the alias detects '3s' as the last two characters of the player name, it will connect to 3s instead of 3k, and will load the 3s character file.  In this example, it will load '.tt/char/inix3s.tin' instead of '.tt/char/inix.tin'
