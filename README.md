@@ -79,7 +79,7 @@ vi \<player\_name\>.tin
 	* #read .tt/3k/guilds/\<guild\_name\>.tin
 	* Esc (this will exit Insert mode)
 	* ZZ  (this will save and close the file)
-*	I.E.: For jugger
+* I.E.: For jugger
 	* vi inix.tin
 	* #read .tt/3k/guilds/juggernaut.tin
 	* Esc
@@ -90,7 +90,7 @@ vi \<player\_name\>.tin
 
 ## Connect to the MUD
 Now that you have the initial setup done, it's time to get playing!<br/>
-Type "cd" to return to the home directory
+Type `cd` to return to the home directory
 
 TMUX Connection Aliases:
 * `3k`:  This will start a tmux session named '3K' and open TinTin++ with rc.tin configuration file
