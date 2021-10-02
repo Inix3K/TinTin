@@ -86,7 +86,7 @@ vi <player_name>.tin
 	* ZZ
 ```
 _NOTE:  connect alias will assume MUD is 3K.  For 3S, append "3s" to your character file name._<br/>
-	`_I.E.: vi inix3s.tin_`
+	_I.E.: `vi inix3s.tin`_
 
 ## Connect to the MUD
 Now that you have the initial setup done, it's time to get playing!<br/>
