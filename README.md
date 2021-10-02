@@ -46,10 +46,10 @@ sudo apt install git
 sudo apt install tmux
 ```
 
-Clone the git
+Clone the git<br/>
 `git clone https://github.com/Inix3K/TinTin`
 
-Copy git repo into .tt folder (this will allow you to copy files from the repo and allow manual overwrite of local files)
+Copy git repo into .tt folder (this will allow you to copy files from the repo and allow manual overwrite of local files)<br/>
 `cp -r TinTin .tt`
 
 Copy .profile to home directory and initialize it.  This adds aliases to connect to TMUX (explained below).
@@ -74,7 +74,6 @@ vi .pass
 Make your initial character file
 ```
 cd 3k/char
-```
 vi \<player\_name\>.tin
 	* i   (enters Insert mode)
 	* #read .tt/3k/guilds/\<guild\_name\>.tin
