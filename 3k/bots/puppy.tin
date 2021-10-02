@@ -5,7 +5,7 @@
 #var {hardmode} {0}
 #var {vacuum} {1}
 
-#var {botpath} {n;e;w;s}
+#var {botpath} {n;climb gate;n;w;n;n;e;n;n;e;w;s;s;w;s;s;e;s;climb gate;s}
 
 #act {^=M= {Some moron with a lead pipe|Rocko the redneck}} {
 	#var mobname human;
