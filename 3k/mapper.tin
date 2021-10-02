@@ -571,6 +571,9 @@
 	#map goto 22485
 }
 
+#NOP Ravenloft
+#act {^You find yourself complete once more.$} {#map goto 4315}
+
 #NOP Ravenloft Castle
 #act {^You warily step out onto the cold, damp ground.} {#map goto 20756}
 #act {^You then step out of the coach and find yourself back} {#map goto 4631}
