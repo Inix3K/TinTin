@@ -73,7 +73,7 @@ vi .pass
 
 Make your initial character file
 ```
-cd 3k/char
+cd char
 vi <player_name>.tin
 	* i   (enters Insert mode)
 	* #read .tt/3k/guilds/<guild_name>.tin
