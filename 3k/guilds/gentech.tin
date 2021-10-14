@@ -2,6 +2,8 @@
 
 #var guild gentech
 
+
+#NOP genset hpbar HP:$hp$ SP:$sp$ PU:$pu$ CPC:$cpc$ E:$enemy$$nl$G:$gexp$/$g2n$($g2n-pct$%) RC:$rc$ Bias:$bias$ TS:$tslide$($reset-pct$%)$nl$EField[$efield$ min] EDNA[$edna$] Synth[$synthorg$] EFF:$gen-eff$|$tech-eff$ HG: $hypergen$($hypergent$)
 #act {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d/%d E:%w} {
 	#var {my[hp][current]}		{%1};
 	#var {my[hp][max]}		{%2};
