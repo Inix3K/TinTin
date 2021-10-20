@@ -1,9 +1,9 @@
-remotevaf setplan;yes
+remotevaf setplan
+yes
 @higreen: Tool        Description     Source@
 @hiblack:---------------------------------------------------------------------------@
 @higreen: 8Inix@@white:       Magic 8-Ball    @@green:Self created.  Answers from@
 @green:                             Wikipedia: Magic 8-Ball@
-@higreen: IDefine@@white:     Definitions     @@green:New Oxford American Dictionary@
 @white: @
 @hired:                              *@@white: Whitelisted @@red:*@
 @white: @

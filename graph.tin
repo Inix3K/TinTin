@@ -1,8 +1,7 @@
 #NOP https://tintin.sourceforge.io/manual/colors.php
 #NOP #showme {<AFA> <AEA> <BEA> <BDA> <CDA> <DCA> <DBA> <EBA> <EAA> <FAA> }
 
-#function {graph}
-{
+#function {graph} {
 	#regex {%1} {%d} {
 		#math per {100.0*%1/%2};
 		#format {per} {%d} {$per};

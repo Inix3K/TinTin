@@ -53,7 +53,6 @@ prompt >$nl$
 	#var bot 1;
 	#var halt 0;
 	#class {xbot} {open};
-	#delay {4};
 	#act {{^=S=}} {xx} {1};
 	#alias {xx} {
 		#var stepping 1;

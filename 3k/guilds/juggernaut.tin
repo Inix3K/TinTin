@@ -1,7 +1,11 @@
 #class {juggernaut} {open}
 
+/* Variable Initialization */
 #var guild juggernaut
 #var clan 0
+#var nukes 0
+#var reset 0
+
 
 #NOP Jugger HP Bar Configuration
 #NOP hp set HP:[$HP$] SP:[$SP$] S:[$STIM$%] HE:[$HEAT$%] HT:[$HITS$] M/C:[$NUKES$/$MNUKES$][$CP$/$MCP$][$RESET$%] G:$GXP$%$N$Ammo:[$AMMO$] SHP:[$SHP$] SNL:[$SNL$] SM:[$SMD$] SA:[$SMF$] SD:[$SAF$] E:$STATUS$
@@ -32,11 +36,9 @@
 	};
 	#if {$reset >= 95} {
 		#if {$clan > 0} {
-			frenzy
-		}; #elseif {$nukes > 0 && $mip[round] > 0 && "$mobname" != ""} {
-			fire $nukes $mobname
-		}; #elseif {$nukes > 0 %% $mip[round] > 0 && "$mobname" == ""} {
-			fire $nukes $enemy[lc]
+			#send !frenzy
+		}; #elseif {$nukes > 0 && $mip[round]} {
+			fire $nukes
 		}
 	}
 }
@@ -75,13 +77,13 @@
 #alias {update_status} {
 	#if {"$cooler" == "on" || $corpses[cooler] > 0} {
 		#format {sb1_cooler} {%+2s} {$corpses[cooler]};
-		#var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
+		#var {sb1_cooler} { CL:<139>$sb1_cooler<088>}
 	} {
 		#var {sb1_cooler} {}
 	};
 	#if {"$freezer" == "on" || $corpses[freezer] > 0} {
 		#format {sb2_freezer} {%+2s} {$corpses[freezer]};
-		#var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
+		#var {sb2_freezer} { FZ:<139>$sb2_freezer<088>}
 	} {
 		#var {sb2_freezer} {}
 	};
@@ -106,8 +108,8 @@
 	#format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
 	#format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
 	#if {"$draw[hpbar]" == "on"} {
-		#showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max ST:   $gp1\%    G:$gxp_col\%  N: $nukes/$clan/$reset\%   E:$ehealth\%    IC:<130>${corpses[inventory]}<088> TC:<130>${corpses[truck]}<088>${sb1_cooler}} {-4};
-		#showme {HP:${my[hp][graph]}  S:${my[sp][graph]} ST:${my[gp1][graph]} G:${gxp_graph} SH:${shp_graph}  E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+		#showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max ST:   $gp1\%    G:$gxp_col\%  N: $nukes/$clan/$reset\%   E:$ehealth\%    IC:<139>${corpses[inventory]}<088> TC:<139>${corpses[truck]}<088>${sb1_cooler}} {-4};
+		#showme {HP:${my[hp][graph]}  S:${my[sp][graph]} ST:${my[gp1][graph]} G:${gxp_graph} SH:${shp_graph}  E:${enemy[graph]} CF:<139>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	};
 	#if {"$draw[gline]" == "on"} {
 		#showme {$mip[gline][1]  $mip[gline][2]} {-6}

@@ -3,24 +3,26 @@
 /* Set Guild Variable*/
 #var guild elemental
 
+#NOP  HP:3424/3162 C:100%  NRG:1209/1219(15)  SP:526/526  S:2(84%) G2N:106k  T:a Lee:66%
 
 /* HP Bars */
-#act {{ HP:(\d+)/(\d+) C:(\d+)\%  NRG:(\d+)/(\d+)\((\d+)([\+\-]*)\)  SP:(\d+)/(\d+)  S:(\d+)\((\d+)\%\) G2N:(\d+)(\w+)(?:   T:)?([\w\s]*)\:?(\d*)\%?}} {
-	#var my[hp][current]		{%2};
-	#var my[hp][max]		{%3};
-	#var my[cohesion]		{%4};
-	#var my[gp1][current]		{%5};
-	#var my[gp1][max]		{%6};
-	#var my[emit][level]		{%7};
-	#var my[emit][mod]		{%8};
-	#var my[sp][current]		{%9};
-	#var my[sp][max]		{%10};
-	#var my[blasts]			{%11};
-	#var my[reset]			{%12};
-	#var my[g2n]			{%13};
-	#var g2n_mod			{%14};
-	#var enemy[name]		{%15};
-	#var enemy[hp]			{%16}
+#act {^ HP:%d/%d C:%d\%  NRG:%d/%d(%d)  SP:%d/%d  S:%d(%d\%) G2N:%d%w  T:{[\w\s]+}:%d\%} {
+#NOP #act {{ HP:(\d+)/(\d+) C:(\d+)\%  NRG:(\d+)/(\d+)\((\d+)\(?[\+\-]*)\)?  SP:(\d+)/(\d+)  S:(\d+)\((\d+)\%\) G2N:(\d+)(\w+)(?:   T:)?([\w\s]*)\:?(\d*)\%?}};
+	#var my[hp][current]		{%1};
+	#var my[hp][max]		{%2};
+	#var my[cohesion]		{%3};
+	#var my[gp1][current]		{%4};
+	#var my[gp1][max]		{%5};
+	#var my[emit][level]		{%6};
+	#NOP #var my[emit][mod]		{%8};
+	#var my[sp][current]		{%7};
+	#var my[sp][max]		{%8};
+	#var my[blasts]			{%9};
+	#var my[reset]			{%10};
+	#var my[g2n]			{%11};
+	#var g2n_mod			{%12};
+	#var enemy[name]		{%13};
+	#var enemy[hp]			{%14}
 }
 
 

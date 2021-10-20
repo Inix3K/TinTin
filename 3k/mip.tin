@@ -425,7 +425,8 @@
 		#REGEX {$mip[gline][2]} {Nukes: [%d/%d]<099> Reset: [%d\%]} {
 			#VAR {nukes}		{&1};
 			#VAR {nukes_max}	{&2};
-			#VAR {reset}		{&3}
+			#VAR {reset}		{&3};
+			#VAR {suit}		{&4}
 		}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
