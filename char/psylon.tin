@@ -4,6 +4,9 @@
 #NOP Primary Guild File
 #read .tt/3k/guilds/elemental.tin
 
+#NOP Professions
+#read .tt/3k/reforger.tin
+
 #NOP Numbers Highlight
 #sub {[Dmg]: You hit %* %d time%*for %d damage.} {<118>[DMG]:<088> You hit %1 %2 time%3for <118>%4<088> damage.}
 
