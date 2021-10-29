@@ -202,12 +202,7 @@
 #alias corpsetrig {#nop}
 
 #NOP Fire all nukes at current stepper mob or current enemy
-#alias ff {
-	#if {"$mobname" != ""} {
-		#send !fire $nukes $mobname
-	}; #else {
-		#send !fire $nukes $enemy[lc]
-	}
-}
+#alias ff {fire $nukes}
+
 
 #class {juggernaut} {close}

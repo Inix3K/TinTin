@@ -342,7 +342,8 @@
 			#VAR {my[shrouds]}		{&6};
 			#VAR {my[reset]}		{&7}
 		};
-		#REGEX {$mip[gline][2]} {G2N: <%d>%d<099>}		{#VAR {my[g2n]}			{&2}}
+		#REGEX {$mip[gline][2]} {G2N: <%d>%d<099>}		{#VAR {my[g2n]}			{&2}};
+		#REPLACE {mip[gline][2]} {Stones/Waves/Shrouds} {B/W/S}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}

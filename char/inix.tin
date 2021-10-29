@@ -24,4 +24,6 @@ rtick
 #sub {[Dmg]: You hit %* %d time%*for %d damage.} {<118>[DMG]:<088> You hit %1 %2 time%3for <118>%4<088> damage.}
 #sub {[AtSys]: Kerensky hit %*. \{%d\}} {<118>[AtSys]:<088> Kerensky hit %1. \{<218>%2<088>\}}
 
+#gag {%* hits you for %d damage!$}
+
 #class {inix} {close}
