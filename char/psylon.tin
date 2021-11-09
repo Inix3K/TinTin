@@ -10,4 +10,7 @@
 #NOP Numbers Highlight
 #sub {[Dmg]: You hit %* %d time%*for %d damage.} {<118>[DMG]:<088> You hit %1 %2 time%3for <118>%4<088> damage.}
 
+#NOP Gags
+#gag {^You delete }
+
 #class {psylon} {close}
