@@ -17,7 +17,13 @@
 		#case {"Azrael"}		{#var mobname azrael};
 		#case {"Gargamel"}		{#var mobname gargamel}
 	};
-	_check_mob
+	#if {"$mobname" == "smurf"} {
+		#REGEX {"%0"} {Papa Smurf} {
+			#NOP
+		} {
+			_check_mob
+		}
+	}
 }
 
 #act {=M= Papa Smurf <?>} {mission ask;mission accept}
