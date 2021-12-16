@@ -54,7 +54,7 @@
         #format {corpses[coffin]}  {%+2s} {$corpses[coffin]};
         #format {corpses[freezer]} {%+2s} {$corpses[freezer]};
         #showme {<088>HP:$hp/$hp_max SP:$sp/$sp_max K:$gp1/$gp1_max  V:   $gp2\%    G: $gxp_col\%    E:$ehealth\%    IC:<130>${corpses[inventory]}<088> ${sb1_cooler}} {-4};
-        #showme {H:${my[hp][graph]} S:${my[sp][graph]} K:${my[gp1][graph]} V:${my[gp2][graph]} G:${gxp_graph} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+        #showme {H:${my[hp][graph]} S:${my[sp][graph]} K:${my[gp1][graph]} V:${my[gp2][graph]} G:${my[gxp][graph]} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
