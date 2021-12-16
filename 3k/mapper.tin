@@ -273,7 +273,16 @@
 }
 
 #alias {go} {
-	#map run {{roomnote} {%0%*}}
+	#if {"%1" == "home"} {
+		#if {"%2" == ""} {
+			#map run {{roomnote} {home}}
+		} {
+			#map run {{roomnote} {resid}};
+			#delay {gohome} {home %2} {2}
+		}
+	} {
+		#map run {{roomnote} {%0%*}}
+	}
 }
 
 #alias {mapgo} {#map goto {roomnote} {%0}}
