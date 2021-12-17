@@ -23,7 +23,8 @@
 		} {
 			_check_mob
 		}
-	}
+	};
+	_check_mob
 }
 
 #act {=M= Papa Smurf <?>} {mission ask;mission accept}
