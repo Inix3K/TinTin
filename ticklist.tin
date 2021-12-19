@@ -1,7 +1,6 @@
 #class {ticklist} {open}
 
-#alias {ticklist}
-{
+#alias {ticklist} {
         #info tickers save;
 
         #echo {<128>%-20s %+20s %+20s} {Name} {Interval} {Remaining};
