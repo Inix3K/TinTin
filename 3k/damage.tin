@@ -65,7 +65,7 @@
 }
 
 /* Alias to reset damage variables */
-#alias {dmgrest} {
+#alias {dmgreset} {
 	#var dmg[rnd][cur] 0;
 	#var dmg[rnd][tot] 0;
 	#var dmg[max][hit] 0;
