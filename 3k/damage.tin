@@ -46,7 +46,7 @@
 
 /* Alias to display dmg data */
 #alias {dmg} {
-	#echo {<128>%-6s %+9s %+9s} {Rounds} {Average} {Max};
+	#echo {<128>%-6s %+9s %+9s} {Rounds} {Average} {Maximum};
 
 	#draw Yellow scroll line 1 1 1 26;
 
