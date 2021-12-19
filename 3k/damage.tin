@@ -53,5 +53,14 @@
 	#echo {%+6s %+9s %+9s} {$dmg[rnd][tot]} {$dmg[avg]} {$dmg[max]}
 }
 
+/* Alias to reset damage variables */
+#alias {dmgrest} {
+	#var dmg[rnd][cur] 0
+	#var dmg[rnd][tot] 0
+	#var dmg[max] 0
+	#var dmg[avg] 0
+	#var dmg[cur] 0
+	#var dmg[tot] 0
+}
 
 #class {damage} {close}
