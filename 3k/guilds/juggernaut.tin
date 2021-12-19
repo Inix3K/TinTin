@@ -164,6 +164,8 @@
 }
 
 /* CREPORT */
+
+
 #nop #act {{\[([\w\s\Q/(\\\)\'\,-<\E\{\}\.]+)\] \[(\s*)(\d+)\] \[(\s*)(\d+)\]}}
 #act {[%1] [%2] [%3] $} {
 	#format {cr_class} {%p} {%2};
@@ -171,7 +173,7 @@
 	#if {$cr_rnds == 0} {
 		#var {cr_hr} {Undefined}
 	} {
-		#math {cr_hr} {1.0*${cr_class}/${cr_rnds}*1800};
+		#math {cr_hr} {1.0*${cr_class}/${cr_rnds}*1800*.8};
 		#format {cr_hr} {%d} {${cr_hr}};
 		#format {cr_hr} {%g} {${cr_hr}}
 	};

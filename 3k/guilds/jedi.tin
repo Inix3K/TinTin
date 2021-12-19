@@ -50,7 +50,7 @@
 	#format {corpses_cof}	{%+2s} {<138>$corpses[coffin]<088>};
 	#format {corpses_fz}	{%+2s} {<138>$corpses[freezer]<088>};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6};
-	#showme {HP:$hp/$hp_max SP:$sp/$sp_max C:   $gp1\% F:   $gp2\%   G:$gxp\%    E:$ehealth\%    IC:$corpses_inv$sb1_cooler} {-4};
+	#showme {HP:$hp/$hp_max SP:$sp/$sp_max C:   $gp1\%    F:   $gp2\%   G:$gxp\%    E:$ehealth\%    IC:$corpses_inv$sb1_cooler} {-4};
 	#showme {H:$my[hp][graph] S:$my[sp][graph] C:$my[gp1][graph] F:$my[gp2][graph] G:$my[gxp][graph] E:$enemy[graph] CF:$corpses_cof$sb2_freezer} {-3};
 }
 

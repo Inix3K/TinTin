@@ -3,5 +3,6 @@
 /* Read in files */
 #NOP Primary Guild File
 #read .tt/3k/guilds/cyborg.tin
+#read .tt/3k/fodoor.tin
 
 #class {tesla} {close}

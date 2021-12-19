@@ -72,10 +72,18 @@
 	#if {$bot && $idle > $IdleLimit} {
 		.stop;
 		#unvar bot;
-		#delay {gohome} {go home} {100}
+		#delay {gohome} {gohome_check} {10}
 	};
 	update_caption
 } {1}
+
+#alias {gohome_check} {
+	#if {$mip[round] == 0} {
+		go home
+	} {
+		#delay {gohome} {gohome_check} {10}
+	}
+}
 
 #EVENT {RECEIVED INPUT} {
 	#var idle 0;
