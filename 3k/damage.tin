@@ -1,0 +1,57 @@
+#class {damage} {open}
+
+#NOP This file assumes you have the numbers VAF and are using mip.tin
+#NOP It will highlight the damage portion of the numbers output and track numbers data
+
+/* Set numbers ansi for tracking */
+#NOP aset numbers_pref [31;1m[Dmg]: [0m
+
+/* Hightlight Numbers */
+#sub {[Dmg]: You hit %* %d time%*for %d damage.} {<118>[DMG]:<088> You hit %1 %2 time%3for <118>%4<088> damage.}
+
+/* Initialize variables */
+#var dmg[rnd][cur] 0
+#var dmg[rnd][tot] 0
+#var dmg[max] 0
+#var dmg[avg] 0
+#var dmg[cur] 0
+#var dmg[tot] 0
+
+/* Action to capture dmg msg */
+#act {[Dmg]: You hit %* %d time%*for %d damage.} {
+	#NOP Determine if this is an additional dmg msg for the same or different rnd;
+	#if {$dmg[rnd][cur] == $mip[rnd]} {
+		#NOP Additional dmg msg in same rnd, add to rnd total;
+		#math {dmg[cur]} {$dmg[cur] + %4}
+	} {
+		#NOP Current rnd differs from previous round;
+		#NOP determine max rnd dmg based on previous rnd;
+		#if {$dmg[cur] > $dmg[max]} {
+			#var dmg[max] $dmg[cur]
+		};
+		#NOP Set current rnd to rnd counter from MIP and increment total rnds;
+		#math {dmg[rnd][tot]} {$dmg[rnd][tot] + 1};
+		#var dmg[rnd][cur] $mip[round];
+
+		#NOP Set dmg value for new rnd;
+		#var dmg[cur] %4;
+	};
+
+	#NOP Add dmg for current msg to the total;
+	#math {dmg[tot]} {$dmg[tot] + %4};
+
+	#NOP Calculate new average;
+	#math {dmg[avg]} {$dmg[tot]/$dmg[rnd][tot]}
+}
+
+/* Alias to display dmg data */
+#alias {dmg} {
+	#echo {<128>%-6s %+9s %+9s} {Rounds} {Average} {Max};
+
+	#draw Yellow scroll line 1 1 1 26;
+
+	#echo {%+6s %+9s %+9s} {$dmg[rnd][tot]} {$dmg[avg]} {$dmg[max]}
+}
+
+
+#class {damage} {close}
