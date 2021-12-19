@@ -10,6 +10,7 @@
 #read .tt/api/stocks.tin
 
 #NOP Additional Inix utility files
+#read .tt/3k/damage.tin
 #read .tt/3k/eternal.tin
 #read .tt/3k/fodoor.tin
 #read .tt/3k/puppy.tin
