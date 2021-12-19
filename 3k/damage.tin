@@ -5,6 +5,7 @@
 
 /* Set numbers ansi for tracking */
 #NOP aset numbers_pref [31;1m[Dmg]: [0m
+#alias {dmgaset} {#send {aset numbers_pref [31;1m[Dmg]: [0m}}
 
 /* Hightlight Numbers */
 #sub {[Dmg]: You hit %* %d time%*for %d damage.} {<118>[DMG]:<088> You hit %1 %2 time%3for <118>%4<088> damage.}
@@ -12,29 +13,39 @@
 /* Initialize variables */
 #var dmg[rnd][cur] 0
 #var dmg[rnd][tot] 0
-#var dmg[max] 0
+#var dmg[max][hit] 0
+#var dmg[max][rnd] 0
+#var dmg[cur][hit] 0
+#var dmg[cur][rnd] 0
 #var dmg[avg] 0
-#var dmg[cur] 0
 #var dmg[tot] 0
 
 /* Action to capture dmg msg */
 #act {[Dmg]: You hit %* %d time%*for %d damage.} {
+	#NOP Set current hit dmg;
+	#var dmg[cur][hit] %4;
+
 	#NOP Determine if this is an additional dmg msg for the same or different rnd;
 	#if {$dmg[rnd][cur] == $mip[rnd]} {
 		#NOP Additional dmg msg in same rnd, add to rnd total;
-		#math {dmg[cur]} {$dmg[cur] + %4}
+		#math {dmg[cur][rnd]} {$dmg[cur][rnd] + $dmg[cur][hit]}
 	} {
 		#NOP Current rnd differs from previous round;
-		#NOP determine max rnd dmg based on previous rnd;
-		#if {$dmg[cur] > $dmg[max]} {
-			#var dmg[max] $dmg[cur]
-		};
 		#NOP Set current rnd to rnd counter from MIP and increment total rnds;
 		#math {dmg[rnd][tot]} {$dmg[rnd][tot] + 1};
 		#var dmg[rnd][cur] $mip[round];
 
-		#NOP Set dmg value for new rnd;
-		#var dmg[cur] %4;
+		#var dmg[cur][rnd] $dmg[cur][hit]
+	};
+
+	#NOP Determine if max hit;
+	#if {$dmg[cur][hit] > $dmg[max][hit]} {
+		#var dmg[max][hit] $dmg[cur][hit]
+	};
+
+	#NOP Determine max rnd dmg based on previous rnd;
+	#if {$dmg[cur][rnd] > $dmg[max][rnd]} {
+		#var dmg[max][rnd] $dmg[cur][rnd]
 	};
 
 	#NOP Add dmg for current msg to the total;
@@ -46,20 +57,22 @@
 
 /* Alias to display dmg data */
 #alias {dmg} {
-	#echo {<128>%-6s %+9s %+9s} {Rounds} {Average} {Maximum};
+	#echo {<128>%-6s %+9s %+9s %+9s} {Rounds} {Average} {Max Hit} {Max Rnd};
 
-	#draw Yellow scroll line 1 1 1 26;
+	#draw Yellow scroll line 1 1 1 36;
 
-	#echo {%+6s %+9s %+9s} {$dmg[rnd][tot]} {$dmg[avg]} {$dmg[max]}
+	#echo {%+6s %+9s %+9s %+9s} {$dmg[rnd][tot]} {$dmg[avg]} {$dmg[max][hit]} {$dmg[max][rnd]}
 }
 
 /* Alias to reset damage variables */
 #alias {dmgrest} {
 	#var dmg[rnd][cur] 0;
 	#var dmg[rnd][tot] 0;
-	#var dmg[max] 0;
+	#var dmg[max][hit] 0;
+	#var dmg[max][rnd] 0;
+	#var dmg[cur][hit] 0;
+	#var dmg[cur][rnd] 0;
 	#var dmg[avg] 0;
-	#var dmg[cur] 0;
 	#var dmg[tot] 0
 }
 
