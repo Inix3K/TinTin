@@ -26,7 +26,7 @@
 	#var dmg[cur][hit] %4;
 
 	#NOP Determine if this is an additional dmg msg for the same or different rnd;
-	#if {$dmg[rnd][cur] == $mip[rnd]} {
+	#if {$dmg[rnd][cur] == $mip[round]} {
 		#NOP Additional dmg msg in same rnd, add to rnd total;
 		#math {dmg[cur][rnd]} {$dmg[cur][rnd] + $dmg[cur][hit]}
 	} {
