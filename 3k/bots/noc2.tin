@@ -5,28 +5,37 @@
 #var {hardmode} {0}
 #var {vacuum} {1}
 
+#NOP Alignment of Enemies to kill
+#NOP Use: good, evil, or all
+#var {alignment} {evil}
+
 #var {botpath} {n;e;s;s;se;se;se;ne;w;nw;e;e;e;ne;w;w;w;w;w;n;e;e;e;e;e;e;e;se;s;se;sw;ne;nw;ne;nw;e;ne;w;w;w;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;e;nw;w;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;nw;w;w;w;w;w;ne;e;e;e;nw;w;n;sw;sw;sw;sw;s;s;w;w;n;n;n;nw;n;ne;climb;u;d;d;sw;s;s;s;s;s;w;n;nw;nw;s;w;sw;e;e;e;s;w;w;w;w;sw;e;e;e;e;e;e;e;s;w;w;w;w;w;w;se;e;e;e;e;sw;w;w;se;s;se;n;n;ne;se;n;n;e;n;n;e;s}
 
-#NOP Good Mobs
-#NOP Paragon|Radiance|Rapid|Resilient
-#act {^=M= {Bulwark|Dismal|Furtive|Gloom|Hostile|Impediment|Mud|Shadow}} {
+#act {^=M= {Bulwark|Dismal|Furtive|Gloom|Hostile|Impediment|Mud|Shadow|Paragon|Radiance|Rapid|Resilient|Peace|Timorous}} {
+	#var alignment_found none;
 	#switch {"%1"} {
 		#NOP Evil;
-		#case {"Bulwark"}		{#var mobname bulwark};
-		#case {"Dismal"}		{#var mobname dismal};
-		#case {"Furtive"}		{#var mobname furtive};
-		#case {"Gloom"}			{#var mobname gloom};
-		#case {"Hostile"}		{#var mobname hostile};
-		#case {"Impediment"}		{#var mobname impediment};
-		#case {"Mud"}			{#var mobname mud};
-		#case {"Shadow"}		{#var mobname shadow};
+		#case {"Bulwark"}		{#var mobname bulwark;#var alignment_found evil};
+		#case {"Dismal"}		{#var mobname dismal;#var alignment_found evil};
+		#case {"Furtive"}		{#var mobname furtive;#var alignment_found evil};
+		#case {"Gloom"}			{#var mobname gloom;#var alignment_found evil};
+		#case {"Hostile"}		{#var mobname hostile;#var alignment_found evil};
+		#case {"Impediment"}		{#var mobname impediment;#var alignment_found evil};
+		#case {"Mud"}			{#var mobname mud;#var alignment_found evil};
+		#case {"Shadow"}		{#var mobname shadow;#var alignment_found evil};
 		#NOP Good;
-		#NOP #case {"Paragon"}		{#var mobname paragon};
-		#NOP #case {"Radiance"}		{#var mobname radiance};
-		#NOP #case {"Rapid"}		{#var mobname rapid};
-		#NOP #case {"Resilient"}	{#var mobname resilient}
+		#case {"Paragon"}		{#var mobname paragon;#var alignment_found good};
+		#case {"Peace"}			{#var mobname peace;#var alignment_found good};
+		#case {"Radiance"}		{#var mobname radiance;#var alignment_found good};
+		#case {"Rapid"}			{#var mobname rapid;#var alignment_found good};
+		#case {"Resilient"}		{#var mobname resilient;#var alignment_found good};
+		#case {"Timorous"}		{#var mobname timorous;#var alignment_found good}
 	};
-	_check_mob
+	#if {"$alignment" == "all"} {
+		_check_mob
+	}; #elseif {"$alignment" == "$alignment_found"} {
+		_check_mob
+	}
 }
 
 #NOP Hunter green
