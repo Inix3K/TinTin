@@ -2,11 +2,16 @@
 
 #VARIABLE {pubs}
 {
+    {devilsisle} {28420}
+    {dragonisle2} {28325}
     {kyoto} {25927}
     {lazarian} {26607}
+    {lostknights} {28799}
     {palisade} {17537}
     {reservoir} {17625}
     {sodajerk} {16308}
+    {stoneinn2} {28361}
+    {waff} {28730}
     {wayhaven} {25838}
     {zoo} {22627}
 }

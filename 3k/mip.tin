@@ -969,6 +969,8 @@
 			#case {"Professions"}		{#var {commcol} {<178>}};
 			#case {"Psi Main"}		{#var {commcol} {<168>}};
 			#case {"Shout"}			{#var {commcol} {<178>}};
+			#case {"Slime Chat"}		{#var {commcol} {<128>}};
+			#case {"Time"}			{#var {commcol} {<168>}};
 			#case {"Whine"}			{#var {commcol} {<118>}};
 			#case {"Wolf"}			{#var {commcol} {<228>}};
 			#case {"Zilch_shout"}		{#var {commcol} {<168>}};

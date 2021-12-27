@@ -595,7 +595,7 @@
 #act {^The captain announces: Welcome to Houston Transport Center.$} {exit2}
 
 #NOP Serinth
-#act {^The World of Serinth Board containing } {#map goto 16722}
+#act {^=I= The World of Serinth Board containing } {#map goto 16722}
 
 #NOP Starcraft:Broodwar
 #act {^Door number: 3, Access Code: %1$} {#var starcraft_code %1}
