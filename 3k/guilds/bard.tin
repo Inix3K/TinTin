@@ -12,11 +12,12 @@
 	#var my[gp1][current]		%5;
 	#var my[gp1][max]		%6;
 	#var my[gp2][current]		%7;
-	#var my[smiles][current]	%8;
-	#var my[smiles][reset]		%9;
-	#var my[gxp][current]		%10;
-	#var my[gxp][max]		%11;
-	#var my[gxp][per]		%12
+	#var my[gp2][max]		%8;
+	#var my[smiles][current]	%9;
+	#var my[smiles][reset]		%10;
+	#var my[gxp][current]		%11;
+	#var my[gxp][max]		%12;
+	#var my[gxp][per]		%13
 }
 
 #act {|A: [[ %* ]]} {
