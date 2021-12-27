@@ -11,21 +11,44 @@
 	#var {my[gp1][max]}	{%7};
 	#var {my[gp2][current]}	{%8};
 	#var {ehealth}		{%9};
+	#if {$mip[round] > 0} {
+		#send !twister
+	}
 }
 
 #act {{GXP\%: \[(\d+.\d+)\%\] PROT: (ON|OFF) VEST: (ON|OFF) BARK: (ON|OFF)}} {
+        #if {"$cooler" == "on" || $corpses[cooler] > 0} {
+                #format {sb1_cooler} {%+2s} {$corpses[cooler]};
+                #var {sb1_cooler} { CL:<139>$sb1_cooler<088>}
+        } {
+                #var {sb1_cooler} {}
+        };
+        #if {"$freezer" == "on" || $corpses[freezer] > 0} {
+                #format {sb2_freezer} {%+2s} {$corpses[freezer]};
+                #var {sb2_freezer} { FZ:<139>$sb2_freezer<088>}
+        } {
+                #var {sb2_freezer} {}
+        };
 	#var {gxp}	{%2};
 	#var {prot}	{%3};
 	#var {vest}	{%4};
 	#var {bark}	{%5};
+	#if {"$prot" == "OFF"} {
+		#send {!protection}
+	}; #elseif {"$vest" == "OFF"} {
+		#send {!vestment}
+	}; #elseif {"$bark" == "OFF"} {
+		#send {!barkskin}
+	};
+	update_status
 }
 
 #alias {update_status} {
-	#if {my[hp][current] < my[hp][max]} {
-		!lifeforce
+	#if {$my[hp][current] < $my[hp][max]} {
+		#delay {lifeforce} {#send !lifeforce} {0.5}
 	};
-	#if {my[sp][current] < my[sp][max]} {
-		!soulforce
+	#if {$my[sp][current] < $my[sp][max]} {
+		#delay {soulforce} {#send !soulforce} {0.5}
 	};
 
 	#var    {my[hp][graph]}         {@graph{$my[hp][current];${my[hp][max]}}};
@@ -42,10 +65,16 @@
 	#format {gp2}                   {%+4s} {$my[gp2][current]};
 	#format {gp2_max}               {%+4s} {$my[gp2][max]};
 	#format {ehealth}               {%+7s} {$enemy[hp]%%};
-
-	#showme {HP:$hp/$hp_max SP:$sp/$sp_max MN:$gp1/$gp1_max PY:$gp2/$gp2_max E:$ehealth} {-4};
-	#showme {H:$my[hp][graph] S:$my[sp][graph] M:$my[gp1][graph] P:$my[gp2][graph] E:$enemy[graph]} {-3};
-	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
+	#format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
+	#format {corpses[coffin]}       {%+2s} {$corpses[coffin]};
+	#format {corpses[freezer]}      {%+2s} {$corpses[freezer]};
+	#if {"$draw[hpbar]" == "on"} {
+		#showme {HP:$hp/$hp_max SP:$sp/$sp_max MN:$gp1/$gp1_max PY:$gp2/$gp2_max E:$ehealth    IC:<139>${corpses[inventory]}<088>} {-4};
+		#showme {H:$my[hp][graph] S:$my[sp][graph] M:$my[gp1][graph] P:$my[gp2][graph] E:$enemy[graph] CF:<139>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	};
+	#if {"$draw[gline]" == "on"} {
+		#showme {$mip[gline][1]  $mip[gline][2]} {-6}
+	}
 }
 
 
@@ -72,6 +101,12 @@
 #alias {guard %1 %2} {
 	#var {guard[hp][lim]} {%1};
 	#var {guard[sp][lim]} {%2}
+}
+
+/* Corpse Trigger */
+#alias {corpsetrig} {
+	#send !wrap;
+	#send !get coins
 }
 
 #class {preist} {close}
