@@ -19,20 +19,6 @@
 }
 
 #alias {update_status} {
-	#if {$my[gp1][current] < 35 && $my[gp2][current] > 35 && "$pers" == "on"} {
-		perseverance off;
-		#var pers off
-	}; #elseif {$my[gp1][current] > 35 && $my[gp2][current] < 35 && "$pers" == "off"} {
-		perseverance on;
-		#var pers on
-	};
-	#if {$my[gp1][current] < 30 || $my[gp2][current] < 30} {
-		#if {$my[relinquish][current] > 0} {
-			#delay {relinquish} {relinquish} {0.5}
-		}; #elseif {$my[bioplasts] > 0} {
-			#delay {consume_bioplast} {#send !consume bioplast} {0.5}
-		}
-	};
         #if {"$cooler" == "on" || $corpses[cooler] > 0} {
                 #format {sb1_cooler} {%+2s} {$corpses[cooler]};
                 #var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
@@ -47,16 +33,22 @@
         };
 	#var	{my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
 	#var	{my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
-	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];100}};
-	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];100}};
+	#var	{my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
 	#var	{my[ff][graph]}		{@graph{$my[ff][current];100}};
 	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
 	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
 	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
 	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
 	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
-	#format {stam}			{%+8s} {@colscale{$my[gp1][current];100}};
-	#format {pp}			{%+7s} {@colscale{$my[gp2][current];100}};
+	#format {stam_cur}		{%d}   {$my[gp1][current]};
+	#format {stam_max}		{%d}   {$my[gp1][max]};
+	#format {stam_cur}		{%+4s} {@colscale{$stam_cur;$stam_max}};
+	#format {stam_max}		{%+4s} {<128>$stam_max<088>};
+	#format {pp_cur}		{%d}   {$my[gp2][current]};
+	#format {pp_max}		{%d}   {$my[gp2][max]};
+	#format {pp_cur}		{%+4s} {@colscale{$pp_cur;$pp_max}};
+	#format {pp_max}		{%+4s} {<128>$pp_max<088>};
 	#format {ff}			{%+7s} {@colscale{$my[ff][current];100}};
 	#format {relin}			{%+2s} {$my[relinquish][current]};
 	#format {relin_r}		{%+3s} {$my[relinquish][reset]};
@@ -66,7 +58,23 @@
         #format {corpses[truck]}	{%+2s} {$corpses[truck]};
         #format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
         #format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
-	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam}%  PP:${pp}%  FF:${ff}%  R:${relin}/${relin_r}\% BP:${bio} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#math {my[gp1][per]}		{$my[gp1][current]/$my[gp1][max]*100};
+	#math {my[gp2][per]}		{$my[gp2][current]/$my[gp2][max]*100};
+	#if {$my[gp1][per] < 35 && $my[gp2][per] > 35 && "$pers" == "on"} {
+		perseverance off;
+		#var pers off
+	}; #elseif {$my[gp1][per] > 35 && $my[gp2][per] < 35 && "$pers" == "off"} {
+		perseverance on;
+		#var pers on
+	};
+	#if {$my[gp1][per] < 30 || $my[gp2][per] < 30} {
+		#if {$my[relinquish][current] > 0} {
+			#delay {relinquish} {relinquish} {0.5}
+		}; #elseif {$my[bioplasts] > 0} {
+			#delay {consume_bioplast} {#send !consume bioplast} {0.5}
+		}
+	};
+	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam_cur}/${stam_max}  PP:${pp_cur}/${pp_max} FF:${ff}%  R:${relin}/${relin_r}\% BP:${bio} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
 	#showme {H:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} P:${my[gp2][graph]} F:${my[ff][graph]} E:${enemy[graph]}     CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
