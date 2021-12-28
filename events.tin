@@ -118,8 +118,8 @@
 	#map goto %0
 }
 
-#NOP Map run on triple-click
-#event {MAP TRIPLE-CLICKED MOUSE BUTTON ONE} {
+#NOP Map run on right-click
+#event {MAP SHORT-CLICKED MOUSE BUTTON THREE} {
 	#map run %0
 }
 
