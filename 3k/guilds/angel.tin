@@ -52,7 +52,7 @@
 	#regex {%3} {-} {
 		#delay {engage} {#send !engage} {0.5}
 	} {
-		#delay {divine_1} {#send !divine strike $angel[ds][type]} {0.5}
+		#delay {divine_1} {#send !divine strike $angel[ds][type]} {0.5};
 		#delay {divine_2} {#send !divine strike $angel[ds][type]} {0.5}
 	}
 }

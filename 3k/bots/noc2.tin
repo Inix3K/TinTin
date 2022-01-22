@@ -11,7 +11,7 @@
 
 #var {botpath} {n;e;s;s;se;se;se;ne;w;nw;e;e;e;ne;w;w;w;w;w;n;e;e;e;e;e;e;e;se;s;se;sw;ne;nw;ne;nw;e;ne;w;w;w;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;e;nw;w;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;nw;w;w;w;w;w;ne;e;e;e;nw;w;n;sw;sw;sw;sw;s;s;w;w;n;n;n;nw;n;ne;climb;u;d;d;sw;s;s;s;s;s;w;n;nw;nw;s;w;sw;e;e;e;s;w;w;w;w;sw;e;e;e;e;e;e;e;s;w;w;w;w;w;w;se;e;e;e;e;sw;w;w;se;s;se;n;n;ne;se;n;n;e;n;n;e;s}
 
-#act {^=M= {Bulwark|Dismal|Furtive|Gloom|Hostile|Impediment|Mud|Shadow|Paragon|Radiance|Rapid|Resilient|Peace|Timorous}} {
+#act {^=M= {Bulwark|Dismal|Furtive|Gloom|Hostile|Impediment|Mud|Shadow|Paragon|Radiance|Rapid|Resilient|Peace|Timorous|Bright Glimmer|Circling Glimmer|Dancing Glimmer|Dusky Glimmer|Russet Glimmer|Swirling Glimmer|Swoop}} {
 	#var alignment_found none;
 	#switch {"%1"} {
 		#NOP Evil;
@@ -29,7 +29,15 @@
 		#case {"Radiance"}		{#var mobname radiance;#var alignment_found good};
 		#case {"Rapid"}			{#var mobname rapid;#var alignment_found good};
 		#case {"Resilient"}		{#var mobname resilient;#var alignment_found good};
-		#case {"Timorous"}		{#var mobname timorous;#var alignment_found good}
+		#case {"Swoop"}			{#var mobname swoop;#var alignment_found good};
+		#case {"Timorous"}		{#var mobname timorous;#var alignment_found good};
+		#NOP Neutral;
+		#case {"Bright Glimmer"}	{#var mobname glimmer;#var alignment_found neutral};
+		#case {"Circling Glimmer"}	{#var mobname glimmer;#var alignment_found neutral};
+		#case {"Dancing Glimmer"}	{#var mobname glimmer;#var alignment_found neutral};
+		#case {"Dusky Glimmer"}		{#var mobname glimmer;#var alignment_found neutral};
+		#case {"Russet Glimmer"}	{#var mobname glimmer;#var alignment_found neutral};
+		#case {"Swirling Glimmer"}	{#var mobname glimmer;#var alignment_found neutral}
 	};
 	#if {"$alignment" == "all"} {
 		_check_mob

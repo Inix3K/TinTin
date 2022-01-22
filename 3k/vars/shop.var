@@ -2,20 +2,8 @@
 
 #VARIABLE {shops}
 {
-    {atlanta} {16080}
-    {blingdenwood} {19836}
-    {cancer} {2}
-    {chaos} {3580}
-    {crydee} {21312}
-    {harfain} {23331}
-    {hitown} {7355}
-    {kimlark} {27346}
-    {luddite} {26172}
-    {pawnshop} {25782}
-    {revelwood} {26300}
-    {revelwood2} {26433}
-    {sydermans} {14845}
-    {wayhaven} {25835}
+    {dune} {29163}
+    {gug} {29837}
 }
 
 #CLASS {shopvar} CLOSE

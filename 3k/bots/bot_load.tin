@@ -10,9 +10,13 @@
 	#var no_loop 0;
 	#var hardmode 0;
 	#var vacuum 1;
-	#var bots[stepper] %1;
-	#read .tt/3k/bots/%1.tin;
-	#read .tt/3k/bots/bot_main.tin
+	#if {"%1" == "miner"} {
+		#read .tt/3k/craft/miner.tin
+	} {
+		#var bots[stepper] %1;
+		#read .tt/3k/bots/%1.tin;
+		#read .tt/3k/bots/bot_main.tin
+	}
 }
 
 /* Resume a stepper after a disconnect DisConnectResume */
@@ -59,7 +63,13 @@
 
 /* Low priority aliases to mute output from mud */
 #alias {.bot%*} {#showme !bot is not active} {9}
-#alias {.stop%*} {#showme !Bot is not active} {9}
+#alias {.stop%*} {
+	#if {"$miner" == "on"} {
+		#class miner kill
+	} {
+		#showme !Bot is not active
+	}
+} {9}
 #alias {.resume%*} {#showme !Bot is not active} {9}
 #alias {killbot%*} {#showme !Bot is not active} {9}
 

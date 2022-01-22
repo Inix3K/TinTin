@@ -17,12 +17,12 @@
 	#var ehealth			{%10}
 }
 
-#act {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {
+#act {G:%d/%d(-%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {
 	#var {gentech[gxp][prev]}	{$gentech[gxp][num]};
 	#var {gentech[rc][prev]}	{$gentech[rc][num]};
 	#var {gentech[gxp][num]}	{%1};
-	#var {gentech[gxp][tnl]}	{%2};
-	#var {gentech[gxp][per]}	{%3};
+	#var {gentech[gxp][tnl][amt]}	{%2};
+	#var {gentech[gxp][tnl][per]}	{%3};
 	#var {gentech[rc][num]}		{%4};
 	#var {gentech[bias][atk]}	{%5};
 	#var {gentech[bias][def]}	{%6};
@@ -30,7 +30,8 @@
 	#var {gentech[ts][max]}		{%8};
 	#var {gentech[reset]}		{%9};
 	#math {gentech[gxp][last]}	{$gentech[gxp][num] - $gentech[gxp][prev]};
-	#math {gentech[rc][last]}	{$gentech[rc][num] - $gentech[rc][prev]}
+	#math {gentech[rc][last]}	{$gentech[rc][num] - $gentech[rc][prev]};
+	#math {gentech[gxp][per]}	{100.00 - $gentech[gxp][tnl][per]}
 }
 
 #act {EField[%d %w] EDNA[%d %w] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {
@@ -118,7 +119,7 @@
 		#case {"GR"}		{#var synthorg {<168>GR<088>}};
 	};
 	#math	{gxp[last]}		{$gentech[gxp][last] + $gentech[rc][last]};
-	#math	{gxp[rnds]}		{$gentech[gxp][tnl] / $gentech[gxp][last]};
+	#math	{gxp[rnds]}		{$gentech[gxp][tnl][amt] / $gentech[gxp][last]};
 	#if	{$gxp[rnds] < 30}	{
 		#var gxp[time]		{<128>${gxp[rnds]}<228>s<088>}
 	}; #elseif {$gxp[rnds] < 1800}	{
@@ -147,7 +148,7 @@
 	#var	{cpc_max}		{<128>$gentech[cpc][max]<088>};
 	#math	{gentech[gxp][cost]}	{$gentech[gxp][tnl]*100/$gentech[gxp][per]};
 	#var	{gxp_col}		{<268>$gentech[gxp][num]<088>};
-	#var	{g2n}			{@colscale{$gentech[gxp][tnl];$gentech[gxp][cost]}};
+	#var	{g2n}			{@colscale{$gentech[gxp][tnl][amt];$gentech[gxp][cost]}};
 	#var	{gxp_per}		{@colscale{$gentech[gxp][per];100}};
 	#var	{reset}			{@colscale{$gentech[reset];100}};
 	#var	{geneff}		{@colscale{$gentech[geneff];100}};

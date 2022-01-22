@@ -929,6 +929,7 @@
 		#switch {"$mip[comm][line]"} {
 			#case {"ADMIN"}			{#var {commcol} {<158>}};
 			#case {"Alpha"}			{#var {commcol} {<168>}};
+			#case {"Angel"}			{#var {commcol} {<168>}};
 			#case {"Announce"}		{#var {commcol} {<168>}};
 			#case {"Auction"}		{#var {commcol} {<108>}};
 			#case {"Bear"}			{#var {commcol} {<168>}};
