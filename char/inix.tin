@@ -18,7 +18,7 @@
 #read .tt/3k/rtick.tin
 rtick
 
-#NOP Primary Guile File
+#NOP Primary Guild File
 #read .tt/3k/guilds/juggernaut.tin
 
 #NOP Numbers Highlight
