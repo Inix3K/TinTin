@@ -1,0 +1,37 @@
+#class {bot} {open}
+
+#var {no_loop} {1}
+#var {no_home} {0}
+#var {hardmode} {0}
+#var {vacuum} {1}
+
+#var {botpath} {e;e;s;w;e;e;e;s;w;s;w;n;w;s;e;s;e;s;e;n;e;s;e;e;n;w;s;w;n;n;e;e;n;w;n;w;n;e;e;d;w;n;e;w;w;s;w;w;n;w;s;w;n;w;e;s;s;w;s;e;e;n;e;e;e;e;e;e;s;w;w;w;w;w;s;w;w;s;e;s;e;n;n;e;e;e;e;s;w;s;w;n;w;d;w;s;e;w;n;w;s;n;n;n;w;s;s;n;w;w;e;e;n;w;w;e;e;n;w;w;e;e;e;n;w;w;e;e;n;w;w;e;e;e;e;w;w;s;e;e;w;w;s;e;s;s;n;n;e;s;s;n;n;e;s;s;n;n;e;s;s;n;n;e;e;e;w;w;s;e;e;w;w;s;e;e;w;w;s;e;e;w;w;s;w;e;n;w;w;e;e;n;n;n;w;n;w;n;s;e;n;e;w;s;e;e;e;w;w;d;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;e;s;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;n;n;n;n;n;n;n;n;w;w;d;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;e;s;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;n;n;n;n;n;n;n;n;w;w;d;w;w;w;w;w;w;w;n;e;e;e;e;e;e;e;e;e;s;s;w;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;s;w;w;w;w;w;w;w;w;s;e;e;e;e;e;e;e;e;e;n;n;n;n;n;n;n;n;w;w}
+
+#act {^=M= {Bloody zombie|Bullet-ridden zombie|Charred zombie|Faceless zombie|Limping zombie|Massive zombie|One-armed zombie|Putrid zombie|Ravaged zombie|Rotting zombie|Severely burnt zombie|Shambling zombie|Shuffling zombie|Vomit-splattered zombie|Wounded zombie|Aegis Sentry Model 60-FT|Aegis Sentry Model 62-CC|Aegis Sentry Model 64-CC|Aegis Sentry Model 65-SE|Aegis Soldier Model 66-SO|Aegis Assembler Model 68-AS}} {
+	#switch {"%1"} {
+		#case {"Bloody zombie"}			{#var mobname zombie};
+		#case {"Bullet-ridden zombie"}		{#var mobname zombie};
+		#case {"Charred zombie"}		{#var mobname zombie};
+		#case {"Faceless zombie"}		{#var mobname zombie};
+		#case {"Limping zombie"}		{#var mobname zombie};
+		#case {"Massive zombie"}		{#var mobname zombie};
+		#case {"One-armed zombie"}		{#var mobname zombie};
+		#case {"Putrid zombie"}			{#var mobname zombie};
+		#case {"Ravaged zombie"}		{#var mobname zombie};
+		#case {"Rotting zombie"}		{#var mobname zombie};
+		#case {"Severely burnt zombie"}		{#var mobname zombie};
+		#case {"Shambling zombie"}		{#var mobname zombie};
+		#case {"Shuffling zombie"}		{#var mobname zombie};
+		#case {"Vomit-splattered zombie"}	{#var mobname zombie};
+		#case {"Wounded zombie"}		{#var mobname zombie};
+		#case {"Aegis Sentry Model 60-FT}	{#var mobname sentry};
+		#case {"Aegis Sentry Model 62-CC}	{#var mobname sentry};
+		#case {"Aegis Sentry Model 64-CC}	{#var mobname sentry};
+		#case {"Aegis Sentry Model 65-SE}	{#var mobname sentry};
+		#case {"Aegis Sentry Model 66-SO}	{#var mobname robot};
+		#case {"Aegis Assembler Model 66-SO}	{#var mobname robot}
+	};
+	_check_mob
+}
+
+#class {bot} {close}
