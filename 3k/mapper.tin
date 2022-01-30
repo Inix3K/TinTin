@@ -617,6 +617,10 @@
 #NOP Wayhaven Ferry
 #act {^The ferryman says: Well, here you are.} {#map goto 7354}
 
+#NOP Worm's Talon Airship
+#act {^Here we are folks. Welcome to the City of Westersea!} {#map goto 4756}
+#act {^You hop out onto the deck.} {#map goto 15875}
+
 
 /* Blocked Exits */
 #act {^You cannot go } {
@@ -749,6 +753,5 @@
 #NOP Whorehouse
 #act {^Doh shoves you backwards with a scowl.} {#map undo}
 #act {^Your feet are mired in the bird poop, you can't seem to move!!} {#map undo}
-
 
 #class {mapper} {close}

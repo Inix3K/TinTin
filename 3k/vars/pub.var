@@ -2,11 +2,18 @@
 
 #VARIABLE {pubs}
 {
+    {blingdenwood} {19841}
+    {harfain} {23333}
+    {knivur} {30558}
     {kyoto} {25927}
+    {lally} {4100}
     {lazarian} {26607}
+    {oldlondon} {19427}
     {palisade} {17537}
     {reservoir} {17625}
     {sodajerk} {16308}
+    {tall_and_short} {25768}
+    {tookwich} {30332}
     {wayhaven} {25838}
     {zoo} {22627}
 }
