@@ -1,0 +1,17 @@
+#class {bot} {open}
+
+#var {no_loop} {1}
+#var {no_home} {0}
+#var {hardmode} {0}
+#var {vacuum} {1}
+
+#var {botpath} {s;w;w;w;s;e;e;e;s;w;w;w;s;e;e;e;s;w;w;w;s;e;e;e;e;e;e;e;n;w;w;w;n;e;e;e;n;w;w;w;n;e;e;e;n;w;w;w;n;w}
+
+#act {^=M= {Aegis Genocide Trooper}} {
+	#switch {"%1"} {
+		#case {"Aegis Genocide Trooper}	{#var mobname robot}
+	};
+	_check_mob
+}
+
+#class {bot} {close}
