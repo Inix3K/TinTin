@@ -5,7 +5,7 @@
 #var {hardmode} {0}
 #var {vacuum} {1}
 
-#var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;w;s;e;e;e;e;e;e;w;s;w;w;w;w;w;s;e;e;e;e;w;s;w;w;w;s;e;e;w;s;w;s}
+#var {botpath} {n;n;n;n;n;n;n;n;e;e;e;e;e;e;e;e;w;s;w;w;w;w;w;w;s;e;e;e;e;e;w;s;w;w;w;w;s;e;e;e;w;s;w;w;s;e;w;s;w;s}
 
 #act {^=M= {A zombie bell hop waiting to carry your things|A zombie cook looking for something to chop|A zombie waiter offering drinks|A mindless vampire}} {
 	#var mobhard 0;
