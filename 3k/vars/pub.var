@@ -1,4 +1,14 @@
 #CLASS {pubvar} OPEN
 
+#VARIABLE {pubs}
+{
+    {kyoto} {25927}
+    {lazarian} {26607}
+    {palisade} {17537}
+    {reservoir} {17625}
+    {sodajerk} {16308}
+    {wayhaven} {25838}
+    {zoo} {22627}
+}
 
 #CLASS {pubvar} CLOSE

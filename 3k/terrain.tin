@@ -61,7 +61,7 @@
 		#case {"hellinside"}		{#var rmcol <218>;#var rmsym <218>[ ]<088>};
 		#case {"hills"}			{#var rmcol <228>;#var rmsym <228>. ^<088>};
 		#case {"hut"}			{#var rmcol <238>;#var rmsym <238>[ ]<088>};
-		#case {"ice"}			{#var rmcol <178>;#var rmsym <178>~ ~<088>};
+		#case {"ice"}			{#var rmcol <168>;#var rmsym <168>~ ~<088>};
 		#case {"icehills"}		{#var rmcol <178>;#var rmsym <178>^ ~<088>};
 		#case {"icemount"}		{#var rmcol <178>;#var rmsym <178>/ \<088>};
 		#case {"inside"}		{#var rmcol <278>;#var rmsym <278>[ ]<088>};
@@ -80,7 +80,7 @@
 		#case {"palace_room"}		{#var rmcol <138>;#var rmsym <138>[ ]<088>};
 		#case {"pillar"}		{#var rmcol <278>;#var rmsym <278> * <088>};
 		#case {"plain"}			{#var rmcol <238>;#var rmsym <238>, `<088>};
-		#case {"portal"}		{#var rmcol <258>;#var rmsym <258>( )<088>};
+		#case {"portal"}		{#var rmcol <258>;#var rmsym <258>(<158>P<258>)<088>};
 		#case {"quicksand"}		{#var rmcol <138>;#var rmsym <138>%%%<088>};
 		#case {"rain"}			{#var rmcol <148>;#var rmsym <148>'.'<088>};
 		#case {"rainbow"}		{#var rmcol <148>;#var rmsym <118>)<138>)<148>)<088>};
