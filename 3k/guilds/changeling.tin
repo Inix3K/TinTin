@@ -3,7 +3,7 @@
 #var guild changeling
 
 #var pers off
-#act {{HP:(\d+)/(\d+) SP:(\d+)/(\d+) ST:([\d\.]+) PP:([\d\.]+) CF:(\d+)/(\d+)\% BP:([\d\.]+\%) FF:([\d\.]+)\% E?:?([\w\d\%]+)?}} {
+#act {{HP:(\d+)/(\d+) SP:(\d+)/(\d+) ST:([\d\.]+) PP:([\d\.]+) CF:(\d+)/(\d+)\% BP:([\d\.]+)\% FF:([\d\.]+)\% E?:?([\w\d\%]+)?}} {
 	#var {my[hp][current]}		{%2};
 	#var {my[hp][max]}		{%3};
 	#var {my[sp][current]}		{%4};
@@ -52,7 +52,7 @@
 	#format {ff}			{%+7s} {@colscale{$my[ff][current];100}};
 	#format {relin}			{%+2s} {$my[relinquish][current]};
 	#format {relin_r}		{%+3s} {$my[relinquish][reset]};
-	#format {bio}			{%+3s} {$my[bioplasm]};
+	#format {bio}			{%+6s} {$my[bioplasm]};
 	#format {ehealth}		{%+8s} {@colscale{$enemy[hp];100}\%};
         #format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
         #format {corpses[truck]}	{%+2s} {$corpses[truck]};
@@ -74,8 +74,8 @@
 			#delay {bioconsume} {#send !bioconsume} {0.5}
 		}
 	};
-	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam_cur}/${stam_max}  PP:${pp_cur}/${pp_max} FF:${ff}%  R:${relin}/${relin_r}\% BP:${bio} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} P:${my[gp2][graph]} F:${my[ff][graph]} E:${enemy[graph]}     CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam_cur}/${stam_max}  PP:${pp_cur}/${pp_max} FF:${ff}%  BP:${bio}%   IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+	#showme {H:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} P:${my[gp2][graph]} F:${my[ff][graph]} E:${enemy[graph]} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
