@@ -25,7 +25,8 @@
 	#NOP Save Map vnum per world;
 	#map get roomvnum {map[$world][position]};
 	#NOP Save Map (updated exits for unpause);
-	#map write .tt/map/3k.map;
+	#NOP #map write .tt/map/3k.map;
+	mapsave;
 	#NOP Write var classes;
 	#class botvar write .tt/3k/vars/bots.var;
 	#class farmvar write .tt/3k/vars/farm.var;

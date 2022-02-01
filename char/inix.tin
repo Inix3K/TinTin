@@ -16,6 +16,7 @@
 #read .tt/3k/puppy.tin
 #read .tt/3k/reforger.tin
 #read .tt/3k/rtick.tin
+#read .tt/3k/terrain.tin
 rtick
 
 #NOP Primary Guild File

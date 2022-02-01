@@ -314,19 +314,14 @@
 	#map list {} {} {} {} {%i%*%0%*};
 }
 
-#alias {mapname %1} {
-	#map name %1;
-	#map write .tt/map/3k.map
-}
-
 #alias {mapsave} {
 	#regex {"$world"} {3s} {
 		#map write .tt/map/3s.map
 	} {
-		#if {"$area" == "Breed"} {
-			#map write .tt/map/breed.map
-		} {
-			#map write .tt/map/3k.map
+		#switch {"$area"} {
+			#case {"Breed"}		{#map write .tt/map/breed.map};
+			#case {"The Abyss"}	{#map write .tt/map/abyss.map};
+			#default		{#map write .tt/map/3k.map}
 		}
 	}
 }
@@ -418,9 +413,6 @@
 }
 
 /* Transports */
-#NOP Abyss
-#act {Abyssmal Portal (s,portal)} {#map goto 5159} {1}
-
 #NOP Android
 #act {BING! The button light goes off and the elevator doors open.} {enter elevator}
 #act {The elevator jerks to a halt and the doors open.} {out}

@@ -60,6 +60,7 @@
 		#case {"hellfountain"}		{#var rmcol <218>;#var rmsym <118>(<178>~<118>)<088>};
 		#case {"hellhall"}		{#var rmcol <218>;#var rmsym <088>. <218>.<088>};
 		#case {"hellinside"}		{#var rmcol <218>;#var rmsym <218>[ ]<088>};
+		#case {"hellstairs"}		{#var rmcol <218>;#var rmsym <218>.<118>@<218>.<088>};
 		#case {"hills"}			{#var rmcol <228>;#var rmsym <228>. ^<088>};
 		#case {"hut"}			{#var rmcol <238>;#var rmsym <238>[ ]<088>};
 		#case {"ice"}			{#var rmcol <168>;#var rmsym <168>~ ~<088>};
