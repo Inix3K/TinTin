@@ -3,7 +3,7 @@
 #var guild changeling
 
 #var pers off
-#act {{HP:(\d+)/(\d+) SP:(\d+)/(\d+) ST:([\d\.]+)\% PP:([\d\.]+)\% CF:(\d+)/(\d+)\% BP:(\d+) FF:([\d\.]+)\% E?:?([\w\d\%]+)?}} {
+#act {{HP:(\d+)/(\d+) SP:(\d+)/(\d+) ST:([\d\.]+) PP:([\d\.]+) CF:(\d+)/(\d+)\% BP:([\d\.]+\%) FF:([\d\.]+)\% E?:?([\w\d\%]+)?}} {
 	#var {my[hp][current]}		{%2};
 	#var {my[hp][max]}		{%3};
 	#var {my[sp][current]}		{%4};
@@ -12,7 +12,7 @@
 	#var {my[gp2][current]}		{%7};
 	#var {my[relinquish][current]}	{%8};
 	#var {my[relinquish][reset]}	{%9};
-	#var {my[bioplasts]}		{%10};
+	#var {my[bioplasm]}		{%10};
 	#var {my[ff][current]}		{%11};
 	#var {ehealth}			{%12};
 	update_status
@@ -52,7 +52,7 @@
 	#format {ff}			{%+7s} {@colscale{$my[ff][current];100}};
 	#format {relin}			{%+2s} {$my[relinquish][current]};
 	#format {relin_r}		{%+3s} {$my[relinquish][reset]};
-	#format {bio}			{%+3s} {$my[bioplasts]};
+	#format {bio}			{%+3s} {$my[bioplasm]};
 	#format {ehealth}		{%+8s} {@colscale{$enemy[hp];100}\%};
         #format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
         #format {corpses[truck]}	{%+2s} {$corpses[truck]};
@@ -69,9 +69,9 @@
 	};
 	#if {$my[gp1][per] < 30 || $my[gp2][per] < 30} {
 		#if {$my[relinquish][current] > 0} {
-			#delay {relinquish} {relinquish} {0.5}
-		}; #elseif {$my[bioplasts] > 0} {
-			#delay {consume_bioplast} {#send !consume bioplast} {0.5}
+			#delay {relinquish} {#send !relinquish} {0.5}
+		}; #elseif {$my[bioplasm] > 0} {
+			#delay {bioconsume} {#send !bioconsume} {0.5}
 		}
 	};
 	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam_cur}/${stam_max}  PP:${pp_cur}/${pp_max} FF:${ff}%  R:${relin}/${relin_r}\% BP:${bio} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
