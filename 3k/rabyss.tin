@@ -1,0 +1,22 @@
+#class {rabyss} {open}
+/* This will loop through the Abyss map and add roomsymbols for every room.	*/
+/* It can be run additional times for randomization flavor			*/
+/* REQUIRED:  terrain.tin							*/
+
+#NOP Pass maxvnum as an argument to the alias for the max roomvnum to process
+#NOP Setting this appropriately avoids excess computation and error messages
+#alias {rabyss} {
+	#var maxvnum %1;
+	#loop 2 $maxvnum {cnt} {
+		#math {rand} {1d4};
+		#map at {$cnt} {#map get roomexits cnt_exits};
+		#regex {${cnt_exits}} {u} {#var cnt_stairs yes} {#var cnt_stairs no};
+		#if {"$cnt_stairs" == "yes"} {
+			#map at {$cnt} {terrain hellstairs}
+		} {
+			#map at {$cnt} {terrain hell${rand}}
+		}
+	}
+}
+
+#class {rabyss} {close}
