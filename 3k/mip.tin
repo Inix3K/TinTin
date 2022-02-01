@@ -307,7 +307,7 @@
 			#VAR {my[form]}			{&5}
 		}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {$mip[gline][2]}	{\[Bioplasts: %d\]} {#VAR {my[bioplasts]}	{&1}}
+		#REGEX {$mip[gline][2]}	{\[Bioplasm: {[\d\.]+}\%\]} {#VAR {my[bioplasm]}	{&1}}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
