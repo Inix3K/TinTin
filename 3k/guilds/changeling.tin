@@ -68,10 +68,10 @@
 		#var pers on
 	};
 	#if {$my[gp1][per] < 30 || $my[gp2][per] < 30} {
-		#if {$my[relinquish][current] > 0} {
-			#delay {relinquish} {#send !relinquish} {0.5}
+		#if {$my[relinquish][current] > 0 && $my[relinquish][active] == 0} {
+			#delay {relinquish} {#send !relinquish;#var my[relinquish] 100} {0.5}
 		}; #elseif {$my[bioplasm] > 0} {
-			#delay {bioconsume} {#send !bioconsume} {0.5}
+			#delay {bioconsume} {#send !bioconsume little} {0.5}
 		}
 	};
 	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam_cur}/${stam_max}  PP:${pp_cur}/${pp_max} FF:${ff}%  BP:${bio}%   IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
