@@ -71,7 +71,7 @@
 		#if {$my[relinquish][current] > 0 && $my[relinquish][active] == 0} {
 			#delay {relinquish} {#send !relinquish;#var my[relinquish] 100} {0.5}
 		}; #elseif {$my[bioplasm] > 0} {
-			#delay {bioconsume} {#send !bioconsume little} {0.5}
+			#delay {bioconsume} {#send !bioconsume loads} {0.5}
 		}
 	};
 	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam_cur}/${stam_max}  PP:${pp_cur}/${pp_max} FF:${ff}%  BP:${bio}%   IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
