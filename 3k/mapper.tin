@@ -319,6 +319,7 @@
 		#map write .tt/map/3s.map
 	} {
 		#switch {"$area"} {
+			#case {"Biome"}		{#map write .tt/map/biome.map};
 			#case {"Breed"}		{#map write .tt/map/breed.map};
 			#case {"The Abyss"}	{#map write .tt/map/abyss.map};
 			#default		{#map write .tt/map/3k.map}

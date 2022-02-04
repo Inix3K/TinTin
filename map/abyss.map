@@ -18,7 +18,7 @@ F 8455
 
 G 0
 
-I 1815
+I 1
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -252,7 +252,7 @@ T {} { } {}
 
 
 
-R {    1} {0} {} {Abyssmal Portal (s,portal)} { } {You stand before the portal into the Abyss.  A low hum emmanates from the eerie portal.  Bands of light are twisted around it like branches in a breeze.  The air is calm here.  A sense of danger fills your mind and your senses are on alert.  Pain waits beyond the portal... Nothing else. } {The Abyss} {} {} {} {1.000} {}
+R {    1} {0} {} {Abyssmal Portal (s,portal)} { } {You stand before the portal into the Abyss.  A low hum emmanates from the eerie portal.  Bands of light are twisted around it like branches in a breeze.  The air is calm here.  A sense of danger fills your mind and your senses are on alert.  Pain waits beyond the portal... Nothing else. } {The Abyss} {abyss} {} {} {1.000} {}
 E {    2} {portal} {portal} {0} {0} {} {1.000} {} {0.00}
 
 R {    2} {0} {<218>} {The 1st Plane of The Abyss (u,d,n,s,w,e)} {<218>.<118>@<218>.<088>} {A vortex of shadows swirls in the center of this area, stretching high in the direction you assume is up, and down to the opposite of that direction. The vortex almost seems to pull you in, and you surmise that you could travel up or down it, into a different area. } {The Abyss} {} {hellstairs} {} {1.000} {}

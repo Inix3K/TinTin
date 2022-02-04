@@ -1,0 +1,29 @@
+#class {bot} {open}
+
+/* Load file to maintain current map and path orientation */
+#read .tt/3k/rej_rotate.tin
+
+/* Call action to call rrotate */
+#action {{^[\s\.oO]{70}}} {rrotate}
+
+/* Brief settings to avoid map causing false rotate calls */
+#send !brief on no
+
+#var {no_loop} {1}
+#var {no_home} {1}
+#var {hardmode} {0}
+#var {vacuum} {1}
+
+#var {inductor[green]}		{e;e;e;e;n;n;n;w;n;w;s;se;s;w;n;w;s;w;sw;n;w;nw;sw;w;n;e;n;n;w;n;e;n;e;se;n;e;e;se;s;s;nw;sw;w;n}
+#var {inductor[blue]}		{s;s;s;s;e;e;e;n;e;n;w;sw;w;n;e;n;w;n;nw;e;n;ne;nw;n;e;s;e;e;n;e;s;e;s;sw;e;s;s;sw;w;w;ne;nw;n;e}
+#var {inductor[red]}		{w;w;w;w;s;s;s;e;s;e;n;nw;n;e;s;e;n;e;ne;s;e;se;ne;e;s;w;s;s;e;s;w;s;w;nw;s;w;w;nw;n;n;se;nw;e;s}
+#var {inductor[magenta]}	{n;n;n;n;w;w;w;s;w;s;e;ne;e;s;w;s;e;s;se;w;s;sw;se;s;w;n;w;w;s;w;n;w;n;ne;w;n;n;ne;e;e;sw;se;s;w}
+
+#var {botpath} {$inductor[green]}
+
+#act {^=M= A {Jacked Transistor|Swole Capacitor|Yoked Resistor}} {
+	#var mobname {};
+	_check_mob
+}
+
+#class {bot} {close}

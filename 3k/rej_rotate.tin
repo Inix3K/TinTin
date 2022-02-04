@@ -1,0 +1,63 @@
+#class rej_rotate open
+
+#NOP 27662-28934 30131-30174
+#alias {rrotate} {
+	#NOP Determine current orientation and set color for new rotation;
+	#map at 27662 {#map get roomexits rexits};
+	#switch {*rexits[]} {
+		#case {"{n}"}	{#var rej_color <228>;#var inductor[color] green};
+		#case {"{e}"}	{#var rej_color <148>;#var inductor[color] blue};
+		#case {"{s}"}	{#var rej_color <218>;#var inductor[color] red};
+		#case {"{w}"}	{#var rej_color <258>;#var inductor[color] magenta};
+		#default	{#showme {<142> Error determining area rotation <088>}}
+	};
+
+	#loop 27662 30174 cnt {
+		#map get {roomarea} {rarea} {$cnt};
+		#if {"$rarea" == "The Rejected Game"} {
+			#NOP Set new rotation roomcolor;
+			#map at $cnt {#map set roomcolor $rej_color};
+
+			#NOP Get rexits;
+			#map at $cnt {#map get roomexits rexits};
+
+			#NOP Reset new room exits array for each vnum;
+			#var nrexits {};
+
+			#NOP loop through exits and rotate 90°;
+			#foreach {*rexits[]} {rexit} {
+				#NOP Reset keep exit variable for non-rotatable exits;
+				#var kexit no;
+				#NOP Set vnum or new room exit;
+				#switch {"$rexit"} {
+					#case {"n"}	{#var nrexits[e]  $rexits[n]};
+					#case {"e"}	{#var nrexits[s]  $rexits[e]};
+					#case {"s"}	{#var nrexits[w]  $rexits[s]};
+					#case {"w"}	{#var nrexits[n]  $rexits[w]};
+					#case {"ne"}	{#var nrexits[se] $rexits[ne]};
+					#case {"se"}	{#var nrexits[sw] $rexits[se]};
+					#case {"sw"}	{#var nrexits[nw] $rexits[sw]};
+					#case {"nw"}	{#var nrexits[ne] $rexits[nw]};
+					#default	{#var kexit yes}
+				};
+				#NOP Check if non-rotatable exit to keep;
+				#if {"$kexit" == "no"} {
+					#NOP Unlink old direction;
+					#map at $cnt {#map unlink $rexit}
+				}
+			};
+			#NOP Link new directions;
+			#foreach {*nrexits[]} {rexit} {
+				#map at $cnt {#map link $rexit $nrexits[$rexit]}
+			}
+		}
+	};
+
+	#NOP Adjust Inductor Path for rotation;
+	#path save position inductor[position];
+	#path load $inductor[${inductor[color]}];
+	#path goto $inductor[position]
+}
+
+
+#class rej_rotate close

@@ -1,6 +1,6 @@
 #class {bot} {open}
 
-#var {no_loop} {0}
+#var {no_loop} {1}
 #var {no_home} {0}
 #var {hardmode} {0}
 #var {vacuum} {1}

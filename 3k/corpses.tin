@@ -24,8 +24,8 @@
 
 /* Freezer Counter */
 #act {{You keep \*?Death\'s Freezer \((\d+) corpses\)\.}} {#var corpses[freezer] %2}
-#act {{frame causing it to get sucked in!}} {#math {corpses[freezer]} {$corpses[freezer] + 1}}
-#act {{You shake the frame and out drops }} {
+#act {{causing it to get sucked in!}} {#math {corpses[freezer]} {$corpses[freezer] + 1}}
+#act {You shake the frame and out drops } {
 	#if {$corpses[freezer] > 0} {
 		#math {corpses[freezer]} {$corpses[freezer] - 1}
 	} {
