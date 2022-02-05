@@ -193,7 +193,7 @@
 	#NOP GUILD SPECIFIC GLINE PROCESSING;
 	#IF {"%2" != ""} {
 		#SWITCH {"$guild"} {
-			#CASE {"adventurer"}	{.mipProcessGlineAdenturer {%1}};
+			#CASE {"adventurer"}	{.mipProcessGlineAdventurer {%1}};
 			#CASE {"android"}	{.mipProcessGlineAndroid {%1}};
 			#CASE {"angel"}		{.mipProcessGlineAngel {%1}};
 			#CASE {"ascended"}	{.mipProcessGlineAscended {%1}};
