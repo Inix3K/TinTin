@@ -219,6 +219,9 @@
 }
 
 /* Aliases */
+#NOP gwho
+#alias gwho {juggs}
+
 #NOP No killtrig because I have ktrig!
 #alias corpsetrig {#nop}
 

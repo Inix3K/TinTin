@@ -428,6 +428,10 @@
 }
 
 /* Transports */
+#NOP Amazon Research Center
+#act {^Stretching your somewhat stiff legs you head out of the plane.} {#map goto 32571}
+#act {^A Small Airfield (leave)} {#map goto 32570} {1}
+
 #NOP Android
 #act {BING! The button light goes off and the elevator doors open.} {enter elevator}
 #act {The elevator jerks to a halt and the doors open.} {out}
