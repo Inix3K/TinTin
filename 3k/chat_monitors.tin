@@ -62,6 +62,9 @@
 #NOP Transmuter Reset
 #act {^Your transmuter's stone bursts with %d new colours!} {update_chat %0}
 
+/* Rod of Lordly Might */
+#NOP Owl rune reset
+#act {^Upon the %w, the owl rune glows brightly again.}
 
 /* Wipes */
 #NOP Player self-wife

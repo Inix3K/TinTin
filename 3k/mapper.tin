@@ -148,7 +148,21 @@
 	#if {"$mapping" == "on"} {
 		#if {"$finding_here" == "off"} {
 			#replace exits {,} {;};
-			#foreach {$exits} {eachexit} {#map dig $eachexit};
+			#foreach {$exits} {eachexit} {
+				#switch {"$eachexit"} {
+					#case {"north"}		{#map dig n};
+					#case {"east"}		{#map dig e};
+					#case {"south"}		{#map dig s};
+					#case {"west"}		{#map dig w};
+					#case {"northwest"}	{#map dig nw};
+					#case {"northeast"}	{#map dig ne};
+					#case {"southeast"}	{#map dig se};
+					#case {"southwest"}	{#map dig sw};
+					#case {"up"}		{#map dig u};
+					#case {"down"}		{#map dig d};
+					#default		{#map dig $eachexit}
+				}
+			};
 			#map get {roomexit} {rexit};
 			#foreach {$rexit} {eachexit} {
 				#map at {$eachexit} {
@@ -682,6 +696,9 @@
 
 #NOP Fallout Shelter
 #act {^Core Guard jumps in your way, blocking your path!} {#map undo}
+
+#NOP Faunist Guild
+#act {^You move slowly %w through the murky black water.} {#map undo}
 
 #NOP Ice Fishing
 #act {^You are unable to climb the bank here.  It is very steep, and with all} {#map undo}

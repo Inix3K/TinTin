@@ -37,8 +37,8 @@
 	#var	{my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
 	#var	{my[ff][graph]}		{@graph{$my[ff][current];100}};
 	#var	{enemy[graph]}		{@graph{$enemy[hp];100}};
-	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
-	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
+	#format {hp}			{%+5s} {@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}		{%+5s} {<128>$my[hp][max]<088>};
 	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
 	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
 	#format {stam_cur}		{%d}   {$my[gp1][current]};
@@ -75,13 +75,14 @@
 		}
 	};
 	#showme {<088>HP:${hp}/${hp_max} SP:${sp}/${sp_max} ST:${stam_cur}/${stam_max}  PP:${pp_cur}/${pp_max} FF:${ff}%  BP:${bio}%   IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} ST:${my[gp1][graph]} P:${my[gp2][graph]} F:${my[ff][graph]} E:${enemy[graph]} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {HP:${my[hp][graph]}  S:${my[sp][graph]} ST:${my[gp1][graph]} P:${my[gp2][graph]} F:${my[ff][graph]} E:${enemy[graph]} CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
 #alias {corpsetrig} {
+	slab;
 	wrap;
-	bio;
+	bioextract;
 	get coins
 }
 

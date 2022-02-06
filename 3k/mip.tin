@@ -950,6 +950,7 @@
 			#case {"Events"}		{#var {commcol} {<168>}};
 			#case {"Explorer"}		{#var {commcol} {<178>}};
 			#case {"Falcon"}		{#var {commcol} {<128>}};
+			#case {"Fcom"}			{#var {commcol} {<268>}};
 			#case {"Gamers"}		{#var {commcol} {<268>}};
 			#case {"Gjugg"}			{#var {commcol} {<118>}};
 			#case {"High Mortal"}		{#var {commcol} {<108>}};
@@ -965,6 +966,7 @@
 			#case {"Lottery"}		{#var {commcol} {<178>}};
 			#case {"Main"}			{#var {commcol} {<118>}};
 			#case {"Monk"}			{#var {commcol} {<238>}};
+			#case {"Ncom"}			{#var {commcol} {<268>}};
 			#case {"Newbie"}		{#var {commcol} {<138>}};
 			#case {"Notify"}		{#var {commcol} {<168>}};
 			#case {"Party"}			{#var {commcol} {<128>}};
