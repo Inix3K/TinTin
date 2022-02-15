@@ -6,6 +6,9 @@
 /* Call action to call rrotate */
 #action {{^[\s\.oO]{70}}} {#delay {rotate} {rrotate} {0.5}}
 
+/* Brief settings to avoid false rotations from cartography */
+#send !brief on no
+
 /* Brief settings to avoid map causing false rotate calls */
 #send !brief on no
 
