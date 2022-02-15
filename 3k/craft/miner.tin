@@ -1,0 +1,137 @@
+#class {miner} open
+
+/* Initialize vars */
+#var miner[match] no
+#var miner[status] on
+#var miner[deposit] none
+#var miner[monster] 0
+#var miner[prompt] 0
+
+#echo {<202> MINER BOT LOADED <088>}
+
+/* Set target ore */
+#var miner[mining] {adamantium obsidian}
+
+/* Load bot path upon mines entry */
+#act {^You enter the mine shaft and hit the button for level %d$} {
+	#echo {<202> MINES ENTERED AT %1 <088>};
+	#switch {%1} {
+		#case {1} {#path load {se;e;n;w;e;n;e;se;nw;w;s;s;e;w;s;se;sw;e;e;w;w;s;s;n;n;ne;nw;sw;w;w;n;s;e;sw;s;s;nw;n;w;s;n;e;s;se;n;n;ne;e;ne;n;w;nw;out}};
+		#case {2} {#path load {se;e;n;w;e;n;e;se;nw;w;s;s;e;w;s;se;sw;e;e;w;w;s;s;n;n;ne;nw;sw;w;w;n;s;e;sw;s;s;nw;n;w;s;n;e;s;se;n;n;ne;e;ne;n;w;nw;exit}};
+		#case {3} {#path load {n;n;w;w;se;nw;s;n;sw;ne;w;e;nw;se;n;e;e;n;w;n;n;w;w;s;nw;s;s;s;s;s;w;n;w;s;e;e;n;n;n;n;n;se;e;s;s;s;e;e;s;s;exit}};
+		#case {4} {#path load {e;e;e;ne;ne;ne;s;s;s;e;e;w;w;w;w;w;se;se;se;n;n;s;s;ne;ne;ne;n;n;n;s;s;s;nw;nw;nw;sw;sw;sw;w;w;w;exit}};
+		#case {5} {#path load {e;s;s;s;e;ne;ne;s;s;s;e;n;n;n;n;se;se;n;e;e;w;w;n;w;e;e;n;n;w;sw;w;w;nw;nw;w;s;s;s;w;exit}};
+		#case {6} {#path load {w;w;w;s;w;n;s;s;s;sw;se;n;s;ne;nw;n;n;ne;n;w;w;w;n;n;s;e;e;e;n;e;e;s;w;s;e;s;e;exit}};
+		#case {7} {#path load {se;e;n;e;e;e;e;s;w;w;s;e;s;e;s;s;w;w;w;n;n;e;s;n;w;s;s;e;e;e;e;e;e;n;n;w;s;n;e;s;s;w;w;w;n;n;e;n;e;n;w;w;n;w;w;w;w;w;s;nw;exit}};
+		#case {8} {#path load {s;se;sw;sw;n;n;s;s;nw;nw;ne;e;e;n;exit}}
+	}
+}
+
+/* Deposit Found logic */
+#act {^You have found a deposit of %1 ore!} {
+	#var miner[deposit] %1;
+	#echo {<202> Mine Match <088>};
+	#regex {$miner[deposit]} {$miner[mining]} {
+		#var miner[match] yes;
+		#var miner[deposit] %1;
+		#echo {<202>Deposit: $miner[deposit] Mining: $miner[mining]<088>};
+	} {
+		#var miner[match] no;
+	};
+	#var miner[prompt] 1
+} {1}
+
+/* Empty room logic */
+#act {^You have found nothing.} {
+	#var miner[deposit] none;
+	#var miner[prompt] 1
+}
+
+/* Searched room logic */
+#act {^It appears this part of the shaft has already been searched.} {
+	#var miner[prompt] 1
+}
+
+/* Mining complete logic */
+#act {^You have exhausted the supply of %w ore.$} {
+	#var miner[deposit] none;
+	#var miner[match] no;
+	#var miner[prompt] 1;
+	get all
+}
+
+/* Walking past found deposit logic */
+#act {^=I= A %w ore deposit.$} {
+	#echo {<202> Old Deposit Found <088>};
+	#var miner[deposit] %1;
+	#regex {$miner[mining]} {$miner[deposit]} {
+		#var miner[match] yes
+	} {
+		#var miner[deposit] none
+	}
+}
+
+/* Spelunk with deposit present */
+#act {^There is already a deposit here!} {
+	#if {"$miner[match]" == "yes"} {
+		mine
+	} {
+		#var miner[prompt] 1
+	}
+}
+
+/* Mob active logic */
+#act {^You cannot spelunk while you're being attacked!} {
+	#echo {<202> MOB PRESENT <088>};
+	#var miner[monster] 1
+}
+#act {^You have disturbed} {
+	#echo {<202> MOB DISTURBED <088>};
+	#var miner[monster] 1
+}
+
+#NOP #act {^You should try to mine this instead.$} {#NOP mine}
+
+/* Mine mob kblow logic */
+#act {^=K=%1 dealt the killing blow to} {
+	#echo {<202> MINER KBLOW <088>};
+	#var miner[monster] 0;
+	#if {"$miner[match]" == "yes"} {
+		mine
+	} {
+		#var miner[prompt] 1;
+		get all
+	}
+} {1}
+
+#act {^>$} {
+	#if {$miner[prompt] == 1} {
+		#var miner[prompt] 0;
+		#if {$miner[monster] == 1} {
+			#NOP
+		}; #elseif {"$miner[match]" == "yes"} {
+			mine
+		}; #else {
+			#path walk;
+			spelunk
+		}
+	}
+}
+
+/* Unload mining bot on path end */
+#act {#END OF PATH} {#class miner kill;killbot} {1}
+#act {^You hop in the exit chute and fly out of the mine shaft!} {#class miner kill;killbot}
+
+/* Aliases */
+#alias {showmines} {
+	#echo {Mine 1: copper};
+	#echo {Mine 2: bronze};
+	#echo {Mine 3: iron, steal};
+	#echo {Mine 4: silver, gold, mithril};
+	#echo {Mine 5: titanium, ebon};
+	#echo {Mine 6: adamantium, obsidian};
+	#echo {Mine 7: nethernium, boidstone, phasemetal};
+	#echo {Mine 8: chaostone}
+}
+
+#class {miner} close
