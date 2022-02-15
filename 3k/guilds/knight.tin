@@ -39,7 +39,7 @@
 	#var {gxp}	{%1};
 	#var {gxn}	{%2};
 	#var {joust}	{%3};
-	#var {ehealth}	{%4};
+	#var {ehealth}	{%5};
 	update_status
 }
 

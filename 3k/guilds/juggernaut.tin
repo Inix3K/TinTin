@@ -15,7 +15,7 @@
 #NOP Jugger HP Bar Configuration
 #NOP hp set HP:[$HP$] SP:[$SP$] S:[$STIM$%] HE:[$HEAT$%] HT:[$HITS$] M/C:[$NUKES$/$MNUKES$][$CP$/$MCP$][$RESET$%] G:$GXP$%$N$Ammo:[$AMMO$] SHP:[$SHP$] SNL:[$SNL$] SM:[$SMD$] SA:[$SMF$] SD:[$SAF$] E:$STATUS$
 
-#act {HP:\[{\d+}/{\d+}\] SP:\[{\d+}/{\d+}\] S:\[{\d+}\%\] HE:\[{\d+}\%\] HT:\[{\d+}\] M/C:\[{\d+}/{\d+}\]\[{\d+}/{\d+}\]\[{\d+}\%\] G:{[\d\.]+}\%} {
+#act {HP:\[%d/%d\] SP:\[%d/%d\] S:\[%d\%\] HE:\[%d\%\] HT:\[%d\] M/C:\[%d/%d\]\[%d/%d\]\[%d\%\] G:{[\d\.]+}\%} {
 	#var {my[hp][current]}		{%1};
 	#var {my[hp][max]}		{%2};
 	#var {my[sp][current]}		{%3};

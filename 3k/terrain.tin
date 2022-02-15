@@ -14,6 +14,7 @@
 		#case {"ashen_field"}		{#var rmcol <278>;#var rmsym <278>, `<088>};
 		#case {"areaexit"}		{#var rmcol <168>;#var rmsym <168>[<278>?<168>]<088>};
 		#case {"aylorcity"}		{#var rmcol <278>;#var rmsym <278>[ ]<088>};
+		#case {"barn"}			{#var rmcol <218>;#var rmsym <218>[ ]<088>};
 		#case {"beach"}			{#var rmcol <138>;#var rmsym <138>, `<088>};
 		#case {"bloodyhall"}		{#var rmcol <218>;#var rmsym <218>. .<088>};
 		#case {"bloodyroom"}		{#var rmcol <118>;#var rmsym <118>[ ]<088>};

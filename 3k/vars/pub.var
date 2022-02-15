@@ -2,8 +2,10 @@
 
 #VARIABLE {pubs}
 {
+    {atlanta} {16202}
     {blingdenwood} {19841}
     {cowville} {30705}
+    {darkmoore} {21244}
     {devilsisle} {28420}
     {dragonsisle2} {28325}
     {harfain} {23333}
