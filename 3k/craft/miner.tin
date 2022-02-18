@@ -10,7 +10,7 @@
 #echo {<202> MINER BOT LOADED <088>}
 
 /* Set target ore */
-#var miner[mining] {adamantium obsidian}
+#var miner[mining] {adamantium obsidian nethernium}
 
 /* Load bot path upon mines entry */
 #act {^You enter the mine shaft and hit the button for level %d$} {
@@ -30,8 +30,8 @@
 /* Deposit Found logic */
 #act {^You have found a deposit of %1 ore!} {
 	#var miner[deposit] %1;
-	#echo {<202> Mine Match <088>};
-	#regex {$miner[deposit]} {$miner[mining]} {
+	#regex {$miner[mining]} {$miner[deposit]} {
+		#echo {<202> Mine Match <088>};
 		#var miner[match] yes;
 		#var miner[deposit] %1;
 		#echo {<202>Deposit: $miner[deposit] Mining: $miner[mining]<088>};
@@ -65,7 +65,8 @@
 	#echo {<202> Old Deposit Found <088>};
 	#var miner[deposit] %1;
 	#regex {$miner[mining]} {$miner[deposit]} {
-		#var miner[match] yes
+		#var miner[match] yes;
+		#var miner[prompt] 1
 	} {
 		#var miner[deposit] none
 	}
