@@ -1,0 +1,37 @@
+#class {diagonal} {open}
+
+#alias {diagonal} {
+	#if {%1 == 1} {
+		#map legend {NESW DIRS}		{DIR NE}	{\u2B67};
+		#map legend {NESW DIRS}		{DIR SE}	{\u2B68};
+		#map legend {NESW DIRS}		{DIR SW}	{\u2B69};
+		#map legend {NESW DIRS}		{DIR NW}	{\u2B66};
+		#map legend {UNICODE GRAPHICS}	{SE}		{\u2E0C};
+		#map legend {UNICODE GRAPHICS}	{NE}		{\u2E1D};
+		#map legend {UNICODE GRAPHICS}	{SW}		{\u2E0D};
+		#map legend {UNICODE GRAPHICS}	{SE SW}		{\u2E0C\u2E0D};
+		#map legend {UNICODE GRAPHICS}	{SE NE SW}	{>\u2E0D};
+		#map legend {UNICODE GRAPHICS}	{NW}		{\u2E1C};
+		#map legend {UNICODE GRAPHICS}	{NE NW}		{\u2E1D\u2E1C};
+		#map legend {UNICODE GRAPHICS}	{SE NE NW}	{>\u2E1C};
+		#map legend {UNICODE GRAPHICS}	{SE SW NW}	{>\u2E0C<};
+		#map legend {UNICODE GRAPHICS}	{NE SW NW}	{>\u2E1D<}
+	} {
+		#map legend {NESW DIRS}		{DIR NE}	{\u2197};
+		#map legend {NESW DIRS}		{DIR SE}	{\u2198};
+		#map legend {NESW DIRS}		{DIR SW}	{\u2199};
+		#map legend {NESW DIRS}		{DIR NW}	{\u2196};
+		#map legend {UNICODE GRAPHICS}	{SE}		{\u2B68};
+		#map legend {UNICODE GRAPHICS}	{NE}		{\u2B67};
+		#map legend {UNICODE GRAPHICS}	{SW}		{\u2B69};
+		#map legend {UNICODE GRAPHICS}	{SE SW}		{\u2B68\u2B69};
+		#map legend {UNICODE GRAPHICS}	{SE NE SW}	{>\u2B69};
+		#map legend {UNICODE GRAPHICS}	{NW}		{\u2B66};
+		#map legend {UNICODE GRAPHICS}	{NE NW}		{\u2B67\u2B66};
+		#map legend {UNICODE GRAPHICS}	{SE NE NW}	{>\u2B66};
+		#map legend {UNICODE GRAPHICS}	{SE SW NW}	{>\u2B68<};
+		#map legend {UNICODE GRAPHICS}	{NE SW NW}	{>\u2B67<}
+	}
+}
+
+#class {diagonal} {close}
