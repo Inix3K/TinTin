@@ -82,6 +82,7 @@
 		#case {"office"}		{#var rmcol <238>;#var rmsym <238>[ ]<088>};
 		#case {"palace_room"}		{#var rmcol <138>;#var rmsym <138>[ ]<088>};
 		#case {"pillar"}		{#var rmcol <278>;#var rmsym <278> * <088>};
+		#case {"pipe"}			{#var rmcol <278>;#var rmsym <278>===<088>};
 		#case {"plain"}			{#var rmcol <238>;#var rmsym <238>, `<088>};
 		#case {"portal"}		{#var rmcol <258>;#var rmsym <258>(<158>P<258>)<088>};
 		#case {"pub"}			{#var rmcol <238>;#var rmsym <238>[P]<088>};

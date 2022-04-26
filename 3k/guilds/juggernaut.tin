@@ -81,6 +81,7 @@
 		}
 	};
 	#if {$shp > 0 && $shp < 9} {dismiss};
+	#if {$shp == 0 && $clan > 0} {support summon};
 	#if {"$saf" == "No"} {support assault fire};
 	update_status
 }
@@ -228,5 +229,8 @@
 #NOP Fire all nukes at current enemy
 #alias ff {fire $nukes}
 
+#NOP Support Defend
+#alias sdef {#tick {sdef} {#if {$mip[round] > 0 && $mip[round] < 4} {support defend}} {2}}
+#alias sdefoff {#untick sdef}
 
 #class {juggernaut} {close}

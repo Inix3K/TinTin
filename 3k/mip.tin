@@ -51,8 +51,15 @@
 	} {
 		#var areacap {};	
 	};
+	#if	{${tao[page]} > 0} {
+		#math {tao[book]} {$tao[page] / 81 + 1};
+		#math {tao[chap]} {$tao[page] - (($tao[book] - 1) * 81)};
+		#var taocap {<258>Tao: <158>$tao[book]-$tao[chap]<088>}
+	} {
+		#var taocap {};
+	};
 	#if {"$draw[caption]" == "on"} {
-		#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap<088>} {$chat[height]+1}
+		#SHOWME {<088> <128>$world_cap <068>Uptime: <168>$uptime_cap  <038>Reboot: <138>$reboot_cap  <fca>Lag: <fcb>$lag_cap  <228>Idle: $idle_cap<088>  $areacap $taocap<088>} {$chat[height]+1}
 	}
 }
 
@@ -341,19 +348,19 @@
 		#REGEX {$mip[gline][1]} {Equipollent}		{#VAR {my[equip]}		{on}}
 								{#VAR {my[equip]}		{off}};
 		#REGEX {$mip[gline][1]} {Form<099>: <869>%w<099>\(<819>%d<099>\)}		{
-			#VAR {my[form][type]}		{&1};
-			#VAR {my[form][size]}		{&2}
+			#VAR {my[form][type]}			{&1};
+			#VAR {my[form][size]}			{&2}
 		};
-		#REGEX {$mip[gline][1]} {Rating<099>: <819>%d<099>}			{#VAR {my[rating]}		{&1}}
+		#REGEX {$mip[gline][1]} {Rating<099>: <819>%d<099>}				{#VAR {my[rating]}		{&1}}
 	}; #ELSEIF {%1 == 2} {
-		#REGEX {$mip[gline][2]} {Stones/Waves/Shrouds<099>: <%d>%d<099>/<%d>%d<099>/<%d>%d<099>\(%d\%\)} {
-			#VAR {my[blasts]}		{&2};
-			#VAR {my[waves]}		{&4};
-			#VAR {my[shrouds]}		{&6};
-			#VAR {my[reset]}		{&7}
+		#REGEX {$mip[gline][2]} {{Blasts|Stones}/Waves/Shrouds<099>: <%d>%d<099>/<%d>%d<099>/<%d>%d<099>\(%d\%\)} {
+			#VAR {my[blasts]}			{&3};
+			#VAR {my[waves]}			{&5};
+			#VAR {my[shrouds]}			{&7};
+			#VAR {my[reset]}			{&8}
 		};
-		#REGEX {$mip[gline][2]} {G2N: <%d>%d<099>}		{#VAR {my[g2n]}			{&2}};
-		#REPLACE {mip[gline][2]} {Stones/Waves/Shrouds} {B/W/S}
+		#REGEX {$mip[gline][2]} {G2N: <%d>%d<099>}	{#VAR {my[gxp][tnl]}		{&2}};
+		#REPLACE {mip[gline][2]} {{Blasts|Stones}/Waves/Shrouds} {B/W/S}
 	}; #ELSE {
 		#ECHO {<171> Invalid Gline Number <088>}
 	}
@@ -665,6 +672,10 @@
 	#REGEX {%0} {~%w~takes a deep breath and prepares to perform a song for %w.} {#var mipgag 1};
 	#REGEX {%0} {~%w~sings soulfully} {#var mipgag 1};
 
+	#NOP Bladesingers;
+	#REGEX {%0} {~Corath~} {#var mipgag 1};
+	#REGEX {%0} {~Amarul~} {#var mipgag 1};
+
 	#NOP Breed;
 	#REGEX {%0} {looks visibly weaker!} {#var mipgag 1};
 	#REGEX {%0} {looks more vulnerable!} {#var mipgag 1};
@@ -938,6 +949,8 @@
 			#case {"Bloodname"}		{#var {commcol} {<218>}};
 			#case {"Breed"}			{#var {commcol} {<158>}};
 			#case {"BreedOOC"}		{#var {commcol} {<258>}};
+			#case {"BS Announce"}		{#var {commcol} {<168>}};
+			#case {"BS Tell"}		{#var {commcol} {<128>}};
 			#case {"Clan Cad"}		{#var {commcol} {<158>}};
 			#case {"Com"}			{#var {commcol} {<128>}};
 			#case {"Council"}		{#var {commcol} {<108>}};

@@ -6,23 +6,22 @@
 #NOP  HP:3424/3162 C:100%  NRG:1209/1219(15)  SP:526/526  S:2(84%) G2N:106k  T:a Lee:66%
 
 /* HP Bars */
-#act {^ HP:%d/%d C:%d\%  NRG:%d/%d(%d)  SP:%d/%d  S:%d(%d\%) G2N:%d%w  T:{[\w\s]+}:%d\%} {
-#NOP #act {{ HP:(\d+)/(\d+) C:(\d+)\%  NRG:(\d+)/(\d+)\((\d+)\(?[\+\-]*)\)?  SP:(\d+)/(\d+)  S:(\d+)\((\d+)\%\) G2N:(\d+)(\w+)(?:   T:)?([\w\s]*)\:?(\d*)\%?}};
+#act {^ HP:%d/%d C:%d\%  NRG:%d/%d(%d)  SP:%d/%d  {B|S}:%d(%d\%) G2N:%d%w %sT:{[\w\s]+}:%d\%} {
 	#var my[hp][current]		{%1};
 	#var my[hp][max]		{%2};
 	#var my[cohesion]		{%3};
 	#var my[gp1][current]		{%4};
 	#var my[gp1][max]		{%5};
 	#var my[emit][level]		{%6};
-	#NOP #var my[emit][mod]		{%8};
+	#NOP #var my[emit][mod]		{%7};
 	#var my[sp][current]		{%7};
 	#var my[sp][max]		{%8};
-	#var my[blasts]			{%9};
-	#var my[reset]			{%10};
-	#var my[g2n]			{%11};
-	#var g2n_mod			{%12};
-	#var enemy[name]		{%13};
-	#var enemy[hp]			{%14}
+	#var my[blasts]			{%10};
+	#var my[reset]			{%11};
+	#var my[g2n][num]		{%12};
+	#var my[g2n][mod]		{%13};
+	#var enemy[name]		{%15};
+	#var enemy[hp]			{%16}
 }
 
 
@@ -40,36 +39,56 @@
         } {
                 #var {sb2_freezer} {}
         };
+	#math {my[gxp][cur]}		{$my[gxp][lev] - $my[gxp][tnl]};
+	#math {my[gxp][per]}		{$my[gxp][cur] * 100.00 / $my[gxp][lev]};
 	#var {my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
 	#var {my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
 	#var {my[gp1][graph]}		{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var {my[gxp][graph]}		{@graph{$my[gxp][cur];$my[gxp][lev]}};
 	#var {enemy[graph]}		{@graph{$enemy[hp];100}};
-	#format {hp}			{%+4s} {@colscale{$my[hp][current];$my[hp][max]}};
-	#format {hp_max}		{%+4s} {<128>$my[hp][max]<088>};
+	#format {hp}			{%+5s} {@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}		{%+5s} {<128>$my[hp][max]<088>};
 	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
 	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
 	#format {nrg}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
 	#format {nrg_max}		{%+4s} {<128>$my[gp1][max]<088>};
+	#format {gxp}			{%+8s} {@colscale{$my[gxp][per];100}};
 	#format {ehealth}		{%+3s} {@colscale{$enemy[hp];100}};
 	#format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
 	#format {corpses[coffin]}       {%+2s} {$corpses[coffin]};
 	#if {"$draw[hpbar]" == "on"} {
-		#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  E:   ${ehealth}%    IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
-		#showme {H:${my[hp][graph]} S:${my[sp][graph]} N:${my[gp1][graph]} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
+		#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  G:${gxp}%%  E:   ${ehealth}%    IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+		#showme {H:${my[hp][graph]}   S:${my[sp][graph]} N:${my[gp1][graph]} G:${my[gxp][graph]} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
 	};
 	#if {"$draw[gline]" == "on"} {
 		#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 	}
 }
 
+/* ESCORE GXP Capture */
+#act {^-- Form : %w%s Elemental Size : %d%s Next Size : %d%% (%d)} {
+	#var my[gxp][per]	%5;
+	#var my[gxp][tnl]	%6;
+	#math my[gxp][lev]	{$my[gxp][tnl] / (1 - ($my[gxp][per] / 100.00))};
+}
+
+#act {^You have become size %d!} {escore}
+
 
 /* Corpse Trigger */
 #alias {corpsetrig} {
 	slab;
 	wrap;
-	mdc;
-	cd;
+	evoke mental depletion corpse;
+	evoke corpse drain;
 	get coins
 }
+
+/* Aliases */
+#alias {gwho} {ewho}
+#alias {gs} {escore}
+#alias {gs2} {escore2}
+#alias {gs3} {pstats}
+#alias {gs4} {pstats2}
 
 #class {elemental} {close}
