@@ -41,6 +41,19 @@
         };
 	#math {my[gxp][cur]}		{$my[gxp][lev] - $my[gxp][tnl]};
 	#math {my[gxp][per]}		{$my[gxp][cur] * 100.00 / $my[gxp][lev]};
+	#math {my[gxp][rnd]}		{$my[gxp][tnl] / ($my[emit][level] * 2)};
+        #math {my[gxp][time][day]} {$my[gxp][rnd]/43200};
+        #math {my[gxp][time][hr]} {$my[gxp][rnd]/1800};
+        #math {my[gxp][time][min]} {$my[gxp][rnd] % 1800/30};
+        #if {$my[gxp][time][day] > 0} {
+                #var {my[gxp][time][str]} {<120>$my[gxp][time][day]<020>d <120>$my[gxp][time][hr]<020>h<088>}
+        }; #elseif {$my[gxp][time][hr] > 0} {
+                #var {my[gxp][time][str]} {<120>$my[gxp][time][hr]<020>h <120>$my[gxp][time][min]<020>m<088>}
+        }; #elseif {$my[gxp][time][min] > 0} {
+                #var {my[gxp][time][str]} {<120>$my[gxp][time][min]<020>m<088>}
+        }; #else {
+                #var {my[gxp][time][str]} {<120>0<020>m<088>}
+        };
 	#var {my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
 	#var {my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
 	#var {my[gp1][graph]}		{@graph{$my[gp1][current];$my[gp1][max]}};
@@ -53,11 +66,12 @@
 	#format {nrg}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
 	#format {nrg_max}		{%+4s} {<128>$my[gp1][max]<088>};
 	#format {gxp}			{%+8s} {@colscale{$my[gxp][per];100}};
+	#format {gxp_time}		{%+6s} {$my[gxp][time][str]};
 	#format {ehealth}		{%+3s} {@colscale{$enemy[hp];100}};
 	#format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
 	#format {corpses[coffin]}       {%+2s} {$corpses[coffin]};
 	#if {"$draw[hpbar]" == "on"} {
-		#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  G:${gxp}%%  E:   ${ehealth}%    IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+		#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  G:${gxp_time}     E:   ${ehealth}%    IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
 		#showme {H:${my[hp][graph]}   S:${my[sp][graph]} N:${my[gp1][graph]} G:${my[gxp][graph]} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
 	};
 	#if {"$draw[gline]" == "on"} {
