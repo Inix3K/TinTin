@@ -7,11 +7,6 @@
 #var reset 0
 #var rod 0
 
-#NOP Set ROLM rune count
-#act {^Warming in your grasp, fifty-six twinkling points of turquoise light come into} {
-	#var rod 56
-}
-
 #NOP Jugger HP Bar Configuration
 #NOP hp set HP:[$HP$] SP:[$SP$] S:[$STIM$%] HE:[$HEAT$%] HT:[$HITS$] M/C:[$NUKES$/$MNUKES$][$CP$/$MCP$][$RESET$%] G:$GXP$%$N$Ammo:[$AMMO$] SHP:[$SHP$] SNL:[$SNL$] SM:[$SMD$] SA:[$SMF$] SD:[$SAF$] E:$STATUS$
 
@@ -55,17 +50,17 @@
 }
 
 #act {{^Ammo:\[(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?/?(\d+)?\] SHP:\[\s*(\d+)\] SNL:\[([\d\.]*)\] SM:\[(\w+)\] SA:\[(\w+)\] SD:\[(\w+)\] E:([\d\w]+)?\%?}} {
-	#var {ammo[1]}	{%2};
-	#var {ammo[2]}	{%3};
-	#var {ammo[3]}	{%4};
-	#var {ammo[4]}	{%5};
-	#var {ammo[5]}	{%6};
-	#var {shp}	{%7};
-	#var {snl}	{%8};
-	#var {smd}	{%9};
-	#var {saf}	{%10};
-	#var {sdf}	{%11};
-	#var {ehealth}	{%12};
+	#var {ammo[1]}		{%2};
+	#var {ammo[2]}		{%3};
+	#var {ammo[3]}		{%4};
+	#var {ammo[4]}		{%5};
+	#var {ammo[5]}		{%6};
+	#var {support[hp]}	{%7};
+	#var {support[tnl]}	{%8};
+	#var {support[mode]}	{%9};
+	#var {support[assault]}	{%10};
+	#var {support[defend]}	{%11};
+	#var {ehealth}		{%12};
 	#format {ammo_len} {%L} {$ammo};
 	#if {"$ammo_buy" == "on" && $ammo_len > 0} {
 		#if {$ammo[1] < 100} {
@@ -80,9 +75,15 @@
 			#send !truck ammo vbuy $weapon_type $ammo_type 5 $ammo_buy_amount
 		}
 	};
-	#if {$shp > 0 && $shp < 9} {dismiss};
-	#if {$shp == 0 && $clan > 0} {support summon};
-	#if {"$saf" == "No"} {support assault fire};
+	#if {$support[hp] > 0 && $support[hp] < 9} {dismiss};
+	#if {$support[hp] == 0 && $clan > 0} {
+		support summon;
+		#if {"$support[auto_defend]" == "on"} {
+			#delay {support_resummon_defend} {support defend} {2};
+			#delay {support_resummon_defend} {support defend} {4}
+		}
+	};
+	#if {"$support[assault]" == "No"} {support assault fire};
 	update_status
 }
 
@@ -104,7 +105,7 @@
 	#var {my[gp1][graph]}	{@graph{$my[gp1][current];$my[gp1][max]}};
 	#var {my[gp2][graph]}	{@graph{$my[gp2][current];$my[gp2][max]}};
 	#var {gxp_graph}	{@graph{$gxp;100}};
-	#var {shp_graph}	{@graph{$shp;100}};
+	#var {shp_graph}	{@graph{$support[hp];100}};
 	#var {enemy[graph]}	{@graph{$enemy[hp];100}};
 	#format {hp}		{%+5s} {@colscale{$my[hp][current];$my[hp][max]}};
 	#format {hp_max}	{%+5s} {<128>$my[hp][max]<088>};
@@ -213,11 +214,20 @@
 	#NOP #showme {${cr_avg_xp}}
 }
 
+
 /* Eval Enhancer */
 #act {^[EDGE] [BLUN] [HEAT] [COLD] [ACID] [ELEC] [PSI ] [ENER] [TOXI] [RADI]} {
 	#echo {<172> EVAL MATCH <088>};
 	#var eval %0
 }
+
+
+/* ROLM */
+#NOP Set ROLM rune count *UNDER CONSTRUCTION*
+#act {^Warming in your grasp, fifty-six twinkling points of turquoise light come into} {
+	#var rod 56
+}
+
 
 /* Aliases */
 #NOP gwho
@@ -230,7 +240,36 @@
 #alias ff {fire $nukes}
 
 #NOP Support Defend
-#alias sdef {#tick {sdef} {#if {$mip[round] > 0 && $mip[round] < 4} {support defend}} {2}}
-#alias sdefoff {#untick sdef}
+#alias sdef {
+	#switch {"%1"} {
+		#case	{""}	{
+			#if {"$support[auto_defend]" == "on"} {
+				#var support[auto_defend] off;
+				#untick support_defend
+			} {
+				#var support[auto_defend] on;
+				#tick {support_defend} {
+					#if {$mip[round] > 0 && $mip[round] < 4} {
+						support defend
+					}
+				} {2}
+			}
+		};
+		#case	{"on"}	{
+			#var support[auto_defend] on;
+			#tick {support_defend} {
+				#if {$mip[round] > 0 && $mip[round] < 4} {
+					support defend
+				}
+			} {2}
+		};
+		#case	{"off"}	{
+			#var support[auto_defend] off;
+			#untick support_defend
+		};
+		#default	{#echo {<202> Invalid input!  Use: on or off <099>}}
+	}
+
+}
 
 #class {juggernaut} {close}
