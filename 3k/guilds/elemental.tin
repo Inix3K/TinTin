@@ -66,12 +66,12 @@
 	#format {nrg}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
 	#format {nrg_max}		{%+4s} {<128>$my[gp1][max]<088>};
 	#format {gxp}			{%+8s} {@colscale{$my[gxp][per];100}};
-	#format {gxp_time}		{%+6s} {$my[gxp][time][str]};
+	#format {gxp_time}		{%+7s} {$my[gxp][time][str]};
 	#format {ehealth}		{%+3s} {@colscale{$enemy[hp];100}};
 	#format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
 	#format {corpses[coffin]}       {%+2s} {$corpses[coffin]};
 	#if {"$draw[hpbar]" == "on"} {
-		#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  G:${gxp_time}     E:   ${ehealth}%    IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+		#showme {H:${hp}/${hp_max}  S:${sp}/${sp_max}  N:${nrg}/${nrg_max}  G:${gxp_time}    E:   ${ehealth}%    IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
 		#showme {H:${my[hp][graph]}   S:${my[sp][graph]} N:${my[gp1][graph]} G:${my[gxp][graph]} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
 	};
 	#if {"$draw[gline]" == "on"} {
