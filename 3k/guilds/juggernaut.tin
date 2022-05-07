@@ -80,7 +80,7 @@
 		support summon;
 		#if {"$support[auto_defend]" == "on"} {
 			#delay {support_resummon_defend} {support defend} {2};
-			#delay {support_resummon_defend} {support defend} {4}
+			#delay {support_resummon_defend2} {support defend} {4}
 		}
 	};
 	#if {"$support[assault]" == "No"} {support assault fire};
