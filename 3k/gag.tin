@@ -81,8 +81,10 @@
 
 
 /* Eternals */
+#NOP Energy Well
+#gag {^The brilliant sphere flashes brightly.}
 #NOP Immunity
-#gag {The assault glances harmlessly off your aura.}
+#gag {^The assault glances harmlessly off your aura.}
 
 
 /* Dog */
