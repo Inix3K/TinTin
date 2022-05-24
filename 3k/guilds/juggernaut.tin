@@ -6,6 +6,7 @@
 #var nukes 0
 #var reset 0
 #var rod 0
+#var support[damage] fire
 
 #NOP Jugger HP Bar Configuration
 #NOP hp set HP:[$HP$] SP:[$SP$] S:[$STIM$%] HE:[$HEAT$%] HT:[$HITS$] M/C:[$NUKES$/$MNUKES$][$CP$/$MCP$][$RESET$%] G:$GXP$%$N$Ammo:[$AMMO$] SHP:[$SHP$] SNL:[$SNL$] SM:[$SMD$] SA:[$SMF$] SD:[$SAF$] E:$STATUS$
@@ -40,7 +41,7 @@
 			#delay {spark} {#send !touch spark rune} {0.5}
 		}
 	};
-	#if {$reset >= 95} {
+	#if {$reset >= 98} {
 		#if {$clan > 0} {
 			#send !frenzy
 		}; #elseif {$nukes > 0 && $mip[round]} {
@@ -83,7 +84,7 @@
 			#delay {support_resummon_defend2} {support defend} {4}
 		}
 	};
-	#if {"$support[assault]" == "No"} {support assault fire};
+	#if {"$support[assault]" == "No"} {support assault $support[damage]};
 	update_status
 }
 
