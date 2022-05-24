@@ -86,7 +86,7 @@
 			#case {"northwest"}		{#var foldir nw};
 			#case {"southeast"}		{#var foldir se};
 			#case {"southwest"}		{#var foldir sw};
-			#case {"through the portal"}	{#var foldir portal};
+			#case {"through the portal"}	{#var foldir enter portal};
 			#default 	#var foldir %2
 		}
 	}
