@@ -28,7 +28,7 @@
 		#case {"Aegis Sentry Model 62-CC}	{#var mobname sentry};
 		#case {"Aegis Sentry Model 64-CC}	{#var mobname sentry};
 		#case {"Aegis Sentry Model 65-SE}	{#var mobname sentry};
-		#case {"Aegis Sentry Model 66-SO}	{#var mobname robot};
+		#case {"Aegis Soldier Model 66-SO}	{#var mobname robot};
 		#case {"Aegis Assembler Model 66-SO}	{#var mobname robot}
 	};
 	_check_mob
