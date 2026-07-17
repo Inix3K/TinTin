@@ -109,4 +109,4 @@
 	#send !get coins
 }
 
-#class {preist} {close}
+#class {priest} {close}
