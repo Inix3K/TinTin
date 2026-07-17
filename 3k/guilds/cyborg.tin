@@ -12,7 +12,10 @@
 	#var my[gp2][current]	%8;
 	#var gxp		%9;
 	#format {glvl} {%d} {$gxp};
-	#math {gxp_per} {($gxp-$glvl)*100}
+	#math {gxp_per} {($gxp-$glvl)*100};
+	#format {gxp_len} {%L} {$gxp_per};
+	#math {gxp_per_len} {$gxp_len - 2};
+	#format {gxp_per} {%.${gxp_per_len}s} {$gxp_per}
 }
 
 #act {{C: \[([\d\.]+)(\w)\] TARG: (\d+)\%}} {
@@ -57,7 +60,7 @@
         #format {gp1_max}	{%+4s} {<128>$my[gp1][max]<088>};
         #format {gp2}           {%+3s} {@colscale{$my[gp2][current];$my[gp2][max]}};
         #format {ehealth}       {%+6s} {@colscale{$enemy[hp];100}};
-        #format {gxp_col}       {%+7s} {@colscale{$gxp;100}};
+        #format {gxp_col}       {%+7s} {@colscale{$gxp_per;100}};
         #format {corpses[inventory]}     {%+2s} {$corpses[inventory]};
         #format {corpses[coffin]}  {%+2s} {$corpses[coffin]};
         #format {corpses[freezer]} {%+2s} {$corpses[freezer]};

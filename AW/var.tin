@@ -9,10 +9,20 @@
 #class var_chat kill
 #read .tt/AW/vars/AWchat.var
 
+#class var_gear kill
+#read .tt/AW/vars/gear.var
+
+#class var_portals kill
+#read .tt/AW/vars/portals.var
+
 #event {SESSION DISCONNECTED} {
         #NOP Write var classes;
-	#class {var_areas} write .tt/AW/vars/areas.var;
-	#class {var_mobs}  write .tt/AW/vars/mobs.var;
+	#class {var_areas}	write .tt/AW/vars/areas.var;
+	#class {var_mobs}	write .tt/AW/vars/mobs.var;
+	#NOP #class {var_chat}	write .tt/AW/vars/AWchat.var;
+	#class {var_gear}	write .tt/AW/vars/gear.var;
+	#class {var_portals}	write .tt/AW/vars/portals.var;
+	#map write .tt/map/AW.map
 }
 
 #class vars close

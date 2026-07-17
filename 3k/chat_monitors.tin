@@ -67,7 +67,7 @@
 #act {^Upon the %w, the owl rune glows brightly again.}
 
 /* Wipes */
-#NOP Player self-wife
+#NOP Player self-wipe
 #act {%w screams in ultimate agony as %w tears %w very soul out.} {update_chat %0}
 
 #NOP Player wiped by wizard

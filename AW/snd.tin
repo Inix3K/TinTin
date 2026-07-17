@@ -1,10 +1,249 @@
 #class {snd} {open}
 
-#act {You still have to kill \* %1 \(%2\)} {
-        #map list %2
+/* Quests */
+#NOP Old method
+#act {^%1 can be found in the vicinity of %2 which} {
+	#var quest[mob] %1;
+	#var quest[room] %2
 }
+
+#NOP Old method
+#act {^is in the general area of %1.} {
+	#var quest[area] %1;
+	#list areas find {$quest[area]} {quest[index]};
+	#var quest[zone] *areas[+$quest[index]];
+	#map find {roomarea} {$quest[zone]} {roomname} {%*$quest[room]%*};
+	#delay 0 #map list {roomarea} {$quest[zone]} {roomname} {$quest[room]}
+}
+
+#NOP Use this alias since GMCP sets it all up
+#NOP qgo - Quest Go
+#alias qgo {
+	#var quest[mob] @mobformat{$gmcp[comm][quest][targ]};
+        #list areas find {$gmcp[comm][quest][area]} {quest[index]};
+        #var quest[zone] *areas[+$quest[index]];
+        #map find {roomarea} {$quest[zone]} {roomname} {$gmcp[comm][quest][room]};
+	#path run
+}
+
+#NOP qx - Quest Search
+#alias qx {
+	snd $quest[mob]
+}
+
+#NOP qk - Quest Kill
+#alias qk {
+	k $quest[mob]
+}
+
+
+/* Campaigns */
+
+#NOP Format names so they can be found with where *WIP*
+#function mobformat {
+	#var mobformat[start] %0;
+	#format mobformat[end] {%l} $mobformat[start];
+
+	#NOP Remove articles and punctuation internal to target name;
+	#replace {mobformat[end]} {some }	{ };
+	#replace {mobformat[end]} { from }	{ };
+	#replace {mobformat[end]} { and }	{ };
+	#replace {mobformat[end]} { in }	{ };
+	#replace {mobformat[end]} { on }	{ };
+	#replace {mobformat[end]} { to }	{ };
+	#replace {mobformat[end]} {the }	{ };
+	#replace {mobformat[end]} { sea }	{ };
+	#replace {mobformat[end]} {an }		{ };
+	#replace {mobformat[end]} {a }		{ };
+	#replace {mobformat[end]} { of }	{ };
+	#replace {mobformat[end]} {-%w }	{ };
+	#replace {mobformat[end]} {,}		{};
+	#replace {mobformat[end]} {'%w }	{ };
+	#replace {mobformat[end]} {.}		{};
+	#replace {mobformat[end]} {!}		{};
+	#replace {mobformat[end]} {?}		{};
+	#format  {cp[target]}	  {%p}		{$cp[target]};
+
+	#return $mobformat[end]
+}
+
+#act {You still have to kill \* %1 \(%2\)} {
+        #map list {roomname} {%2} {variable} {maplist};
+	#foreach {$maplist} {maproom} {
+		#if {$maproom > 0} {
+			#map get {roomarea} {maparea} {$maproom};
+			#echo {Room: $maproom Area: $maparea}
+		}
+	}
+}
+
 #act {You still have to kill %d \* %2 \(%3\)} {
-        #map list %3
+	#map list {roomname} {%3} {variable} {maplist};
+	#foreach {$maplist} {maproom} {
+		#if {$maproom > 0} {
+			#map get {roomarea} {maparea} {$maproom};
+			#echo {Room: $maproom Area: $maparea}
+		}
+	}
+}
+
+#NOP Map list enhancement
+#act {vnum: %d dist} {
+	#map get {roomarea} {maparea} {%1};
+	#echo {AREA: $maparea}
+}
+
+#NOP Kill at least (global quest)
+
+#act {^Find and kill %d \* %2 \(%3\)} {
+	#var cp[target]		%2;
+	#var cp[location]	%3;
+	
+	#NOP Format target name;
+	#var cp[target] @mobformat{$cp[target]};
+
+	#var {campaign[$cp[target]]} {$cp[location]}
+}
+
+#NOP Old Formatting
+#alias oldcpformatting {
+	#NOP format target for easier use with where;
+	#format cp[target] {%l} {$cp[target]};
+
+	#NOP Check target for a leading article 'the';
+	#format cp[article] {%.4s} {$cp[target]};
+
+	#NOP Remove article 'the' if detected;
+	#if {"$cp[article]" == "the "} {
+		#format cp[len]		{%L} $cp[target];
+		#format cp[target]	{%r} $cp[target];
+		#math	cp[len]		{$cp[len] - 4};
+		#format cp[target]	{%.${cp[len]}s} $cp[target];
+		#format cp[target]	{%r} $cp[target];
+	};
+
+	#NOP Check target for a leading artcle 'an';
+	#format cp[article] {%.3s} {$cp[article]};
+
+	#NOP Remove article 'an' if detected;
+	#if {"$cp[article]" == "an "} {
+		#format cp[len] 	{%L} $cp[target];
+		#format cp[target]	{%r} $cp[target];
+		#math	cp[len]		{$cp[len] - 3};
+		#format cp[target]	{%.${cp[len]}s} $cp[target];
+		#format cp[target]	{%r} $cp[target];
+	};
+
+	#NOP Check target for a leading artcle 'a';
+	#format cp[article] {%.2s} {$cp[article]};
+
+	#NOP Remove article 'a' if detected;
+	#if {"$cp[article]" == "a "} {
+		#format cp[len] 	{%L} $cp[target];
+		#format cp[target]	{%r} $cp[target];
+		#math	cp[len]		{$cp[len] - 2};
+		#format cp[target]	{%.${cp[len]}s} $cp[target];
+		#format cp[target]	{%r} $cp[target];
+	};
+
+	#NOP Remove articles and punctuation internal to target name;
+	#replace {cp[target]} {some }	{};
+	#replace {cp[target]} { from }	{ };
+	#replace {cp[target]} { and }	{ };
+	#replace {cp[target]} { the }	{ };
+	#replace {cp[target]} { sea }	{ };
+	#replace {cp[target]} { an }	{ };
+	#replace {cp[target]} { a }	{ };
+	#replace {cp[target]} { of }	{ };
+	#replace {cp[target]} { to }	{ };
+	#replace {cp[target]} {-}	{ };
+	#replace {cp[target]} {,}	{};
+	#replace {cp[target]} {'s}	{};
+	#replace {cp[target]} {'}	{};
+	#replace {cp[target]} {.}	{};
+}
+
+#act {^Congratulations, that was one of your CAMPAIGN mobs!} {
+	#math cp[index] {$cp[index] + 1};
+	cpgocheck
+}
+
+#alias cpgocheck {
+	#if {$gmcp[char][status][state] == 3} {
+		cpgo;
+		#untick CampaignGo
+	} {
+		#tick {CampaignGo} {cpgocheck} {1}
+	}
+}
+
+#alias cpxcheck {
+	#if {$gmcp[room][info][num] == $vnum} {
+		#delay {DoCPX} {cpx} {0.5};
+		#untick CampaignCPX
+	} {
+		#tick {CampaignCPX} {cpxcheck} {1}
+	}
+}
+
+#act {^A Grumpy Old General tells you 'Good luck in your campaign!'} {cpi}
+
+#act {^CONGRATULATIONS! You have completed your campaign.} {
+	#untick CampaignGo;
+	#unvar campaign;
+	#unvar cp
+}
+
+#alias cpi {
+	#unvar campaign;
+	#var cp[index] 1;
+	cp info
+}
+
+#alias cpii {
+	#math cp[index] {$cp[index] + 1}
+}
+
+#alias cpgo {
+	#NOP Get campaign target;
+	#var cp[target]		*campaign[+$cp[index]];
+
+
+	#NOP Find short name for location;
+	#var cp[location]	$campaign[$cp[target]];
+	#foreach {$areas} {short} {
+		#if {"$areas[$short]" == "$cp[location]"} {
+			#var cp[short] $short
+		}
+	};
+
+	#if {&cp[short]} {
+		#NOP Area Mode;
+		#map go {roomarea} {$cp[short]};
+		#map get {roomvnum} {vnum};
+		#map go $gmcp[room][info][num];
+		cpxcheck;
+		#NOP #event {MAP ENTER ROOM $vnum};
+		#NOP 	#unevent {MAP ENTER ROOM $vnum};
+		#NOP	#delay 1 cpxcheck;
+		#NOP {};
+		#delay 0 goar $cp[short]
+	} {
+		#NOP Room Mode;
+		#delay 0 #map run $cp[location]
+	};
+}
+
+#alias cpx {
+	snd $cp[target]
+}
+
+#alias cpk {
+	k $cp[target]
+}
+
+#alias cphc {
+	hc $cp[target]
 }
 
 #alias snd {
@@ -41,7 +280,7 @@
 
 #act {There is no one here by that name.} {
 	#if {$sndtouch && &rooms[] > 0} {
-		sndr
+		#delay 0 sndr
 	};
 	#unvar sndtouch
 }

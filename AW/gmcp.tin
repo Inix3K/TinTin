@@ -47,12 +47,12 @@
         #send {$IAC$SB$GMCP core.supports.set [ "room 1", "comm 1", "char 1", "group 1" ] $IAC$SE\}
 }
 
-#event {IAC SB GMCP char.status IAC SE} {
-        #var gmcp[char][status] {%0}
-}
-
 #event {IAC SB GMCP char.base IAC SE} {
         #var gmcp[char][base] {%0}
+}
+
+#event {IAC SB GMCP char.status IAC SE} {
+        #var gmcp[char][status] {%0}
 }
 
 #event {IAC SB GMCP char.vitals IAC SE} {
@@ -100,7 +100,9 @@
 	#format {tp_cap}	{%+2s}	{$gmcp[char][worth][tp]};
 	#format {tr_cap}	{%+1s}	{$gmcp[char][worth][trains]};
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
-	#draw tile 20 1 20 -32 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>}
+	#math	{tick_cap}	{30 - $tick[elapsed]};
+	#format {tick_cap}	{%+1s}	{$tick_cap};
+	#draw tile 20 1 20 -32 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  Tick: $tick_cap}
 }
 
 #tick {update_status} {update_status} {2}
@@ -118,10 +120,10 @@
         #var {egraph}   {@graph{$ehealth;100}};
 	
 	#format {chp}		{%+5s} {@colscale{$hp;$hp_max}};
-	#format {csp}		{%+4s} {@colscale{$sp;$sp_max}};
+	#format {csp}		{%+5s} {@colscale{$sp;$sp_max}};
 	#format {cmv}		{%+4s} {@colscale{$mv;$mv_max}};
 	#format {chp_max}	{%+5s} {<238>$hp_max<088>};
-	#format {csp_max}	{%+4s} {<238>$sp_max<088>};
+	#format {csp_max}	{%+5s} {<238>$sp_max<088>};
 	#format {cmv_max}	{%+4s} {<238>$mv_max<088>};
 	#format {clvl}		{%+3s} {<afa>$gmcp[char][status][level]<088>};
 	#format {ctnl}		{%+4s} {@colscale{$gmcp[char][status][tnl];$gmcp[char][base][perlevel]}};
@@ -131,7 +133,7 @@
 	#format {cehealth}	{%+7s} {@colscale{$ehealth;100}%%};
 
 	#var {status1} {HP:$chp/$chp_max SP:$csp/$csp_max MV:$cmv/$cmv_max QT:$cqt    A:$calign    E:$cehealth     X:$clvl\[$ctnl\]\(<168>$delta<278>|<158>$ktnl<088>\)};
-	#var {status2} {HP:$hp_graph  S:$sp_graph M:$mv_graph Q:$qt_graph A:$a_graph E:$egraph};
+	#var {status2} {HP:$hp_graph  SP:$sp_graph  M:$mv_graph Q:$qt_graph A:$a_graph E:$egraph};
 
         #line ignore #showme {$status1} {-4};
         #line ignore #showme {$status2} {-3}
@@ -213,9 +215,5 @@
 	#draw tile 23 -30 23 -1 {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
 }
 
-
-#event {SESSION DISCONNECTED} {
-        #map write .tt/map/AW.map
-}
 
 #class {gmcp} {close}

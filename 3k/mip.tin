@@ -707,6 +707,9 @@
 	#REGEX {%0} {~Your~palms begin to sweat as you successfully fight off an infection.} {#var mipgag 1};
 	#REGEX {%0} {~Your~neck aches slightly as you successfully fight off an infection.} {#var mipgag 1};
 
+	#NOP Garden Hoe;
+	#REGEX {%0} {~%w~screams, "Take that hoe!"} {#var mipgag 1};
+
 	#NOP Hell Cows;
 	#REGEX {%0} {~A~cow falls, but the herd continues on!} {#var mipgag 1};
 	#REGEX {%0} {~The~lonesome cow topples to the ground, the herd finally slain.} {#var mipgag 1};
@@ -760,16 +763,6 @@
 #var chat[page] 1
 #var chat[rows] 17
 #var chat[scroll] page
-
-/*
-#ALIAS {show_chat} {
-	#math chat[start]	{$chat[rows] * $chat[page]};
-	#math chat[end]		{$chat[rows] * $chat[page] - $chat[rows] + 1};
-	#if {"$draw[chat]" == "on"} {
-		#line sub var #line sub esc #draw {tile} 1 1 $chat[rows] $chat[right] $chat[log][-$chat[start]..-$chat[end]]
-	}
-}
-*/
 
 #ALIAS {show_chat} {
 	#math chat[start]	{$chat[rows] + $chat[offset]};
@@ -984,12 +977,14 @@
 			#case {"Notify"}		{#var {commcol} {<168>}};
 			#case {"Party"}			{#var {commcol} {<128>}};
 			#case {"Poll"}			{#var {commcol} {<178>}};
+			#case {"Prb"}			{#var {commcol} {<203>}};
 			#case {"Professions"}		{#var {commcol} {<178>}};
 			#case {"Psi Main"}		{#var {commcol} {<168>}};
 			#case {"Shout"}			{#var {commcol} {<178>}};
 			#case {"Slime Chat"}		{#var {commcol} {<128>}};
 			#case {"Time"}			{#var {commcol} {<168>}};
 			#case {"Whine"}			{#var {commcol} {<118>}};
+			#case {"Wiz"}			{#var {commcol} {<207>}};
 			#case {"Wolf"}			{#var {commcol} {<228>}};
 			#case {"Zilch_shout"}		{#var {commcol} {<168>}};
 			#default			{#var {commcol} {<178>}}

@@ -1,4 +1,8 @@
 #class {awmap} {open}
+/* Required */
+#NOP gmcp.tin
+#NOP terrain.tin
+
 
 #read .tt/AW/terrain.tin
 
@@ -39,29 +43,10 @@
 }
 
 /* Map Room Events */
-#EVENT {MAP ENTER ROOM 11910} {enter hole}
+#event {MAP ENTER ROOM 11910} {enter hole}
 
-/* Autofinds */
-#act {You still have to kill \* %1 \(%2\)} {
-	#map list %2
-}
-#act {You still have to kill %1 \* %2 \(%3\)} {
-	#map list %3
-}
-
-#act {^%1 can be found in the vicinity of %2 which} {
-	#var quest[mob] %1;
-	#var quest[room] %2
-}
-
-#act {^is in the general area of %1.} {
-	#var quest[area] %1;
-	#list areas find {$quest[area]} {quest[index]};
-	#var quest[zone] *areas[+$quest[index]];
-	#map find {roomarea} {$quest[zone]} {roomname} {%*$quest[room]%*};
-	#delay 0 #map list {roomarea} {$quest[zone]} {roomname} {$quest[room]}
-}
-
+/* Where Find */
+#NOP First attempt at snd stuff...not used now, just use snd.tin
 #alias {wf} {
 	#map get {roomarea} {area};
 	#act {{([\D]{30}) ([\D]+)}} {

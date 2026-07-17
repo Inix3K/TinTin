@@ -2,6 +2,10 @@
 
 #var guild gentech
 
+#NOP Set unlocked powers
+#var gentech[unlocked][edna]		no
+#var gentech[unlocked][rec_chamber]	no
+
 
 #NOP genset hpbar HP:$hp$ SP:$sp$ PU:$pu$ CPC:$cpc$ E:$enemy$$nl$G:$gexp$/$g2n$($g2n-pct$%) RC:$rc$ Bias:$bias$ TS:$tslide$($reset-pct$%)$nl$EField[$efield$ min] EDNA[$edna$] Synth[$synthorg$] EFF:$gen-eff$|$tech-eff$ HG: $hypergen$($hypergent$)
 #act {HP:%d/%d SP:%d/%d PU:%d/%d(%d) CPC:%d/%d E:%w} {
@@ -17,7 +21,7 @@
 	#var ehealth			{%10}
 }
 
-#act {G:%d/%d(-%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {
+#act {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {
 	#var {gentech[gxp][prev]}	{$gentech[gxp][num]};
 	#var {gentech[rc][prev]}	{$gentech[rc][num]};
 	#var {gentech[gxp][num]}	{%1};
@@ -59,7 +63,7 @@
 		#delay {mediate} {#send !meditate} {0.1}
 	};
 	#NOP Reactivate EDNA;
-	#if {$gentech[edna][num] == 0} {
+	#if {$gentech[edna][num] == 0 && "$gentech[unlocked][edna]" == "yes"} {
 		#delay {edna} {#send !edna} {0.1}
 	};
 	#NOP Recharge PU from SPU;
@@ -68,31 +72,33 @@
 		#delay {recharge} {#send !recharge} {0.1}
 	};
 	#NOP Refill SPU from corpses if empty;
-	#if {$my[gp2][current] == 0 && "$recently_reclaimed" == "no"} {
-		#if {$corpses[cooler] > 0} {
-			#delay {use_corpse} {
-				#send !uncooler corpse;
-				#send !reclaim;
+	#if {"$gentech[unlocked][rec_chamber]" == "yes"} {
+		#if {$my[gp2][current] == 0 && "$recently_reclaimed" == "no"} {
+			#if {$corpses[cooler] > 0} {
+				#delay {use_corpse} {
+					#send !uncooler corpse;
+					#send !reclaim;
+					#var recently_reclaimed yes
+				} {0.1}
+			}; #elseif {$corpses[inventory] > 0} {
+				#delay {use_corpse} {
+					#send !drop corpse;
+					#send !reclaim;
 				#var recently_reclaimed yes
 			} {0.1}
-		}; #elseif {$corpses[inventory] > 0} {
-			#delay {use_corpse} {
-				#send !drop corpse;
-				#send !reclaim;
-				#var recently_reclaimed yes
-			} {0.1}
-		}; #elseif {$corpses[coffin] > 0} {
-			#delay {use_corpse} {
-				#send !unwrap;
-				#send !reclaim;
-				#var recently_reclaimed yes
-			} {0.1}
-		}; #elseif {$corpses[freezer] > 0} {
-			#delay {use_corpse} {
-				#send !deslab;
-				#send !reclaim;
-				#var recently_reclaimed yes
-			} {0.1}
+			}; #elseif {$corpses[coffin] > 0} {
+				#delay {use_corpse} {
+					#send !unwrap;
+					#send !reclaim;
+					#var recently_reclaimed yes
+				} {0.1}
+			}; #elseif {$corpses[freezer] > 0} {
+				#delay {use_corpse} {
+					#send !deslab;
+					#send !reclaim;
+					#var recently_reclaimed yes
+				} {0.1}
+			}
 		}
 	};
 	#if {"$recently_reclaimed" == "yes"} {
@@ -170,7 +176,7 @@
         #format {corpses[coffin]}	{%+2s} {$corpses[coffin]};
         #format {corpses[freezer]}	{%+2s} {$corpses[freezer]};
 	#showme {HP:${hp}/${hp_max} SP:${sp}/${sp_max} PU:${pu}/${pu_max}(${spu}) GL:${gxp_last} RL:${rc_last} TL:${tot_last} ${gxp_time} IC:<138>${corpses[inventory]}<088>${sb1_cooler}} {-4};
-	#showme {H:${my[hp][graph]} S:${my[sp][graph]} PU:${my[gp1][graph]} SU:${my[gp2][graph]} G: ${gentech[gxp][graph]} E:${enemy[graph]}  CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
+	#showme {HP:${my[hp][graph]}  S:${my[sp][graph]} PU:${my[gp1][graph]} SU:${my[gp2][graph]} G: ${gentech[gxp][graph]} E:${enemy[graph]}  CF:<138>${corpses[coffin]}<088>${sb2_freezer}} {-3};
 	#showme {$mip[gline][1]  $mip[gline][2]} {-6}
 }
 
@@ -180,6 +186,7 @@
 #SUB {G:%d/%d(%d\%) RC:%d Bias:( %d\% | %d\% ) TS:%d/%d(%d\%)} {G:$gxp_col/$g2n($gxp_per\%) RC:$gentech[rc][num] Bias:( $gentech[bias][atk]\% | $gentech[bias][def]\% ) TS:$gentech[ts][current]/$gentech[ts][max]($reset\%)}
 #SUB {EField[%d %w] EDNA[%d %w] Synth[%w] EFF:%d|%d HG: %d(%d %w)} {EField[${gentech[efield][num]} $gentech[efield][unit]] EDNA[$gentech[edna][num] $gentech[edna][unit]] Synth[$synthorg] EFF:$geneff|$techeff HG: $gentech[hg][num]($gentech[hg][time] $gentech[hg][unit])}
 
+/* Corpse Trigger */
 #alias {corpsetrig} {
 	slab;
 	wrap;
@@ -187,5 +194,9 @@
 }
 
 #act {dealt the killing blow} {corpsetrig}
+
+
+/* Aliases */
+#alias {info} {genhelp}
 
 #class {gentech} {close}

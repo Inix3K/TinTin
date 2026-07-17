@@ -7,7 +7,7 @@ yes
 @white: @
 @hired:                              *@@white: Whitelisted @@red:*@
 @white: @
-@higreen: UDefine@@white:     Urban Defs      @@green:Urban Dictionary@
+!@higreen: UDefine@@white:     Urban Defs      @@green:Urban Dictionary@
 @higreen: IWX@@white:         METARS/TAFS     @@green:AviationWeather.gov@
 @white: @
 @hiblack:---------------------------------------------------------------------------@

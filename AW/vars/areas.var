@@ -4,7 +4,7 @@
 {
     {aardington} {Aardington Estate}
     {abend} {The Dark Continent, Abend}
-    {academy} {Cloud City of Gnomalin}
+    {academy} {The Aylorian Academy}
     {adaldar} {Battlefields of Adaldar}
     {afterglow} {Afterglow}
     {agroth} {The Marshlands of Agroth}
@@ -12,6 +12,7 @@
     {alagh} {Alagh, the Blood Lands}
     {alehouse} {Wayward Alehouse}
     {amazon} {The Amazon Nation}
+    {amazonclan} {The Ivory City}
     {amusement} {The Amusement Park}
     {andarin} {The Blighted Tundra of Andarin}
     {annwn} {Annwn}
@@ -20,11 +21,13 @@
     {arena} {The Gladiator's Arena}
     {arisian} {Arisian Realm}
     {ascent} {The First Ascent}
+    {asherodan} {The Keep of the Asherodan}
     {astral} {The Astral Travels}
     {atlantis} {Atlantis}
     {autumn} {Eternal Autumn}
     {avian} {Avian Kingdom}
     {aylor} {The Grand City of Aylor}
+    {badtrip} {A Bad Trip}
     {bard} {The Bard Clan}
     {bazaar} {Onyx Bazaar}
     {beer} {The Land of the Beer Goblins}
@@ -44,6 +47,8 @@
     {cataclysm} {The Cataclysm}
     {cathedral} {The Old Cathedral}
     {cats} {Sheila's Cat Sanctuary}
+    {chakra} {Chakra Spire}
+    {chantry} {Fellchantry}
     {chaos} {The Realm of Chaos}
     {chasm} {The Chasm and The Catacombs}
     {chessboard} {The Chessboard}
@@ -55,6 +60,7 @@
     {cougarian} {The Cougarian Queendom}
     {cove} {Kiksaadi Cove}
     {cradle} {Cradlebrook}
+    {crimson} {The Crimson Horde Clan Hall}
     {crusaders} {The Crusader Clan}
     {crynn} {Crynn's Church}
     {damned} {Halls of the Damned}
@@ -70,6 +76,8 @@
     {dhalgora} {Dhal'Gora Outlands}
     {diatz} {The Three Pillars of Diatz}
     {diner} {Tumari's Diner}
+    {doh} {Disciples of Hassan Clan Hall}
+    {dominion} {Dominion Clan Area}
     {dortmund} {Dortmund}
     {drageran} {The Drageran Empire}
     {dragon} {The White Dragon Clan}
@@ -77,6 +85,7 @@
     {druid} {Isle of Anglesey}
     {dsr} {Diamond Soul Revelation}
     {dundoom} {The Dungeon of Doom}
+    {dungeon} {Bloodlust Dungeon}
     {dunoir} {Mount duNoir}
     {duskvalley} {Dusk Valley}
     {dynasty} {The Eighteenth Dynasty}
@@ -97,6 +106,7 @@
     {fireswamp} {The Fire Swamp}
     {fortress} {The Goblin Fortress}
     {fortune} {Crossroads of Fortune}
+    {fractal} {Fractals of the Weave}
     {fractured} {The Fractured Lands}
     {ft1} {Faerie Tales}
     {ftii} {Faerie Tales II}
@@ -130,6 +140,8 @@
     {imagi} {Imagi's Nation}
     {immhomes} {Immortal Homes}
     {imperial} {Imperial Nation}
+    {imperium} {The Stronghold of the Imperium Clan}
+    {infamy} {The Realm of Infamy}
     {infest} {The Infestation}
     {insan} {Insanitaria}
     {jenny} {Jenny's Tavern}
@@ -151,6 +163,7 @@
     {lidnesh} {The Forest of Li'Dnesh}
     {light} {The Order of Light}
     {livingmine} {Living Mines of Dak'Tai}
+    {logging} {Svrogan's Logging Camp}
     {longnight} {Into the Long Night}
     {loqui} {Loqui Clan Area}
     {losttime} {Island of Lost Time}
@@ -197,6 +210,7 @@
     {pompeii} {Pompeii}
     {promises} {Foolish Promises}
     {prosper} {Prosper's Island}
+    {pyre} {Twilight Hall}
     {qong} {Qong}
     {quarry} {Gnoll's Quarry}
     {raga} {Raganatittu}
@@ -253,6 +267,7 @@
     {tol} {The Tree of Life}
     {tombs} {The Relinquished Tombs}
     {touchstone} {Touchstone Cavern}
+    {twinlobe} {The Twinlobe Clan HQ}
     {umari} {Umari's Castle}
     {uncharted} {The Uncharted Oceans}
     {underdark} {The UnderDark}
@@ -266,6 +281,8 @@
     {village} {A Peaceful Giant Village}
     {vlad} {Castle Vlad-Shamir}
     {volcano} {The Silver Volcano}
+    {warzone} {The Warzone}
+    {watchmen} {The World of the Watchmen}
     {weather} {Weather Observatory}
     {werewood} {The Were Wood}
     {wildwood} {Wildwood}
@@ -275,6 +292,7 @@
     {wooble} {The Wobbly Woes of Woobleville}
     {woodelves} {The Wood Elves of Nalondir}
     {wtc} {Warrior's Training Camp}
+    {wyrm} {The Council of the Wyrm}
     {xmas} {Christmas Vacation}
     {xunti} {The Xunti Cult}
     {xylmos} {Xyl's Mosaic}

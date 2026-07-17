@@ -65,11 +65,23 @@
                         #format {ses_name} {%.${ses_len}s} {%0};
                         #var {mud} {AW}
                 } {
-			#ses {%0} {3k.org} {3000};
-			#var {ses_name} {%0};
-			#var {mud} {3k}
+			#regex {%0} {AE} {
+				#ses {%0} {ancientempires.net} {5011};
+				#format {ses_len} {%L} {%0};
+				#math {ses_len} {$ses_len-2};
+				#format {ses_name} {%.${ses_len}s} {%0};
+				#var {mud} {AE}
+			} {
+				#ses {%0} {3k.org} {3000};
+				#var {ses_name} {%0};
+				#var {mud} {3k}
+			}
 		}
         };
         $ses_name;
-        #textin .tt/.pass
+	#NOP event for read error;
+	#textin .tt/char/%0.pass;
+	#NOP if read error read .tt/.pass;
+	#NOP unevent;
+	#UNEVENT {READ ERROR}
 }
