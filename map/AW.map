@@ -18,7 +18,7 @@ F 263
 
 G 99999
 
-I 49260
+I 47195
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -216,7 +216,7 @@ L {MUDFONT CURVED} {N E} {\u2818}
 L {MUDFONT CURVED} {S E} {\u28A0}
 L {MUDFONT CURVED} {S W} {\u2844}
 L {MUDFONT CURVED} {N W} {\u2803}
-L {UNICODE GRAPHICS} {NO DIAGONAL} {}
+L {UNICODE GRAPHICS} {NO DIAGONAL} { }
 L {UNICODE GRAPHICS} {SE} {\u2E0C}
 L {UNICODE GRAPHICS} {NE} {\u2E1D}
 L {UNICODE GRAPHICS} {SE NE} {>}
@@ -128712,6 +128712,18 @@ E {32418} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
 R {32677} {0} {<138>} {Entrance to Aylor's Arena} {<138>[ ]<088>} {  As you make your way through the pub, you find yourself standing in an entryway leading to, as the sign says, Aylor's arena. While the city of Aylor itself may be grand, the arena most certainly is not. Even before you enter the actual arena, the smells of blood and sweat mix with the smells of black lotus and the other various magical concoctions that are commonly used by fighters. Trash litters the ground, and rats scurry around. You also hear the sounds of fighting. The sound of steel striking steel rings through the air, mixed with the battlecries of the fighters.  There is a tunnel leading to the stands, where one can 'watch the fights'.  There is a big GREEN SIGN here. } {aylor} {} {palace_room} {shop} {1.000} {}
 E {32687} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {32678} {d} {d} {32} {0} {} {1.000} {} {0.00}
+
+R {32678} {0} {<138>} {The arena staging area} {<138>%%<088>} {  This is the staging area, where arena combatants prepare for the challenge ahead.  Looking around, you notice that the combatants themselves are a varied mix of racial and professional backgrounds.  You can 'jump down' to the arena below from here, but it doesn't look very safe down there..     A bulletin board is posted on one of the walls. } {aylor} {} {quicksand} {pk} {1.000} {}
+E {32679} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {32680} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {32677} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {32679} {0} {<278>} {The arena staging area} {<278>[ ]<088>} {  This is the staging area, where arena combatants prepare for the challenge ahead.  Looking around, you notice that the combatants themselves are a varied mix of racial and professional backgrounds.     A bulletin board is posted on one of the walls. } {aylor} {} {inside} {pk} {1.000} {}
+E {32678} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {32680} {0} {<278>} {The arena staging area} {<278>[ ]<088>} {  This is the staging area, where arena combatants prepare for the challenge ahead.  Looking around, you notice that the combatants themselves are a varied mix of racial and professional backgrounds.     A bulletin board is posted on one of the walls. } {aylor} {} {inside} {pk} {1.000} {}
+E {32678} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
 R {32687} {0} {<138>} {Ivar's Lounge} {<138>[ ]<088>} {  This section of the pub is made for more intimate conversations. There are about twenty round pub tables organized around several billiard tables. Each table has space enough for four stools to be placed around it. These tables are easily moved about, so a couple of them have been pushed together by the most enterprising of the patrons. On the west side of the lounge, the wall is adorned with dartboards, and on the east side, a number of slot machines have been set up. To the north is the main bar where the bartender can be found, and to the south is the entrance to Aylor's Arena, for those who wish to prove themselves in a fight. } {aylor} {} {palace_room} {shop} {1.000} {}
 E {32688} {n} {n} {1} {0} {} {1.000} {} {0.00}
