@@ -1,0 +1,60 @@
+#class {chat_mods} open
+
+#NOP Reverse chat tool
+#NOP First argument is the chatline, remaining args are the message
+#alias {rev} {
+	#var rev[line]		%1;
+	#var rev[msg]		%0;
+	#replace {rev[msg]}	{%1 } {};
+	#format {rev[msg]} {%r} {$rev[msg]};
+	#send {$rev[line] $rev[msg]}
+}
+
+#NOP Morse code chat tool
+#alias {morse} {
+	#var morse[line]	%1;
+	#var morse[msg]		%0;
+	#replace {morse[msg]}	{%1 } {};
+	#format  {morse[msg]}	{%l} {$morse[msg]};
+	#replace {morse[msg]}	{.} {.-.-.- };
+	#replace {morse[msg]}	{,} {--..-- };
+	#replace {morse[msg]}	{a} {.- };
+	#replace {morse[msg]}	{b} {-... };
+	#replace {morse[msg]}	{c} {-.-. };
+	#replace {morse[msg]}	{d} {-.. };
+	#replace {morse[msg]}	{e} {. };
+	#replace {morse[msg]}	{f} {..-. };
+	#replace {morse[msg]}	{g} {--. };
+	#replace {morse[msg]}	{h} {.... };
+	#replace {morse[msg]}	{i} {.. };
+	#replace {morse[msg]}	{j} {.--- };
+	#replace {morse[msg]}	{k} {-.- };
+	#replace {morse[msg]}	{l} {.-.. };
+	#replace {morse[msg]}	{m} {-- };
+	#replace {morse[msg]}	{n} {-. };
+	#replace {morse[msg]}	{o} {--- };
+	#replace {morse[msg]}	{p} {.--. };
+	#replace {morse[msg]}	{q} {--.- };
+	#replace {morse[msg]}	{r} {.-. };
+	#replace {morse[msg]}	{s} {... };
+	#replace {morse[msg]}	{t} {- };
+	#replace {morse[msg]}	{u} {..- };
+	#replace {morse[msg]}	{v} {...- };
+	#replace {morse[msg]}	{w} {.-- };
+	#replace {morse[msg]}	{x} {-..- };
+	#replace {morse[msg]}	{y} {-.-- };
+	#replace {morse[msg]}	{z} {--.. };
+	#replace {morse[msg]}	{0} {----- };
+	#replace {morse[msg]}	{1} {.---- };
+	#replace {morse[msg]}	{2} {..--- };
+	#replace {morse[msg]}	{3} {...-- };
+	#replace {morse[msg]}	{4} {....- };
+	#replace {morse[msg]}	{5} {..... };
+	#replace {morse[msg]}	{6} {-.... };
+	#replace {morse[msg]}	{7} {--... };
+	#replace {morse[msg]}	{8} {---.. };
+	#replace {morse[msg]}	{9} {----. };
+	#send {$morse[line] $morse[msg]}
+}
+
+#class {chat_mods} close

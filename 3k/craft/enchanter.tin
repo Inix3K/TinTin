@@ -1,0 +1,12 @@
+#class {enchanter} {open}
+
+#action {^You have created something new!$} {
+	retrieve all;
+	insert moulding;
+	insert fragment;
+	insert jewel;
+	insert dust;
+	fire
+}
+
+#class {enchanter} {close}

@@ -1,0 +1,30 @@
+#class {google} {open}
+
+#var google on;
+
+#alias {dogoogle} {
+	#format {data} {%l} {$mip[comm][data]};
+	#replace {data} {igoogle} {#};
+	#var data_cnt 0;
+	#parse {$data} {char} {
+		#math {data_cnt} {$data_cnt + 1};
+		#if {"$char" == "#"} {
+			#var data_cut $data_cnt
+		}
+	};
+	#math {cut} {$data_cnt - $data_cut - 1};
+	#format {query} {%r} {$data};
+	#format {query} {%.${cut}s} {$query};
+	#format {query} {%r} {$query};
+
+	#sys bin/google $query;
+
+	#var line {$mip[comm][command]};
+	#delay 1 {
+		#send converse $line;
+		#textin bin/google.txt;
+		#send **;
+	}
+}
+
+#class {google} {close}

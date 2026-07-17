@@ -1,0 +1,156 @@
+#class {gear} {open}
+
+/* invmon actions */
+#var invmon[action][1]	remove
+#var invmon[action][2]	wear
+#var invmon[action][3]	lost
+#var invmon[action][4]	gain
+#var invmon[action][5]	get from container
+#var invmon[action][6]	put in container
+#var invmon[action][7]	consumed
+#var invmon[action][8]	undefined
+#var invmon[action][9]	put in vault
+#var invmon[action][10]	get from vault
+#var invmon[action][11]	put on keyring
+#var invmon[action][12]	get from keyring
+
+/* wear-loc (wearable) */
+#var invmon[location][0]	light
+#var invmon[location][1]	head
+#var invmon[location][2]	eyes
+#var invmon[location][3]	lear
+#var invmon[location][4]	rear
+#var invmon[location][5]	neck1
+#var invmon[location][6]	neck2
+#var invmon[location][7]	back
+#var invmon[location][8]	medal1
+#var invmon[location][9]	medal2
+#var invmon[location][10]	medal3
+#var invmon[location][11]	medal4
+#var invmon[location][12]	torso
+#var invmon[location][13]	body
+#var invmon[location][14]	waist
+#var invmon[location][15]	arms
+#var invmon[location][16]	lwrist
+#var invmon[location][17]	rwrist
+#var invmon[location][18]	hands
+#var invmon[location][19]	lfinger
+#var invmon[location][20]	rfinger
+#var invmon[location][21]	legs
+#var invmon[location][22]	feet
+#var invmon[location][23]	shield
+#var invmon[location][24]	wielded
+#var invmon[location][25]	second
+#var invmon[location][26]	hold
+#var invmon[location][27]	float
+#var invmon[location][28]	undefined
+#var invmon[location][29]	undefined
+#var invmon[location][30]	above
+#var invmon[location][31]	portal
+#var invmon[location][32]	sleeping
+
+/* Flags */
+#var invmon[flag][K]	Kept
+#var invmon[flag][M]	Magical
+#var invmon[flag][H]	Humming
+#var invmon[flag][I]	Invis
+#var invmon[flag][G]	Glowing
+#var invmon[flag][C]	Cursed
+#var invmon[flag][E]	Envenomed
+#var invmon[flag][W]	Weakened
+#var invmon[flag][T]	Tempered
+
+/* Types */
+#var invmon[type][1]	Light
+#var invmon[type][2]	Scroll
+#var invmon[type][3]	Wand
+#var invmon[type][4]	Stave
+#var invmon[type][5]	Weapon
+#var invmon[type][6]	Treasure
+#var invmon[type][7]	Armor
+#var invmon[type][8]	Potion
+#var invmon[type][9]	Furniture
+#var invmon[type][10]	Trash
+#var invmon[type][11]	Container
+#var invmon[type][12]	{Drink Container}
+#var invmon[type][13]	Key
+#var invmon[type][14]	Food
+#var invmon[type][15]	Boat
+#var invmon[type][16]	{Mob Corpse}
+#var invmon[type][17]	{Player Corpse}
+#var invmon[type][18]	Fountain
+#var invmon[type][19]	Pill
+#var invmon[type][20]	Portal
+#var invmon[type][21]	Beacon
+#var invmon[type][22]	{Gift Card}
+#var invmon[type][23]	Unused
+#var invmon[type][24]	{Raw Material}
+#var invmon[type][25]	Campfire
+#var invmon[type][26]	Forge
+#var invmon[type][27]	Runestone
+
+/* invmon */
+#act {^\{invmon\}%1,%2,%3,%4} {
+	#var inv[action]	%1;
+	#var inv[object]	%2;
+	#var inv[container]	%3;
+	#var inv[location]	%4;
+	#line gag
+}
+
+/* eqdata */
+#NOP objectid,flags,itemname,level,type,unique,wear-loc,timer
+#act {^\{eqdata\}} {
+	#var {eqdata} {};
+	#act {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8}	{
+		#var eqdata[%%7][id]		%%1;
+		#var eqdata[%%7][flags]		%%2;
+		#var eqdata[%%7][name]		%%3;
+		#var eqdata[%%7][level]		%%4;
+		#var eqdata[%%7][type]		%%5;
+		#var eqdata[%%7][unique]	%%6;
+		#var eqdata[%%7][location]	%%7;
+		#var eqdata[%%7][timer]		%%8;
+		#line gag
+	};
+	#line gag
+}
+#act {\{/eqdata\}} {
+	#unact {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8};
+	#line gag
+}
+
+/* Aliases */
+#NOP pass the 'level' gear intended to be worn at
+#NOP e.g.: 'invsnap 1' for save a snapshot for level 1 gear
+#alias eqsnap {
+	#format level_len {%L} {%1};
+	#if {$level_len > 0} {
+		eqdata;
+		#delay 2 {#var eqsnap[%1] $eqdata}
+	} {
+		#echo {eqsnap: Please pass level for snapshop}
+	}
+}
+
+#NOP Save container id
+#var container 1860888649
+
+#NOP pass the 'level' of the snapshot to be worn
+#alias gearup {
+	#format level_len {%L} {%1};
+	#if {$level_len > 0} {
+		#var level %1;
+		#loop 1 &eqsnap[$level][] cnt {
+			#echo {GEARUP: level: $level wear: $cnt id: $eqsnap[$level][$cnt][id]};
+			get $eqsnap[$level][$cnt][id] $container;
+			wear $eqsnap[$level][$cnt][id]
+			
+		}
+	} {
+		#echo {gearup: Please pass level for gearup}
+	}
+	
+}
+
+#class {gear} {close}

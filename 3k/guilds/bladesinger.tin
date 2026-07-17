@@ -1,0 +1,85 @@
+#class {bladesinger} {open}
+
+/* Set Guild Variable*/
+#var guild bladesinger
+
+/* Default HP Bar */
+#NOP [ Hp: 10279/10267 | Sp: 3009/2314 ] [ Ne: 215/215 | So: 210/210 ]
+#NOP [Mode : Freeform] [Eff : None] [Foe: None]
+#NOP #act {^[ HP: %d/%d | Sp: %d/%d ] [ Ne: %d/%d | So: %d/%d ]}
+#NOP #act {^[Mode : %w] [Eff : %w] [Foe : %p]}
+
+/* My HP Bar */
+#NOP hpsetup HP:$HP$ SP:$SP$ NE:$NE$ SO:$SO$ G:$PNL$$NL$Mode: $MO$ Eff: $EFF$ E:$ENS$
+#NOP HP:10355/10350 SP:3028/2170 NE:215/215 SO:210/210 G:1313.200
+#NOP Mode: Freeform Eff: None E:None
+
+/* HP Bars */
+#act {^HP:%d/%d SP:%d/%d NE:%d/%d SO:%d/%d G:%d.%d} {
+	#var my[hp][current]		{%1};
+	#var my[hp][max]		{%2};
+	#var my[sp][current]		{%3};
+	#var my[sp][max]		{%4};
+	#var my[gp1][current]		{%5};
+	#var my[gp1][max]		{%6};
+	#var my[gp2][current]		{%7};
+	#var my[gp2][max]		{%8};
+	#var bladesinger[gxp][current]	{%9.%10}
+}
+
+#act {^Mode: %w Eff: %w E:%p} {
+	#var bladesinger[mode]		{%1};
+	#var bladesinger[eff]		{%2};
+	#var enemy[hp]			{%3}
+}
+
+/* Update Status Alias */
+#alias {update_status} {
+        #if {"$cooler" == "on" || $corpses[cooler] > 0} {
+                #format {sb1_cooler} {%+2s} {$corpses[cooler]};
+                #var {sb1_cooler} { CL:<130>$sb1_cooler<088>}
+        } {
+                #var {sb1_cooler} {}
+        };
+        #if {"$freezer" == "on" || $corpses[freezer] > 0} {
+                #format {sb2_freezer} {%+2s} {$corpses[freezer]};
+                #var {sb2_freezer} { FZ:<130>$sb2_freezer<088>}
+        } {
+                #var {sb2_freezer} {}
+        };
+	#var {my[hp][graph]}		{@graph{$my[hp][current];$my[hp][max]}};
+	#var {my[sp][graph]}		{@graph{$my[sp][current];$my[sp][max]}};
+	#var {my[gp1][graph]}		{@graph{$my[gp1][current];$my[gp1][max]}};
+	#var {my[gp2][graph]}		{@graph{$my[gp2][current];$my[gp2][max]}};
+	#var {bladesinger[gxp][graph]}	{@graph{$bladesinger[gxp][current];100}};
+	#var {enemy[graph]}		{@graph{$enemy[hp];100}};
+	#format {hp}			{%+5s} {@colscale{$my[hp][current];$my[hp][max]}};
+	#format {hp_max}		{%+5s} {<128>$my[hp][max]<088>};
+	#format {sp}			{%+4s} {@colscale{$my[sp][current];$my[sp][max]}};
+	#format {sp_max}		{%+4s} {<128>$my[sp][max]<088>};
+	#format {ne}			{%+4s} {@colscale{$my[gp1][current];$my[gp1][max]}};
+	#format {ne_max}		{%+4s} {<128>$my[gp1][max]<088>};
+	#format {so}			{%+4s} {@colscale{$my[gp2][current];$my[gp2][max]}};
+	#format {so_max}		{%+4s} {<128>$my[gp2][max]<088>};
+	#format {gxp}			{%+10s} {@colscale{$bladesinger[gxp][current];100}};
+	#format {ehealth}		{%+3s} {@colscale{$enemy[hp];100}};
+	#format {corpses[inventory]}    {%+2s} {$corpses[inventory]};
+	#format {corpses[coffin]}       {%+2s} {$corpses[coffin]};
+	#if {"$draw[hpbar]" == "on"} {
+		#showme {H:${hp}/${hp_max} S:${sp}/${sp_max}  Ne:${ne}/${ne_max} So:${so}/${so_max} G:$gxp E:   ${ehealth}%    IC:<130>${corpses[inventory]}<088>${sb1_cooler}} {-4};
+		#showme {H:${my[hp][graph]}  S:${my[sp][graph]} N:${my[gp1][graph]} S:${my[gp2][graph]} G:${bladesinger[gxp][graph]} E:${enemy[graph]} CF:<130>${corpses[coffin]}<088>${sb2_freezer}} {-3}
+	};
+	#if {"$draw[gline]" == "on"} {
+		#showme {$mip[gline][1]  $mip[gline][2]} {-6}
+	}
+}
+
+
+/* Corpse Trigger */
+#alias {corpsetrig} {
+	slab;
+	wrap;
+	get coins
+}
+
+#class {bladesinger} {close}

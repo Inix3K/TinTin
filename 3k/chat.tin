@@ -1,0 +1,85 @@
+#class {common_chatlog} {kill}
+#class {common_chatlog} {open}
+
+#alias {-cl} {
+        #format {datestamp} {%t} {%Y-%m-%d.log};
+        #format {timestamp} {%t} {[%H:%M] };
+	#regex {"$world"} {3s} {
+		#line log .tt/logs/3s.chat {$timestamp\}
+	} {
+		#line log .tt/logs/3k.chat {$timestamp\}
+	};
+	#regex {"$world"} {3s} {
+		#line log .tt/logs/3s.chat
+	} {
+		#line log .tt/logs/3k.chat
+	};
+        -xchatlog
+        }
+#alias {-xchatlog}
+        {
+        #class {xchatlog} {open};
+        #act {^{\S}} {#class {xchatlog} {kill}} {99};
+        #act {{^(\s)*$}} {#class {xchatlog} {kill}} {99};
+        #act {^{\s{1,40}\S}} {-cl};
+        #class {xchatlog} {close}
+        }
+
+#NOP #act {{^\[.*\] [A-z]+:}} {-cl}
+/* TELLS LINKTELLS AUCTION HM SHOUTS GSHOUTS CLAN PROFESSIONS CRAFTING*/
+#act {{^((A ghostly form of )?[A-z0-9@]+ (<HM-[A-z]+(\s[A-z]+)?>:|-=\(OMP\)=-|LTs? \([\[\]0-9A-z\[\], ]+\)|says?|whispers?|tells?( you)? \(?[A-z0-9,@]+\)?:|g?shouts:|flaps :)|\[(Clan|PARTY|Auction)\] [A-z\(\) ]+:?)}} {-cl}
+
+#act {{[A-z]+ tells you:}} {
+	-cl;
+	#bell
+} {4};
+
+/*	#var IdleTimeout 600
+	#undelay {deadmanSwitch};
+        #delay {deadmanSwitch} {
+		#ignore all on;
+		#ECHO {DEADMAN Trigered!}
+	} {$IdleTimeout}
+*/
+
+#act {{^[\w]+ (<Craft>|\{Professions\}):}} {-cl}
+#act {{^[\w]+ <C-Trade>:}} {-cl}
+#act {{^[\w]+ <cgame>:}} {-cl}
+
+/* PARTY (Until they add timestamps) */
+#act {~^\e[0m\e[33;1m[PARTY]\e[0m} {-cl;#bell} {4}
+#act {^[PARTY] {GOLD divvy called by|All gold divvied}} {#nop} {3}
+#act {~^\e[0m[PARTY]} {#nop} {3}
+
+#act {Lupin tells} {#nop} {0}
+
+/* GUILD SPECIFIC */
+/* BARD */
+#act {{^[A-z]+ \[(HighBard|Fifty|Seventy|Gallant|[0-9]+)\]: }} {-cl}
+#act {{^(You send a message to \w+ on a whispering wind:|A slight breeze floats by and in it you hear \w+'s voice say:)$}} {-cl}
+
+/* BREED */
+#act {{^[A-z]+ projects? to [A-z]+:|^<(Breed( OOC)?|Watcher|Scholar|Announce|HighBreed|Elder|GM)> [A-z]+:}} {-cl}
+
+/* KNIGHT */
+#act {{^\(([A-z]+) ([0-9]+)\) ([A-z]+):?}} {-cl}
+#act {{^[A-z]+ \[[A-z][0-9]+\]}} {-cl}
+
+/* Jugger */
+
+/* #act {^{\[-Jugger(\([A-z]+\))? [A-z]+:}} {-cl}   */
+#act {{^\[-?(Jugger|Wolf|Bear|Falcon|JuggNewbie|Bloodname|Loremaster|Council|ADMIN)\(?\w*\)?-?\] (\w+: )?}} {-cl} 
+
+
+/* Necro */
+#act {^{[A-z]+ \[[A-z0-9-]+\]:}} {-cl}
+#act {Jezabel tells you:} {#nop}
+
+/* PROFESSIONS */
+
+#alias {.stop} {#nop}
+
+/* EMOTES */
+#act {From afar,} {-cl}
+
+#class {common_chatlog} {close}

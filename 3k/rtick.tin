@@ -1,0 +1,11 @@
+#alias {rtick} {
+	#line oneshot {
+		#ticker {random} {gl;rtick} {10800+1d14400}
+	}
+}
+
+#alias {unidle} {
+	#line oneshot {
+		#ticker {unidle} {gl;unidle} {240+1d600}
+	}
+}

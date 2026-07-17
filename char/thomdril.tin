@@ -1,0 +1,7 @@
+#class {thomdril} {open}
+
+/* Read in files */
+#NOP Primary Guild File
+#read .tt/3k/guilds/bard.tin
+
+#class {thomdril} {close}

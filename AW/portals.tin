@@ -1,0 +1,84 @@
+#class {portals} open
+
+#NOP addportal <name> <dest>
+#NOP name is an id for the portal
+#NOP dest is roomvnum for destination
+#alias addportal {
+	#unvar addportal;
+	#var addportal[name][val]	%1;
+	#var addportal[dest][val]	%2;
+	#format addportal[name][len] {%L} $addportal[name][val];
+	#format addportal[dest][len] {%L} $addportal[dest][val];
+	#if {$addportal[name][len] > 0 && $addportal[dest][len] <= 0} {
+		#var addportal[dest][val] $gmcp[room][info][num]
+	};
+	#if {$addportal[name][len] > 0} {
+		id $addportal[name][val];
+		#delay 1 #var addportal[id] $item[id];
+		#delay 1 #map at 99999 #map dig $addportal[id] $addportal[dest][val];
+		#delay 1 #map at 99999 #map exit $addportal[id] command {get $addportal[id] $portal[container];wear $addportal[id];enter;wear amulet;put $addportal[id] $portal[container]};
+		#var portals[$addportal[id]][dest] $addportal[dest][val]
+	} {
+		#echo {addportal syntax: addportal <portal_name> <portal_destination vnum>};
+		#echo {addportal syntax: If no destination is given, current room will be used}
+	}
+}
+
+#NOP grab portal id
+#NOP NOTE: This may need to be tweaked for future ID scraping
+#act {^| Id         : %d} {
+	#var item[id]	%1
+}
+
+#NOP Remove portal
+#NOP remportal <name>
+#alias remportal {
+	#var remportal[name] %1;
+	id $remportal[name];
+	#map at 99999 #map unlink $item[id]
+}
+
+#NOP Save portal container id
+#var portal[container] 1859336170
+
+#alias updateportals {
+	invdata $portal[container]
+}
+
+#act {^\{invdata $portal[container]\}} {
+        #var {portals} {};
+        #act {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8} {
+                #var portals[%%1][id]           %%1;
+                #var portals[%%1][flags]        %%2;
+                #var portals[%%1][name]         %%3;
+                #var portals[%%1][level]        %%4;
+                #var portals[%%1][type]         %%5;
+                #var portals[%%1][unique]       %%6;
+                #var portals[%%1][location]     %%7;
+                #var portals[%%1][timer]        %%8;
+                #line gag
+        };
+	
+        #line gag
+}
+#act {\{/invdata\}} {
+        #unact {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8};
+        #line gag
+}
+
+#act {^You raise a level!} {
+	portallevel
+}
+
+#alias portallevel {
+	#math efflevel {$gmcp[char][base][tier] * 10 + $gmcp[char][base][level]};
+	#loop 1 &portals[] cnt {
+		#if {$portals[+$cnt][level] > $efflevel} {
+			#map at 99999 #map exitflag $portals[+$cnt][id] block on
+		} {
+			#map at 99999 #map exitflag $portals[+$cnt][id] block off
+		}
+	}
+}
+
+#class {portals} close

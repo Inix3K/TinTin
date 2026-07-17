@@ -1,0 +1,5 @@
+#loop {1} {49260} {cnt} {
+	#map get roomname name $cnt;
+	#replace {$name} {;%dm} {[&1m};
+	#map at $cnt #map set roomname $name
+}

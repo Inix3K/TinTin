@@ -1,0 +1,83 @@
+#class {fodoor} {open}
+
+#list fodoor[color] create {red;blue;black;brown;green;cyan;white;yellow}
+
+#loop 1 4 cnt {
+	#var fodoor[code][$cnt] $fodoor[color][1]
+}
+
+#var fodoor[null] 0
+#var fodoor[base] 1
+#var fodoor[working] 1
+
+#act {^The panel's display flashes:$} {#var fodoor[result][cnt] 0}
+
+#act {^ [{-|o|X}] [{-|o|X}]$} {
+	#math fodoor[result][cnt] {$fodoor[result][cnt] + 1};
+	#var {fodoor[result][$fodoor[result][cnt]]} %1;
+	#math fodoor[result][cnt] {$fodoor[result][cnt] + 1};
+	#var {fodoor[result][$fodoor[result][cnt]]} %2
+}
+
+#act {^The panel buzzes loudly and stops flashing.$} {
+	#var fodoor[results] {$fodoor[result][1]$fodoor[result][2]$fodoor[result][3]$fodoor[result][4]};
+
+	#if {$fodoor[null] == 0} {
+		#if {"$fodoor[results]" == "----"} {
+			#var fodoor[null] $fodoor[base];
+
+			#if {$fodoor[base] == 1} {
+				#var fodoor[base] 2
+			} {
+				#var fodoor[base] 1
+			};
+	
+			#var fodoor[code][1] $fodoor[color][$fodoor[base]];
+		} {
+			#math fodoor[base] {$fodoor[base] + 1};
+			#loop 1 4 cnt {
+				#var fodoor[code][$cnt] $fodoor[color][$fodoor[base]];
+			}
+		}
+	} {
+		#if {"$fodoor[result][$fodoor[working]]" == "X"} {
+			#math fodoor[working] {$fodoor[working] + 1};
+			#var fodoor[base] 0
+		};
+		#math fodoor[base] {$fodoor[base] + 1};
+		#var fodoor[code][$fodoor[working]] $fodoor[color][$fodoor[base]]
+	};
+	#if {$fodoor[working] <= 4} {
+		#delay 4 do_fodoor
+	}
+}
+
+#act {^The door panel chimes and the door smoothly slides open.$} {
+	#if {$fodoor[working] == 4} {
+		#var fodoor[working] 1;
+		alias fod$fodoor[num] enter a $fodoor[code][1], b $fodoor[code][2], c $fodoor[code][3], d $fodoor[code][4]
+	}
+}
+
+#act {^The panel flashes: Access code entered too rapidly for processing.$} {
+	#delay 1 do_fodoor
+}
+
+#alias fodoor {
+	#var fodoor[num] %1;
+	
+	#loop 1 4 cnt {
+		#var fodoor[code][$cnt] $fodoor[color][1]
+	};
+
+	#var fodoor[null] 0;
+	#var fodoor[base] 1;
+	#var fodoor[working] 1;
+	do_fodoor
+}
+
+#alias do_fodoor {
+	enter a $fodoor[code][1], b $fodoor[code][2], c $fodoor[code][3], d $fodoor[code][4]
+}
+
+#class {fodoor} {close}

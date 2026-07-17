@@ -1,0 +1,42 @@
+# Password
+.pass
+*.pass
+
+# Logs
+logs/
+
+# VIM
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
+
+# AE - Not ready for prime time
+AE/
+
+# MAP Files
+map/
+
+# AW Hidden Files
+AW/goals/
+AW/notes/
+AW/vars/AWchat.var
+AW/vars/gear.var
+
+# 3K Hidden Files
+3k/3kwiz.map
+3k/bots/todo/
+3k/guilds/breed.tin
+3k/invokeprime.tin
+3k/invokeprime.alt
+3k/notes/
+3k/rtrick.tin
+
+#Misc
+ascii/
+colors.tin
+colors2.tin
+tmp/
+*.gz

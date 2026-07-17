@@ -1,0 +1,12 @@
+#class {keypad} {open}
+#MACRO {\eOP} {unwrap;dc}
+#MACRO {\eOq} {sw}
+#MACRO {\eOr} {s}
+#MACRO {\eOs} {se}
+#MACRO {\eOt} {w}
+#MACRO {\eOu} {look;search}
+#MACRO {\eOv} {e}
+#MACRO {\eOw} {nw}
+#MACRO {\eOx} {n}
+#MACRO {\eOy} {ne}
+#class {keypad} {close}

@@ -1,0 +1,7 @@
+#class {tyriel} {open}
+
+/* Read in files */
+#NOP Primary Guild File
+#read .tt/3k/guilds/angel.tin
+
+#class {tyriel} {close}

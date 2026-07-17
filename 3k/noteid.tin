@@ -1,0 +1,10 @@
+#alias noteid {
+	#loop 1 26000 cnt {
+		#var note no;
+		#map get {roomnote} {note} {$cnt};
+		#if {"$note" != "no"} {
+			#map set {roomid} {$note} {$cnt};
+			#map set {roomnote} {} {$cnt}
+		}
+	}
+}
