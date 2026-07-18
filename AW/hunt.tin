@@ -23,7 +23,7 @@
 
 #alias {ht} {
 	#if {"%1" == ""} {
-		#echo {<218>SYNTAX<088: <118>ht <target>};
+		#echo {<218>SYNTAX<088>: <118>ht <target>};
 		#return
 	};
 	#var {hunt_mode} {travel};
@@ -43,12 +43,12 @@
 	#echo {<218>HUNT<088>: <118>Hunting Stopped}
 }
 
-#act {You have no idea what you're doing, but maybe %1 is %2?} {do_hunt_check %2 %1}
-#act {You are confident that %1 passed through here, heading %2.} {do_hunt_check %2 %1}
-#act {You are certain that %1 is %2 from here.} {do_hunt_check %2 %1}
+#act {You have no idea what you're doing, but maybe %1 is %2?} {do_hunt_check {%2} {%1}}
+#act {You are confident that %1 passed through here, heading %2.} {do_hunt_check {%2} {%1}}
+#act {You are certain that %1 is %2 from here.} {do_hunt_check {%2} {%1}}
 
 #alias {do_hunt_check} {
-        #var hunt_dir %1;
+        #var {hunt_dir} {%1};
 
 	#switch {"$hunt_mode"} {
 		#case {"check"} {
@@ -79,7 +79,9 @@
 }
 
 #act {is here!$} {
-	#var {hunt_mode} {off}
+	#if {"$hunt_mode" == "travel" } {
+		#var {hunt_mode} {off}
+	}
 }
 
 #class {hunt} {close}
