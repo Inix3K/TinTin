@@ -18,7 +18,7 @@ F 263
 
 G 99999
 
-I 49260
+I 47195
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -154221,6 +154221,25 @@ R {45749} {0} {<178>} {A Building Foundation} {<178>{<148>*<178>}<088>} {  This 
 E {20746} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {20743} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
+R {45761} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  Wooden barrels have been lined up in the corner of this room. One of the  barrels has been filled with spears, while others contain only spearheads. Large colorful shields have been hung along the wooden wall supports. Beside  these, dozens of wooden ladders have been propped up against the wall.    * To the right, an entryway has been sealed off with powerful magic.   * A pile of gemstones has been left in front of the entryway. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45875} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45874} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45762} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  Large wooden chests have been lined up side by side\; most of them are locked  up. A chest that has been damaged is spilling arrowheads all over the floor. Behind the chests, several rows of tall baskets have been filled with arrow  shafts and feathers. Air blows up from a large grate in the floor. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45872} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45873} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45763} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45867} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45763} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  Absolutely everything in this section of the armory is silver. Helmets fill  the shelving units that line the wall and several full sets of armor have  been set up in front of these shelves. A freestanding rack holds a couple  dozen spears and halberds, and bins are filled with pieces of plate mail. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45764} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45762} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45866} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45764} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  In this corner of the room, battle-axes and lances have been hung vertically  on the walls. Many sealed barrels work together to form a pyramid, and dozens of round shields have been stacked into a loose pile. Wooden spears, perhaps  a hundred to a bundle, have been placed in front of the shields. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45872} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45763} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
 R {45793} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
 R {45794} {0} {<148>} {An Intersection of Hallways} {<148>. .<088>} {  A large mural has been painted on the southern wall of this hallway. It shows a young dark elf lying on the ground with an arrow through her heart. Her  winged spirit has risen into the sky above and gazes contentedly down upon  the death scene. A silver plaque hung beside the mural informs the onlooker  that this artwork depicts the death of a famous martyr. } {dungeon} {} {underground} {} {1.000} {}
@@ -154428,11 +154447,21 @@ R {45861} {0} {<228>} {The Apothecary's Garden} {<228>* *<088>} {  Somehow, the 
 E {45862} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45860} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {45862} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45862} {0} {<238>} {Apothecary Storage} {<238>. .<088>} {  Evenly-sized little brown bottles of medicine stand in neat rows upon  multiple layers of shelving. A long wooden table has been placed in the  middle of the room. Empty glass beakers, test tubes and jars of varying sizes sit organized atop the table. Everything is clean and ready for use. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45869} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45863} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45861} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45863} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45863} {0} {<238>} {Behind the Counter} {<238>. .<088>} {  A tall worktable stands here and underneath it sit a couple of chests. Each  chest contains many drawers where the apothecary keeps top secret  ingredients. Some sort of recipe is in the midst of being created on the  table. There are several containers sitting on it and each one has a unique  label: red ox galls, water peppers, Xynon's urine, cumin, french nuts and  suet. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45862} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45864} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45860} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45864} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45864} {0} {<238>} {A Fully Stocked Apothecary} {<238>. .<088>} {  Tall cabinets with glass doors are lined up in rows along this section of the apothecary. Stoppered glass containers of varying shapes and sizes stand neck to neck inside the cabinets. Each container is carefully labeled in a flowing script. One row reads: liquorice, sage, willow, rose, fennel, cinnamon,  ginger, cloves, cormorant blood, mandrake and dragon's blood. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45867} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45863} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45865} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45859} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {45865} {0} {<238>} {Entrance to the Apothecary} {<238>. .<088>} {  This section of the apothecary contains popular medicines that have been  prepared in advance so that customers can purchase them immediately. Some of  the labels read: for gout, for migraine, for quinsy, for the stomach, cough  treatment, corpse medicine, fresh urine, and dwale. The label on each  container faces outward for easy reading and the containers have been neatly  arranged on their shelving units. } {dungeon} {} {city_underground} {} {1.000} {}
 E {45866} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -154440,7 +154469,47 @@ E {45864} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45850} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45858} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45866} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45866} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  Full suits of armor have been constructed, placed on wooden racks and lined  up all along the wall. Torso pieces have been put up behind them, two to a  column. Hundreds of helmets have been hung on nails on overhead beams. The  centerpiece of this section is a full suit of horse armor that has been  assembled on a bronze horse statue and placed on a pedestal. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45763} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45867} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45865} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45867} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  This section of the armory contains maces and crossbows. Wooden racks have  been fashioned to hold the maximum amounts of these specific weapons. There  are many types of maces: skull, bar, club, morning star, flanged, fully  spiked, stone, marble, gold and copper. The crossbows are, for the most  part, all fairly uniform in design. Their bolts have been loaded into wooden  crates. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45762} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45868} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45866} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45864} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45868} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  This part of the armory is dominated by flails and caltrops. Custom wooden  supports have been built to hold the flails and the minotaurs have done an  excellent job of fitting as many weapons as possible into the designated  space. The flails have anywhere from one to three spiked balls attached to  the ends of chains that join onto wooden handles. As for the caltrops,  thousands of them fill about a dozen barrels. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45873} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45869} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45867} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {45869} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  The minotaurs have used this part of the armory to store longbows and war  hammers. The longbows have been placed horizontally on wooden racks. Each one is about six feet long. Sheaves of arrows sit in bins at the base of the  racks. The war hammers have been stored in a similar fashion to the longbows, but there are a lot more of them due to their comparatively compact size. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45874} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45868} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45862} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45872} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  Batons and scimitars have been stored in this section of the armory. The  batons, mainly used for sparring practice, have been stowed carelessly on end in barrels. The scimitars have been more carefully arranged. Their blades  have been wrapped in red silk and they sit lengthwise within custom crafted  wooden racks. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45875} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45764} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45762} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45873} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  In this portion of the vast armory, the sharp blades of falchion swords and  greatswords glint from where they have been stored on wooden racks. The  falchions are shaped like cleavers and are only about half the length of the  greatswords. Minotaurs are so strong, however, that they can easily wield a  greatsword one-handed. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45875} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45874} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45762} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45868} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45874} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  This section of the armory has been used to store lances and daggers. The  lances sit horizontally upon custom built wooden racks. As for the daggers,  they have been wrapped in white cloth and placed inside of crates. There are  about a dozen crates of daggers and half a dozen racks of lances. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45761} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45873} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45869} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45875} {0} {<238>} {A Vast Armory} {<238>. .<088>} {  This part of the armory has been set aside for siege weapons. Battering rams  have been piled up against the wall, and cannons have been set in rows  alongside them. The cannons are stout and metal and crudely constructed. Wooden bins have been filled with cannon balls and placed near the cannons. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45761} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45872} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45873} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {45878} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
