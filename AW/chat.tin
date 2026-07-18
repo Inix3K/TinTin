@@ -1,3 +1,4 @@
+#class {chat} {kill}
 #class {chat} {open}
 
 #var chat[row][start] 1
