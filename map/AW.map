@@ -18,7 +18,7 @@ F 263
 
 G 99999
 
-I 47195
+I 23698
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -54440,6 +54440,7 @@ E {12002} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {11941} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {12061} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {12000} {w} {w} {8} {0} {} {1.000} {} {0.00}
+E {23681} {d} {d} {32} {1} {} {1.000} {} {0.00}
 
 R {12002} {0} {<228>} {Ocean of Grass} {<228>, `<088>} {  A clear light emanates from the golden sun high above, unobstructed by clouds.  The tall grasses and herbaceous plants dip and rise with the wind, sending waves moving across the land.  Little well-camouflaged creatures scramble about their business.   } {mesolar} {} {field} {} {1.000} {}
 E {12003} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -95572,6 +95573,144 @@ R {23672} {0} {<228>} {The Deep South} {<228>( *<088>} {  You have now entered t
 E {23671} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {23665} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
+R {23681} {0} {<238>} {Wolfwood Thicket} {<238>( *<088>} {  This thicket has grown as an arched passageway. A narrow path under the  thicket leads straight into the swamp - a realm where shadows dance and  secrets linger. Ancient trees stand sentinel in the swamp's tangled embrace. Shadows weave a mysterious dance, their fingers tracing patterns on the murky water. A haunting stillness pervades, broken only by the distant calls of  unseen creatures. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23682} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23684} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {12001} {u} {u} {16} {1} {} {1.000} {} {0.00}
+
+R {23682} {0} {<268>} {Amber Infusion} {<268>~ ~<088>} {  These waters carry a rich, golden hue. The reflections of the surrounding  foliage create a dance of shadow and light, imbuing the atmosphere with a  warm, tranquil glow. Tangled roots, draped in a tapestry of moss, contribute  to the enchanted allure, inviting visitors to immerse themselves in the  serene ambiance. } {zenith} {} {shore} {} {1.000} {}
+E {23685} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23681} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23683} {0} {<228>} {Whispering Reeds} {<228>; ;<088>} {  Reeds unfurl along the swamp's edge, their slender forms swaying in a  choreographed symphony with the breeze. As sunlight filters through, the  reeds cast enchanting shadows on the tranquil waters. Murmurs of nature  intertwine with the gentle rustle of these reeds, creating an ambient melody  that resonates throughout the marshland. } {zenith} {} {swamp} {} {1.000} {}
+E {23684} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23688} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {23684} {0} {<238>} {Gossamer Mistwillows} {<238>( *<088>} {  The mist-kissed willows shimmer in the soft glow, creating an otherworldly  ambiance. The air is filled with the subtle scent of damp earth and the  gentle rustle of the willow leaves. In this enchanting enclave, the  mistwillows beckon, their presence a bridge between the mystical and the  sublime in the heart of the swamp. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23685} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23681} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23683} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23685} {0} {<268>} {Moonlit Blossoms} {<268>~ ~<088>} {  Moonlit blossoms unfold upon the swamp's waters, where water lilies bloom  beneath the silver glow of the moon. Their petals, radiant in the soft light, create a celestial dance upon the tranquil surface. The fragrance of these  blossoms mingles with the cool night air, offering a soothing symphony for  nocturnal visitors. } {zenith} {} {shore} {} {1.000} {}
+E {23686} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23682} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23684} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23686} {0} {<268>} {Starlit Specklebark} {<268>~ ~<088>} {  Ancient specklebark trees reach toward the night sky like cosmic sentinels. The bark of these majestic giants sparkles with a heavenly glow, adorned with tiny luminescent specks that mirror the brilliance of distant stars. The air  is alive with a quiet hum, as if the trees themselves whisper the secrets of  the cosmos to those who listen. } {zenith} {} {shore} {} {1.000} {}
+E {23689} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23685} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23687} {0} {<228>} {Gilded Twilight Sedge} {<228>* *<088>} {  Delicate sedges catch the last golden hues of twilight. Their slender blades, kissed by the sun's farewell, shimmer in a gilded display. As dusk descends,  the sedge transforms into a masterpiece of warm hues, reflecting the fading  light with a soft glow, and casting a serene spell over the waters. } {zenith} {} {jungle} {} {1.000} {}
+E {23688} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23691} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {23688} {0} {<238>} {Vibrant Shimmerquill} {<238>( *<088>} {  The inky waters reflect the eerie glow of shimmering reeds, casting an  enchanting scene. The nocturnal breeze carries whispers through the shadowy  expanse, creating an atmosphere alive with secrets. In this obsidian haven,  the elusive shimmerquills sway in the night, painting a haunting allure  across the waters. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23692} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23683} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23687} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23689} {0} {<228>} {Umbral Serpent Grass} {<228>; ;<088>} {  Moonlight penetrates the darkness, revealing sinuous grass blades that ripple like shadows upon the swamp's surface. The dim light outlines the serpentine  curves of the grass, creating an eerie dance in the obscurity. Whispering  night breezes carry the grassy murmur through the silent realm, adding a  mysterious cadence to the nocturnal sounds. } {zenith} {} {swamp} {} {1.000} {}
+E {23690} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23693} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23686} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23690} {0} {<138>} {Lumicrystal Bogstrands} {<138>, `<088>} {  Moonlight penetrates the shadows, revealing the spectral glow of crystals  that stud the murky waters. The subdued light accentuates the bog's  mysterious allure, where dim reflections play upon the still surface. A  hushed breeze carries whispers across the moonlit expanse, creating an eerie  ambiance beneath the night's gentle touch. } {zenith} {} {beach} {} {1.000} {}
+E {23694} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23689} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23691} {0} {<138>} {Aetherial Swaygrass} {<138>, `<088>} {  Starlight pierces the darkness, revealing slender blades that gently sway in  the nocturnal breeze. The subdued glow outlines the graceful curves of the  swaygrass, creating a subtle dance upon the swamp's surface. Whispers of the  night air caress the reed-like grass, adding a soft murmur to the tranquil  ambience. } {zenith} {} {beach} {} {1.000} {}
+E {23692} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23687} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23692} {0} {<228>} {Crimson Hushreeds} {<228>, .<088>} {  In the moonlit embrace of crimson hushreeds, shadows dance on the swamp's  edge, revealing slender reeds that stand like silent protectors. Bathed in  dim lunar hues, the hushreeds create a subtle contrast, their dark forms  outlined against the reflective waters. A gentle breeze rustles through the  quiet night, stirring the hushreeds in a delicate sway. } {zenith} {} {field3} {} {1.000} {}
+E {23695} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23688} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23691} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23693} {0} {<268>} {Opalescent Tufts} {<268>~ ~<088>} {  Ethereal tufts catch the dim light, creating a gentle luminescence amidst the dark waters. The soft glow accentuates each tuft's delicate contours, lending a subtle elegance to the shadowy landscape. A hushed breeze ripples through  the night air, causing the opalescent tufts to shimmer in a mystical dance. } {zenith} {} {shore} {} {1.000} {}
+E {23694} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23698} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23689} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23694} {0} {<238>} {Sapphire Shadow Orchids} {<238>* *<088>} {  These orchids exhibit deep indigo petals, almost translucent in the dim  light. Each blossom carries an elegant simplicity, with petals forming  graceful curves, suggesting a mysterious allure. Moonlight unveils the quiet  drama of these rare orchids. A nocturnal breeze caresses the orchids,  stirring them in a delicate dance that mirrors the mysteries of the swamp. } {zenith} {} {dead_jungle} {} {1.000} {}
+E {23690} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23693} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23695} {0} {<228>} {Starvine Creepers} {<228>; ;<088>} {  Sinuous tendrils create elegant patterns in this part of the swamp. The  vines' silhouettes appear as delicate squiggles against the dark waters, a  testament to nature's resilience. Under the moon's gentle touch, a nocturnal  breeze guides the tendrils in a rhythmic dance. } {zenith} {} {swamp} {} {1.000} {}
+E {23696} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23692} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23696} {0} {<228>} {Twilight Moss Blanket} {<228>* *<088>} {  This is a velvety expanse of moss that blankets the water in shades of deep  green and muted gray. Bathed in the subtle glow of moonlight, the moss takes  on an almost silvered hue, creating an enchanting play of light and shadow. Its texture is soft and dense, providing a delicate cushion for the nocturnal creatures that tread upon it. } {zenith} {} {jungle} {} {1.000} {}
+E {23697} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23699} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23695} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23697} {0} {<228>} {Darting Emberwings} {<228>* *<088>} {  Dragonflies flit and dive here. They have slender bodies in hues reminiscent  of the twilight sky. Their wings, transparent and delicate, shimmer in the  moonlight. Their primary coloration ranges from deep indigo to dusk violet,  mirroring the enchanting shades of the swamp at night. The wings of the  dragonflies have ember-like highlights, giving the impression of embers  dancing over the dark waters. } {zenith} {} {jungle} {} {1.000} {}
+E {23698} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23700} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23696} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23698} {0} {<138>} {Gilded Guardians} {<138>, `<088>} {  The gilded guardians stand tall with twisted, gnarled trunks that seem to  writhe like serpents in the moonlight. Their bark is a deep, shadowy black,  accentuated by golden veins that trace eerie patterns across their surface. Sinister, elongated branches extend like skeletal fingers, while clusters of  ominous, glowing leaves dangle from the warped limbs. } {zenith} {} {beach} {} {1.000} {}
+E {23693} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {39881} {u} {u} {16} {0} {} {1.000} {} {0.00}
+E {23697} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23699} {0} {<228>} {Shimmering Scuttlers} {<228>* *<088>} {  In the swamp's shadows, small creatures scuttle, navigating the murky terrain with stealth and agility. Tiny crustaceans, such as swamp crabs and  mudskippers, scuttle along the water's edge, their pincers poised for the  night's foraging. Amphibians like marsh frogs also dart through the  underbrush, seeking insects in the moonlit darkness. } {zenith} {} {jungle} {} {1.000} {}
+E {23700} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23696} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23700} {0} {<238>} {Shroud of Fronds} {<238>( *<088>} {  Using its otherworldly intelligence, the shroud creates deceptive illusions  to disorient those who wander near. Sinuous fronds reach out from the nearest trees like malevolent tendrils, casting an ominous shadow over the moonlit  waters. With a sinister purpose, the shroud uses its fronds to either conceal lurking dangers or ensnare unsuspecting prey. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23697} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23699} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23701} {0} {<238>} {Elderglow Blossoms} {<238>( *<088>} {  Near the elderglow blossoms in the treetops, the air is filled with a subtle  fragrance, a delicate blend of floral sweetness and the earthy notes of the  swamp. Their petals, kissed by the sun, exude a warm glow, casting dappled  patterns on the forest floor below. Beams of sunlight filter through the  foliage, illuminating the blossoms like delicate lanterns in a sunlit canopy. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23702} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23704} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {23702} {0} {<228>} {Serenity Starcrest} {<228>( *<088>} {  This tree's branches, adorned with luminescent leaves, create a soft, natural seat. The bark beneath provides a cool, reassuring touch, and the gentle  rustle of leaves overhead is like a soothing melody. From this elevated  perch, the view of the swamp below is enchanting, and the air is infused with the subtle fragrance of blossoms. } {zenith} {} {forest} {} {1.000} {}
+E {23705} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23701} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23703} {0} {<238>} {Slumbermarsh Elders} {<238>( *<088>} {  The slumbermarsh elder trees exude a warm and benevolent aura. Mossy green  branches that resemble gentle, outstretched arms grow from their trunks. Their leaves, a vibrant shade of emerald, rustle with a melodious whisper. Their collective consciousness imparts a sense of wisdom, and being near them feels like sharing a silent communion with the heartbeat of the marsh. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23704} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23707} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {23704} {0} {<178>} {Bogwood Sentinels} { } {  The air here carries a mix of earthy scents and the subtle fragrance of  peculiar blooms. The branches twist and interlace, creating a maze-like  canopy above. Sunlight filters through sporadically, casting dappled shadows  on the moss-covered platforms. The combination of mysterious birdcalls and  rustling creatures generates a mysterious composition of sounds. } {zenith} {} {forest2} {} {1.000} {}
+E {23705} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23701} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23703} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23705} {0} {<238>} {Tangleroot Monoliths} {<238>( *<088>} {  These monolithic structures, entwined with vines and draped in verdant moss,  provide elevated platforms with a panoramic view of the swamp below. The  monoliths themselves seem to emanate a subtle energy, as if connected to the  ancient heartbeat of the swamp. From this vantage point, the twists of the  canopy and the rhythmic dance of shadows on the water's surface are easily  observed. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23706} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23702} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {23704} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23706} {0} {<238>} {Quagmire Spines} {<238>( *<088>} {  These pointy trees, rising like natural spires, create a landscape that feels both intriguing and foreboding. The air is thick with the earthy scent of  mud, and the sporadic croaking of swamp creatures adds an eerie background  symphony. The quagmire spines cast long, spiky shadows, creating a surreal  play of light and darkness. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23708} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23705} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23707} {0} {<238>} {Nethermist Larches} {<238>( *<088>} {  These larches seem to draw in the mists of the swamp, creating an  ever-present, ghostly aura around their trunks. The air near them carries a  subtle, otherworldly hum, and their branches appear to waver in and out of  focus, blending with the surrounding mist. Legends suggest that these larches serve as conduits to an ancient, mystical energy, and being near them imparts a sense of connection to the supernatural essence that permeates them. } {zenith} {} {dead_forest} {} {1.000} {}
+E {23709} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23703} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23708} {0} {<178>} {Mirkshadow Firs} { } {  These magical firs emit a soft, pulsating glow that resonates with the  natural rhythms of the swamp. The gentle luminescence creates an inviting  ambiance, captivating nocturnal creatures. The firs are rumored to possess a  calming influence on the creatures, fostering a sense of tranquility and  unity among the denizens of the swamp. } {zenith} {} {forest2} {} {1.000} {}
+E {39881} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23706} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23709} {0} {<228>} {Jade Canopy Ascent} {<228>( *<088>} {  This vibrant green pocket of magic fosters an atmosphere where the leaves  seem to whisper mischievous secrets, and the branches sway in rhythmic  laughter. Swamp creatures might find themselves temporarily transformed into  whimsical forms, exchanging places with one another in a spirited dance of  trickery. Mysterious lights beckon, leading the curious astray. } {zenith} {} {forest} {} {1.000} {}
+E {23710} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23707} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {23710} {0} {<178>} {Labyrinth of Branches} { } {  Sunlight filters through the foliage, revealing glimmers of magical dust as  faeries flit from branch to branch. Their forms are elusive, appearing as  ephemeral flashes of iridescent light. From their concealed perches, the  mischievous faeries cast spells with mischievous glee, creating fantastical  illusions that dance upon the air. } {zenith} {} {forest2} {} {1.000} {}
+E {23711} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39882} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23709} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {23711} {0} {<238>} {Aerial Thicket} {<238>( *<088>} {  This thicket is a surreal tangle of branches and vines suspended mid-air. Hovering mysteriously above the swamp, it forms an intricate maze of floating greenery. The thicket's vines weave through the air, creating an otherworldly canopy where moss and peculiar blossoms grow upside-down. Strange,  luminescent insects flit about, casting an eerie glow. } {zenith} {} {dead_forest} {} {1.000} {}
+E {39881} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39883} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {23710} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
 R {23712} {0} {<228>} {A giant tree} {<228>( *<088>} {  A huge tree grows here. You doubt you could join hands around it even with  two or three people. This tree had to have survived the earthquake. It's far  too large to be new. Some of the tree's branches are low enough to the ground that it might be climbable. The tree seems to be full of birds with the  occasional squirrel scrambling up the trunk waving its tail at you. To the  north and east, marvelous scents seem to come from the flower beds. } {solan} {} {forest} {} {1.000} {}
 E {23815} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {23787} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -121416,7 +121555,7 @@ E {30544} {u} {u} {16} {0} {} {1.000} {} {0.00}
 R {30544} {0} {<278>} {[1;32mAerial cloister[0;37m} {<278>[ ]<088>} {  Pausing to get your breath, you decide that at this point, you don't care if you see another staircase in your life. Fortunately, the architect who designed the tower seems to have anticipated this, as the chamber before you seems an ideal place to rest. You stand in a large, circular portico, the walls broken by many open gothic arches, allowing a magnificent view of the city below. The Midgaard citizens teem through the streets, tiny as ants, and if you look closely... Yes! Yes, you can see the dump from here. You're high up enough to get away from the noise of the city, and the quiet adds to the sense of calm and serenity provided by the carefully maintained potted plants here and there. Several stone benches sit between these, and many members of the guild are taking advantage of these, idly tuning instruments, contemplating their muses, or simply snoring quietly. Despite the easy access through the archways, you decide the easiest (and the safest) way back down to the ground would be via the staircase, or you may wish to explore the spires to the north and south. } {bard} {} {inside} {} {1.000} {}
 E {30543} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
-R {30546} {0} {<278>} {[1;32mThe lobby[0;37m} {<278>[ ]<088>} {  The sheer size of the theatre's lobby is breathtaking. Tall marble columns support the ornately carved dome ceiling, and the walls are adorned with playbills from previous and future shows. This is where the crowds gather before the show, and where they wait out intermissions with lively discussions. The continuous low, humming drone of conversation is  occasionally punctuated by loud, boisterous laughter coming from the large group of people congregating near the entryway. On the southern side of the room stands a towering pair of arched double-doors leading into the theatre. Ushers stand ready, programs in hand, to show you to your seat. } {bard} {} {inside} {} {1.000} {}
+R {30546} {0} {<278>} {[1;32mThe lobby[0;37m} {<278>[ ]<088>} {  The sheer size of the theatre's lobby is breathtaking. Tall marble columns support the ornately carved dome ceiling, and the walls are adorned with playbills from previous and future shows. This is where the crowds gather before the show, and where they wait out intermissions with lively discussions. The continuous low, humming drone of conversation is  occasionally punctuated by loud, boisterous laughter coming from the large group of people congregating near the entryway. On the southern side of the room stands a towering pair of arched double-doors leading into the theatre. Ushers stand ready, programs in hand, to show you to your seat. } {bard} {} {inside} {safe} {1.000} {}
 E {30538} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {30520} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
@@ -149070,6 +149209,85 @@ E {39878} {w} {w} {8} {0} {} {1.000} {} {0.00}
 R {39880} {0} {<218>} {Lab equipment storage room} {<218>[ ]<088>} {  This room is used for the temporary storage of lab equipment that is either  reserved for future use, or has just arrived and has been stored here until  ready for use. You see a few brown, unopened boxes throughout the room. There are two doors here, lying to the south and to the east. } {tilule} {} {hellinside} {} {1.000} {}
 E {39868} {e} {open e;e} {2} {0} {} {1.000} {} {0.00}
 E {39867} {s} {open s;s} {4} {0} {} {1.000} {} {0.00}
+
+R {39881} {0} {<178>} {Sunbeam Grove} { } {  This is a radiant haven where golden sunlight filters through the leaves,  creating a warm and inviting ambiance. The branches form a natural lattice,  allowing rays of sunlight to dapple the grove's inhabitants. Birds, adorned  in vibrant plumage, frolic and chirp joyfully as they bask in the sunbeams. } {zenith} {} {forest2} {} {1.000} {}
+E {23698} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {23708} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {39897} {u} {u} {16} {0} {} {1.000} {} {0.00}
+E {23711} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39882} {0} {<178>} {Treetop Mosaic} { } {  Each tree here boasts leaves in varying hues, ranging from rich greens to  deep reds and brilliant yellows. Sunlight filters through the canopy, casting a kaleidoscope of colors on the branches and ground below. The exotic  flowers, bright butterflies, and striking birds of the swamp add to the  lively color palette. } {zenith} {} {forest2} {} {1.000} {}
+E {39883} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {23710} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {39883} {0} {<228>} {Foliage Overlook} {<228>( *<088>} {  From here, one can spy a panorama of enchanting sights. The winding waterways of the swamp stretch like liquid ribbons below. The treetops are a stage for  aerial ballets, as fantastical birds dart and soar amidst the branches. Beyond the swamp, distant mountains and cloud formations paint a breathtaking backdrop against the sky. } {zenith} {} {forest} {} {1.000} {}
+E {23711} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {39882} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39884} {0} {<148>} {Celestial Ballet} {<118>)<138>)<148>)<088>} {  Dazzling sunlight bathes the scene, creating a celestial stage where the  birds, resembling graceful performers, soar and twirl in an intricate dance. Their wings catch the sunlight, casting fleeting shadows on the cotton-like  clouds. The sounds of wingbeats and joyous chirps fill the air as the avian  dancers engage in a harmonious ballet against the backdrop of the boundless,  sunlit sky. } {zenith} {} {rainbow} {} {1.000} {}
+E {39885} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {39885} {0} {<138>} {Sunfire Symphony} {<138> * <088>} {  The sunlight ignites the clouds with fiery brilliance, changing their colors  to warm oranges, pinks, and golds. As the sun ascends, its rays create a  mesmerizing symphony of colors, painting the heavens with a magical dance of  light. The entire scene is suffused with a breathtaking beauty, as the sun's  golden touch enhances every contour of the clouds, turning the sky into a  luminous masterpiece. } {zenith} {} {sun} {} {1.000} {}
+E {39887} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39884} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {39886} {0} {<108>} {Firestorm Rebirth} {<108>~-~<088>} {  The phoenix's reincarnation is a magnificent finale of flames and  rejuvenation. A colossal burst of fiery energy erupts, forming a spiraling  column of vibrant, intertwining flames. Within this inferno, feathers  materialize, glowing with intense heat, as the phoenix emerges, reborn from  the embers. As the bird's majestic wings unfold, each feather ablaze with  hues of crimson, gold, and orange. } {zenith} {} {wind2} {} {1.000} {}
+E {39887} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39891} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {39887} {0} {<108>} {Realm of Wings} {<108>~-~<088>} {  Hundreds of tiny, identical birds fly here. The birds move as one entity,  undulating and swirling in a coordinated dance, their wings catching the  sunlight to create a shimmering display of fluidity. The air is filled with  the soft whirring of wings, and the sight evokes a sense of unity and grace. } {zenith} {} {wind2} {} {1.000} {}
+E {39888} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39885} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {39886} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39888} {0} {<108>} {Faedance Skyway} {<108>~ ~<088>} {  These faeries appear as tiny, luminescent figures. Their delicate wings  create a soft glow that trails behind them. With impish expressions and  clothes woven from moonbeams, the faeries perform aerial pirouettes, leaving  trails of sparkling stardust in their wake. The air is filled with the  delicate tinkling of laughter as the faeries playfully dance their way  through the sky. } {zenith} {} {cloud2} {} {1.000} {}
+E {39892} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39887} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39889} {0} {<108>} {Soaring Sprites} {<108>~-~<088>} {  The sky becomes a chaotic dance of laughter and feathers as the faeries swoop and dive, attempting to grasp hold of their avian companions. The birds  flutter and squawk in protest, their usual serene flight disrupted by the  impish faeries. Trails of twinkling stardust mark the struggle as the faeries test the patience of the good-natured birds. } {zenith} {} {wind2} {} {1.000} {}
+E {39890} {e} {e} {2} {0} {} {1.000} {} {0.00}
+
+R {39890} {0} {<138>} {Luminous Airscape} {<138> * <088>} {  The sky is a mass of shifting colors, as sunlight refracts through  microscopic airborne particles, creating a mesmerizing display of hues. Wisps of clouds form delicate patterns that cast lively shadows. High-flying  creatures, such as bronze dragonflies and golden butterflies, capture and  reflect the vibrant sunlight. } {zenith} {} {sun} {} {1.000} {}
+E {39891} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39889} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39891} {0} {<108>} {Sublime Heavens} {<108>~ ~<088>} {  In this part of the sky, fantastical auroras dance with vibrant hues, casting a mystical glow. Wisps of iridescent clouds form intricate patterns,  responding to the celestial energies at play. Celestial beings, like  luminescent spirits and ethereal butterflies, flutter in perfect harmony. The air is filled with a gentle hum, as if the very atmosphere is alive with  enchantment. } {zenith} {} {cloud2} {} {1.000} {}
+E {39895} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39886} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {39890} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39892} {0} {<278>} {Enchanted Skydome} {<128>.<138>*<088>~<088>} {  Majestic griffins, with wings outstretched, soar alongside phoenixes, their  plumage ablaze with radiant hues. Luminescent unicorns with iridescent horns  move gracefully through the air, leaving trails of stardust in their wake. Enchanting sylphs, delicate and winged, perform intricate aerial dances,  their movements synchronized with the gentle currents of the sublime sky. } {zenith} {} {cloud3} {} {1.000} {}
+E {39893} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39897} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39888} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {39893} {0} {<168>} {Mystical Tempests} {<168>~ ~<088>} {  Whirlwinds of shimmering stardust dance amidst tumultuous vortexes, causing  fantastical displays of light and shadow. The air is charged with an  otherworldly energy as the tempists weave intricate patterns of stormy magic, occasionally manifesting as playful gusts that ruffle the feathers of  airborne creatures. } {zenith} {} {wind1} {} {1.000} {}
+E {39894} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39892} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39894} {0} {<268>} {Aurora Cloudburst} {<268>. .<088>} {  Here waves of ethereal greens, blues, and pinks dance in harmony. Luminescent clouds create a captivating artwork, catching the shimmering  lights of the auroras and transforming them into cascading waterfalls of  color. Celestial beings, drawn to the mesmerizing display, soar through the  radiant clouds, leaving trails of stardust in their wake. } {zenith} {} {air} {} {1.000} {}
+E {39893} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39895} {0} {<108>} {Starshine Zephyrs} {<108>~-~<088>} {  Shimmering stardust takes on an eerie glow, casting unsettling shadows across the celestial expanse. Unpredictable currents create turbulent air pockets,  making navigation through the normally tranquil sky a perilous endeavor. Sinister whispers of the zephyrs echo, carrying an air of foreboding. } {zenith} {} {wind2} {} {1.000} {}
+E {39896} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39891} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {39896} {0} {<108>} {Skylight Daydreams} {<108>~ ~<088>} {  Here benevolent cloud creatures gracefully offer themselves as plush cloud  beds. These gentle beings, formed from the softest vapors, create a surreal  landscape where fluffy cloud forms intertwine to shape comfortable resting  spots. As the clouds harmonize, they provide a tranquil atmosphere for  travelers to recline upon their billowy forms. } {zenith} {} {cloud2} {} {1.000} {}
+E {39897} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39898} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39895} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39897} {0} {<178>} {Sunny Mirage} {<178>~ ~<088>} {  Illusory spectacles unfold as shimmering heatwaves create mirages that dance  and ripple through the air. Imaginary landscapes take form, teasing the  senses with the allure of distant paradises that are, in truth, mere  illusions. The sunlight refracts in fantastical patterns, casting ephemeral  images that entice and beguile. } {zenith} {} {mist} {} {1.000} {}
+E {39881} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {39892} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {39896} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39898} {0} {<148>} {Daystar Fantasy} {<118>)<138>)<148>)<088>} {  This is a transcendent experience where airborne creatures traverse through a radiant rainbow in the sky. The delicate forms of the birds intertwine with  the vibrant hues of the rainbow, creating a breathtaking display of color and motion. Each wingbeat seems to leave a trail of light, painting the air with  a mesmerizing palette that defies the ordinary. } {zenith} {} {rainbow} {} {1.000} {}
+E {39899} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39896} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {39899} {0} {<268>} {Veil of Sunlight} {<268>. .<088>} {  Sunbeams pierce through the celestial fabric, casting ghostly patterns that  dance upon the air. Whispers of ancient tales echo through the luminous  strands, hinting at secrets woven into the very essence of the sunlight. A  delicate balance of warmth and brilliance envelops the adventurous, offering  glimpses into realms unseen by mortal eyes. } {zenith} {} {air} {} {1.000} {}
+E {39898} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
 R {39900} {0} {<238>} {An Unholy Grove} {<238>( *<088>} {  An unpleasant array of broken branches, long grasses and decaying leaves,  this once peaceful grove appears disjointed. No set paths are visible through the throng of growth. Darkness is waning throughout the grove even during the day. A strong presence is apparent from the meticulous way the trees were  planted in a linear fashion. The taller trees seem to be near the middle  while the ones on the outer edges are smaller. All in all, the trees are  decrepit and full of visible etches and scars. } {winds} {} {dead_forest} {trainer} {1.000} {}
 E {39901} {n} {n} {1} {0} {} {1.000} {} {0.00}

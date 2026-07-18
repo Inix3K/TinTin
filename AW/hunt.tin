@@ -57,7 +57,7 @@
 	        };
 
 		#case {"travel"} {
-	                #send $hunt_dir;
+	                #send {$hunt_dir};
         	        hunt $hunt_tgt
         	}
 	}
@@ -79,7 +79,7 @@
 }
 
 #act {is here!$} {
-	#if {"$hunt_mode" == "travel" } {
+	#if {"$hunt_mode" == "travel"} {
 		#var {hunt_mode} {off}
 	}
 }
