@@ -1,7 +1,9 @@
 #class {prompt} {kill}
 #class {prompt} {open}
 
-#var tnl_prev 0
+#var {tnl_prev} {0}
+#var {delta} {0}
+#var {ktnl} {0}
 
 #act {{^HP:(\d+)/(\d+) SP:(\d+)/(\d+) MV:(\d+)/(\d+) QT:(\d+) A:(\-?\d+) G:(\d+) XP:(\d+)/(\d+)(?: E:)?(\d*)?}} {
 	#var {hp}       {%2};
@@ -17,13 +19,23 @@
 	#var {tnl}      {%12};
 	#var {ehealth}  {%13};
 
-	#if {$tnl != $tnl_prev} {
-	#math {delta} {$tnl_prev - $tnl};
-		#if {$delta < 0 && $gmcp[char][base][perlevel] > 0} {
+	#if {$tnl_prev == 0} {
+		#math {tnl_prev} {$tnl}
+	};
+	#elseif {$tnl != $tnl_prev} {
+		#var {delta} {0};
+
+		#if {$tnl < $tnl_prev} {
+			#math {delta} {$tnl_prev - $tnl}
+		};
+		#elseif {$tnl > $tnl_prev && $gmcp[char][base][perlevel] > 0} {
 			#math {delta} {$tnl_prev + $gmcp[char][base][perlevel] - $tnl}
 		};
+
 		#math {tnl_prev} {$tnl};
-		#math {ktnl} {$tnl/$delta+1};
+		#if {$delta > 0} {
+			#math {ktnl} {($tnl + $delta - 1) / $delta};
+		}
 	};
 
 	update_status;
