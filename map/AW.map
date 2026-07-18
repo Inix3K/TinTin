@@ -18,7 +18,7 @@ F 263
 
 G 99999
 
-I 47195
+I 49260
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -93571,7 +93571,7 @@ E {21194} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {22408} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {22439} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {21197} {0} {<278>} {The hand of Mota} {<278>[ ]<088>} {} {manor3} {} {inside} {} {1.000} {}
+R {21197} {0} {<278>} {The hand of Mota} {<278>[ ]<088>} {  The large square is made from at least 7 different sources of marble.  Several temples of Mota line the quiet plaza.  People are sitting on benches and watching the large fountain in the middle.  Others walk around and talk silently, enjoying the peaceful place of rest right in the middle of the chaotic city life.   } {manor3} {} {inside} {} {1.000} {}
 E {22865} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {21203} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {21202} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -154221,9 +154221,93 @@ R {45749} {0} {<178>} {A Building Foundation} {<178>{<148>*<178>}<088>} {  This 
 E {20746} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {20743} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R {45828} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45793} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
-R {45832} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45794} {0} {<148>} {An Intersection of Hallways} {<148>. .<088>} {  A large mural has been painted on the southern wall of this hallway. It shows a young dark elf lying on the ground with an arrow through her heart. Her  winged spirit has risen into the sky above and gazes contentedly down upon  the death scene. A silver plaque hung beside the mural informs the onlooker  that this artwork depicts the death of a famous martyr. } {dungeon} {} {underground} {} {1.000} {}
+E {45816} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45795} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45793} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45795} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {45816} {0} {<148>} {The Weeping Hallway} {<148>. .<088>} {  The walls here are built from a porous type of rock. Moisture has collected  upon them and soaked in, staining their surface red in certain spots. From  these areas, thick rivulets of liquid run toward the floor. They collect in  small pools on the uneven surface, making it slippery to walk. } {dungeon} {} {underground} {pk} {1.000} {}
+E {45817} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45794} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45817} {0} {<148>} {The Weeping Hallway} {<148>. .<088>} {  Murals have been painted on each side of this hallway. On the northern wall  the image of a beautiful subterranean city has been painted\; its streets are  lit with the ghostly glow of giant mushrooms. The mural on the southern wall  shows dark elves riding bull-sized spiders through a tunnel. } {dungeon} {} {underground} {pk} {1.000} {}
+E {45818} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45816} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45818} {0} {<148>} {The Weeping Hallway} {<148>. .<088>} {  A tapestry hangs on the northern wall in this section of hallway. Its main  color is black and the woven design shows red spiders of varying sizes. A  perfect circle of rust stains the floor underneath the tapestry where perhaps a statue or pedestal used to stand. } {dungeon} {} {underground} {pk} {1.000} {}
+E {45819} {e} {open e;e} {2} {0} {} {1.000} {} {0.00}
+E {45817} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45819} {0} {<148>} {The Silent Barracks} {<148>. .<088>} {  This barracks smells like a barn. Straw pallets fill most of the floorspace. Half-finished plates of food and bottles of alcohol either sit atop the  pallets or have toppled onto the floor. The leftover food is covered in fuzzy mold\; mice skitter quickly in and out of view as they pick away at this  feast. } {dungeon} {} {underground} {} {1.000} {}
+E {45820} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45822} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45821} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45818} {w} {open w;w} {8} {0} {} {1.000} {} {0.00}
+
+R {45820} {0} {<148>} {Den of Vengeance} {<148>. .<088>} {  The straw pallets in this room have been pushed to the side. White blankets  have been thrown haphazardly on top of them. Pictures of birds of prey have  been painted upon the part of the stone floor that is visible: hawks, eagles, buzzards, vultures and falcons can all be seen swooping and soaring  throughout the image. } {dungeon} {} {underground} {} {1.000} {}
+E {45824} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45823} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45819} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45821} {0} {<148>} {The Silent Barracks} {<148>. .<088>} {  Straw pallets have been lined up in rows along the floor. A soft glow  reminiscent of moonlight comes from an unknown magical source. The scent of  pine fills the air\; a refreshing change from the barn-like aroma that fills  the rest of the barracks. Small red berries litter the floor\; many have been  trampled and turned into red streaks. } {dungeon} {} {underground} {} {1.000} {}
+E {45823} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45819} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {45822} {0} {<148>} {A Ruined Section of the Barracks} {<148>. .<088>} {  This section of the barracks is unlit and gloomy. The straw pallets have been upturned and shredded and now thousands of pieces of straw litter the floor. The head of a rat lies on the ground, its body completely eaten away. Actually, not entirely: the tail lies on the ground a few feet away. And just in case that wasn't enough to send anyone away, a giant mound of fecal matter sits near the western wall, still steaming. } {dungeon} {} {underground} {} {1.000} {}
+E {45824} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45825} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45819} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {45823} {0} {<148>} {A Makeshift Altar} {<148>. .<088>} {  An altar has been set up in this corner of the barracks on a table that is  covered in a red silk cloth. The altar's main feature is a small bronze  statue of the horned god that stands inside of a bronze bowl. Four small clay bowls surround this figure along with several chalices and a couple of white  candles. The bowls contain ground herbs and the chalices look like they have  been filled with milk and wine. } {dungeon} {} {underground} {} {1.000} {}
+E {45820} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45821} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45824} {0} {<148>} {Blademaster's Quarters} {<148>. .<088>} {  There are three giant chests sitting in this section of the barracks. One of  the chests has had its lid propped open, so what it contains is easy to  discern. The chest is filled with bladed weapons, but each blade has been  tightly wound up in cloth. The hilts of the weapons are still visible\; they  look elaborate and expensive. } {dungeon} {} {underground} {} {1.000} {}
+E {45829} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45826} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45820} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45822} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45825} {0} {<148>} {The Defender's Barracks} {<148>. .<088>} {  Perhaps a hundred pieces of armor have been piled up against the wall in this corner of the barracks. Strong odors arise from the pile: the scents of  lacquer, vinegar and oil. A bucket full of sand sits alongside the pile, as  does a barrel that has probably been filled with lacquer. Dirty rags litter  the floor\; they are balled-up and covered with rust. } {dungeon} {} {underground} {} {1.000} {}
+E {45826} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45822} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {45826} {0} {<148>} {The Defender's Barracks} {<148>. .<088>} {  This section of the barracks appears well-organized. Straw pallets are lined  up in rows and blankets have been neatly arranged over them. At the head of  each bed, dried rose petals sit in glass globes that have been filled with  water. The petals have also been sprinkled over the bedsheets. } {dungeon} {} {underground} {} {1.000} {}
+E {45827} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45824} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45825} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45827} {0} {<148>} {The Vanquisher's Lair} {<148>. .<088>} {  The shadows in this large room are kept at bay by many torches. Their  flickering lights reveal veins of gold. The golden sparkles run all through  the rock that forms this cavern's walls. Various colorful rugs have been  rolled out to cover the floor. The rugs add a welcome warmth when compared to the cold greyness of the dungeon halls. } {dungeon} {} {underground} {} {1.000} {}
+E {45828} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45831} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45829} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45826} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45828} {0} {<148>} {The Axe Guard's Quarters} {<148>. .<088>} {  Wooden benches are lined up against the northern wall. They have been covered with long cushions. Feathers spill out of the cushions in areas where the  stitching hasn't held up. An oak chest stands in front of the benches. A  couple of battle axes lie on top of it\; their sharp, oiled blades gleam like  silver moons in the dim torchlight. } {dungeon} {} {underground} {} {1.000} {}
+E {45939} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45830} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45827} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45829} {0} {<148>} {The Hur'oN Barracks} {<148>. .<088>} {  Animal skin rugs cover up every inch of cold stone floor in this section of  the barracks. Many of the skins look like they come from bears or boars, but  there are a couple that are covered in spots and stripes. Large willow  baskets border the animal skins. Each basket has been filled with  nasty-looking weapons: chains, spiked gauntlets, morning stars, foot spikes,  spiked belts and claws, to name a few. } {dungeon} {} {underground} {} {1.000} {}
+E {45830} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45827} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45824} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45830} {0} {<148>} {An Organized Barracks} {<148>. .<088>} {  Some clothes have been hung on a line here to dry. Others have been neatly  folded and placed in piles upon a squat table. Baskets of green herbs sit  alongside the folded clothes. At a different table, someone has been working  on making arrows. A wicker basket of arrowheads sits beside a basket of reed  shafts and also one filled with red feathers. Finished arrows on the far side of the table have recently been painted with a strong-smelling lacquer. } {dungeon} {} {underground} {} {1.000} {}
+E {45828} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45829} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45831} {0} {<148>} {Southern Hallway} {<148>. .<088>} {  This wide passage expands into a large chamber to the south and into a  torch-lit chamber to the north. Small bits of glittering metal shine in the  stone walls. These stones were mined from rich deposits and many a merchant  would pay dearly for them. Too bad it would be impossible to safely transport the stones out of the dungeon. } {dungeon} {} {underground} {} {1.000} {}
+E {45832} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45827} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {45832} {0} {<148>} {Southern Hallway} {<148>. .<088>} {  This broad passageway leads northward into the entrance hall via a great  stone archway. Torches highlight the display of an amazing tapestry on the  eastern wall. The tapestry depicts the scene of a great battle as it occurs  in front of a mountain. Though showing severe signs of wear, the tapestry's  gold and bronze pallete shimmers beautifully in the torchlight. } {dungeon} {} {underground} {} {1.000} {}
+E {45835} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45831} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
 R {45833} {0} {<248>} {Entrance Hall} {<248># #<088>} {  A ceiling blackened from countless years of torch smoke brings about a sense  of dread in this tapering corner of the hall. Ancient wax drippings stream  down the wall from the remains of a heavily rusted candelabrum. The wax  culminates in a sickly pool on the stones below. } {dungeon} {} {dungeon} {} {1.000} {}
 E {45835} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -154300,7 +154384,10 @@ R {45848} {0} {<238>} {The Guard Room} {<238>[ ]<088>} {  This part of the room 
 E {45847} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45851} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R {45849} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45849} {0} {<148>} {The Guard Room} {<148>. .<088>} {  Long tables and benches fill this part of the room. Knives, forks and spoons  that have been left on each table indicate that this is where the guards go  to eat while they are on duty. Three lit candles span the center of each  table and they would give the room a charming appeal if not for the fact that each candle is set within a white rat skull. } {dungeon} {} {underground} {} {1.000} {}
+E {45850} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45847} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45851} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {45850} {0} {<238>} {The Guard Room} {<238>[ ]<088>} {  The door to the north opens into a giant apothecary. The door to the east  leads into a large corridor. The doors are old, worn and squeak when they are opened. The stone floor is covered with muddy hoofprints, so this must be a  high traffic zone. To the south is an eating area and to the west is a small  section where prisoners can be kept. } {dungeon} {} {hut} {} {1.000} {}
 E {45890} {e} {open e;e} {2} {0} {} {1.000} {} {0.00}
@@ -154321,9 +154408,41 @@ E {45851} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
 R {45853} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
-R {45858} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45858} {0} {<238>} {Entrance to the Apothecary} {<238>. .<088>} {  Coming into the apothecary from this entrance, the customer is greeted with  shelves that have been well-stocked with bottles of wine. The wine bottles  have been corked and stored horizontally on diamond-shaped racks. The room is quite cool and the air seems to be circulating well, so there is only a faint hint of mustiness to it. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45865} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45859} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45852} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {45865} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {45859} {0} {<148>} {Entrance to the Apothecary} {<148>. .<088>} {  The most noticeable feature of the apothecary is its many varying odors. Take one step and it smells like jasmine and mint, take another and it turns  to sulfur and rotten tomatoes. The front section of the apothecary contains  as many shelving units as can fit, and further to the north is the  apothecary's counter and workspace. } {dungeon} {} {underground} {} {1.000} {}
+E {45864} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45860} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45858} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45878} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45860} {0} {<238>} {Behind the Counter} {<238>. .<088>} {  Behind the counter is the apothecary's workspace. Here he toasts and grinds  his spices and places them into tins. He creates medicine for customers  alongside bottles of wine. His worktable contains books of recipes, grinders, mortals and pestles. Currently, a snail is oozing its way across the  worktable. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45863} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45861} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45859} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {45861} {0} {<228>} {The Apothecary's Garden} {<228>* *<088>} {  Somehow, the apothecary has managed to cultivate a thriving garden here in  the depths of the dungeon. Its success is likely due to the magical,  sun-mimicking lighting that is being used. The garden contains many types of  herbs: thyme, rosemary, oregano, peppermint, sage, lavender, lemon balm,  catnip and bee balm. } {dungeon} {} {jungle} {} {1.000} {}
+E {45862} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45860} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {45862} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {45863} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {45864} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {45865} {0} {<238>} {Entrance to the Apothecary} {<238>. .<088>} {  This section of the apothecary contains popular medicines that have been  prepared in advance so that customers can purchase them immediately. Some of  the labels read: for gout, for migraine, for quinsy, for the stomach, cough  treatment, corpse medicine, fresh urine, and dwale. The label on each  container faces outward for easy reading and the containers have been neatly  arranged on their shelving units. } {dungeon} {} {city_underground} {} {1.000} {}
+E {45866} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {45864} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {45850} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {45858} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {45866} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {45878} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
 R {45890} {0} {<268>} {A Large Corridor} {<268>[ ]<088>} {  A large wooden door hangs at the west end of this corridor while drab stone  floors and walls stretch to the east. Pairs of torches light the passage but  do not seem to provide much light. The floors are caked with dirt and grime  that has been disturbed by a multitude of messy hoofprints. } {dungeon} {} {hallway} {} {1.000} {}
 E {45891} {e} {e} {2} {0} {} {1.000} {} {0.00}

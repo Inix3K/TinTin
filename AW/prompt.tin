@@ -1,0 +1,32 @@
+#class {prompt} {kill}
+#class {prompt} {open}
+
+#var tnl_prev 0
+
+#act {{^HP:(\d+)/(\d+) SP:(\d+)/(\d+) MV:(\d+)/(\d+) QT:(\d+) A:(\-?\d+) G:(\d+) XP:(\d+)/(\d+)(?: E:)?(\d*)?}} {
+	#var {hp}       {%2};
+	#var {hp_max}   {%3};
+	#var {sp}       {%4};
+	#var {sp_max}   {%5};
+	#var {mv}       {%6};
+	#var {mv_max}   {%7};
+	#var {qt}       {%8};
+	#var {align}    {%9};
+	#var {gold}     {%10};
+	#var {lvl}      {%11};
+	#var {tnl}      {%12};
+	#var {ehealth}  {%13};
+
+	#if {$tnl != $tnl_prev} {
+	#math {delta} {$tnl_prev - $tnl};
+		#if {$delta < 0 && $gmcp[char][base][perlevel] > 0} {
+			#math {delta} {$tnl_prev + $gmcp[char][base][perlevel] - $tnl}
+		};
+		#math {tnl_prev} {$tnl};
+		#math {ktnl} {$tnl/$delta+1};
+	};
+
+	update_status;
+}
+
+#class {prompt} {close}

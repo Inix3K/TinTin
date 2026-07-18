@@ -1,0 +1,18 @@
+#class {tick} {kill}
+#class {tick} {open}
+
+/* Tick timer */
+#act {--> TICK <-- (%1 Qt: %2)} {
+        #var qt %2;
+        #var tick[elapsed] 0;
+        update_status;
+        #line gag
+}
+
+#var tick[elapsed] 0
+#ticker {tick} {
+        #math {tick[elapsed]} {$tick[elapsed] + 1};
+        update_caption
+} {1}
+
+#class {tick} {close}

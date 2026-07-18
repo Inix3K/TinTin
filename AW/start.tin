@@ -1,0 +1,12 @@
+#read .tt/ticklist.tin
+#read .tt/AW/var.tin
+#read .tt/AW/draw.tin
+#read .tt/AW/chat.tin
+#read .tt/AW/gear.tin
+#read .tt/AW/gmcp.tin
+#read .tt/AW/mapper.tin
+#read .tt/AW/portals.tin
+#read .tt/AW/snd.tin
+#read .tt/AW/prompt.tin
+#read .tt/AW/tick.tin
+#read .tt/AW/hunt.tin
