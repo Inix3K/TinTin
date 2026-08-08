@@ -1,4 +1,3 @@
-#read .tt/ticklist.tin
 #read .tt/AW/var.tin
 #read .tt/AW/draw.tin
 #read .tt/AW/chat.tin
