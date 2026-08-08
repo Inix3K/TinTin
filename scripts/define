@@ -12,8 +12,8 @@ URL=$URL_BASE$WORD$REGION
 
 curl -s -X GET \
 	--header 'Accept: application/json' \
-	--header 'app_id: $OXFORD_APP_ID' \
-	--header 'app_key: $OXFORD_APP_KEY' \
+	--header "app_id: $OXFORD_APP_ID" \
+	--header "app_key: $OXFORD_APP_KEY" \
 	$URL > ~/.scripts/define.json
 
 jq '.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]' ~/.scripts/define.json > ~/.scripts/define.txt

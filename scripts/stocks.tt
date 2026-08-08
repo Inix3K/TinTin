@@ -11,7 +11,7 @@ FUNC='function=TIME_SERIES_INTRADAY'
 INTERVAL='&interval=1min'
 SIZE='&outputsize=compact'
 : "${ALPHAVANTAGE_API_KEY:?Set ALPHAVANTAGE_API_KEY}"
-API='&apikey=$ALPHAVANTAGE_API_KEY'
+API="&apikey=$ALPHAVANTAGE_API_KEY"
 DATA='&datatype=json'
 
 INPUT=~/.scripts/stock.json
