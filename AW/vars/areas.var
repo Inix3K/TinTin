@@ -41,7 +41,7 @@
     {callhero} {The Call of Heroes}
     {camps} {Tournament Camps}
     {canyon} {Canyon Memorial Hospital}
-    {caravan} {Gypsy Caravan}
+    {caravan} {Wayfarer's Caravan}
     {cards} {House of Cards}
     {carnivale} {Olde Worlde Carnivale}
     {cataclysm} {The Cataclysm}
@@ -85,6 +85,7 @@
     {druid} {Isle of Anglesey}
     {dsr} {Diamond Soul Revelation}
     {dundoom} {The Dungeon of Doom}
+    {dunes} {Dunes in Gold}
     {dungeon} {Bloodlust Dungeon}
     {dunoir} {Mount duNoir}
     {duskvalley} {Dusk Valley}
@@ -110,6 +111,7 @@
     {fractured} {The Fractured Lands}
     {ft1} {Faerie Tales}
     {ftii} {Faerie Tales II}
+    {fury} {Fury City}
     {gaardian} {Midgaardian Publishing House}
     {gallows} {Gallows Hill}
     {gathering} {The Gathering Horde}
@@ -238,6 +240,7 @@
     {shouggoth} {The Temple of Shouggoth}
     {siege} {Kobold Siege Camp}
     {sirens} {Siren's Oasis Resort}
+    {skeletal} {Skeletal Remains}
     {slaughter} {The Slaughter House}
     {snuckles} {Snuckles Village}
     {soh} {The School of Horror}
@@ -286,6 +289,7 @@
     {weather} {Weather Observatory}
     {werewood} {The Were Wood}
     {wildwood} {Wildwood}
+    {winds} {Winds of Fate}
     {winter} {Winterlands}
     {wizards} {War of the Wizards}
     {wonders} {Seven Wonders}

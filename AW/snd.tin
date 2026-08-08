@@ -95,6 +95,10 @@
 
 #NOP Kill at least (global quest)
 
+#act {^Alex, the Taskmaster tells you 'Good luck in your campaign!'$} {
+	cpi
+}
+
 #act {^Find and kill %d \* %2 \(%3\)} {
 	#var cp[target]		%2;
 	#var cp[location]	%3;

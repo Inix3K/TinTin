@@ -1,84 +1,216 @@
-#class {portals} open
+#class {portals} {kill}
+#class {portals} {open}
 
-#NOP addportal <name> <dest>
-#NOP name is an id for the portal
-#NOP dest is roomvnum for destination
-#alias addportal {
-	#unvar addportal;
-	#var addportal[name][val]	%1;
-	#var addportal[dest][val]	%2;
-	#format addportal[name][len] {%L} $addportal[name][val];
-	#format addportal[dest][len] {%L} $addportal[dest][val];
-	#if {$addportal[name][len] > 0 && $addportal[dest][len] <= 0} {
-		#var addportal[dest][val] $gmcp[room][info][num]
+
+#NOP ============================================================
+#NOP Portal configuration / state
+#NOP ============================================================
+
+#var {portal[container]} {1859336170}
+
+#var {portal_pending[action]} {off}
+#var {portal_pending[name]} {}
+#var {portal_pending[dest]} {}
+
+
+#NOP ============================================================
+#NOP Main portal command
+#NOP
+#NOP portal add <name> [destination]
+#NOP portal remove <name>
+#NOP portal update
+#NOP portal level
+#NOP portal stop
+#NOP ============================================================
+
+#alias {portal} {
+
+	#if {"%1" == "add"} {
+
+		#if {"%2" == ""} {
+			#echo {<acf>SYNTAX<099>: portal add <name> [destination]};
+			#echo {        If no destination is given, the current room is used};
+			#return
+		};
+
+		#if {"$portal_pending[action]" != "off"} {
+			#echo {<138>PORTAL<099>: A portal operation is already in progress};
+			#return
+		};
+
+		#var {portal_pending[action]} {add};
+		#var {portal_pending[name]} {%2};
+		#var {portal_pending[dest]} {%3};
+
+		#if {"$portal_pending[dest]" == ""} {
+			#var {portal_pending[dest]} {$gmcp[room][info][num]}
+		};
+
+		id $portal_pending[name];
+
+		#return
 	};
-	#if {$addportal[name][len] > 0} {
-		id $addportal[name][val];
-		#delay 1 #var addportal[id] $item[id];
-		#delay 1 #map at 99999 #map dig $addportal[id] $addportal[dest][val];
-		#delay 1 #map at 99999 #map exit $addportal[id] command {get $addportal[id] $portal[container];wear $addportal[id];enter;wear amulet;put $addportal[id] $portal[container]};
-		#var portals[$addportal[id]][dest] $addportal[dest][val]
-	} {
-		#echo {addportal syntax: addportal <portal_name> <portal_destination vnum>};
-		#echo {addportal syntax: If no destination is given, current room will be used}
+
+
+	#if {"%1" == "remove"} {
+
+		#if {"%2" == ""} {
+			#echo {<acf>SYNTAX<099>: portal remove <name>};
+			#return
+		};
+
+		#if {"$portal_pending[action]" != "off"} {
+			#echo {<138>PORTAL<099>: A portal operation is already in progress};
+			#return
+		};
+
+		#var {portal_pending[action]} {remove};
+		#var {portal_pending[name]} {%2};
+		#var {portal_pending[dest]} {};
+
+		id $portal_pending[name];
+
+		#return
+	};
+
+
+	#if {"%1" == "update"} {
+		invdata $portal[container];
+		#return
+	};
+
+
+	#if {"%1" == "stop"} {
+		#var {portal_pending[action]} {off};
+		#var {portal_pending[name]} {};
+		#var {portal_pending[dest]} {};
+
+		#echo {<128>PORTAL<099>: Pending operation cleared};
+
+		#return
+	};
+
+
+	#echo {<428>PORTAL COMMANDS<099>};
+	#echo {  <acf>portal add <name> [destination]<099>  - Add a portal to the map};
+	#echo {  <acf>portal remove <name><099>             - Remove a portal from the map};
+	#echo {  <acf>portal update<099>                    - Refresh portal inventory data};
+	#echo {  <acf>portal stop<099>                      - Cancel a pending portal operation}
+}
+
+
+#NOP ============================================================
+#NOP ID capture
+#NOP
+#NOP item[id] remains available as the general-purpose last ID.
+#NOP If a portal operation is pending, the returned ID immediately
+#NOP completes that operation.
+#NOP ============================================================
+
+#act {^| Id         : %d} {
+	#var {item[id]} {%1};
+
+
+	#if {"$portal_pending[action]" == "add"} {
+		#map at 99999 #map dig %1 $portal_pending[dest];
+
+		#map at 99999 #map exit %1 command {
+			get %1 $portal[container];
+			wear %1;
+			enter;
+			wear amulet;
+			put %1 $portal[container]
+		};
+
+		#var {portals[%1][dest]} {$portal_pending[dest]};
+
+		#echo {<128>PORTAL<099>: Added $portal_pending[name] (%1) -> room $portal_pending[dest]};
+
+		#var {portal_pending[action]} {off};
+		#var {portal_pending[name]} {};
+		#var {portal_pending[dest]} {};
+
+		#return
+	};
+
+
+	#if {"$portal_pending[action]" == "remove"} {
+		#map at 99999 #map unlink %1;
+
+		#unvar {portals[%1]};
+
+		#echo {<128>PORTAL<099>: Removed $portal_pending[name] (%1)};
+
+		#var {portal_pending[action]} {off};
+		#var {portal_pending[name]} {};
+		#var {portal_pending[dest]} {};
+
+		#return
 	}
 }
 
-#NOP grab portal id
-#NOP NOTE: This may need to be tweaked for future ID scraping
-#act {^| Id         : %d} {
-	#var item[id]	%1
-}
 
-#NOP Remove portal
-#NOP remportal <name>
-#alias remportal {
-	#var remportal[name] %1;
-	id $remportal[name];
-	#map at 99999 #map unlink $item[id]
-}
-
-#NOP Save portal container id
-#var portal[container] 1859336170
-
-#alias updateportals {
-	invdata $portal[container]
-}
+#NOP ============================================================
+#NOP Portal inventory refresh
+#NOP ============================================================
 
 #act {^\{invdata $portal[container]\}} {
-        #var {portals} {};
-        #act {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8} {
-                #var portals[%%1][id]           %%1;
-                #var portals[%%1][flags]        %%2;
-                #var portals[%%1][name]         %%3;
-                #var portals[%%1][level]        %%4;
-                #var portals[%%1][type]         %%5;
-                #var portals[%%1][unique]       %%6;
-                #var portals[%%1][location]     %%7;
-                #var portals[%%1][timer]        %%8;
-                #line gag
-        };
-	
+
+    #var {portals} {};
+
+    #act {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8} {
+
+        #var {portals[%%1][id]} {%%1};
+        #var {portals[%%1][flags]} {%%2};
+        #var {portals[%%1][name]} {%%3};
+        #var {portals[%%1][level]} {%%4};
+        #var {portals[%%1][type]} {%%5};
+        #var {portals[%%1][unique]} {%%6};
+        #var {portals[%%1][location]} {%%7};
+        #var {portals[%%1][timer]} {%%8};
+
         #line gag
+    };
+
+    #line gag
 }
+
+
 #act {\{/invdata\}} {
-        #unact {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8};
-        #line gag
+
+    #unact {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8};
+
+    portallevel;
+
+    #line gag
 }
+
+
+#NOP ============================================================
+#NOP Portal level restrictions
+#NOP ============================================================
 
 #act {^You raise a level!} {
-	portallevel
+	portal update
 }
 
-#alias portallevel {
-	#math efflevel {$gmcp[char][base][tier] * 10 + $gmcp[char][base][level]};
-	#loop 1 &portals[] cnt {
-		#if {$portals[+$cnt][level] > $efflevel} {
-			#map at 99999 #map exitflag $portals[+$cnt][id] block on
-		} {
-			#map at 99999 #map exitflag $portals[+$cnt][id] block off
-		}
-	}
+
+#alias {portallevel} {
+
+    #math {efflevel} {
+        $gmcp[char][base][tier] * 10
+        + $gmcp[char][base][level]
+    };
+
+    #loop {1} {&portals[]} {cnt} {
+
+        #if {$portals[+$cnt][level] > $efflevel} {
+            #map at 99999 #map exitflag $portals[+$cnt][id] block on
+        } {
+            #map at 99999 #map exitflag $portals[+$cnt][id] block off
+        }
+    }
 }
 
-#class {portals} close
+
+#class {portals} {close}
