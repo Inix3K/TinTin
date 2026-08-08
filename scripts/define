@@ -1,6 +1,8 @@
 #!/bin/bash
 
 WORD=$*
+: "${OXFORD_APP_ID:?Set OXFORD_APP_ID}"
+: "${OXFORD_APP_KEY:?Set OXFORD_APP_KEY}"
 
 URL_BASE='https://od-api.oxforddictionaries.com:443/api/v1/entries/en/'
 REGION='/regions=us'
@@ -8,7 +10,11 @@ REGION='/regions=us'
 URL=$URL_BASE$WORD$REGION
 
 
-curl -s -X GET --header 'Accept: application/json' --header 'app_id: 00abcb63' --header 'app_key: 0ed62ce044d28b7d8306e1d9a93d3e75' $URL > ~/.scripts/define.json
+curl -s -X GET \
+	--header 'Accept: application/json' \
+	--header 'app_id: $OXFORD_APP_ID' \
+	--header 'app_key: $OXFORD_APP_KEY' \
+	$URL > ~/.scripts/define.json
 
 jq '.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]' ~/.scripts/define.json > ~/.scripts/define.txt
 

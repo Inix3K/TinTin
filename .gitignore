@@ -38,5 +38,9 @@ AW/vars/gear.var
 ascii/
 colors.tin
 colors2.tin
+.env
+scripts/.scripts/
+.scripts/
+*.json
 tmp/
 *.gz

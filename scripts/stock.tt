@@ -7,7 +7,8 @@ URL_BASE='https://www.alphavantage.co/query?'
 FUNC='function=TIME_SERIES_INTRADAY'
 INTERVAL='&interval=1min'
 SIZE='&outputsize=compact'
-API='&apikey=VCZ7LEKXP24L9TLQ'
+: "${ALPHAVANTAGE_API_KEY:?Set ALPHAVANTAGE_API_KEY}"
+API='&apikey=$ALPHAVANTAGE_API_KEY'
 DATA='&datatype=json'
 SYM='&symbol='$TICKER
 
