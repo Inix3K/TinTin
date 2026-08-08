@@ -8,7 +8,7 @@
 
 #if {"$mud" == "3k" || "$mud" == "3s"} {
 	#read .tt/3k/start.tin
-}; #elseif {"$mud" = "AW"} {
+}; #elseif {"$mud" == "AW"} {
 	#read .tt/AW/start.tin
 }
 
