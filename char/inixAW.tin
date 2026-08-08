@@ -1,8 +1,6 @@
 #class {inixaw} {kill}
 #class {inixaw} {open}
 
-#read .tt/AW/start.tin
-
 /* Ticker */
 #ticker {unidle} {gl} {600}
 
@@ -10,8 +8,10 @@
 /* Aliases */
 #var {cspell} {362}
 #alias {cc} {cast $cspell}
+#alias {np} {#map roomflag noglobal on}
 #alias {qh} {get heal bag;quaff heal}
 #alias {qs} {get lotus bag;quaff lotus}
 #alias {ep} {wear duffle;enter;wear amulet}
+#alias {sr} {spellup retry}
 
 #class {inixaw} {close}

@@ -16,8 +16,6 @@
 	#format {icao} {%r} {$data};
 	#format {icao} {%.${cut}s} {$icao};
 	#format {icao} {%r} {$icao};
-	
-	#sys ~/bin/adds.tt $icao;
 
 	#var addsapproved no;
 	#var addslinename {$mip[comm][line]};
@@ -37,6 +35,7 @@
 		#default                {#var addsapproved no};
 	};
 	#if {"$addsapproved" == "yes"} {
+		#sys ~/bin/adds.tt $icao;
 		#var line {$mip[comm][command]};
 		#delay 1 {
 			#send converse $line;

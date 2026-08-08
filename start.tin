@@ -3,36 +3,13 @@
 #read .tt/aliases.tin
 #read .tt/events.tin
 #read .tt/graph.tin
+#read .tt/ticklist.tin
 #NOP #read .tt/numpad.tin
 
-#alias {load3k} {
-	#read .tt/ticklist.tin;
-	#read .tt/3k/vars.tin;
-	#read .tt/3k/aliases.tin;
-	#read .tt/3k/ansi.tin;
-	#read .tt/3k/assemble.tin;
-	#read .tt/3k/bots/bot_cycle.tin;
-	#read .tt/3k/bots/bot_load.tin;
-	#read .tt/3k/chat_monitors.tin;
-	#read .tt/3k/corpses.tin;
-	#read .tt/3k/dog.tin;
-	#read .tt/3k/gag.tin;
-	#read .tt/3k/mapper.tin;
-	#read .tt/3k/mip.tin;
-	#read .tt/3k/miphp.tin;
-	#read .tt/3k/trigs.tin;
-	#read .tt/3k/draw.tin
-}
-#if {"$world" != ""} {
-	#regex {$world} {AW} {
-		#NOP
-	} {
-		#regex {$world} {AE} {
-			#NOP
-		} {
-			load3k
-		}
-	}
+#if {"$mud" == "3k" || "$mud" == "3s"} {
+	#read .tt/3k/start.tin
+}; #elseif {"$mud" = "AW"} {
+	#read .tt/AW/start.tin
 }
 
 #sub {~\t} {       }

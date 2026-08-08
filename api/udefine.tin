@@ -19,9 +19,6 @@
 	#var word2 $word;
 	#replace {word} { } {\%20};
 	#replace {word} {'} {\%27};
-	#sys {~/bin/udefine $word};
-	#read ~/bin/udef.tin;
-	#format {def_len} {%L} {$udefinition};
 	#if {$def_len == 0} {
 		#var udefinition {No results found};
 	} {
@@ -46,6 +43,9 @@
 		#default		{#var uapproved no};
 	};
 	#if {"$uapproved" == "yes"} {
+		#sys {~/bin/udefine $word};
+		#read ~/bin/udef.tin;
+		#format {def_len} {%L} {$udefinition};
 		#var udefineline {$mip[comm][command]};
 		#delay 1 {#send $udefineline $word2 : $udefinition}
 	}
