@@ -24,7 +24,7 @@
 	};
 	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
 		#if {"$screen[scroll]" == "page"} {
-			#buffer up $screen[rows]
+			#buffer up
 		}; #elseif {"$screen[scroll]" == "line"} {
 			#buffer up 1
 		}
@@ -40,7 +40,7 @@
 	};
 	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
 		#if {"$screen[scroll]" == "page"} {
-			#buffer down $screen[rows]
+			#buffer down
 		}; #elseif {"$screen[scroll]" == "line"} {
 			#buffer down 1
 		}

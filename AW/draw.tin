@@ -1,9 +1,206 @@
-#split 21 4 0 31
-#draw line 1 -31 -6 -31
-#draw green line 19 1 19 -32
-#draw green line 21 1 21 -1
-#draw line -2 1 -2 -1
-#draw line -5 1 -5 -1
-#showme {<088>\u2534} -5 -31
-#showme {<088>\u2524} 19 -31
-#showme {<228>\u253C} 21 -31
+#CLASS draw {kill}
+#CLASS draw {open}
+
+/* Load draw variables */
+#read .tt/AW/vars/draw.var
+
+/* Determine Dimenions */
+#NOP Chat Dimension Defaults
+
+#if {"$draw[alert]" == "on"} {
+	#var alert[width] 1
+} {
+	#var alert[width] 0
+}
+
+#if {"$draw[map]" == "on"} {
+	#var map[height] 20;
+	#var map[width] 30
+} {
+	#var map[height] 0;
+	#var map[width] 0
+}
+
+#if {"$draw[chat]" == "on"} {
+	#var chat[row][start] 1;
+	#var chat[col][start] 1;
+	#if {"$draw[caption]" == "on"} {
+		#var chat[row][end] 18;
+	} {
+		#var chat[row][end] 20;
+	};
+	#math chat[rows] {$chat[row][end] - $chat[row][start] + 1};
+	#math {chat[height]} {$chat[rows] + 1};
+	#if {"$draw[map]" == "on"} {
+		#math chat[col][end] {-$map[width]-2}
+	} {
+		#var chat[col][end] -1
+	}
+} {
+	#var chat[height] 0
+}
+
+#if {"$draw[caption]" == "on"} {
+	#if {"$draw[chat]" == "on"} {
+		#math caption[row] {$chat[height] + 1}
+	} {
+		#var caption[row] 1
+	};
+	#var caption[height] 2
+} {
+	#var caption[height] 0
+}
+
+#if {"$draw[canvas]" == "on"} {
+	#var canvas[width] 31;
+	#if {"$draw[map]" == "on"} {
+		#math canvas[top] {$map[height] + 1}
+	} {
+		#math canvas[top] {$chat[height] + $caption[height]}
+	}
+} {
+	#var canvas[width] 0
+}
+
+#if {"$draw[gline]" == "on"} {
+	#var gline[height] 2
+} {
+	#var gline[height] 0
+}
+
+#if {"$draw[hpbar]" == "on"} {
+	#var hpbar[height] 3
+} {
+	#var hpbar[height] 0
+}
+
+
+#math {status[height]} {$hpbar[height] + $gline[height] + 1}
+
+#math split[top]	{$chat[height] + $caption[height]}
+#var split[bottom]	$status[height]
+#var split[left]	$alert[width]
+#var split[right]	$canvas[width]
+
+/* Perform Split */
+#split $split[top] $split[bottom] $split[left] $split[right]
+
+/* Clear any previous drawings */
+#screen clear split
+#buffer end
+
+/* Perform Drawings */
+#NOP Input bar
+#draw {line} -2 1 -2 -1
+
+#if {"$draw[caption]" == "on"} {
+	#draw {green} {line} $chat[height]+$caption[height] 1 $chat[height]+$caption[height] -1;
+	update_caption
+}
+
+#if {"$draw[chat]" == "on"} {
+	#if {"$draw[caption]" != "on" && "$draw[map]" == "on"} {
+		#draw {green} {line} $chat[height] 1 $chat[height] -1;
+	} {
+		#draw {green} {line} $chat[height] 1 $chat[height] -$map[width]-1
+	};
+	chatend
+}
+
+#if {"$draw[gline]" == "on"} {
+	#draw {line} -$hpbar[height]-$gline[height]-2 1 -$hpbar[height]-$gline[height]-2 -1
+}
+
+#if {"$draw[hpbar]" == "on"} {
+	#draw {line} -$hpbar[height]-2 1 -$hpbar[height]-2 -1;
+	update_status
+}
+
+
+#alias {update_map_info} {
+	#map list {roomarea} {$gmcp[room][info][zone]} {variable} {area_mapped};
+	#var {room_cnt} {&area_mapped[]};
+	#format {room_len} {%L} {$room_cnt};
+	#format {roomvnum_len} {%L} {$roomvnum};
+	#math {area_len} {$canvas[width]-4-$room_len};
+	#math {name_len} {$canvas[width]-4-$roomvnum_len};
+	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]]};
+	#format {name_trunc} {%.${name_len}s} {$roomname};
+	#draw tile $canvas[top]+1 -$canvas[width]+1 $canvas[top]+1 -1 {<028>$area_trunc<148> (<128>$room_cnt<148>)<088>};
+	#draw tile $canvas[top]+2 -$canvas[width]+1 $canvas[top]+2 -1 {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
+}
+
+#if {"$draw[canvas]" == "on"} {
+	#draw {line} $canvas[top] -$canvas[width] -$status[height]-2 -$canvas[width];
+	#showme {<228>\u252C<088>} $chat[height]+$caption[height] -$canvas[width];
+	#showme {<088>\u2534<088>} -$hpbar[height]-$gline[height]-2 -$canvas[width];
+	#map flag vtmap on;
+	#map offset $canvas[top]+3 -$canvas[width]+1 -$status[height]-2 -1;
+	update_map_info
+} {
+	#map flag vtmap off
+}
+
+#if {"$draw[map]" == "on"} {
+	#draw line 1 -$map[width]-1 $split[top] -$map[width]-1;
+	#if {"$draw[chat]" != "on"} {
+		#draw {line} 1 -$map[width] $map[height] -$map[width]
+	};
+	#if {"$draw[caption]" == "on"} {
+		#if {"$draw[canvas]" == "on"} {
+			#showme {<228>\u253C<088>} $split[top] -$split[right]
+		} {
+			#showme {<228>\u2534<088>} $split[top] -$map[width]-1
+		}
+	} {
+		#if {"$draw[canvas]" == "on"} {
+			#showme {<228>\u253C<088>} $split[top] -$map[width]-1
+		} {
+			#showme {<228>\u2534<088>} $split[top] -$map[width]-1
+		}	
+	};
+	#if {"$draw[chat]" == "on"} {
+		#showme {<088>\u2524<088>} $chat[height] -$map[width]-1
+	};
+	#draw tile 1 -$map[width] $map[height] -1 $minimap[%*]
+}
+
+#alias redraw {
+	#var redraw[args][1] valid;
+	#var redraw[args][2] valid;
+	#if {"%1" != ""} {
+		#switch {"%1"} {
+			#case {"alert"}		{#var redraw[option] %1};
+			#case {"canvas"}	{#var redraw[option] %1};
+			#case {"caption"}	{#var redraw[option] %1};
+			#case {"chat"}		{#var redraw[option] %1};
+			#case {"gline"}		{#var redraw[option] %1};
+			#case {"hpbar"}		{#var redraw[option] %1};
+			#case {"map"}		{#var redraw[option] %1};
+			#default		{#var redraw[args][1] invalid;#showme REDRAW:  Invalid redraw option}
+		};
+		#if {"%2" != ""} {
+			#switch {"%2"} {
+				#case {"on"}	{#var redraw[flag] on};
+				#case {"off"}	{#var redraw[flag] off};
+				#default	{#var redraw[args][2] invalid;#showme REDRAW:  Invalid redraw parameter (on or off)}
+			}
+		} {
+			#if {"$draw[$redraw[option]]" == "on"} {
+				#var redraw[flag] off
+			} {
+				#var redraw[flag] on
+			}
+		};
+		#if {"$redraw[args][1]" == "valid" && "$redraw[args][2]" == "valid"} {
+			#var draw[$redraw[option]] $redraw[flag];
+			#class drawvar write .tt/AW/vars/draw.var;
+			#read .tt/AW/draw.tin
+		}
+	} {
+		#class drawvar write .tt/AW/vars/draw.var;
+		#read .tt/AW/draw.tin
+	}
+}
+
+#CLASS draw {close}

@@ -1,3 +1,4 @@
+#class {awmap} {kill}
 #class {awmap} {open}
 /* Required */
 #NOP gmcp.tin
@@ -8,7 +9,6 @@
 
 #map read .tt/map/AW.map
 #map goto 1
-#map offset 24 -29 -6 -1
 
 /* Data Grab Triggers */
 #var longcap off
@@ -114,9 +114,9 @@
 
 /* AW Map Capture */
 #act {^<MAPSTART>$} {
-	#list map clear;
+	#list minimap clear;
 	#act {~%%1} {
-		#list map ins -1 {%%1};
+		#list minimap ins -1 {%%1};
 		#line gag
 	};
 	#line gag
@@ -124,7 +124,9 @@
 
 #act {^<MAPEND>$} {
 	#unact {~%%1};
-	#draw tile 1 -30 20 -1 $map[%*];
+	#if {"$draw[map]" == "on"} {
+		#draw tile 1 -$map[width] $map[height] -1 $minimap[%*]
+	};
 	#line gag
 } {1}
 

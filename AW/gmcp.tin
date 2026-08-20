@@ -92,6 +92,8 @@
 }
 
 #alias {update_caption} {
+	#if {"$draw[caption]" != "on"} {#return};
+
         #format {world_cap}     {%-8s}  {$world};
         #format {world_cap}     {%n}    {$world_cap};
 	#format {gold_cap}	{%+5s}	{$gmcp[char][worth][gold]};
@@ -102,11 +104,13 @@
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
 	#math	{tick_cap}	{30 - $tick[elapsed]};
 	#format {tick_cap}	{%+1s}	{$tick_cap};
-	#draw tile 20 1 20 -32 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  Tick: $tick_cap}
+	#draw tile $caption[row] 1 $caption[row] -$map[width]-2 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  Tick: $tick_cap}
 }
 
 #tick {update_status} {update_status} {2}
 #alias {update_status} {
+	#if {"$draw[hpbar]" != "on"} {#return};
+	
 	#if {&{gmcp[char][]} != 5} {
 		prot gmcp sendchar;
 		#return;
@@ -197,22 +201,15 @@
                 }
         };
 
-	#NOP #map {map} {63} {132} {overwrite} {.tt/map/AWmap.txt};
-
 	#if {"$areas[$gmcp[room][info][zone]]" == ""} {
-		where;
+		where
 	};
 
-	#map list {roomarea} {$gmcp[room][info][zone]} {variable} {area_mapped};
-	#var {room_cnt} {&area_mapped[]};
-	#format {room_len} {%L} {$room_cnt};
-	#format {roomvnum_len} {%L} {$roomvnum};
-	#math {area_len} {27-$room_len};
-	#math {name_len} {27-$roomvnum_len};
-	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]]};
-	#format {name_trunc} {%.${name_len}s} {$gmcp[room][info][name]};
-	#draw tile 22 -30 22 -1 {<028>$area_trunc<148> (<128>$room_cnt<148>)<088>};
-	#draw tile 23 -30 23 -1 {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
+	#if {"$draw[canvas]" == "on"} {
+		#map get roomname roomname;
+		#map get roomarea roomarea;
+		update_map_info
+	}
 }
 
 

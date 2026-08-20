@@ -1,0 +1,14 @@
+#CLASS {drawvar} OPEN
+
+#VARIABLE {draw}
+{
+    {alert} {off}
+    {canvas} {on}
+    {caption} {off}
+    {chat} {on}
+    {gline} {off}
+    {hpbar} {on}
+    {map} {on}
+}
+
+#CLASS {drawvar} CLOSE
