@@ -17,7 +17,7 @@
 	#var canvas[width] 43;
 	#if {"$map[position]" == "bottom"} {
 		#if {$map[width] + 1 < $canvas[width]} {
-			#math {canvas[width} {$map[width] + 1}
+			#math {canvas[width]} {$map[width] + 1}
 		}
 	}
 } {
