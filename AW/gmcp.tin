@@ -104,7 +104,8 @@
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
 	#math	{tick_cap}	{30 - $tick[elapsed]};
 	#format {tick_cap}	{%+1s}	{$tick_cap};
-	#draw tile $caption[row] 1 $caption[row] -$map[width]-2 { <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  Tick: $tick_cap}
+	#var	{caption[text]}	{ <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  Tick: $tick_cap};
+	draw_caption
 }
 
 #tick {update_status} {update_status} {2}
@@ -136,11 +137,10 @@
 	#format {cqt}		{%+6s} {@colscale{$qt;30}m};
 	#format {cehealth}	{%+7s} {@colscale{$ehealth;100}%%};
 
-	#var {status1} {HP:$chp/$chp_max SP:$csp/$csp_max MV:$cmv/$cmv_max QT:$cqt    A:$calign    E:$cehealth     X:$clvl\[$ctnl\]\(<168>$delta<278>|<158>$ktnl<088>\)};
+	#var {status1} {HP:$chp/$chp_max SP:$csp/$csp_max MV:$cmv/$cmv_max QT:$cqt    A:$calign    E:$cehealth     X:${clvl}[$ctnl](<168>$delta<278>|<158>$ktnl<088>)};
 	#var {status2} {HP:$hp_graph  SP:$sp_graph  M:$mv_graph Q:$qt_graph A:$a_graph E:$egraph};
 
-        #line ignore #showme {$status1} {-4};
-        #line ignore #showme {$status2} {-3}
+	draw_status
 }
 
 #event {IAC SB GMCP group IAC SE} {
@@ -205,11 +205,9 @@
 		where
 	};
 
-	#if {"$draw[canvas]" == "on"} {
-		#map get roomname roomname;
-		#map get roomarea roomarea;
-		update_map_info
-	}
+	#map get roomname roomname;
+	#map get roomarea roomarea;
+	update_map_info
 }
 
 

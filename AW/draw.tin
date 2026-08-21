@@ -1,65 +1,540 @@
 #CLASS draw {kill}
 #CLASS draw {open}
 
-/* Load draw variables */
+/* Load persisted draw flags and pane layout. */
 #read .tt/AW/vars/draw.var
+#unvar {minimap[pane]}
+#screen get cols screen[cols]
+#if {"$layout[center_max_cols]" == ""} {#var layout[center_max_cols] 100}
+#if {"$content[chat][pane]" == ""} {#var content[chat][pane] top_center}
+#if {"$content[minimap][pane]" == ""} {#var content[minimap][pane] top_right}
+#if {"$content[tintin_map][pane]" == ""} {#var content[tintin_map][pane] right}
+#if {"$content[hpbar][pane]" == ""} {#var content[hpbar][pane] bottom_center}
+#if {"$content[stats][pane]" == ""} {#var content[stats][pane] none}
+#if {"$content[group][pane]" == ""} {#var content[group][pane] none}
+#if {"$content[buttons][pane]" == ""} {#var content[buttons][pane] none}
 
-/* Determine Dimenions */
-#NOP Chat Dimension Defaults
+#alias {layout_sync_panes} {
+	#var pane[top_left][content] none;
+	#var pane[top_center][content] none;
+	#var pane[top_right][content] none;
+	#var pane[left][content] none;
+	#var pane[right][content] none;
+	#var pane[bottom_left][content] none;
+	#var pane[bottom_center][content] none;
+	#var pane[bottom_right][content] none;
+	#if {"$content[chat][pane]" != "none"} {#var pane[$content[chat][pane]][content] chat};
+	#if {"$content[minimap][pane]" != "none"} {#var pane[$content[minimap][pane]][content] minimap};
+	#if {"$content[tintin_map][pane]" != "none"} {#var pane[$content[tintin_map][pane]][content] tintin_map};
+	#if {"$content[hpbar][pane]" != "none"} {#var pane[$content[hpbar][pane]][content] hpbar};
+	#if {"$content[stats][pane]" != "none"} {#var pane[$content[stats][pane]][content] stats};
+	#if {"$content[group][pane]" != "none"} {#var pane[$content[group][pane]][content] group};
+	#if {"$content[buttons][pane]" != "none"} {#var pane[$content[buttons][pane]][content] buttons}
+}
 
+/* Pane profile helpers. Pane names use underscores for TinTin variable keys. */
+#alias {layout_profile} {
+	#switch {"%1"} {
+		#case {"desktop_full"} {
+			#class {drawvar} {open};
+			#var layout[profile] desktop_full;
+			#var content[chat][pane] top_center;
+			#var content[minimap][pane] top_right;
+			#var content[tintin_map][pane] top_left;
+			#var content[hpbar][pane] bottom_center;
+			#var content[stats][pane] left;
+			#var content[group][pane] right;
+			#var content[buttons][pane] bottom_right;
+			#var pane[top_left][enabled] on;
+			#var pane[top_left][content] tintin_map;
+			#var pane[top_left][width] 30;
+			#var pane[top_left][height] 21;
+			#var pane[top_center][enabled] on;
+			#var pane[top_center][content] chat;
+			#var pane[top_center][width] 0;
+			#var pane[top_center][height] 21;
+			#var pane[top_right][enabled] on;
+			#var pane[top_right][content] minimap;
+			#var pane[top_right][width] 30;
+			#var pane[top_right][height] 21;
+			#var pane[left][enabled] on;
+			#var pane[left][content] stats;
+			#var pane[left][width] 20;
+			#var pane[right][enabled] on;
+			#var pane[right][content] group;
+			#var pane[right][width] 31;
+			#var pane[bottom_left][enabled] off;
+			#var pane[bottom_left][content] none;
+			#var pane[bottom_left][width] 0;
+			#var pane[bottom_left][height] 0;
+			#var pane[bottom_center][enabled] on;
+			#var pane[bottom_center][content] hpbar;
+			#var pane[bottom_center][width] 0;
+			#var pane[bottom_center][height] 4;
+			#var pane[bottom_right][enabled] on;
+			#var pane[bottom_right][content] buttons;
+			#var pane[bottom_right][width] 20;
+			#var pane[bottom_right][height] 4;
+			#class {drawvar} {close}
+		};
+		#case {"desktop_half"} {
+			#class {drawvar} {open};
+			#var layout[profile] desktop_half;
+			#var content[chat][pane] top_center;
+			#var content[minimap][pane] top_right;
+			#var content[tintin_map][pane] right;
+			#var content[hpbar][pane] bottom_center;
+			#var content[stats][pane] none;
+			#var content[group][pane] none;
+			#var content[buttons][pane] none;
+			#var pane[top_left][enabled] off;
+			#var pane[top_left][content] none;
+			#var pane[top_left][width] 0;
+			#var pane[top_left][height] 21;
+			#var pane[top_center][enabled] on;
+			#var pane[top_center][content] chat;
+			#var pane[top_center][width] 0;
+			#var pane[top_center][height] 21;
+			#var pane[top_right][enabled] on;
+			#var pane[top_right][content] minimap;
+			#var pane[top_right][width] 30;
+			#var pane[top_right][height] 21;
+			#var pane[left][enabled] off;
+			#var pane[left][content] none;
+			#var pane[left][width] 0;
+			#var pane[right][enabled] on;
+			#var pane[right][content] tintin_map;
+			#var pane[right][width] 31;
+			#var pane[bottom_left][enabled] off;
+			#var pane[bottom_left][content] none;
+			#var pane[bottom_left][width] 0;
+			#var pane[bottom_left][height] 0;
+			#var pane[bottom_center][enabled] on;
+			#var pane[bottom_center][content] hpbar;
+			#var pane[bottom_center][width] 0;
+			#var pane[bottom_center][height] 4;
+			#var pane[bottom_right][enabled] off;
+			#var pane[bottom_right][content] none;
+			#var pane[bottom_right][width] 0;
+			#var pane[bottom_right][height] 0;
+			#class {drawvar} {close}
+		};
+		#case {"mobile"} {
+			#class {drawvar} {open};
+			#var layout[profile] mobile;
+			#var content[chat][pane] top_center;
+			#var content[minimap][pane] none;
+			#var content[tintin_map][pane] none;
+			#var content[hpbar][pane] bottom_center;
+			#var content[stats][pane] none;
+			#var content[group][pane] none;
+			#var content[buttons][pane] none;
+			#var pane[top_left][enabled] off;
+			#var pane[top_left][content] none;
+			#var pane[top_left][width] 0;
+			#var pane[top_left][height] 0;
+			#var pane[top_center][enabled] on;
+			#var pane[top_center][content] chat;
+			#var pane[top_center][width] 0;
+			#var pane[top_center][height] 12;
+			#var pane[top_right][enabled] off;
+			#var pane[top_right][content] none;
+			#var pane[top_right][width] 0;
+			#var pane[top_right][height] 0;
+			#var pane[left][enabled] off;
+			#var pane[left][content] none;
+			#var pane[left][width] 0;
+			#var pane[right][enabled] off;
+			#var pane[right][content] none;
+			#var pane[right][width] 0;
+			#var pane[bottom_left][enabled] off;
+			#var pane[bottom_left][content] none;
+			#var pane[bottom_left][width] 0;
+			#var pane[bottom_left][height] 0;
+			#var pane[bottom_center][enabled] on;
+			#var pane[bottom_center][content] hpbar;
+			#var pane[bottom_center][width] 0;
+			#var pane[bottom_center][height] 4;
+			#var pane[bottom_right][enabled] off;
+			#var pane[bottom_right][content] none;
+			#var pane[bottom_right][width] 0;
+			#var pane[bottom_right][height] 0;
+			#class {drawvar} {close}
+		};
+		#default {
+			#echo {<138>LAYOUT<099>: valid profiles are desktop_full, desktop_half, mobile};
+			#return
+		}
+	};
+	#class {drawvar} {write} {.tt/AW/vars/draw.var};
+	#if {"%2" != "no_reload"} {
+		#read .tt/AW/draw.tin
+	}
+}
+
+#alias {layout} {
+	#if {"%1" == "" || "%1" == "help"} {
+		#echo {<428>LAYOUT COMMANDS<099>};
+		#echo {  <acf>layout auto on|off<099>              - Toggle automatic profile switching};
+		#echo {  <acf>layout profile full|half|mobile<099> - Load a profile};
+		#echo {  <acf>layout full|half|mobile<099>         - Shortcut for layout profile};
+		#echo {  <acf>layout max <cols><099>               - Cap center pane width};
+		#echo {  <acf>layout cols <full> <half><099>       - Set auto-switch thresholds};
+		#return
+	};
+	#switch {"%1"} {
+		#case {"auto"} {
+			#if {"%2" != "on" && "%2" != "off"} {
+				#echo {<acf>SYNTAX<099>: layout auto on|off};
+				#return
+			};
+			#class {drawvar} {open};
+			#var layout[auto] %2;
+			#class {drawvar} {close};
+			#class {drawvar} {write} {.tt/AW/vars/draw.var};
+			aw_layout_resize
+		};
+		#case {"cols"} {
+			#if {"%2" == "" || "%3" == ""} {
+				#echo {<acf>SYNTAX<099>: layout cols <full-cols> <half-cols>};
+				#return
+			};
+			#class {drawvar} {open};
+			#var layout[desktop_full_cols] %2;
+			#var layout[desktop_half_cols] %3;
+			#class {drawvar} {close};
+			#class {drawvar} {write} {.tt/AW/vars/draw.var};
+			aw_layout_resize
+		};
+		#case {"thresholds"} {
+			#if {"%2" == "" || "%3" == ""} {
+				#echo {<acf>SYNTAX<099>: layout cols <full-cols> <half-cols>};
+				#return
+			};
+			#class {drawvar} {open};
+			#var layout[desktop_full_cols] %2;
+			#var layout[desktop_half_cols] %3;
+			#class {drawvar} {close};
+			#class {drawvar} {write} {.tt/AW/vars/draw.var};
+			aw_layout_resize
+		};
+		#case {"max"} {
+			#if {"%2" == ""} {
+				#echo {<acf>SYNTAX<099>: layout max <cols>};
+				#return
+			};
+			#class {drawvar} {open};
+			#var layout[center_max_cols] %2;
+			#class {drawvar} {close};
+			#class {drawvar} {write} {.tt/AW/vars/draw.var};
+			#read .tt/AW/draw.tin
+		};
+		#case {"center"} {
+			#if {"%2" == ""} {
+				#echo {<acf>SYNTAX<099>: layout max <cols>};
+				#return
+			};
+			#class {drawvar} {open};
+			#var layout[center_max_cols] %2;
+			#class {drawvar} {close};
+			#class {drawvar} {write} {.tt/AW/vars/draw.var};
+			#read .tt/AW/draw.tin
+		};
+		#case {"full"} {
+			layout_profile desktop_full
+		};
+		#case {"half"} {
+			layout_profile desktop_half
+		};
+		#case {"mobile"} {
+			layout_profile mobile
+		};
+		#case {"profile"} {
+			#switch {"%2"} {
+				#case {"full"}		{layout_profile desktop_full};
+				#case {"desktop_full"}	{layout_profile desktop_full};
+				#case {"half"}		{layout_profile desktop_half};
+				#case {"desktop_half"}	{layout_profile desktop_half};
+				#case {"mobile"}	{layout_profile mobile};
+				#default		{#echo {<acf>SYNTAX<099>: layout profile full|half|mobile}}
+			}
+		};
+		#default {
+			#echo {<138>LAYOUT<099>: invalid option};
+			#echo {        Type <acf>layout<099> for command options}
+		}
+	}
+}
+
+#alias {aw_layout_resize} {
+	#if {"$layout[auto]" != "on"} {
+		#read .tt/AW/draw.tin;
+		#return
+	};
+
+	#var layout[target] mobile;
+	#if {$screen[cols] >= $layout[desktop_full_cols]} {
+		#var layout[target] desktop_full
+	} {
+		#if {$screen[cols] >= $layout[desktop_half_cols]} {
+			#var layout[target] desktop_half
+		}
+	};
+
+	#if {"$layout[target]" != "$layout[profile]"} {
+		layout_profile $layout[target]
+	} {
+		#read .tt/AW/draw.tin
+	}
+}
+
+/* Apply automatic profile selection during draw load without re-reading draw.tin. */
+#if {"$layout[auto]" == "on"} {
+	#var layout[target] mobile;
+	#if {$screen[cols] >= $layout[desktop_full_cols]} {
+		#var layout[target] desktop_full
+	} {
+		#if {$screen[cols] >= $layout[desktop_half_cols]} {
+			#var layout[target] desktop_half
+		}
+	};
+	#if {"$layout[target]" != "$layout[profile]"} {
+		layout_profile $layout[target] no_reload
+	}
+}
+
+#alias {pane_content} {
+	#if {"%2" == ""} {
+		#echo {<acf>SYNTAX<099>: pane_content <pane> <content>};
+		#return
+	};
+	#var pane_content[args][1] valid;
+	#var pane_content[args][2] valid;
+	#switch {"%1"} {
+		#case {"top_left"}		{#var pane_content[args][1] valid};
+		#case {"top_center"}		{#var pane_content[args][1] valid};
+		#case {"top_right"}		{#var pane_content[args][1] valid};
+		#case {"left"}			{#var pane_content[args][1] valid};
+		#case {"right"}			{#var pane_content[args][1] valid};
+		#case {"bottom_left"}		{#var pane_content[args][1] valid};
+		#case {"bottom_center"}		{#var pane_content[args][1] valid};
+		#case {"bottom_right"}		{#var pane_content[args][1] valid};
+		#default			{#var pane_content[args][1] invalid;#echo {<138>PANE<099>: invalid pane}}
+	};
+	#switch {"%2"} {
+		#case {"none"}			{#var pane_content[args][2] valid};
+		#case {"chat"}			{#var pane_content[args][2] valid};
+		#case {"minimap"}		{#var pane_content[args][2] valid};
+		#case {"tintin_map"}		{#var pane_content[args][2] valid};
+		#case {"hpbar"}			{#var pane_content[args][2] valid};
+		#case {"stats"}			{#var pane_content[args][2] valid};
+		#case {"group"}			{#var pane_content[args][2] valid};
+		#case {"buttons"}		{#var pane_content[args][2] valid};
+		#default			{#var pane_content[args][2] invalid;#echo {<138>PANE<099>: invalid content}}
+	};
+	#if {"$pane_content[args][1]" != "valid"} {#return};
+	#if {"$pane_content[args][2]" != "valid"} {#return};
+	#class {drawvar} {open};
+	#if {"$content[chat][pane]" == "%1"} {#var content[chat][pane] none};
+	#if {"$content[minimap][pane]" == "%1"} {#var content[minimap][pane] none};
+	#if {"$content[tintin_map][pane]" == "%1"} {#var content[tintin_map][pane] none};
+	#if {"$content[hpbar][pane]" == "%1"} {#var content[hpbar][pane] none};
+	#if {"$content[stats][pane]" == "%1"} {#var content[stats][pane] none};
+	#if {"$content[group][pane]" == "%1"} {#var content[group][pane] none};
+	#if {"$content[buttons][pane]" == "%1"} {#var content[buttons][pane] none};
+	#if {"%2" != "none"} {
+		#switch {"%2"} {
+			#case {"chat"} {
+				#if {"$content[chat][pane]" != "none"} {#var pane[$content[chat][pane]][enabled] off};
+				#var content[chat][pane] %1
+			};
+			#case {"minimap"} {
+				#if {"$content[minimap][pane]" != "none"} {#var pane[$content[minimap][pane]][enabled] off};
+				#var content[minimap][pane] %1
+			};
+			#case {"tintin_map"} {
+				#if {"$content[tintin_map][pane]" != "none"} {#var pane[$content[tintin_map][pane]][enabled] off};
+				#var content[tintin_map][pane] %1
+			};
+			#case {"hpbar"} {
+				#if {"$content[hpbar][pane]" != "none"} {#var pane[$content[hpbar][pane]][enabled] off};
+				#var content[hpbar][pane] %1
+			};
+			#case {"stats"} {
+				#if {"$content[stats][pane]" != "none"} {#var pane[$content[stats][pane]][enabled] off};
+				#var content[stats][pane] %1
+			};
+			#case {"group"} {
+				#if {"$content[group][pane]" != "none"} {#var pane[$content[group][pane]][enabled] off};
+				#var content[group][pane] %1
+			};
+			#case {"buttons"} {
+				#if {"$content[buttons][pane]" != "none"} {#var pane[$content[buttons][pane]][enabled] off};
+				#var content[buttons][pane] %1
+			}
+		};
+		#var pane[%1][enabled] on
+	} {
+		#var pane[%1][enabled] off
+	};
+	layout_sync_panes;
+	#class {drawvar} {close};
+	#class {drawvar} {write} {.tt/AW/vars/draw.var};
+	#read .tt/AW/draw.tin
+}
+
+#alias {pane_enable} {
+	#if {"%1" == "" || "%2" != "on" && "%2" != "off"} {
+		#echo {<acf>SYNTAX<099>: pane_enable <pane> on|off};
+		#return
+	};
+	#class {drawvar} {open};
+	#var pane[%1][enabled] %2;
+	#class {drawvar} {close};
+	#class {drawvar} {write} {.tt/AW/vars/draw.var};
+	#read .tt/AW/draw.tin
+}
+
+#alias {pane_size} {
+	#if {"%1" == "" || "%2" == ""} {
+		#echo {<acf>SYNTAX<099>: pane_size <pane> <width> [height]};
+		#return
+	};
+	#class {drawvar} {open};
+	#var pane[%1][width] %2;
+	#if {"%3" != ""} {#var pane[%1][height] %3};
+	#class {drawvar} {close};
+	#class {drawvar} {write} {.tt/AW/vars/draw.var};
+	#read .tt/AW/draw.tin
+}
+
+#alias {pane} {
+	#if {"%1" == ""} {
+		#echo {<428>PANE COMMANDS<099>};
+		#echo {  <acf>pane top chat<099>          - Put chat in top-center};
+		#echo {  <acf>pane tr map<099>            - Put minimap in top-right};
+		#echo {  <acf>pane right ttmap<099>       - Put TinTin map on right};
+		#echo {  <acf>pane top none<099>          - Clear a pane};
+		#echo {  <acf>pane top size <w> <h><099>  - Set pane size};
+		#return
+	};
+	#if {"%1" == "help"} {
+		#echo {<428>PANE COMMANDS<099>};
+		#echo {  <acf>pane top chat<099>          - Put chat in top-center};
+		#echo {  <acf>pane tr map<099>            - Put minimap in top-right};
+		#echo {  <acf>pane right ttmap<099>       - Put TinTin map on right};
+		#echo {  <acf>pane top none<099>          - Clear a pane};
+		#echo {  <acf>pane top size <w> <h><099>  - Set pane size};
+		#return
+	};
+	#var pane_cmd[pane] invalid;
+	#switch {"%1"} {
+		#case {"tl"}			{#var pane_cmd[pane] top_left};
+		#case {"top_left"}		{#var pane_cmd[pane] top_left};
+		#case {"top"}			{#var pane_cmd[pane] top_center};
+		#case {"tc"}			{#var pane_cmd[pane] top_center};
+		#case {"top_center"}		{#var pane_cmd[pane] top_center};
+		#case {"tr"}			{#var pane_cmd[pane] top_right};
+		#case {"top_right"}		{#var pane_cmd[pane] top_right};
+		#case {"l"}			{#var pane_cmd[pane] left};
+		#case {"left"}			{#var pane_cmd[pane] left};
+		#case {"r"}			{#var pane_cmd[pane] right};
+		#case {"right"}			{#var pane_cmd[pane] right};
+		#case {"bl"}			{#var pane_cmd[pane] bottom_left};
+		#case {"bottom_left"}		{#var pane_cmd[pane] bottom_left};
+		#case {"bottom"}		{#var pane_cmd[pane] bottom_center};
+		#case {"bc"}			{#var pane_cmd[pane] bottom_center};
+		#case {"bottom_center"}		{#var pane_cmd[pane] bottom_center};
+		#case {"br"}			{#var pane_cmd[pane] bottom_right};
+		#case {"bottom_right"}		{#var pane_cmd[pane] bottom_right};
+		#default			{#echo {<138>PANE<099>: invalid pane};#return}
+	};
+	#if {"%2" == ""} {
+		#echo {<acf>SYNTAX<099>: pane <pane> <content|size|enable>};
+		#return
+	};
+	#switch {"%2"} {
+		#case {"size"} {
+			#if {"%3" == ""} {
+				#echo {<acf>SYNTAX<099>: pane <pane> size <width> [height]};
+				#return
+			};
+			pane_size $pane_cmd[pane] %3 %4
+		};
+		#case {"enable"} {
+			#if {"%3" != "on" && "%3" != "off"} {
+				#echo {<acf>SYNTAX<099>: pane <pane> enable on|off};
+				#return
+			};
+			pane_enable $pane_cmd[pane] %3
+		};
+		#case {"on"}			{pane_enable $pane_cmd[pane] on};
+		#case {"off"}			{pane_content $pane_cmd[pane] none};
+		#case {"none"}			{pane_content $pane_cmd[pane] none};
+		#case {"chat"}			{pane_content $pane_cmd[pane] chat};
+		#case {"map"}			{pane_content $pane_cmd[pane] minimap};
+		#case {"mini"}			{pane_content $pane_cmd[pane] minimap};
+		#case {"minimap"}		{pane_content $pane_cmd[pane] minimap};
+		#case {"tt"}			{pane_content $pane_cmd[pane] tintin_map};
+		#case {"ttmap"}			{pane_content $pane_cmd[pane] tintin_map};
+		#case {"tintin"}		{pane_content $pane_cmd[pane] tintin_map};
+		#case {"tintin_map"}		{pane_content $pane_cmd[pane] tintin_map};
+		#case {"hp"}			{pane_content $pane_cmd[pane] hpbar};
+		#case {"hpbar"}			{pane_content $pane_cmd[pane] hpbar};
+		#case {"status"}		{pane_content $pane_cmd[pane] hpbar};
+		#case {"stats"}			{pane_content $pane_cmd[pane] stats};
+		#case {"group"}			{pane_content $pane_cmd[pane] group};
+		#case {"buttons"}		{pane_content $pane_cmd[pane] buttons};
+		#case {"help"} {
+			#echo {<428>PANE COMMANDS<099>};
+			#echo {  <acf>pane top chat<099>          - Put chat in top-center};
+			#echo {  <acf>pane tr map<099>            - Put minimap in top-right};
+			#echo {  <acf>pane right ttmap<099>       - Put TinTin map on right};
+			#echo {  <acf>pane top none<099>          - Clear a pane};
+			#echo {  <acf>pane top size <w> <h><099>  - Set pane size}
+		};
+		#default			{#echo {<138>PANE<099>: invalid content or action}}
+	}
+}
+
+layout_sync_panes
+
+/* Determine active panes. */
+#var slot[top_left][active] $pane[top_left][enabled]
+#var slot[top_center][active] $pane[top_center][enabled]
+#var slot[top_right][active] $pane[top_right][enabled]
+#var slot[left][active] $pane[left][enabled]
+#var slot[right][active] $pane[right][enabled]
+#var slot[bottom_left][active] $pane[bottom_left][enabled]
+#var slot[bottom_center][active] $pane[bottom_center][enabled]
+#var slot[bottom_right][active] $pane[bottom_right][enabled]
+
+#if {"$pane[top_left][content]" == "none"} {#var slot[top_left][active] off}
+#if {"$pane[top_center][content]" == "none"} {#var slot[top_center][active] off}
+#if {"$pane[top_right][content]" == "none"} {#var slot[top_right][active] off}
+#if {"$pane[left][content]" == "none"} {#var slot[left][active] off}
+#if {"$pane[right][content]" == "none"} {#var slot[right][active] off}
+#if {"$pane[bottom_left][content]" == "none"} {#var slot[bottom_left][active] off}
+#if {"$pane[bottom_center][content]" == "none"} {#var slot[bottom_center][active] off}
+#if {"$pane[bottom_right][content]" == "none"} {#var slot[bottom_right][active] off}
+
+#if {"$pane[top_left][content]" == "chat" && "$draw[chat]" != "on"} {#var slot[top_left][active] off}
+#if {"$pane[top_center][content]" == "chat" && "$draw[chat]" != "on"} {#var slot[top_center][active] off}
+#if {"$pane[top_right][content]" == "chat" && "$draw[chat]" != "on"} {#var slot[top_right][active] off}
+#if {"$pane[top_left][content]" == "minimap" && "$draw[map]" != "on"} {#var slot[top_left][active] off}
+#if {"$pane[top_center][content]" == "minimap" && "$draw[map]" != "on"} {#var slot[top_center][active] off}
+#if {"$pane[top_right][content]" == "minimap" && "$draw[map]" != "on"} {#var slot[top_right][active] off}
+#if {"$pane[top_left][content]" == "tintin_map" && "$draw[canvas]" != "on"} {#var slot[top_left][active] off}
+#if {"$pane[top_center][content]" == "tintin_map" && "$draw[canvas]" != "on"} {#var slot[top_center][active] off}
+#if {"$pane[top_right][content]" == "tintin_map" && "$draw[canvas]" != "on"} {#var slot[top_right][active] off}
+#if {"$pane[right][content]" == "tintin_map" && "$draw[canvas]" != "on"} {#var slot[right][active] off}
+#if {"$pane[bottom_center][content]" == "hpbar" && "$draw[hpbar]" != "on" && "$draw[gline]" != "on"} {#var slot[bottom_center][active] off}
+
+/* Determine base dimensions. */
 #if {"$draw[alert]" == "on"} {
 	#var alert[width] 1
 } {
 	#var alert[width] 0
-}
-
-#if {"$draw[map]" == "on"} {
-	#var map[height] 20;
-	#var map[width] 30
-} {
-	#var map[height] 0;
-	#var map[width] 0
-}
-
-#if {"$draw[chat]" == "on"} {
-	#var chat[row][start] 1;
-	#var chat[col][start] 1;
-	#if {"$draw[caption]" == "on"} {
-		#var chat[row][end] 18;
-	} {
-		#var chat[row][end] 20;
-	};
-	#math chat[rows] {$chat[row][end] - $chat[row][start] + 1};
-	#math {chat[height]} {$chat[rows] + 1};
-	#if {"$draw[map]" == "on"} {
-		#math chat[col][end] {-$map[width]-2}
-	} {
-		#var chat[col][end] -1
-	}
-} {
-	#var chat[height] 0
-}
-
-#if {"$draw[caption]" == "on"} {
-	#if {"$draw[chat]" == "on"} {
-		#math caption[row] {$chat[height] + 1}
-	} {
-		#var caption[row] 1
-	};
-	#var caption[height] 2
-} {
-	#var caption[height] 0
-}
-
-#if {"$draw[canvas]" == "on"} {
-	#var canvas[width] 31;
-	#if {"$draw[map]" == "on"} {
-		#math canvas[top] {$map[height] + 1}
-	} {
-		#math canvas[top] {$chat[height] + $caption[height]}
-	}
-} {
-	#var canvas[width] 0
 }
 
 #if {"$draw[gline]" == "on"} {
@@ -74,96 +549,366 @@
 	#var hpbar[height] 0
 }
 
-
 #math {status[height]} {$hpbar[height] + $gline[height] + 1}
 
-#math split[top]	{$chat[height] + $caption[height]}
-#var split[bottom]	$status[height]
-#var split[left]	$alert[width]
-#var split[right]	$canvas[width]
+#var top[height] 0
+#if {"$slot[top_left][active]" == "on" && $pane[top_left][height] > $top[height]} {#var top[height] $pane[top_left][height]}
+#if {"$slot[top_center][active]" == "on" && $pane[top_center][height] > $top[height]} {#var top[height] $pane[top_center][height]}
+#if {"$slot[top_right][active]" == "on" && $pane[top_right][height] > $top[height]} {#var top[height] $pane[top_right][height]}
 
-/* Perform Split */
-#split $split[top] $split[bottom] $split[left] $split[right]
+#var bottom[height] 0
+#var slot[bottom_center][height] $pane[bottom_center][height]
+#if {"$slot[bottom_left][active]" == "on" && $pane[bottom_left][height] > $bottom[height]} {#var bottom[height] $pane[bottom_left][height]}
+#if {"$slot[bottom_center][active]" == "on" && "$pane[bottom_center][content]" == "hpbar"} {#var slot[bottom_center][height] $status[height]}
+#if {"$slot[bottom_center][active]" == "on" && $slot[bottom_center][height] > $bottom[height]} {#var bottom[height] $slot[bottom_center][height]}
+#if {"$slot[bottom_right][active]" == "on" && $pane[bottom_right][height] > $bottom[height]} {#var bottom[height] $pane[bottom_right][height]}
+#if {$bottom[height] < $status[height]} {#var bottom[height] $status[height]}
 
-/* Clear any previous drawings */
-#screen clear split
-#buffer end
+#var split[top] $top[height]
+#var split[bottom] $bottom[height]
+#var split[left] 0
+#var split[right] 0
+#if {"$slot[left][active]" == "on"} {#var split[left] $pane[left][width]}
+#if {"$slot[right][active]" == "on"} {#var split[right] $pane[right][width]}
+#if {$alert[width] > $split[left]} {#var split[left] $alert[width]}
+#var center[flex][left] 0
+#math center[cols] {$screen[cols] - $split[left] - $split[right]}
+#if {"$slot[left][active]" == "on" && $layout[center_max_cols] > 0 && $center[cols] > $layout[center_max_cols]} {
+	#math center[flex][left] {$center[cols] - $layout[center_max_cols]};
+	#math split[left] {$split[left] + $center[flex][left]}
+}
+#math center[cols] {$screen[cols] - $split[left] - $split[right]}
+#if {$center[cols] < 0} {#var center[cols] 0}
+#var center[width] $center[cols]
 
-/* Perform Drawings */
-#NOP Input bar
-#draw {line} -2 1 -2 -1
+/* Compute pane coordinates. */
+#var slot[top_left][row][start] 1
+#var slot[top_left][row][end] $split[top]
+#var slot[top_left][col][start] 1
+#var slot[top_left][col][end] $pane[top_left][width]
+#var slot[top_left][width] $pane[top_left][width]
+#math slot[top_left][border][col] {$pane[top_left][width] + 1}
 
-#if {"$draw[caption]" == "on"} {
-	#draw {green} {line} $chat[height]+$caption[height] 1 $chat[height]+$caption[height] -1;
-	update_caption
+#var slot[top_right][row][start] 1
+#var slot[top_right][row][end] $split[top]
+#math slot[top_right][col][start] {0 - $pane[top_right][width]}
+#var slot[top_right][col][end] -1
+#var slot[top_right][width] $pane[top_right][width]
+#math slot[top_right][border][col] {0 - $pane[top_right][width] - 1}
+
+#var slot[top_center][row][start] 1
+#var slot[top_center][row][end] $split[top]
+#var slot[top_center][col][start] 1
+#if {"$slot[top_left][active]" == "on"} {#math slot[top_center][col][start] {$pane[top_left][width] + 2}}
+#var slot[top_center][col][end] -1
+#if {"$slot[top_right][active]" == "on"} {#math slot[top_center][col][end] {0 - $pane[top_right][width] - 2}}
+#var top_center[flex][left] 0
+#var slot[top_center][col][end_abs] $screen[cols]
+#if {"$slot[top_right][active]" == "on"} {#math slot[top_center][col][end_abs] {$screen[cols] - $pane[top_right][width] - 1}}
+#math slot[top_center][width] {$slot[top_center][col][end_abs] - $slot[top_center][col][start] + 1}
+#if {"$slot[top_left][active]" == "on" && $layout[center_max_cols] > 0 && $slot[top_center][width] > $layout[center_max_cols]} {
+	#math top_center[flex][left] {$slot[top_center][width] - $layout[center_max_cols]};
+	#math slot[top_center][col][start] {$slot[top_center][col][start] + $top_center[flex][left]}
+}
+#if {"$slot[top_left][active]" == "on" && "$slot[top_center][active]" == "on"} {#math slot[top_left][border][col] {$slot[top_center][col][start] - 1}}
+#if {"$slot[top_left][active]" == "on"} {
+	#math slot[top_left][col][end] {$slot[top_left][border][col] - 1};
+	#math slot[top_left][width] {$slot[top_left][col][end] - $slot[top_left][col][start] + 1};
+	#if {$slot[top_left][width] < 0} {#var slot[top_left][width] 0}
+}
+#math slot[top_center][width] {$slot[top_center][col][end_abs] - $slot[top_center][col][start] + 1}
+#if {$slot[top_center][width] < 0} {#var slot[top_center][width] 0}
+#var top_center[col][start] $slot[top_center][col][start]
+#var top_center[col][end] $slot[top_center][col][end]
+#var top_center[width] $slot[top_center][width]
+#var top_center[cols] $slot[top_center][width]
+
+#math slot[left][row][start] {$split[top] + 1}
+#math slot[left][row][end] {0 - $split[bottom] - 2}
+#var slot[left][col][start] 1
+#var slot[left][col][end] $split[left]
+#if {$slot[left][col][end] > 0} {#math slot[left][col][end] {$slot[left][col][end] - 1}}
+#var slot[left][width] $slot[left][col][end]
+#var slot[left][border][col] $split[left]
+
+#math slot[right][row][start] {$split[top] + 1}
+#math slot[right][row][end] {0 - $split[bottom] - 2}
+#math slot[right][col][start] {0 - $pane[right][width] + 1}
+#var slot[right][col][end] -1
+#var slot[right][width] $pane[right][width]
+#math slot[right][border][col] {0 - $pane[right][width]}
+
+#var bottom_anchor[left] 0
+#if {"$slot[bottom_left][active]" == "on"} {#math bottom_anchor[left] {$pane[bottom_left][width] + 1}}
+#if {$split[left] > 0} {#var bottom_anchor[left] $split[left]}
+
+#var bottom_anchor[right] 0
+#if {"$slot[bottom_right][active]" == "on"} {#math bottom_anchor[right] {$pane[bottom_right][width] + 1}}
+#if {$split[right] > 0} {#var bottom_anchor[right] $split[right]}
+
+#math slot[bottom_left][row][start] {0 - $split[bottom] - 1}
+#var slot[bottom_left][row][end] -3
+#var slot[bottom_left][col][start] 1
+#var slot[bottom_left][col][end] 0
+#if {$bottom_anchor[left] > 0} {#math slot[bottom_left][col][end] {$bottom_anchor[left] - 1}}
+#math slot[bottom_left][width] {$slot[bottom_left][col][end] - $slot[bottom_left][col][start] + 1}
+#if {$slot[bottom_left][width] < 0} {#var slot[bottom_left][width] 0}
+#var slot[bottom_left][border][col] $bottom_anchor[left]
+
+#math slot[bottom_right][row][start] {0 - $split[bottom] - 1}
+#var slot[bottom_right][row][end] -3
+#var slot[bottom_right][col][start] -1
+#if {$bottom_anchor[right] > 0} {#math slot[bottom_right][col][start] {0 - $bottom_anchor[right] + 1}}
+#var slot[bottom_right][col][end] -1
+#var slot[bottom_right][width] $bottom_anchor[right]
+#math slot[bottom_right][border][col] {0 - $bottom_anchor[right]}
+
+#math slot[bottom_center][row][start] {0 - $split[bottom] - 1}
+#var slot[bottom_center][row][end] -3
+#var slot[bottom_center][col][start] 1
+#if {$bottom_anchor[left] > 0} {#math slot[bottom_center][col][start] {$bottom_anchor[left] + 1}}
+#var slot[bottom_center][col][end] -1
+#if {$bottom_anchor[right] > 0} {#math slot[bottom_center][col][end] {0 - $bottom_anchor[right] - 1}}
+#var slot[bottom_center][col][end_abs] $screen[cols]
+#if {$bottom_anchor[right] > 0} {#math slot[bottom_center][col][end_abs] {$screen[cols] - $bottom_anchor[right]}}
+#math slot[bottom_center][width] {$slot[bottom_center][col][end_abs] - $slot[bottom_center][col][start] + 1}
+#if {$slot[bottom_center][width] < 0} {#var slot[bottom_center][width] 0}
+#var slot[center][width] $center[cols]
+#var bottom_center[col][start] $slot[bottom_center][col][start]
+#var bottom_center[col][end] $slot[bottom_center][col][end]
+#var bottom_center[width] $slot[bottom_center][width]
+#var bottom_center[cols] $slot[bottom_center][width]
+
+/* Bind legacy renderer variables to whichever pane currently owns that content. */
+#var chat[pane] none
+#if {"$slot[top_left][active]" == "on" && "$pane[top_left][content]" == "chat"} {#var chat[pane] top_left}
+#if {"$slot[top_center][active]" == "on" && "$pane[top_center][content]" == "chat"} {#var chat[pane] top_center}
+#if {"$slot[top_right][active]" == "on" && "$pane[top_right][content]" == "chat"} {#var chat[pane] top_right}
+
+#var caption[height] 0
+#if {"$draw[caption]" == "on" && "$chat[pane]" != "none"} {#var caption[height] 2}
+
+#if {"$chat[pane]" != "none"} {
+	#var chat[row][start] $slot[$chat[pane]][row][start];
+	#var chat[col][start] $slot[$chat[pane]][col][start];
+	#var chat[col][end] $slot[$chat[pane]][col][end];
+	#var chat[width] $slot[$chat[pane]][width];
+	#var chat[cols] $chat[width];
+	#math chat[row][end] {$slot[$chat[pane]][row][end] - $caption[height] - 1};
+	#if {$chat[row][end] < $chat[row][start]} {#var chat[row][end] $chat[row][start]};
+	#math chat[rows] {$chat[row][end] - $chat[row][start] + 1};
+	#math chat[height] {$chat[rows] + 1};
+	#math caption[row] {$slot[$chat[pane]][row][end] - 1};
+	#var caption[col][start] $slot[$chat[pane]][col][start];
+	#var caption[col][end] $slot[$chat[pane]][col][end]
+} {
+	#var chat[height] 0;
+	#var chat[rows] 0;
+	#var chat[width] 0;
+	#var chat[cols] 0
 }
 
-#if {"$draw[chat]" == "on"} {
-	#if {"$draw[caption]" != "on" && "$draw[map]" == "on"} {
-		#draw {green} {line} $chat[height] 1 $chat[height] -1;
-	} {
-		#draw {green} {line} $chat[height] 1 $chat[height] -$map[width]-1
+#var awminimap[pane] none
+#var map[height] 0
+#var map[width] 0
+#if {"$slot[top_left][active]" == "on" && "$pane[top_left][content]" == "minimap"} {#var awminimap[pane] top_left}
+#if {"$slot[top_center][active]" == "on" && "$pane[top_center][content]" == "minimap"} {#var awminimap[pane] top_center}
+#if {"$slot[top_right][active]" == "on" && "$pane[top_right][content]" == "minimap"} {#var awminimap[pane] top_right}
+#if {"$awminimap[pane]" != "none"} {
+	#var map[height] $pane[$awminimap[pane]][height];
+	#var map[width] $slot[$awminimap[pane]][width];
+	#var map[row][start] $slot[$awminimap[pane]][row][start];
+	#math map[row][end] {$map[row][start] + $map[height] - 1};
+	#math map[row][max] {$slot[$awminimap[pane]][row][end] - 1};
+	#if {$map[row][end] > $map[row][max]} {#var map[row][end] $map[row][max]};
+	#var map[col][start] $slot[$awminimap[pane]][col][start];
+	#var map[col][end] $slot[$awminimap[pane]][col][end];
+	#var map[border][col] $slot[$awminimap[pane]][border][col]
+}
+
+#var tintin[pane] none
+#if {"$slot[top_left][active]" == "on" && "$pane[top_left][content]" == "tintin_map"} {#var tintin[pane] top_left}
+#if {"$slot[top_center][active]" == "on" && "$pane[top_center][content]" == "tintin_map"} {#var tintin[pane] top_center}
+#if {"$slot[top_right][active]" == "on" && "$pane[top_right][content]" == "tintin_map"} {#var tintin[pane] top_right}
+#if {"$slot[right][active]" == "on" && "$pane[right][content]" == "tintin_map"} {#var tintin[pane] right}
+
+#if {"$tintin[pane]" != "none"} {
+	#var tintin[width] $slot[$tintin[pane]][width];
+	#var canvas[width] $tintin[width];
+	#math canvas[top] {$slot[$tintin[pane]][row][start] - 1};
+	#var tintin[row][area] $slot[$tintin[pane]][row][start];
+	#math tintin[row][name] {$slot[$tintin[pane]][row][start] + 1};
+	#var tintin[col][start] $slot[$tintin[pane]][col][start];
+	#var tintin[col][end] $slot[$tintin[pane]][col][end];
+	#math tintin[map][row][start] {$slot[$tintin[pane]][row][start] + 2};
+	#var tintin[map][row][end] $slot[$tintin[pane]][row][end];
+	#if {"$tintin[pane]" == "top_left"} {#math tintin[map][row][end] {$slot[$tintin[pane]][row][end] - 1}};
+	#if {"$tintin[pane]" == "top_center"} {#math tintin[map][row][end] {$slot[$tintin[pane]][row][end] - 1}};
+	#if {"$tintin[pane]" == "top_right"} {#math tintin[map][row][end] {$slot[$tintin[pane]][row][end] - 1}};
+	#var tintin[map][col][start] $slot[$tintin[pane]][col][start];
+	#var tintin[map][col][end] $slot[$tintin[pane]][col][end]
+} {
+	#var tintin[width] 0;
+	#var canvas[width] 0
+}
+
+#var hpbar[pane] none
+#if {"$slot[bottom_center][active]" == "on" && "$pane[bottom_center][content]" == "hpbar"} {#var hpbar[pane] bottom_center}
+#if {"$hpbar[pane]" != "none"} {
+	#var hpbar[col][start] $slot[$hpbar[pane]][col][start];
+	#var hpbar[col][end] $slot[$hpbar[pane]][col][end];
+	#var hpbar[width] $slot[$hpbar[pane]][width];
+	#math hpbar[row][1] {0 - $hpbar[height] - 1};
+	#math hpbar[row][2] {0 - $hpbar[height]}
+}
+
+/* Renderer aliases. */
+#alias {draw_frame} {
+	#math frame[row][bottom] {0 - $split[bottom] - 1};
+	#math frame[row][hpbar] {0 - $hpbar[height] - 2};
+
+	#draw {line} -2 1 -2 -1;
+
+	#if {$split[top] > 0} {
+		#draw {green} {line} $split[top] 1 $split[top] -1
 	};
-	chatend
+
+	#if {$split[bottom] > 0} {
+		#draw {line} $frame[row][bottom] 1 $frame[row][bottom] -1
+	};
+
+	#if {"$draw[gline]" == "on" && "$draw[hpbar]" == "on"} {
+		#draw {line} $frame[row][hpbar] 1 $frame[row][hpbar] -1
+	};
+
+	#if {"$draw[caption]" == "on" && "$chat[pane]" != "none"} {
+		#draw {green} {line} $chat[height] $chat[col][start] $chat[height] $chat[col][end]
+	};
+
+	#if {"$slot[top_left][active]" == "on"} {
+		#draw {line} 1 $slot[top_left][border][col] $split[top] $slot[top_left][border][col]
+	};
+	#if {"$slot[top_right][active]" == "on"} {
+		#draw {line} 1 $slot[top_right][border][col] $split[top] $slot[top_right][border][col]
+	};
+	#if {"$slot[left][active]" == "on"} {
+		#draw {line} $slot[left][row][start] $slot[left][border][col] $slot[left][row][end] $slot[left][border][col]
+	};
+	#if {"$slot[right][active]" == "on"} {
+		#draw {line} $slot[right][row][start] $slot[right][border][col] $slot[right][row][end] $slot[right][border][col]
+	};
+	#if {"$slot[bottom_left][active]" == "on"} {
+		#draw {line} $slot[bottom_left][row][start] $slot[bottom_left][border][col] $slot[bottom_left][row][end] $slot[bottom_left][border][col]
+	};
+	#if {"$slot[bottom_right][active]" == "on"} {
+		#draw {line} $slot[bottom_right][row][start] $slot[bottom_right][border][col] $slot[bottom_right][row][end] $slot[bottom_right][border][col]
+	};
+
+	#if {$split[top] > 0} {
+		#if {"$slot[top_left][active]" == "on"} {#showme {<228>\u2534<088>} $split[top] $slot[top_left][border][col]};
+		#if {"$slot[top_right][active]" == "on"} {#showme {<228>\u2534<088>} $split[top] $slot[top_right][border][col]};
+		#if {"$slot[left][active]" == "on"} {#showme {<228>\u252C<088>} $split[top] $slot[left][border][col]};
+		#if {"$slot[right][active]" == "on"} {#showme {<228>\u252C<088>} $split[top] $slot[right][border][col]};
+		#if {"$slot[top_left][active]" == "on" && "$slot[left][active]" == "on" && $slot[top_left][border][col] == $slot[left][border][col]} {#showme {<228>\u253C<088>} $split[top] $slot[left][border][col]};
+		#if {"$slot[top_right][active]" == "on" && "$slot[right][active]" == "on" && $slot[top_right][border][col] == $slot[right][border][col]} {#showme {<228>\u253C<088>} $split[top] $slot[right][border][col]}
+	};
+
+	#if {$split[bottom] > 0} {
+		#if {"$slot[left][active]" == "on"} {#showme {<088>\u2534<088>} $frame[row][bottom] $slot[left][border][col]};
+		#if {"$slot[right][active]" == "on"} {#showme {<088>\u2534<088>} $frame[row][bottom] $slot[right][border][col]};
+		#if {"$slot[bottom_left][active]" == "on"} {#showme {<088>\u252C<088>} $frame[row][bottom] $slot[bottom_left][border][col]};
+		#if {"$slot[bottom_right][active]" == "on"} {#showme {<088>\u252C<088>} $frame[row][bottom] $slot[bottom_right][border][col]};
+		#if {"$slot[left][active]" == "on" && "$slot[bottom_left][active]" == "on" && $slot[left][border][col] == $slot[bottom_left][border][col]} {#showme {<088>\u253C<088>} $frame[row][bottom] $slot[left][border][col]};
+		#if {"$slot[right][active]" == "on" && "$slot[bottom_right][active]" == "on" && $slot[right][border][col] == $slot[bottom_right][border][col]} {#showme {<088>\u253C<088>} $frame[row][bottom] $slot[right][border][col]}
+	};
+
+	#if {"$slot[bottom_left][active]" == "on"} {#showme {<088>\u2534<088>} -2 $slot[bottom_left][border][col]};
+	#if {"$slot[bottom_right][active]" == "on"} {#showme {<088>\u2534<088>} -2 $slot[bottom_right][border][col]};
+
+	#if {"$draw[gline]" == "on" && "$draw[hpbar]" == "on"} {
+		#if {"$slot[bottom_left][active]" == "on"} {#showme {<088>\u253C<088>} $frame[row][hpbar] $slot[bottom_left][border][col]};
+		#if {"$slot[bottom_right][active]" == "on"} {#showme {<088>\u253C<088>} $frame[row][hpbar] $slot[bottom_right][border][col]}
+	};
+
+	#if {"$draw[caption]" == "on" && "$chat[pane]" == "top_left"} {
+		#showme {<088>\u2524<088>} $chat[height] $slot[top_left][border][col]
+	};
+	#if {"$draw[caption]" == "on" && "$chat[pane]" == "top_center"} {
+		#if {"$slot[top_left][active]" == "on"} {#showme {<088>\u251C<088>} $chat[height] $slot[top_left][border][col]};
+		#if {"$slot[top_right][active]" == "on"} {#showme {<088>\u2524<088>} $chat[height] $slot[top_right][border][col]}
+	};
+	#if {"$draw[caption]" == "on" && "$chat[pane]" == "top_right"} {
+		#showme {<088>\u251C<088>} $chat[height] $slot[top_right][border][col]
+	}
 }
 
-#if {"$draw[gline]" == "on"} {
-	#draw {line} -$hpbar[height]-$gline[height]-2 1 -$hpbar[height]-$gline[height]-2 -1
+#alias {draw_caption} {
+	#if {"$draw[caption]" != "on"} {#return};
+	#if {"$chat[pane]" == "none"} {#return};
+	#draw tile $caption[row] $caption[col][start] $caption[row] $caption[col][end] {$caption[text]}
 }
 
-#if {"$draw[hpbar]" == "on"} {
-	#draw {line} -$hpbar[height]-2 1 -$hpbar[height]-2 -1;
-	update_status
+#alias {draw_status} {
+	#if {"$draw[hpbar]" != "on"} {#return};
+	#if {"$hpbar[pane]" == "none"} {#return};
+	#draw tile $hpbar[row][1] $hpbar[col][start] $hpbar[row][1] $hpbar[col][end] {$status1};
+	#draw tile $hpbar[row][2] $hpbar[col][start] $hpbar[row][2] $hpbar[col][end] {$status2}
 }
 
+#alias {draw_minimap} {
+	#if {"$draw[map]" != "on"} {#return};
+	#if {"$awminimap[pane]" == "none"} {#return};
+	#draw tile $map[row][start] $map[col][start] $map[row][end] $map[col][end] $minimap[%*]
+}
 
 #alias {update_map_info} {
+	#if {"$tintin[pane]" == "none"} {#return};
+	#if {"$gmcp[room][info][zone]" == ""} {#return};
 	#map list {roomarea} {$gmcp[room][info][zone]} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
 	#format {room_len} {%L} {$room_cnt};
 	#format {roomvnum_len} {%L} {$roomvnum};
-	#math {area_len} {$canvas[width]-4-$room_len};
-	#math {name_len} {$canvas[width]-4-$roomvnum_len};
+	#math {area_len} {$tintin[width] - 3 - $room_len};
+	#math {name_len} {$tintin[width] - 3 - $roomvnum_len};
 	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]]};
 	#format {name_trunc} {%.${name_len}s} {$roomname};
-	#draw tile $canvas[top]+1 -$canvas[width]+1 $canvas[top]+1 -1 {<028>$area_trunc<148> (<128>$room_cnt<148>)<088>};
-	#draw tile $canvas[top]+2 -$canvas[width]+1 $canvas[top]+2 -1 {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
+	#draw tile $tintin[row][area] $tintin[col][start] $tintin[row][area] $tintin[col][end] {<028>$area_trunc<148> (<128>$room_cnt<148>)<088>};
+	#draw tile $tintin[row][name] $tintin[col][start] $tintin[row][name] $tintin[col][end] {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
 }
 
-#if {"$draw[canvas]" == "on"} {
-	#draw {line} $canvas[top] -$canvas[width] -$status[height]-2 -$canvas[width];
-	#showme {<228>\u252C<088>} $chat[height]+$caption[height] -$canvas[width];
-	#showme {<088>\u2534<088>} -$hpbar[height]-$gline[height]-2 -$canvas[width];
+#alias {draw_tintin_map} {
+	#if {"$tintin[pane]" == "none"} {
+		#map flag vtmap off;
+		#return
+	};
 	#map flag vtmap on;
-	#map offset $canvas[top]+3 -$canvas[width]+1 -$status[height]-2 -1;
+	#map offset $tintin[map][row][start] $tintin[map][col][start] $tintin[map][row][end] $tintin[map][col][end];
 	update_map_info
-} {
-	#map flag vtmap off
 }
 
-#if {"$draw[map]" == "on"} {
-	#draw line 1 -$map[width]-1 $split[top] -$map[width]-1;
-	#if {"$draw[chat]" != "on"} {
-		#draw {line} 1 -$map[width] $map[height] -$map[width]
-	};
-	#if {"$draw[caption]" == "on"} {
-		#if {"$draw[canvas]" == "on"} {
-			#showme {<228>\u253C<088>} $split[top] -$split[right]
-		} {
-			#showme {<228>\u2534<088>} $split[top] -$map[width]-1
-		}
-	} {
-		#if {"$draw[canvas]" == "on"} {
-			#showme {<228>\u253C<088>} $split[top] -$map[width]-1
-		} {
-			#showme {<228>\u2534<088>} $split[top] -$map[width]-1
-		}	
-	};
-	#if {"$draw[chat]" == "on"} {
-		#showme {<088>\u2524<088>} $chat[height] -$map[width]-1
-	};
-	#draw tile 1 -$map[width] $map[height] -1 $minimap[%*]
+/* Perform split and clear the active drawing area. */
+#split $split[top] $split[bottom] $split[left] $split[right]
+#screen clear split
+#buffer end
+
+/* Frame lines. */
+draw_frame
+
+#if {"$chat[pane]" != "none"} {
+	chatend
 }
+
+#if {"$draw[caption]" == "on"} {
+	update_caption
+}
+
+#if {"$draw[hpbar]" == "on"} {
+	update_status
+}
+
+/* Content render pass. */
+draw_minimap
+draw_tintin_map
 
 #alias redraw {
 	#var redraw[args][1] valid;
@@ -177,13 +922,13 @@
 			#case {"gline"}		{#var redraw[option] %1};
 			#case {"hpbar"}		{#var redraw[option] %1};
 			#case {"map"}		{#var redraw[option] %1};
-			#default		{#var redraw[args][1] invalid;#showme REDRAW:  Invalid redraw option}
+			#default		{#var redraw[args][1] invalid;#echo {<138>REDRAW<099>: Invalid redraw option}}
 		};
 		#if {"%2" != ""} {
 			#switch {"%2"} {
 				#case {"on"}	{#var redraw[flag] on};
 				#case {"off"}	{#var redraw[flag] off};
-				#default	{#var redraw[args][2] invalid;#showme REDRAW:  Invalid redraw parameter (on or off)}
+				#default	{#var redraw[args][2] invalid;#echo {<acf>SYNTAX<099>: redraw <option> on|off}}
 			}
 		} {
 			#if {"$draw[$redraw[option]]" == "on"} {
@@ -193,12 +938,14 @@
 			}
 		};
 		#if {"$redraw[args][1]" == "valid" && "$redraw[args][2]" == "valid"} {
+			#class {drawvar} {open};
 			#var draw[$redraw[option]] $redraw[flag];
-			#class drawvar write .tt/AW/vars/draw.var;
+			#class {drawvar} {close};
+			#class {drawvar} {write} {.tt/AW/vars/draw.var};
 			#read .tt/AW/draw.tin
 		}
 	} {
-		#class drawvar write .tt/AW/vars/draw.var;
+		#class {drawvar} {write} {.tt/AW/vars/draw.var};
 		#read .tt/AW/draw.tin
 	}
 }

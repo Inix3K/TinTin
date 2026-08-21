@@ -11,3 +11,4 @@
 
 #NOP Load draw last so other vars are populated
 #read .tt/AW/draw.tin
+#read .tt/AW/events.tin

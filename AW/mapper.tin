@@ -124,9 +124,7 @@
 
 #act {^<MAPEND>$} {
 	#unact {~%%1};
-	#if {"$draw[map]" == "on"} {
-		#draw tile 1 -$map[width] $map[height] -1 $minimap[%*]
-	};
+	draw_minimap;
 	#line gag
 } {1}
 

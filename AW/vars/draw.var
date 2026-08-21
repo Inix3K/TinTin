@@ -1,14 +1,111 @@
 #CLASS {drawvar} OPEN
 
+#VARIABLE {content}
+{
+    {buttons} 
+    {
+        {pane} {none}
+    }
+    {chat} 
+    {
+        {pane} {top_center}
+    }
+    {group} 
+    {
+        {pane} {none}
+    }
+    {hpbar} 
+    {
+        {pane} {bottom_center}
+    }
+    {minimap} 
+    {
+        {pane} {top_right}
+    }
+    {stats} 
+    {
+        {pane} {none}
+    }
+    {tintin_map} 
+    {
+        {pane} {right}
+    }
+}
 #VARIABLE {draw}
 {
     {alert} {off}
     {canvas} {on}
-    {caption} {off}
+    {caption} {on}
     {chat} {on}
     {gline} {off}
     {hpbar} {on}
     {map} {on}
+}
+#VARIABLE {layout}
+{
+    {auto} {on}
+    {center_max_cols} {100}
+    {desktop_full_cols} {180}
+    {desktop_half_cols} {100}
+    {profile} {desktop_half}
+    {target} {desktop_half}
+}
+#VARIABLE {pane}
+{
+    {bottom_center} 
+    {
+        {content} {hpbar}
+        {enabled} {on}
+        {height} {4}
+        {width} {0}
+    }
+    {bottom_left} 
+    {
+        {content} {none}
+        {enabled} {off}
+        {height} {0}
+        {width} {0}
+    }
+    {bottom_right} 
+    {
+        {content} {none}
+        {enabled} {off}
+        {height} {0}
+        {width} {0}
+    }
+    {left} 
+    {
+        {content} {none}
+        {enabled} {off}
+        {width} {0}
+    }
+    {right} 
+    {
+        {content} {tintin_map}
+        {enabled} {on}
+        {width} {31}
+    }
+    {top_center} 
+    {
+        {content} {chat}
+        {enabled} {on}
+        {height} {21}
+        {width} {0}
+    }
+    {top_left} 
+    {
+        {content} {none}
+        {enabled} {off}
+        {height} {21}
+        {width} {0}
+    }
+    {top_right} 
+    {
+        {content} {minimap}
+        {enabled} {on}
+        {height} {21}
+        {width} {30}
+    }
 }
 
 #CLASS {drawvar} CLOSE
