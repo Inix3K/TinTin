@@ -52,7 +52,15 @@
 }
 
 #event {IAC SB GMCP char.status IAC SE} {
-        #var gmcp[char][status] {%0}
+        #var gmcp[char][status] {%0};
+	#var align $gmcp[char][status][align];
+	#var lvl $gmcp[char][status][level];
+	#var tnl $gmcp[char][status][tnl];
+	#var enemy $gmcp[char][status][enemy];
+	#if {"$enemy" != ""} {
+		#var ehealth $gmcp[char][status][enemypct]
+	};
+	update_status
 }
 
 #event {IAC SB GMCP char.vitals IAC SE} {
