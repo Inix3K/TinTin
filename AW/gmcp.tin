@@ -96,7 +96,9 @@
 }
 
 #event {IAC SB GMCP comm.quest IAC SE} {
-	#var gmcp[comm][quest] {%0}
+	#var gmcp[comm][quest] {%0};
+	#var qt $gmcp[comm][quest][wait];
+	update_status
 }
 
 #alias {update_caption} {
