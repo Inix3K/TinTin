@@ -59,6 +59,8 @@
 	#var enemy $gmcp[char][status][enemy];
 	#if {"$enemy" != ""} {
 		#var ehealth $gmcp[char][status][enemypct]
+	} {
+		#var ehealth 0;
 	};
 	update_status
 }
