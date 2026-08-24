@@ -118,10 +118,10 @@
 	#format {rmsym_len} {%L} {$rmsym};
 
 	#if {"$rmcol" != ""} {
-		#map set roomcolor $rmcol
+		#map set roomcolor {$rmcol}
 	};
 	#if {$rmsym_len > 0} {
-		#map set roomsymbol $rmsym
+		#map set roomsymbol {$rmsym}
 	};
 }
 
