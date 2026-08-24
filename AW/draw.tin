@@ -635,7 +635,7 @@ layout_sync_panes
 #math slot[right][row][end] {0 - $split[bottom] - 2}
 #math slot[right][col][start] {0 - $pane[right][width] + 1}
 #var slot[right][col][end] -1
-#var slot[right][width] $pane[right][width]
+#math slot[right][width] {$pane[right][width] - 1}
 #math slot[right][border][col] {0 - $pane[right][width]}
 
 #var bottom_anchor[left] 0
@@ -851,13 +851,19 @@ layout_sync_panes
 #alias {draw_status} {
 	#if {"$draw[hpbar]" != "on"} {#return};
 	#if {"$hpbar[pane]" == "none"} {#return};
-	#draw tile $hpbar[row][1] $hpbar[col][start] $hpbar[row][1] $hpbar[col][end] {$status1};
-	#draw tile $hpbar[row][2] $hpbar[col][start] $hpbar[row][2] $hpbar[col][end] {$status2}
+	#if {$hpbar[width] < 1} {#return};
+	#format {hpbar[status][1]} {%.${hpbar[width]}s} {$status1};
+	#format {hpbar[status][2]} {%.${hpbar[width]}s} {$status2};
+	#draw {LALIGN} tile $hpbar[row][1] $hpbar[col][start] $hpbar[row][1] $hpbar[col][end] {$hpbar[status][1]<088>};
+	#draw {LALIGN} tile $hpbar[row][2] $hpbar[col][start] $hpbar[row][2] $hpbar[col][end] {$hpbar[status][2]<088>}
 }
 
 #alias {draw_minimap} {
 	#if {"$draw[map]" != "on"} {#return};
 	#if {"$awminimap[pane]" == "none"} {#return};
+	#loop {1} {&minimap[]} {minimap_row} {
+		#replace {minimap[$minimap_row]} {\\;} {\x3B};
+	};
 	#draw tile $map[row][start] $map[col][start] $map[row][end] $map[col][end] $minimap[%*]
 }
 
@@ -870,7 +876,7 @@ layout_sync_panes
 	#format {roomvnum_len} {%L} {$roomvnum};
 	#math {area_len} {$tintin[width] - 3 - $room_len};
 	#math {name_len} {$tintin[width] - 3 - $roomvnum_len};
-	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]]};
+	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]][name]};
 	#format {name_trunc} {%.${name_len}s} {$roomname};
 	#draw tile $tintin[row][area] $tintin[col][start] $tintin[row][area] $tintin[col][end] {<028>$area_trunc<148> (<128>$room_cnt<148>)<088>};
 	#draw tile $tintin[row][name] $tintin[col][start] $tintin[row][name] $tintin[col][end] {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
