@@ -10,8 +10,11 @@
 #NOP Old method
 #act {^is in the general area of %1.} {
 	#var quest[area] %1;
-	#list areas find {$quest[area]} {quest[index]};
-	#var quest[zone] *areas[+$quest[index]];
+	#var quest[zone] @areakey{$quest[area]};
+	#if {"$quest[zone]" == ""} {
+		#echo {<128>QUEST<099>: Unknown area $quest[area]};
+		#return
+	};
 	#map find {roomarea} {$quest[zone]} {roomname} {%*$quest[room]%*};
 	#delay 0 #map list {roomarea} {$quest[zone]} {roomname} {$quest[room]}
 }
@@ -20,8 +23,11 @@
 #NOP qgo - Quest Go
 #alias qgo {
 	#var quest[mob] @mobformat{$gmcp[comm][quest][targ]};
-        #list areas find {$gmcp[comm][quest][area]} {quest[index]};
-        #var quest[zone] *areas[+$quest[index]];
+	#var quest[zone] @areakey{$gmcp[comm][quest][area]};
+	#if {"$quest[zone]" == ""} {
+		#echo {<128>QUEST<099>: Unknown area $gmcp[comm][quest][area]};
+		#return
+	};
         #map find {roomarea} {$quest[zone]} {roomname} {$gmcp[comm][quest][room]};
 	#path run
 }
@@ -62,9 +68,52 @@
 	#replace {mobformat[end]} {.}		{};
 	#replace {mobformat[end]} {!}		{};
 	#replace {mobformat[end]} {?}		{};
-	#format  {cp[target]}	  {%p}		{$cp[target]};
 
 	#return $mobformat[end]
+}
+
+#function awlevel {
+	#if {"$gmcp[char][status][level]" != ""} {
+		#return $gmcp[char][status][level]
+	};
+	#if {"$gmcp[char][base][level]" != ""} {
+		#return $gmcp[char][base][level]
+	};
+	#return 0
+}
+
+#function areainlevel {
+	#var area_level_short %1;
+	#var area_level_player @awlevel{};
+	#if {"$area_level_player" == "" || $area_level_player == 0} {
+		#return 1
+	};
+	#if {"$areas[$area_level_short][min]" == "" || "$areas[$area_level_short][max]" == ""} {
+		#return 0
+	};
+	#if {$area_level_player >= $areas[$area_level_short][min] && $area_level_player <= $areas[$area_level_short][max]} {
+		#return 1
+	};
+	#return 0
+}
+
+#function areakey {
+	#var area_key_match {};
+	#var area_key_level_match {};
+	#foreach {$areas} {area_key_short} {
+		#if {"$areas[$area_key_short][name]" == "%0"} {
+			#if {"$area_key_match" == ""} {
+				#var area_key_match $area_key_short
+			};
+			#if {"$area_key_level_match" == "" && @areainlevel{$area_key_short}} {
+				#var area_key_level_match $area_key_short
+			}
+		}
+	};
+	#if {"$area_key_level_match" != ""} {
+		#return $area_key_level_match
+	};
+	#return $area_key_match
 }
 
 #act {You still have to kill \* %1 \(%2\)} {
@@ -215,13 +264,9 @@
 
 	#NOP Find short name for location;
 	#var cp[location]	$campaign[$cp[target]];
-	#foreach {$areas} {short} {
-		#if {"$areas[$short]" == "$cp[location]"} {
-			#var cp[short] $short
-		}
-	};
+	#var cp[short] @areakey{$cp[location]};
 
-	#if {&cp[short]} {
+	#if {"$cp[short]" != ""} {
 		#NOP Area Mode;
 		#map go {roomarea} {$cp[short]};
 		#map get {roomvnum} {vnum};
@@ -234,7 +279,7 @@
 		#delay 0 goar $cp[short]
 	} {
 		#NOP Room Mode;
-		#delay 0 #map run $cp[location]
+		sndroom {$cp[target]} {$cp[location]}
 	};
 }
 
@@ -262,16 +307,60 @@
 		#format {findloc} {%%p} {%%3};
 		#echo {$findloc};
 
-		#unvar rooms;
-		#unvar roomlist;
-		#list rooms cre;
-		#map list {roomname} {%*$findloc%*} {roomarea} {$area} {variable} {roomlist};
-		#foreach {$roomlist} {room} {#regex {$room} {\.000} {} {#list {rooms} add {$room}}};
-
-		sndr
+		snd_find_rooms {$findloc} {$area};
+		#if {&rooms[] > 0} {
+			sndr
+		} {
+			#echo {<128>SND<099>: No mapped rooms found for $findloc in $area}
+		}
 	};
 
 	where $sndmob;
+}
+
+#alias snd_add_room {
+	#regex {%1} {\.000} {} {#list {rooms} add {%1}}
+}
+
+#alias snd_find_rooms {
+	#unvar rooms;
+	#unvar roomlist;
+	#list rooms cre;
+	#var snd_find_loc %1;
+	#var snd_find_scope %2;
+	#if {"$snd_find_scope" == ""} {
+		#map get {roomarea} {snd_find_scope}
+	};
+	#if {"$snd_find_scope" == "level"} {
+		#map list {roomname} {%*$snd_find_loc%*} {variable} {roomlist};
+		#foreach {$roomlist} {room} {
+			#if {$room > 0} {
+				#map get {roomarea} {snd_find_area} {$room};
+				#if {@areainlevel{$snd_find_area}} {
+					snd_add_room {$room}
+				}
+			}
+		}
+	} {
+		#map list {roomname} {%*$snd_find_loc%*} {roomarea} {$snd_find_scope} {variable} {roomlist};
+		#foreach {$roomlist} {room} {
+			#if {$room > 0} {
+				snd_add_room {$room}
+			}
+		}
+	}
+}
+
+#alias sndroom {
+	#var sndmob %1;
+	#var snd on;
+	#format {sndroom_loc} {%p} {%2};
+	snd_find_rooms {$sndroom_loc} {level};
+	#if {&rooms[] > 0} {
+		sndr
+	} {
+		#echo {<128>SND<099>: No level-range mapped rooms found for $sndroom_loc}
+	}
 }
 
 #alias sndr {

@@ -2,314 +2,2162 @@
 
 #VARIABLE {areas}
 {
-    {aardington} {Aardington Estate}
-    {abend} {The Dark Continent, Abend}
-    {academy} {The Aylorian Academy}
-    {adaldar} {Battlefields of Adaldar}
-    {afterglow} {Afterglow}
-    {agroth} {The Marshlands of Agroth}
-    {ahner} {Kingdom of Ahner}
-    {alagh} {Alagh, the Blood Lands}
-    {alehouse} {Wayward Alehouse}
-    {amazon} {The Amazon Nation}
-    {amazonclan} {The Ivory City}
-    {amusement} {The Amusement Park}
-    {andarin} {The Blighted Tundra of Andarin}
-    {annwn} {Annwn}
-    {anthrox} {Anthrox}
-    {arboretum} {Arboretum}
-    {arena} {The Gladiator's Arena}
-    {arisian} {Arisian Realm}
-    {ascent} {The First Ascent}
-    {asherodan} {The Keep of the Asherodan}
-    {astral} {The Astral Travels}
-    {atlantis} {Atlantis}
-    {autumn} {Eternal Autumn}
-    {avian} {Avian Kingdom}
-    {aylor} {The Grand City of Aylor}
-    {badtrip} {A Bad Trip}
-    {bard} {The Bard Clan}
-    {bazaar} {Onyx Bazaar}
-    {beer} {The Land of the Beer Goblins}
-    {believer} {The Path of the Believer}
-    {blackrose} {Black Rose}
-    {bliss} {Wedded Bliss}
-    {bonds} {Unearthly Bonds}
-    {bootcamp} {The Boot Camp}
-    {cabal} {Cathedral of the Elements}
-    {caldera} {The Icy Caldera of Mauldoon}
-    {callhero} {The Call of Heroes}
-    {camps} {Tournament Camps}
-    {canyon} {Canyon Memorial Hospital}
-    {caravan} {Wayfarer's Caravan}
-    {cards} {House of Cards}
-    {carnivale} {Olde Worlde Carnivale}
-    {cataclysm} {The Cataclysm}
-    {cathedral} {The Old Cathedral}
-    {cats} {Sheila's Cat Sanctuary}
-    {chakra} {Chakra Spire}
-    {chantry} {Fellchantry}
-    {chaos} {The Realm of Chaos}
-    {chasm} {The Chasm and The Catacombs}
-    {chessboard} {The Chessboard}
-    {childsplay} {Child's Play}
-    {cineko} {Aerial City of Cineko}
-    {citadel} {The Flying Citadel}
-    {conflict} {Thandeld's Conflict}
-    {coral} {The Coral Kingdom}
-    {cougarian} {The Cougarian Queendom}
-    {cove} {Kiksaadi Cove}
-    {cradle} {Cradlebrook}
-    {crimson} {The Crimson Horde Clan Hall}
-    {crusaders} {The Crusader Clan}
-    {crynn} {Crynn's Church}
-    {damned} {Halls of the Damned}
-    {daoine} {The Underground Hall}
-    {darklight} {The DarkLight}
-    {darkside} {The Darkside of the Fractured Lands}
-    {ddoom} {Desert Doom}
-    {deadlights} {The Deadlights}
-    {deathtrap} {Deathtrap Dungeon}
-    {deneria} {Realm of Deneria}
-    {desert} {The Desert Prison}
-    {desolation} {The Mountains of Desolation}
-    {dhalgora} {Dhal'Gora Outlands}
-    {diatz} {The Three Pillars of Diatz}
-    {diner} {Tumari's Diner}
-    {doh} {Disciples of Hassan Clan Hall}
-    {dominion} {Dominion Clan Area}
-    {dortmund} {Dortmund}
-    {drageran} {The Drageran Empire}
-    {dragon} {The White Dragon Clan}
-    {dread} {Dread Tower}
-    {druid} {Isle of Anglesey}
-    {dsr} {Diamond Soul Revelation}
-    {dundoom} {The Dungeon of Doom}
-    {dunes} {Dunes in Gold}
-    {dungeon} {Bloodlust Dungeon}
-    {dunoir} {Mount duNoir}
-    {duskvalley} {Dusk Valley}
-    {dynasty} {The Eighteenth Dynasty}
-    {earthlords} {The Earth Lords}
-    {earthplane} {Earth Plane 4}
-    {elemental} {Elemental Chaos}
-    {emerald} {The Emerald Clan HQ}
-    {empire} {The Empire of Aiighialla}
-    {empyrean} {Empyrean, Streets of Downfall}
-    {entropy} {The Archipelago of Entropy}
-    {fantasy} {Fantasy Fields}
-    {farm} {Kimr's Farm}
-    {fayke} {All in a Fayke Day}
-    {fens} {The Curse of the Midnight Fens}
-    {fields} {The Killing Fields}
-    {firebird} {Realm of the Firebird}
-    {firenation} {Realm of the Sacred Flame}
-    {fireswamp} {The Fire Swamp}
-    {fortress} {The Goblin Fortress}
-    {fortune} {Crossroads of Fortune}
-    {fractal} {Fractals of the Weave}
-    {fractured} {The Fractured Lands}
-    {ft1} {Faerie Tales}
-    {ftii} {Faerie Tales II}
-    {fury} {Fury City}
-    {gaardian} {Midgaardian Publishing House}
-    {gallows} {Gallows Hill}
-    {gathering} {The Gathering Horde}
-    {gauntlet} {The Gauntlet}
-    {gelidus} {Gelidus}
-    {geniewish} {A Genie's Last Wish}
-    {gilda} {Gilda And The Dragon}
-    {glamdursil} {The Glamdursil}
-    {glimmerdim} {Brightsea and Glimmerdim}
-    {gnomalin} {Cloud City of Gnomalin}
-    {goldrush} {Gold Rush}
-    {graveyard} {The Graveyard}
-    {greece} {Ancient Greece}
-    {gwillim} {The Trouble with Gwillimberry}
-    {hades} {Entrance to Hades}
-    {hatchling} {Hatchling Aerie}
-    {hawklord} {The Realm of the Hawklords}
-    {hedge} {Hedgehogs' Paradise}
-    {helegear} {Helegear Sea}
-    {hell} {Descent to Hell}
-    {hoard} {Swordbreaker's Hoard}
-    {hodgepodge} {A Magical Hodgepodge}
-    {hook} {The S.S. Hook}
-    {horath} {The Broken Halls of Horath}
-    {horizon} {Nebulous Horizon}
-    {icefall} {Icefall}
-    {illoria} {The Tournament of Illoria}
-    {imagi} {Imagi's Nation}
-    {immhomes} {Immortal Homes}
-    {imperial} {Imperial Nation}
-    {imperium} {The Stronghold of the Imperium Clan}
-    {infamy} {The Realm of Infamy}
-    {infest} {The Infestation}
-    {insan} {Insanitaria}
-    {jenny} {Jenny's Tavern}
-    {jotun} {Jotunheim}
-    {kearvek} {The Keep of Kearvek}
-    {kerofk} {Kerofk}
-    {ketu} {Ketu Uplands}
-    {kingsholm} {Kingsholm}
-    {knossos} {The Great City of Knossos}
-    {kobaloi} {Keep of the Kobaloi}
-    {kultiras} {Kul Tiras}
-    {lab} {Chaprenula's Laboratory}
-    {labyrinth} {The Labyrinth}
-    {lagoon} {Black Lagoon}
-    {landofoz} {The Land of Oz}
-    {laym} {Tai'rha Laym}
-    {legend} {Land of Legend}
-    {lemdagor} {Storm Ships of Lem-Dagor}
-    {lidnesh} {The Forest of Li'Dnesh}
-    {light} {The Order of Light}
-    {livingmine} {Living Mines of Dak'Tai}
-    {logging} {Svrogan's Logging Camp}
-    {longnight} {Into the Long Night}
-    {loqui} {Loqui Clan Area}
-    {losttime} {Island of Lost Time}
-    {lowlands} {Lowlands Paradise '96}
-    {lplanes} {The Lower Planes}
-    {maelstrom} {The Maelstrom}
-    {manor} {Death's Manor}
-    {manor1} {The Aardwolf Real Estates}
-    {manor3} {Aardwolf Estates 2000}
-    {manorisle} {The Aardwolf Isle Estates}
-    {manormount} {Mountain View Estates}
-    {manorsea} {Seaside Height Estates}
-    {manorville} {Prairie Village Estates}
-    {manorwoods} {Shady Acres Estates}
-    {masaki} {Masaki Clan Area}
-    {masq} {Masquerade Island}
-    {mayhem} {Artificer's Mayhem}
-    {melody} {Art of Melody}
-    {mesolar} {The Continent of Mesolar}
-    {minos} {The Shadows of Minos}
-    {mistridge} {The Covenant of Mistridge}
-    {monastery} {The Monastery}
-    {mudwog} {Mudwog's Swamp}
-    {nanjiki} {Nanjiki Ruins}
-    {necro} {Necromancers' Guild}
-    {nenukon} {Nenukon and the Far Country}
-    {newthalos} {New Thalos}
-    {ninehells} {The Nine Hells}
-    {northstar} {Northstar}
-    {nottingham} {Nottingham}
-    {nulan} {Plains of Nulan'Boar}
-    {nursing} {Ascension Bluff Nursing Home}
-    {nynewoods} {The Nyne Woods}
-    {oceanpark} {Andolor's Ocean Adventure Park}
-    {omentor} {The Witches of Omen Tor}
-    {ooku} {Ookushka Garrison}
-    {oradrin} {Oradrin's Chosen}
-    {origins} {Tribal Origins}
-    {orlando} {Hotel Orlando}
-    {paradise} {Paradise Lost}
-    {partroxis} {The Partroxis}
-    {peninsula} {Tairayden Peninsula}
-    {petstore} {Giant's Pet Store}
-    {pompeii} {Pompeii}
-    {promises} {Foolish Promises}
-    {prosper} {Prosper's Island}
-    {pyre} {Twilight Hall}
-    {qong} {Qong}
-    {quarry} {Gnoll's Quarry}
-    {radiance} {Radiance Woods}
-    {raga} {Raganatittu}
-    {raukora} {The Blood Opal of Rauko'ra}
-    {rebellion} {Rebellion of the Nix}
-    {remcon} {The Reman Conspiracy}
-    {reme} {The Imperial City of Reme}
-    {retri} {The Halls of Retribution}
-    {rhabdo} {Dark Temple of Zhamet}
-    {romani} {A Clearing in the Woods}
-    {rosewood} {Rosewood Castle}
-    {ruins} {The Ruins of Diamond Reach}
-    {sagewood} {Sagewood Grove}
-    {sahuagin} {The Abyssal Caverns of Sahuagin}
-    {salt} {The Great Salt Flats}
-    {sanctity} {Sanctity of Eternal Damnation}
-    {sanctum} {The Blood Sanctum}
-    {sandcastle} {Sho'aram, Castle in the Sand}
-    {sanguine} {The Sanguine Tavern}
-    {scarred} {The Scarred Lands}
-    {seekers} {The Fortress of Knowledge}
-    {sendhian} {Adventures in Sendhia}
-    {sennarre} {Sen'narre Lake}
-    {shadokil} {The Shadokil Guildhouse}
-    {shadowsend} {Shadow's End}
-    {shouggoth} {The Temple of Shouggoth}
-    {siege} {Kobold Siege Camp}
-    {sirens} {Siren's Oasis Resort}
-    {skeletal} {Skeletal Remains}
-    {slaughter} {The Slaughter House}
-    {snuckles} {Snuckles Village}
-    {soh} {The School of Horror}
-    {sohtwo} {The School of Horror}
-    {solan} {The Town of Solan}
-    {songpalace} {The Palace of Song}
-    {southern} {The Southern Ocean}
-    {spyreknow} {Guardian's Spyre of Knowledge}
-    {stone} {The Fabled City of Stone}
-    {storm} {Storm Mountain}
-    {stormhaven} {The Ruins of Stormhaven}
-    {stronghold} {Dark Elf Stronghold}
-    {stuff} {The Stuff of Shadows}
-    {takeda} {Takeda's Warcamp}
-    {talsa} {The Empire of Talsa}
-    {tanelorn} {The Legendary City of Tanelorn}
-    {tanra} {Tanra'vea}
-    {tao} {The Collective Mind of Tao}
-    {temple} {The Temple of Shal'indrael}
-    {terra} {The Cracks of Terra}
-    {terramire} {Fort Terramire}
-    {thieves} {Den of Thieves}
-    {tilule} {Tilule Rehabilitation Clinic}
-    {times} {Intrigues of Times Past}
-    {tirna} {Tir na nOg}
-    {titan} {The Titans' Keep}
-    {tol} {The Tree of Life}
-    {tombs} {The Relinquished Tombs}
-    {touchstone} {Touchstone Cavern}
-    {twinlobe} {The Twinlobe Clan HQ}
-    {umari} {Umari's Castle}
-    {uncharted} {The Uncharted Oceans}
-    {underdark} {The UnderDark}
-    {uplanes} {The Upper Planes}
-    {uprising} {The Uprising}
-    {vale} {Sundered Vale}
-    {vanir} {The Halls of Vanir}
-    {verdure} {Verdure Estate}
-    {verume} {Jungles of Verume}
-    {vidblain} {Vidblain, the Ever Dark}
-    {village} {A Peaceful Giant Village}
-    {vlad} {Castle Vlad-Shamir}
-    {volcano} {The Silver Volcano}
-    {warzone} {The Warzone}
-    {watchmen} {The World of the Watchmen}
-    {weather} {Weather Observatory}
-    {werewood} {The Were Wood}
-    {wildwood} {Wildwood}
-    {winds} {Winds of Fate}
-    {winter} {Winterlands}
-    {wizards} {War of the Wizards}
-    {wonders} {Seven Wonders}
-    {wooble} {The Wobbly Woes of Woobleville}
-    {woodelves} {The Wood Elves of Nalondir}
-    {wtc} {Warrior's Training Camp}
-    {wyrm} {The Council of the Wyrm}
-    {xmas} {Christmas Vacation}
-    {xunti} {The Xunti Cult}
-    {xylmos} {Xyl's Mosaic}
-    {yarr} {The Misty Shores of Yarr}
-    {ygg} {Yggdrasil: The World Tree}
-    {yurgach} {The Yurgach Domain}
-    {zangar} {Zangar's Demonic Grotto}
-    {zenith} {An Auspicious Star's Zenith}
-    {zodiac} {Realm of the Zodiac}
-    {zoo} {Aardwolf Zoological Park}
-    {zyian} {The Dark Temple of Zyian}
+    {aardington} 
+    {
+        {lock} {}
+        {max} {90}
+        {min} {70}
+        {name} {Aardington Estate}
+    }
+    {abend} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {The Dark Continent, Abend}
+    }
+    {academy} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {1}
+        {name} {The Aylorian Academy}
+    }
+    {adaldar} 
+    {
+        {lock} {120}
+        {max} {180}
+        {min} {150}
+        {name} {Battlefields of Adaldar}
+    }
+    {afterglow} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {200}
+        {name} {Afterglow}
+    }
+    {agroth} 
+    {
+        {lock} {60}
+        {max} {125}
+        {min} {105}
+        {name} {The Marshlands of Agroth}
+    }
+    {ahner} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {20}
+        {name} {Kingdom of Ahner}
+    }
+    {alagh} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {Alagh, the Blood Lands}
+    }
+    {alehouse} 
+    {
+        {lock} {}
+        {max} {90}
+        {min} {70}
+        {name} {Wayward Alehouse}
+    }
+    {amazon} 
+    {
+        {lock} {100}
+        {max} {201}
+        {min} {120}
+        {name} {The Amazon Nation}
+    }
+    {amazonclan} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Ivory City}
+    }
+    {amusement} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {5}
+        {name} {The Amusement Park}
+    }
+    {andarin} 
+    {
+        {lock} {}
+        {max} {60}
+        {min} {35}
+        {name} {The Blighted Tundra of Andarin}
+    }
+    {annwn} 
+    {
+        {lock} {140}
+        {max} {180}
+        {min} {160}
+        {name} {Annwn}
+    }
+    {anthrox} 
+    {
+        {lock} {50}
+        {max} {110}
+        {min} {80}
+        {name} {Anthrox}
+    }
+    {arboretum} 
+    {
+        {lock} {80}
+        {max} {130}
+        {min} {110}
+        {name} {Arboretum}
+    }
+    {arena} 
+    {
+        {lock} {}
+        {max} {100}
+        {min} {80}
+        {name} {The Gladiator's Arena}
+    }
+    {arisian} 
+    {
+        {lock} {130}
+        {max} {170}
+        {min} {150}
+        {name} {Arisian Realm}
+    }
+    {ascent} 
+    {
+        {lock} {}
+        {max} {15}
+        {min} {5}
+        {name} {The First Ascent}
+    }
+    {asherodan} 
+    {
+        {lock} {70}
+        {max} {90}
+        {min} {80}
+        {name} {The Keep of the Asherodan}
+    }
+    {astral} 
+    {
+        {lock} {150}
+        {max} {201}
+        {min} {180}
+        {name} {The Astral Travels}
+    }
+    {atlantis} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {20}
+        {name} {Atlantis}
+    }
+    {autumn} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {170}
+        {name} {Eternal Autumn}
+    }
+    {avian} 
+    {
+        {lock} {140}
+        {max} {190}
+        {min} {170}
+        {name} {Avian Kingdom}
+    }
+    {aylor} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {1}
+        {name} {The Grand City of Aylor}
+    }
+    {badtrip} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {A Bad Trip}
+    }
+    {bard} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Bard Clan}
+    }
+    {bazaar} 
+    {
+        {lock} {}
+        {max} {55}
+        {min} {35}
+        {name} {Onyx Bazaar}
+    }
+    {beer} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {1}
+        {name} {The Land of the Beer Goblins}
+    }
+    {believer} 
+    {
+        {lock} {}
+        {max} {10}
+        {min} {1}
+        {name} {The Path of the Believer}
+    }
+    {blackrose} 
+    {
+        {lock} {140}
+        {max} {201}
+        {min} {175}
+        {name} {Black Rose}
+    }
+    {bliss} 
+    {
+        {lock} {50}
+        {max} {100}
+        {min} {80}
+        {name} {Wedded Bliss}
+    }
+    {bonds} 
+    {
+        {lock} {}
+        {max} {170}
+        {min} {140}
+        {name} {Unearthly Bonds}
+    }
+    {bootcamp} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {The Boot Camp}
+    }
+    {cabal} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Cathedral of the Elements}
+    }
+    {caldera} 
+    {
+        {lock} {150}
+        {max} {201}
+        {min} {190}
+        {name} {The Icy Caldera of Mauldoon}
+    }
+    {callhero} 
+    {
+        {lock} {}
+        {max} {15}
+        {min} {1}
+        {name} {The Call of Heroes}
+    }
+    {camps} 
+    {
+        {lock} {}
+        {max} {10}
+        {min} {1}
+        {name} {Tournament Camps}
+    }
+    {canyon} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {5}
+        {name} {Canyon Memorial Hospital}
+    }
+    {caravan} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {200}
+        {name} {Wayfarer's Caravan}
+    }
+    {cards} 
+    {
+        {lock} {90}
+        {max} {150}
+        {min} {120}
+        {name} {House of Cards}
+    }
+    {carnivale} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {Olde Worlde Carnivale}
+    }
+    {cataclysm} 
+    {
+        {lock} {120}
+        {max} {201}
+        {min} {150}
+        {name} {The Cataclysm}
+    }
+    {cathedral} 
+    {
+        {lock} {25}
+        {max} {80}
+        {min} {50}
+        {name} {The Old Cathedral}
+    }
+    {cats} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {25}
+        {name} {Sheila's Cat Sanctuary}
+    }
+    {chakra} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {180}
+        {name} {Chakra Spire}
+    }
+    {chantry} 
+    {
+        {lock} {130}
+        {max} {170}
+        {min} {150}
+        {name} {Fellchantry}
+    }
+    {chaos} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Realm of Chaos}
+    }
+    {chasm} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {10}
+        {name} {The Chasm and The Catacombs}
+    }
+    {chessboard} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {5}
+        {name} {The Chessboard}
+    }
+    {childsplay} 
+    {
+        {lock} {}
+        {max} {25}
+        {min} {5}
+        {name} {Child's Play}
+    }
+    {cineko} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {15}
+        {name} {Aerial City of Cineko}
+    }
+    {citadel} 
+    {
+        {lock} {20}
+        {max} {70}
+        {min} {50}
+        {name} {The Flying Citadel}
+    }
+    {conflict} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {20}
+        {name} {Thandeld's Conflict}
+    }
+    {coral} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {30}
+        {name} {The Coral Kingdom}
+    }
+    {cougarian} 
+    {
+        {lock} {100}
+        {max} {160}
+        {min} {140}
+        {name} {The Cougarian Queendom}
+    }
+    {cove} 
+    {
+        {lock} {150}
+        {max} {200}
+        {min} {190}
+        {name} {Kiksaadi Cove}
+    }
+    {cradle} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {30}
+        {name} {Cradlebrook}
+    }
+    {crimson} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Crimson Horde Clan Hall}
+    }
+    {crusaders} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Crusader Clan}
+    }
+    {crynn} 
+    {
+        {lock} {185}
+        {max} {201}
+        {min} {195}
+        {name} {Crynn's Church}
+    }
+    {damned} 
+    {
+        {lock} {70}
+        {max} {115}
+        {min} {95}
+        {name} {Halls of the Damned}
+    }
+    {daoine} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Underground Hall}
+    }
+    {darklight} 
+    {
+        {lock} {30}
+        {max} {120}
+        {min} {60}
+        {name} {The DarkLight}
+    }
+    {darkside} 
+    {
+        {lock} {}
+        {max} {60}
+        {min} {40}
+        {name} {The Darkside of the Fractured Lands}
+    }
+    {ddoom} 
+    {
+        {lock} {115}
+        {max} {150}
+        {min} {135}
+        {name} {Desert Doom}
+    }
+    {deadlights} 
+    {
+        {lock} {135}
+        {max} {201}
+        {min} {175}
+        {name} {The Deadlights}
+    }
+    {deathtrap} 
+    {
+        {lock} {60}
+        {max} {130}
+        {min} {80}
+        {name} {Deathtrap Dungeon}
+    }
+    {deneria} 
+    {
+        {lock} {}
+        {max} {85}
+        {min} {60}
+        {name} {Realm of Deneria}
+    }
+    {desert} 
+    {
+        {lock} {110}
+        {max} {201}
+        {min} {130}
+        {name} {The Desert Prison}
+    }
+    {desolation} 
+    {
+        {lock} {100}
+        {max} {175}
+        {min} {130}
+        {name} {The Mountains of Desolation}
+    }
+    {dhalgora} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {10}
+        {name} {Dhal'Gora Outlands}
+    }
+    {diatz} 
+    {
+        {lock} {25}
+        {max} {80}
+        {min} {60}
+        {name} {The Three Pillars of Diatz}
+    }
+    {diner} 
+    {
+        {lock} {100}
+        {max} {145}
+        {min} {125}
+        {name} {Tumari's Diner}
+    }
+    {doh} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Disciples of Hassan Clan Hall}
+    }
+    {dominion} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Dominion Clan Area}
+    }
+    {dortmund} 
+    {
+        {lock} {}
+        {max} {25}
+        {min} {5}
+        {name} {Dortmund}
+    }
+    {drageran} 
+    {
+        {lock} {100}
+        {max} {150}
+        {min} {130}
+        {name} {The Drageran Empire}
+    }
+    {dragon} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The White Dragon Clan}
+    }
+    {dread} 
+    {
+        {lock} {140}
+        {max} {180}
+        {min} {160}
+        {name} {Dread Tower}
+    }
+    {druid} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Isle of Anglesey}
+    }
+    {dsr} 
+    {
+        {lock} {25}
+        {max} {85}
+        {min} {35}
+        {name} {Diamond Soul Revelation}
+    }
+    {dundoom} 
+    {
+        {lock} {180}
+        {max} {201}
+        {min} {200}
+        {name} {The Dungeon of Doom}
+    }
+    {dunes} 
+    {
+        {lock} {160}
+        {max} {201}
+        {min} {180}
+        {name} {Dunes in Gold}
+    }
+    {dungeon} 
+    {
+        {lock} {200}
+        {max} {201}
+        {min} {200}
+        {name} {Bloodlust Dungeon}
+    }
+    {dunoir} 
+    {
+        {lock} {160}
+        {max} {201}
+        {min} {175}
+        {name} {Mount duNoir}
+    }
+    {duskvalley} 
+    {
+        {lock} {100}
+        {max} {120}
+        {min} {100}
+        {name} {Dusk Valley}
+    }
+    {dynasty} 
+    {
+        {lock} {90}
+        {max} {140}
+        {min} {120}
+        {name} {The Eighteenth Dynasty}
+    }
+    {earthlords} 
+    {
+        {lock} {175}
+        {max} {201}
+        {min} {200}
+        {name} {The Earth Lords}
+    }
+    {earthplane} 
+    {
+        {lock} {30}
+        {max} {80}
+        {min} {50}
+        {name} {Earth Plane 4}
+    }
+    {elemental} 
+    {
+        {lock} {}
+        {max} {150}
+        {min} {90}
+        {name} {Elemental Chaos}
+    }
+    {emerald} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Emerald Clan HQ}
+    }
+    {empire} 
+    {
+        {lock} {100}
+        {max} {180}
+        {min} {140}
+        {name} {The Empire of Aiighialla}
+    }
+    {empyrean} 
+    {
+        {lock} {140}
+        {max} {200}
+        {min} {170}
+        {name} {Empyrean, Streets of Downfall}
+    }
+    {entropy} 
+    {
+        {lock} {90}
+        {max} {150}
+        {min} {120}
+        {name} {The Archipelago of Entropy}
+    }
+    {fantasy} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {5}
+        {name} {Fantasy Fields}
+    }
+    {farm} 
+    {
+        {lock} {}
+        {max} {5}
+        {min} {1}
+        {name} {Kimr's Farm}
+    }
+    {fayke} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {10}
+        {name} {All in a Fayke Day}
+    }
+    {fens} 
+    {
+        {lock} {160}
+        {max} {201}
+        {min} {200}
+        {name} {The Curse of the Midnight Fens}
+    }
+    {fields} 
+    {
+        {lock} {40}
+        {max} {80}
+        {min} {60}
+        {name} {The Killing Fields}
+    }
+    {firebird} 
+    {
+        {lock} {50}
+        {max} {110}
+        {min} {80}
+        {name} {Realm of the Firebird}
+    }
+    {firenation} 
+    {
+        {lock} {180}
+        {max} {201}
+        {min} {200}
+        {name} {Realm of the Sacred Flame}
+    }
+    {fireswamp} 
+    {
+        {lock} {}
+        {max} {15}
+        {min} {5}
+        {name} {The Fire Swamp}
+    }
+    {fortress} 
+    {
+        {lock} {30}
+        {max} {80}
+        {min} {60}
+        {name} {The Goblin Fortress}
+    }
+    {fortune} 
+    {
+        {lock} {201}
+        {max} {201}
+        {min} {201}
+        {name} {Crossroads of Fortune}
+    }
+    {fractal} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {1}
+        {name} {Fractals of the Weave}
+    }
+    {fractured} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {20}
+        {name} {The Fractured Lands}
+    }
+    {ft1} 
+    {
+        {lock} {90}
+        {max} {120}
+        {min} {100}
+        {name} {Faerie Tales}
+    }
+    {ftii} 
+    {
+        {lock} {100}
+        {max} {150}
+        {min} {120}
+        {name} {Faerie Tales II}
+    }
+    {fury} 
+    {
+        {lock} {170}
+        {max} {201}
+        {min} {200}
+        {name} {Fury City}
+    }
+    {gaardian} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Midgaardian Publishing House}
+    }
+    {gallows} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {1}
+        {name} {Gallows Hill}
+    }
+    {gathering} 
+    {
+        {lock} {110}
+        {max} {170}
+        {min} {140}
+        {name} {The Gathering Horde}
+    }
+    {gauntlet} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {5}
+        {name} {The Gauntlet}
+    }
+    {gelidus} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {Gelidus}
+    }
+    {geniewish} 
+    {
+        {lock} {200}
+        {max} {201}
+        {min} {200}
+        {name} {A Genie's Last Wish}
+    }
+    {gilda} 
+    {
+        {lock} {80}
+        {max} {140}
+        {min} {120}
+        {name} {Gilda And The Dragon}
+    }
+    {glamdursil} 
+    {
+        {lock} {140}
+        {max} {201}
+        {min} {170}
+        {name} {The Glamdursil}
+    }
+    {glimmerdim} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {Brightsea and Glimmerdim}
+    }
+    {gnomalin} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {Cloud City of Gnomalin}
+    }
+    {goldrush} 
+    {
+        {lock} {15}
+        {max} {70}
+        {min} {30}
+        {name} {Gold Rush}
+    }
+    {graveyard} 
+    {
+        {lock} {}
+        {max} {15}
+        {min} {5}
+        {name} {The Graveyard}
+    }
+    {greece} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {20}
+        {name} {Ancient Greece}
+    }
+    {gwillim} 
+    {
+        {lock} {185}
+        {max} {201}
+        {min} {190}
+        {name} {The Trouble with Gwillimberry}
+    }
+    {hades} 
+    {
+        {lock} {160}
+        {max} {201}
+        {min} {190}
+        {name} {Entrance to Hades}
+    }
+    {hatchling} 
+    {
+        {lock} {}
+        {max} {45}
+        {min} {5}
+        {name} {Hatchling Aerie}
+    }
+    {hawklord} 
+    {
+        {lock} {}
+        {max} {100}
+        {min} {80}
+        {name} {The Realm of the Hawklords}
+    }
+    {hedge} 
+    {
+        {lock} {}
+        {max} {80}
+        {min} {60}
+        {name} {Hedgehogs' Paradise}
+    }
+    {helegear} 
+    {
+        {lock} {130}
+        {max} {180}
+        {min} {160}
+        {name} {Helegear Sea}
+    }
+    {hell} 
+    {
+        {lock} {}
+        {max} {55}
+        {min} {35}
+        {name} {Descent to Hell}
+    }
+    {hoard} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {5}
+        {name} {Swordbreaker's Hoard}
+    }
+    {hodgepodge} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {A Magical Hodgepodge}
+    }
+    {hook} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The S.S. Hook}
+    }
+    {horath} 
+    {
+        {lock} {90}
+        {max} {170}
+        {min} {120}
+        {name} {The Broken Halls of Horath}
+    }
+    {horizon} 
+    {
+        {lock} {185}
+        {max} {201}
+        {min} {200}
+        {name} {Nebulous Horizon}
+    }
+    {icefall} 
+    {
+        {lock} {200}
+        {max} {201}
+        {min} {200}
+        {name} {Icefall}
+    }
+    {illoria} 
+    {
+        {lock} {40}
+        {max} {90}
+        {min} {70}
+        {name} {The Tournament of Illoria}
+    }
+    {imagi} 
+    {
+        {lock} {}
+        {max} {160}
+        {min} {140}
+        {name} {Imagi's Nation}
+    }
+    {immhomes} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {Immortal Homes}
+    }
+    {imperial} 
+    {
+        {lock} {20}
+        {max} {201}
+        {min} {65}
+        {name} {Imperial Nation}
+    }
+    {imperium} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Stronghold of the Imperium Clan}
+    }
+    {infamy} 
+    {
+        {lock} {190}
+        {max} {201}
+        {min} {200}
+        {name} {The Realm of Infamy}
+    }
+    {infest} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {The Infestation}
+    }
+    {insan} 
+    {
+        {lock} {}
+        {max} {115}
+        {min} {95}
+        {name} {Insanitaria}
+    }
+    {jenny} 
+    {
+        {lock} {24}
+        {max} {100}
+        {min} {50}
+        {name} {Jenny's Tavern}
+    }
+    {jotun} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {1}
+        {name} {Jotunheim}
+    }
+    {kearvek} 
+    {
+        {lock} {140}
+        {max} {201}
+        {min} {175}
+        {name} {The Keep of Kearvek}
+    }
+    {kerofk} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {5}
+        {name} {Kerofk}
+    }
+    {ketu} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {200}
+        {name} {Ketu Uplands}
+    }
+    {kingsholm} 
+    {
+        {lock} {}
+        {max} {65}
+        {min} {30}
+        {name} {Kingsholm}
+    }
+    {knossos} 
+    {
+        {lock} {30}
+        {max} {80}
+        {min} {60}
+        {name} {The Great City of Knossos}
+    }
+    {kobaloi} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {10}
+        {name} {Keep of the Kobaloi}
+    }
+    {kultiras} 
+    {
+        {lock} {10}
+        {max} {30}
+        {min} {15}
+        {name} {Kul Tiras}
+    }
+    {lab} 
+    {
+        {lock} {}
+        {max} {15}
+        {min} {5}
+        {name} {Chaprenula's Laboratory}
+    }
+    {labyrinth} 
+    {
+        {lock} {15}
+        {max} {60}
+        {min} {30}
+        {name} {The Labyrinth}
+    }
+    {lagoon} 
+    {
+        {lock} {120}
+        {max} {195}
+        {min} {155}
+        {name} {Black Lagoon}
+    }
+    {landofoz} 
+    {
+        {lock} {20}
+        {max} {70}
+        {min} {40}
+        {name} {The Land of Oz}
+    }
+    {laym} 
+    {
+        {lock} {40}
+        {max} {110}
+        {min} {70}
+        {name} {Tai'rha Laym}
+    }
+    {legend} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {1}
+        {name} {Land of Legend}
+    }
+    {lemdagor} 
+    {
+        {lock} {30}
+        {max} {100}
+        {min} {50}
+        {name} {Storm Ships of Lem-Dagor}
+    }
+    {lidnesh} 
+    {
+        {lock} {}
+        {max} {10}
+        {min} {1}
+        {name} {The Forest of Li'Dnesh}
+    }
+    {light} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Order of Light}
+    }
+    {livingmine} 
+    {
+        {lock} {70}
+        {max} {140}
+        {min} {110}
+        {name} {Living Mines of Dak'Tai}
+    }
+    {logging} 
+    {
+        {lock} {}
+        {max} {110}
+        {min} {80}
+        {name} {Svrogan's Logging Camp}
+    }
+    {longnight} 
+    {
+        {lock} {60}
+        {max} {200}
+        {min} {100}
+        {name} {Into the Long Night}
+    }
+    {loqui} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Loqui Clan Area}
+    }
+    {losttime} 
+    {
+        {lock} {50}
+        {max} {110}
+        {min} {80}
+        {name} {Island of Lost Time}
+    }
+    {lowlands} 
+    {
+        {lock} {}
+        {max} {5}
+        {min} {1}
+        {name} {Lowlands Paradise '96}
+    }
+    {lplanes} 
+    {
+        {lock} {50}
+        {max} {100}
+        {min} {70}
+        {name} {The Lower Planes}
+    }
+    {maelstrom} 
+    {
+        {lock} {}
+        {max} {45}
+        {min} {20}
+        {name} {The Maelstrom}
+    }
+    {manor} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {20}
+        {name} {Death's Manor}
+    }
+    {manor1} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {The Aardwolf Real Estates}
+    }
+    {manor3} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {Aardwolf Estates 2000}
+    }
+    {manorisle} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {The Aardwolf Isle Estates}
+    }
+    {manormount} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {Mountain View Estates}
+    }
+    {manorsea} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {Seaside Height Estates}
+    }
+    {manorville} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {Prairie Village Estates}
+    }
+    {manorwoods} 
+    {
+        {lock} {}
+        {max} {}
+        {min} {}
+        {name} {Shady Acres Estates}
+    }
+    {masaki} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Masaki Clan Area}
+    }
+    {masq} 
+    {
+        {lock} {80}
+        {max} {130}
+        {min} {100}
+        {name} {Masquerade Island}
+    }
+    {mayhem} 
+    {
+        {lock} {140}
+        {max} {201}
+        {min} {180}
+        {name} {Artificer's Mayhem}
+    }
+    {melody} 
+    {
+        {lock} {}
+        {max} {15}
+        {min} {1}
+        {name} {Art of Melody}
+    }
+    {mesolar} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {The Continent of Mesolar}
+    }
+    {minos} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {The Shadows of Minos}
+    }
+    {mistridge} 
+    {
+        {lock} {120}
+        {max} {201}
+        {min} {160}
+        {name} {The Covenant of Mistridge}
+    }
+    {monastery} 
+    {
+        {lock} {50}
+        {max} {120}
+        {min} {90}
+        {name} {The Monastery}
+    }
+    {mudwog} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {30}
+        {name} {Mudwog's Swamp}
+    }
+    {nanjiki} 
+    {
+        {lock} {110}
+        {max} {160}
+        {min} {140}
+        {name} {Nanjiki Ruins}
+    }
+    {necro} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {15}
+        {name} {Necromancers' Guild}
+    }
+    {nenukon} 
+    {
+        {lock} {50}
+        {max} {100}
+        {min} {70}
+        {name} {Nenukon and the Far Country}
+    }
+    {newthalos} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {10}
+        {name} {New Thalos}
+    }
+    {ninehells} 
+    {
+        {lock} {170}
+        {max} {201}
+        {min} {180}
+        {name} {The Nine Hells}
+    }
+    {northstar} 
+    {
+        {lock} {50}
+        {max} {140}
+        {min} {70}
+        {name} {Northstar}
+    }
+    {nottingham} 
+    {
+        {lock} {180}
+        {max} {201}
+        {min} {190}
+        {name} {Nottingham}
+    }
+    {nulan} 
+    {
+        {lock} {}
+        {max} {80}
+        {min} {60}
+        {name} {Plains of Nulan'Boar}
+    }
+    {nursing} 
+    {
+        {lock} {90}
+        {max} {120}
+        {min} {100}
+        {name} {Ascension Bluff Nursing Home}
+    }
+    {nynewoods} 
+    {
+        {lock} {175}
+        {max} {201}
+        {min} {200}
+        {name} {The Nyne Woods}
+    }
+    {oceanpark} 
+    {
+        {lock} {175}
+        {max} {201}
+        {min} {200}
+        {name} {Andolor's Ocean Adventure Park}
+    }
+    {omentor} 
+    {
+        {lock} {130}
+        {max} {201}
+        {min} {160}
+        {name} {The Witches of Omen Tor}
+    }
+    {ooku} 
+    {
+        {lock} {160}
+        {max} {201}
+        {min} {200}
+        {name} {Ookushka Garrison}
+    }
+    {oradrin} 
+    {
+        {lock} {201}
+        {max} {201}
+        {min} {200}
+        {name} {Oradrin's Chosen}
+    }
+    {origins} 
+    {
+        {lock} {150}
+        {max} {190}
+        {min} {165}
+        {name} {Tribal Origins}
+    }
+    {orlando} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {1}
+        {name} {Hotel Orlando}
+    }
+    {paradise} 
+    {
+        {lock} {20}
+        {max} {70}
+        {min} {50}
+        {name} {Paradise Lost}
+    }
+    {partroxis} 
+    {
+        {lock} {150}
+        {max} {201}
+        {min} {180}
+        {name} {The Partroxis}
+    }
+    {peninsula} 
+    {
+        {lock} {80}
+        {max} {130}
+        {min} {110}
+        {name} {Tairayden Peninsula}
+    }
+    {petstore} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {5}
+        {name} {Giant's Pet Store}
+    }
+    {pompeii} 
+    {
+        {lock} {70}
+        {max} {110}
+        {min} {90}
+        {name} {Pompeii}
+    }
+    {promises} 
+    {
+        {lock} {115}
+        {max} {140}
+        {min} {130}
+        {name} {Foolish Promises}
+    }
+    {prosper} 
+    {
+        {lock} {70}
+        {max} {125}
+        {min} {100}
+        {name} {Prosper's Island}
+    }
+    {pyre} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Twilight Hall}
+    }
+    {qong} 
+    {
+        {lock} {}
+        {max} {220}
+        {min} {200}
+        {name} {Qong}
+    }
+    {quarry} 
+    {
+        {lock} {}
+        {max} {125}
+        {min} {105}
+        {name} {Gnoll's Quarry}
+    }
+    {radiance} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {200}
+        {name} {Radiance Woods}
+    }
+    {raga} 
+    {
+        {lock} {}
+        {max} {60}
+        {min} {40}
+        {name} {Raganatittu}
+    }
+    {raukora} 
+    {
+        {lock} {100}
+        {max} {201}
+        {min} {125}
+        {name} {The Blood Opal of Rauko'ra}
+    }
+    {rebellion} 
+    {
+        {lock} {120}
+        {max} {190}
+        {min} {150}
+        {name} {Rebellion of the Nix}
+    }
+    {remcon} 
+    {
+        {lock} {95}
+        {max} {170}
+        {min} {130}
+        {name} {The Reman Conspiracy}
+    }
+    {reme} 
+    {
+        {lock} {15}
+        {max} {100}
+        {min} {30}
+        {name} {The Imperial City of Reme}
+    }
+    {retri} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Halls of Retribution}
+    }
+    {rhabdo} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Dark Temple of Zhamet}
+    }
+    {romani} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {A Clearing in the Woods}
+    }
+    {rosewood} 
+    {
+        {lock} {25}
+        {max} {150}
+        {min} {60}
+        {name} {Rosewood Castle}
+    }
+    {ruins} 
+    {
+        {lock} {35}
+        {max} {120}
+        {min} {60}
+        {name} {The Ruins of Diamond Reach}
+    }
+    {sagewood} 
+    {
+        {lock} {130}
+        {max} {180}
+        {min} {150}
+        {name} {Sagewood Grove}
+    }
+    {sahuagin} 
+    {
+        {lock} {100}
+        {max} {160}
+        {min} {140}
+        {name} {The Abyssal Caverns of Sahuagin}
+    }
+    {salt} 
+    {
+        {lock} {15}
+        {max} {50}
+        {min} {40}
+        {name} {The Great Salt Flats}
+    }
+    {sanctity} 
+    {
+        {lock} {75}
+        {max} {201}
+        {min} {100}
+        {name} {Sanctity of Eternal Damnation}
+    }
+    {sanctum} 
+    {
+        {lock} {180}
+        {max} {201}
+        {min} {180}
+        {name} {The Blood Sanctum}
+    }
+    {sandcastle} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {10}
+        {name} {Sho'aram, Castle in the Sand}
+    }
+    {sanguine} 
+    {
+        {lock} {70}
+        {max} {140}
+        {min} {120}
+        {name} {The Sanguine Tavern}
+    }
+    {scarred} 
+    {
+        {lock} {60}
+        {max} {110}
+        {min} {90}
+        {name} {The Scarred Lands}
+    }
+    {seekers} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Fortress of Knowledge}
+    }
+    {sendhian} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {5}
+        {name} {Adventures in Sendhia}
+    }
+    {sennarre} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {1}
+        {name} {Sen'narre Lake}
+    }
+    {shadokil} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Shadokil Guildhouse}
+    }
+    {shadowsend} 
+    {
+        {lock} {190}
+        {max} {201}
+        {min} {200}
+        {name} {Shadow's End}
+    }
+    {shouggoth} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {10}
+        {name} {The Temple of Shouggoth}
+    }
+    {siege} 
+    {
+        {lock} {}
+        {max} {100}
+        {min} {80}
+        {name} {Kobold Siege Camp}
+    }
+    {sirens} 
+    {
+        {lock} {}
+        {max} {15}
+        {min} {5}
+        {name} {Siren's Oasis Resort}
+    }
+    {skeletal} 
+    {
+        {lock} {150}
+        {max} {185}
+        {min} {150}
+        {name} {Skeletal Remains}
+    }
+    {slaughter} 
+    {
+        {lock} {95}
+        {max} {145}
+        {min} {120}
+        {name} {The Slaughter House}
+    }
+    {snuckles} 
+    {
+        {lock} {65}
+        {max} {100}
+        {min} {80}
+        {name} {Snuckles Village}
+    }
+    {soh} 
+    {
+        {lock} {110}
+        {max} {175}
+        {min} {120}
+        {name} {The School of Horror}
+    }
+    {sohtwo} 
+    {
+        {lock} {110}
+        {max} {201}
+        {min} {125}
+        {name} {The School of Horror}
+    }
+    {solan} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {The Town of Solan}
+    }
+    {songpalace} 
+    {
+        {lock} {30}
+        {max} {80}
+        {min} {60}
+        {name} {The Palace of Song}
+    }
+    {southern} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {The Southern Ocean}
+    }
+    {spyreknow} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {10}
+        {name} {Guardian's Spyre of Knowledge}
+    }
+    {stone} 
+    {
+        {lock} {40}
+        {max} {130}
+        {min} {70}
+        {name} {The Fabled City of Stone}
+    }
+    {storm} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {10}
+        {name} {Storm Mountain}
+    }
+    {stormhaven} 
+    {
+        {lock} {130}
+        {max} {201}
+        {min} {150}
+        {name} {The Ruins of Stormhaven}
+    }
+    {stronghold} 
+    {
+        {lock} {40}
+        {max} {125}
+        {min} {90}
+        {name} {Dark Elf Stronghold}
+    }
+    {stuff} 
+    {
+        {lock} {30}
+        {max} {130}
+        {min} {110}
+        {name} {The Stuff of Shadows}
+    }
+    {takeda} 
+    {
+        {lock} {115}
+        {max} {201}
+        {min} {140}
+        {name} {Takeda's Warcamp}
+    }
+    {talsa} 
+    {
+        {lock} {40}
+        {max} {130}
+        {min} {70}
+        {name} {The Empire of Talsa}
+    }
+    {tanelorn} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Legendary City of Tanelorn}
+    }
+    {tanra} 
+    {
+        {lock} {170}
+        {max} {201}
+        {min} {180}
+        {name} {Tanra'vea}
+    }
+    {tao} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Collective Mind of Tao}
+    }
+    {temple} 
+    {
+        {lock} {160}
+        {max} {201}
+        {min} {180}
+        {name} {The Temple of Shal'indrael}
+    }
+    {terra} 
+    {
+        {lock} {200}
+        {max} {201}
+        {min} {200}
+        {name} {The Cracks of Terra}
+    }
+    {terramire} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {10}
+        {name} {Fort Terramire}
+    }
+    {thieves} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {5}
+        {name} {Den of Thieves}
+    }
+    {tilule} 
+    {
+        {lock} {}
+        {max} {80}
+        {min} {50}
+        {name} {Tilule Rehabilitation Clinic}
+    }
+    {times} 
+    {
+        {lock} {150}
+        {max} {201}
+        {min} {175}
+        {name} {Intrigues of Times Past}
+    }
+    {tirna} 
+    {
+        {lock} {100}
+        {max} {150}
+        {min} {130}
+        {name} {Tir na nOg}
+    }
+    {titan} 
+    {
+        {lock} {200}
+        {max} {201}
+        {min} {200}
+        {name} {The Titans' Keep}
+    }
+    {tol} 
+    {
+        {lock} {150}
+        {max} {201}
+        {min} {170}
+        {name} {The Tree of Life}
+    }
+    {tombs} 
+    {
+        {lock} {50}
+        {max} {100}
+        {min} {70}
+        {name} {The Relinquished Tombs}
+    }
+    {touchstone} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {Touchstone Cavern}
+    }
+    {twinlobe} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Twinlobe Clan HQ}
+    }
+    {umari} 
+    {
+        {lock} {175}
+        {max} {201}
+        {min} {195}
+        {name} {Umari's Castle}
+    }
+    {uncharted} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {The Uncharted Oceans}
+    }
+    {underdark} 
+    {
+        {lock} {}
+        {max} {50}
+        {min} {15}
+        {name} {The UnderDark}
+    }
+    {uplanes} 
+    {
+        {lock} {50}
+        {max} {100}
+        {min} {60}
+        {name} {The Upper Planes}
+    }
+    {uprising} 
+    {
+        {lock} {100}
+        {max} {160}
+        {min} {120}
+        {name} {The Uprising}
+    }
+    {vale} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {5}
+        {name} {Sundered Vale}
+    }
+    {vanir} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Halls of Vanir}
+    }
+    {verdure} 
+    {
+        {lock} {80}
+        {max} {140}
+        {min} {120}
+        {name} {Verdure Estate}
+    }
+    {verume} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {10}
+        {name} {Jungles of Verume}
+    }
+    {vidblain} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {Vidblain, the Ever Dark}
+    }
+    {village} 
+    {
+        {lock} {100}
+        {max} {160}
+        {min} {130}
+        {name} {A Peaceful Giant Village}
+    }
+    {vlad} 
+    {
+        {lock} {30}
+        {max} {80}
+        {min} {50}
+        {name} {Castle Vlad-Shamir}
+    }
+    {volcano} 
+    {
+        {lock} {}
+        {max} {100}
+        {min} {30}
+        {name} {The Silver Volcano}
+    }
+    {warzone} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {1}
+        {name} {The Warzone}
+    }
+    {watchmen} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The World of the Watchmen}
+    }
+    {weather} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {20}
+        {name} {Weather Observatory}
+    }
+    {werewood} 
+    {
+        {lock} {180}
+        {max} {201}
+        {min} {200}
+        {name} {The Were Wood}
+    }
+    {wildwood} 
+    {
+        {lock} {}
+        {max} {40}
+        {min} {10}
+        {name} {Wildwood}
+    }
+    {winds} 
+    {
+        {lock} {}
+        {max} {201}
+        {min} {200}
+        {name} {Winds of Fate}
+    }
+    {winter} 
+    {
+        {lock} {110}
+        {max} {170}
+        {min} {150}
+        {name} {Winterlands}
+    }
+    {wizards} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {War of the Wizards}
+    }
+    {wonders} 
+    {
+        {lock} {70}
+        {max} {120}
+        {min} {100}
+        {name} {Seven Wonders}
+    }
+    {wooble} 
+    {
+        {lock} {}
+        {max} {60}
+        {min} {40}
+        {name} {The Wobbly Woes of Woobleville}
+    }
+    {woodelves} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {5}
+        {name} {The Wood Elves of Nalondir}
+    }
+    {wtc} 
+    {
+        {lock} {}
+        {max} {20}
+        {min} {10}
+        {name} {Warrior's Training Camp}
+    }
+    {wyrm} 
+    {
+        {lock} {175}
+        {max} {201}
+        {min} {190}
+        {name} {The Council of the Wyrm}
+    }
+    {xmas} 
+    {
+        {lock} {100}
+        {max} {150}
+        {min} {110}
+        {name} {Christmas Vacation}
+    }
+    {xunti} 
+    {
+        {lock} {}
+        {max} {210}
+        {min} {210}
+        {name} {The Xunti Cult}
+    }
+    {xylmos} 
+    {
+        {lock} {80}
+        {max} {120}
+        {min} {100}
+        {name} {Xyl's Mosaic}
+    }
+    {yarr} 
+    {
+        {lock} {80}
+        {max} {135}
+        {min} {115}
+        {name} {The Misty Shores of Yarr}
+    }
+    {ygg} 
+    {
+        {lock} {150}
+        {max} {201}
+        {min} {180}
+        {name} {Yggdrasil: The World Tree}
+    }
+    {yurgach} 
+    {
+        {lock} {24}
+        {max} {100}
+        {min} {50}
+        {name} {The Yurgach Domain}
+    }
+    {zangar} 
+    {
+        {lock} {30}
+        {max} {60}
+        {min} {40}
+        {name} {Zangar's Demonic Grotto}
+    }
+    {zenith} 
+    {
+        {lock} {150}
+        {max} {201}
+        {min} {200}
+        {name} {An Auspicious Star's Zenith}
+    }
+    {zodiac} 
+    {
+        {lock} {}
+        {max} {30}
+        {min} {20}
+        {name} {Realm of the Zodiac}
+    }
+    {zoo} 
+    {
+        {lock} {}
+        {max} {35}
+        {min} {5}
+        {name} {Aardwolf Zoological Park}
+    }
+    {zyian} 
+    {
+        {lock} {100}
+        {max} {150}
+        {min} {130}
+        {name} {The Dark Temple of Zyian}
+    }
 }
 
 #CLASS {var_areas} CLOSE

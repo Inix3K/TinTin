@@ -36,10 +36,10 @@
 
 #act {You are in area : %1} {
 	#var area %1;
-        #if {"$areas[$gmcp[room][info][zone]]" == ""} {
-                #var areas $areas{$gmcp[room][info][zone]}{$area};
+	#if {"$areas[$gmcp[room][info][zone]]" == ""} {
+		#var {areas[$gmcp[room][info][zone]][name]} {$area};
 		#class {var_areas} {write} {.tt/AW/vars/areas.var}
-        }
+	}
 }
 
 /* Map Room Events */

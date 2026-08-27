@@ -18,7 +18,7 @@ F 263
 
 G 99999
 
-I 49260
+I 25447
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -1004,7 +1004,7 @@ R {  237} {128} {<278>} {On the Asgardian Layer of Gladsheim} {<278>. .<088>} { 
 
 R {  238} {128} {<278>} {On the Asgardian Layer of Gladsheim} {<278>. .<088>} {  You are on the first layer of Gladsheim.  You are in a realm built upon giant shifting rivers of earth that form vast arches through empty space.   } {lplanes} {} {city} {maze} {1.000} {}
 
-R {  239} {0} {<278>} {On the Asgardian Layer of Gladsheim} {<278>. .<088>} {  You are on the first layer of Gladsheim.  You are in a realm built upon giant shifting rivers of earth that form vast arches through empty space.   } {lplanes} {} {city} {maze} {1.000} {}
+R {  239} {128} {<278>} {On the Asgardian Layer of Gladsheim} {<278>. .<088>} {  You are on the first layer of Gladsheim.  You are in a realm built upon giant shifting rivers of earth that form vast arches through empty space.   } {lplanes} {} {city} {maze} {1.000} {}
 
 R {  240} {128} {<278>} {On the Asgardian Layer of Gladsheim} {<278>. .<088>} {  You are on the first layer of Gladsheim.  You are in a realm built upon giant shifting rivers of earth that form vast arches through empty space.   } {lplanes} {} {city} {maze} {1.000} {}
 
@@ -6468,7 +6468,7 @@ E { 1980} {s} {s} {4} {0} {} {1.000} {} {0.00}
 R { 1980} {0} {<268>} {A Shiny hallway} {<268>[ ]<088>} {  You seem to have reached the end of the hallway. Hey there is nothing here! Why in the name of Maerchyng is there a hallway to nothing? There must be a  reason for it. Too bad you must find out yourself what the reason is. Or you  might just decide to not bother, turn around and find something more  interesting to explore. } {lemdagor} {} {hallway} {pk} {1.000} {}
 E { 1979} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R { 1981} {128} {<278>} {The Entrance of the Bridge} {<278>[ ]<088>} {} {lemdagor} {} {inside} {} {1.000} {}
+R { 1981} {128} {<278>} {The Entrance of the Bridge} {<278>[ ]<088>} {  What did I just say: Do not enter the room! Ooh well, stay and play with  whomever (or whatever) has time for that. And now that you're here, you might as well solve some mysteries in this place. For the description of the room:  When you enter the bridge, you notice a large window, filling the north wall. It must be a thrill to watch all kinds of spectacular things happen through  that window. Hey wait! One just appeared. It seems that you have fallen with  your nose in the butter! } {lemdagor} {} {inside} {} {1.000} {}
 E { 1982} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E { 1984} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E { 1977} {w} {open w;w} {8} {0} {} {1.000} {} {0.00}
@@ -7517,6 +7517,7 @@ E { 2348} {w} {w} {8} {0} {} {1.000} {} {0.00}
 R { 2348} {0} {<148>} {At the edge of a Murky Swamp} {<148>~ ~<088>} {  You stand at the edge of a vast swamp of swirling mud and muck. The air is  thick with the odiferous output of swamp gas and decay - odors that might  please a dog, wolf or wolverine, but to any biped, sufficient to gag and  disgust. Only a fool, or one with no nose at all, would wade in further. } {mudwog} {} {waterswim} {} {1.000} {}
 E { 2347} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E { 2357} {wade in} {wade in} {0} {0} {} {1.000} {} {0.00}
+E { 2357} {s} {wade in} {4} {0} {} {1.000} {} {0.00}
 
 R { 2349} {0} {<148>} {The Banks of a Slow-moving River} {<148>~ ~<088>} {  The banks of the river, green with slime, roll gently towards the brackish,  slow-moving brown water. The air is humid, intensifying the smell of decay  rising from the ground. A dead fish rolls on the water's surface, silver and  white against the muddy stream. } {mudwog} {} {waterswim} {} {1.000} {}
 E {12916} {n} {n} {1} {1} {} {1.000} {} {0.00}
@@ -18701,7 +18702,7 @@ E { 4386} {s} {s} {4} {0} {} {1.000} {} {0.00}
 R { 4388} {128} {<228>} {In the thick fog} {<228>( *<088>} {  No, this isn't the way out.  Just more fog and darkness.  The evil that inhabits these woods can't be defeated easily.  You have no choice but to flee until you find the way out.  You better just hope you don't run into something that you can't handle.   } {gallows} {} {forest} {pk} {1.000} {}
 E { 4386} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R { 4389} {0} {<228>} {Another dead end} {<228>( *<088>} {  You have run into another dead end.  There is no escape from here, just death.  You might as well give up hope and die.  There is no escape.  Maybe if you just stay still and quiet the creatures won't be able to find you.  It's worth a try.   } {gallows} {} {forest} {pk} {1.000} {}
+R { 4389} {128} {<228>} {Another dead end} {<228>( *<088>} {  You have run into another dead end.  There is no escape from here, just death.  You might as well give up hope and die.  There is no escape.  Maybe if you just stay still and quiet the creatures won't be able to find you.  It's worth a try.   } {gallows} {} {forest} {pk} {1.000} {}
 E { 4386} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R { 4390} {128} {<228>} {On top of a hill} {<228>( *<088>} {  You have made your way to the top of a hill.  Unfortunately for you, this turns out to be just another dead end.  You're going to have to go back down the hill and try to find a way out down there.   } {gallows} {} {forest} {pk} {1.000} {}
@@ -19063,7 +19064,7 @@ E { 4475} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E { 4393} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E { 4475} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R { 4477} {0} {<228>} {The Outer Field} {<228>, `<088>} {  The hundred yards between the bridge and the tower's main gate seem like an  eternity. With every step you feel as if you're being watched from above. You can almost hear the long dead moans of fallen soldiers who have died in  this very field while attempting to attack the mighty Mistridge. There are  rumors that this tower has lost much of its power, but even a few bowmen  perched on the tower walls could strike fear into an approaching unit if they were forced to ride over this barren field of forgotten death. From the  forest, it seemed the tower barely cleared the trees, but from this vantage  point it reaches almost into the clouds themselves. Magic is certainly at  work here. } {mistridge} {} {field} {} {1.000} {}
+R { 4477} {0} {<228>} {The Outer Field} {<228>, `<088>} {  The hundred yards between the bridge and the tower's main gate seem like an  eternity. With every step you feel as if you're being watched from above. You can almost hear the long dead moans of fallen soldiers who have died in  this very field while attempting to attack the mighty Mistridge. There are  rumors that this tower has lost much of its power, but even a few bowmen  perched on the tower walls could strike fear into an approaching unit if they were forced to ride over this barren field of forgotten death. From the  forest, it seemed the tower barely cleared the trees, but from this vantage  point it reaches almost into the clouds themselves. Magic is certainly at  work here. } {mistridge} {Key on gateguard, s} {field} {} {1.000} {}
 E { 4395} {n} {open n;n} {1} {0} {} {1.000} {} {0.00}
 E { 4491} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
@@ -48038,13 +48039,15 @@ R {10358} {128} {<228>} {A Hill Untouched by the Battle} {<228>. ^<088>} {  The 
 E {10349} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {10359} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {10359} {0} {<268>} {The Battlegrounds of the Nix} {<268>. .<088>} {} {rebellion} {} {air} {maze} {1.000} {}
+R {10359} {128} {<268>} {The Battlegrounds of the Nix} {<268>. .<088>} {  Mesmerizing music fills the air all around you as the Nixie rebels battle  with the Loyalists for the fate of the Nix. Colossal figures grapple in  contests involving more levels of awareness than you can imagine, their every move echoing down uncountable worlds of the planes. White noise emanates  from some of the combatants, blocking the mayhem-inducing music emitted from  the others. You seem to be walking on a layer of clouds, on an entirely  different plane from where the wyverns fight Malson Gahan's army in a  conflict echoing this one. A swirling tornado of energy descends from the  clouds in front of you towards a spot just beyond the edge of the battlefield far below. } {rebellion} {} {air} {maze} {1.000} {}
+
+R {10360} {128} {<268>} {The Battlegrounds of the Nix} {<268>. .<088>} {  Mesmerizing music fills the air all around you as the Nixie rebels battle  with the Loyalists for the fate of the Nix. Colossal figures grapple in  contests involving more levels of awareness than you can imagine, their every move echoing down uncountable worlds of the planes. White noise emanates  from some of the combatants, blocking the mayhem-inducing music emitted from  the others. You seem to be walking on a layer of clouds, on an entirely  different plane from where the wyverns fight Malson Gahan's army in a  conflict echoing this one. A swirling tornado of energy descends from the  clouds in front of you towards a spot just beyond the edge of the battlefield far below. } {rebellion} {} {air} {maze} {1.000} {}
 
 R {10361} {0} {<268>} {The Battlegrounds of the Nix} {<268>. .<088>} {  Mesmerizing music fills the air all around you as the Nixie rebels battle  with the Loyalists for the fate of the Nix. Colossal figures grapple in  contests involving more levels of awareness than you can imagine, their every move echoing down uncountable worlds of the planes. White noise emanates  from some of the combatants, blocking the mayhem-inducing music emitted from  the others. You seem to be walking on a layer of clouds, on an entirely  different plane from where the wyverns fight Malson Gahan's army in a  conflict echoing this one. A swirling tornado of energy descends from the  clouds in front of you towards a spot just beyond the edge of the battlefield far below. } {rebellion} {} {air} {maze} {1.000} {}
 
 R {10364} {0} {<268>} {The Battlegrounds of the Nix} {<268>. .<088>} {  Mesmerizing music fills the air all around you as the Nixie rebels battle  with the Loyalists for the fate of the Nix. Colossal figures grapple in  contests involving more levels of awareness than you can imagine, their every move echoing down uncountable worlds of the planes. White noise emanates  from some of the combatants, blocking the mayhem-inducing music emitted from  the others. You seem to be walking on a layer of clouds, on an entirely  different plane from where the wyverns fight Malson Gahan's army in a  conflict echoing this one. A swirling tornado of energy descends from the  clouds in front of you towards a spot just beyond the edge of the battlefield far below. } {rebellion} {} {air} {maze} {1.000} {}
 
-R {10365} {0} {<278>} {A Swirling Vortex of Energy } {<278>[ ]<088>} {  A gust of energy takes hold of you and whirls you around, slowly pulling you down the tornado-like funnel. Far down below, you see a lone figure in  glowing red armor standing at the center of the vortex, his gaze turned  skywards as he controls the vortex to toy with you like a cat would a  broken-winged bird. As you wheel ineffectually up and down the inside of the  vortex, you think of all the prophecies you have supposedly been fulfilling  in your adventures here. Do you have what it takes to carry out the will of  the Hand of Fate, or is an ignoble death all your future holds?   } {rebellion} {} {inside} {} {1.000} {}
+R {10365} {128} {<278>} {A Swirling Vortex of Energy } {<278>[ ]<088>} {  A gust of energy takes hold of you and whirls you around, slowly pulling you down the tornado-like funnel. Far down below, you see a lone figure in  glowing red armor standing at the center of the vortex, his gaze turned  skywards as he controls the vortex to toy with you like a cat would a  broken-winged bird. As you wheel ineffectually up and down the inside of the  vortex, you think of all the prophecies you have supposedly been fulfilling  in your adventures here. Do you have what it takes to carry out the will of  the Hand of Fate, or is an ignoble death all your future holds?   } {rebellion} {} {inside} {} {1.000} {}
 E {10379} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {10364} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {10327} {molyneux} {'molyneux} {0} {0} {} {1.000} {} {0.00}
@@ -50445,7 +50448,7 @@ E {11112} {w} {open w;w} {8} {0} {} {1.000} {} {0.00}
 R {11126} {0} {<278>} {Marion's Cell} {<278>[ ]<088>} {  This room is cleaner then the others..  Slightly.  There is a grubby bed in the corner, a wash basin and a ragged chair in the corner.  The thing you notice most here is not the decor but the most decidedly unhappy woman you have ever seen.   } {nottingham} {} {inside} {} {1.000} {}
 E {11113} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {11127} {0} {<278>} {Tower of Orbs} {<278>[ ]<088>} {  Upon entering the room you see many orbs.  Some are glowing while others are not. In the middle of the orbs stands a man dressed in wizard clothes.  He seems to be the one running the place.   } {northstar} {} {inside} {pk} {1.000} {}
+R {11127} {128} {<278>} {Tower of Orbs} {<278>[ ]<088>} {  Upon entering the room you see many orbs.  Some are glowing while others are not. In the middle of the orbs stands a man dressed in wizard clothes.  He seems to be the one running the place.   } {northstar} {} {inside} {pk} {1.000} {}
 E { 2893} {d} {d} {32} {1} {} {1.000} {} {0.00}
 E {11128} {enter orb} {enter orb} {0} {0} {} {1.000} {} {0.00}
 
@@ -65758,7 +65761,7 @@ E {13870} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {13871} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {13872} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {13870} {0} {<248>} {The Room of Skulls} {<248># #<088>} {  You have entered a small room slightly removed from the rest of the hall, and are confronted with a gruesome sight.  A series of shelves stretch across the room, each shelf meticulously lined with skulls, white and gleaming.  The empty, hollow eyes are piercing.  Perhaps it would be better if you were to leave. } {autumn} {} {dungeon} {} {1.000} {}
+R {13870} {128} {<248>} {The Room of Skulls} {<248># #<088>} {  You have entered a small room slightly removed from the rest of the hall, and are confronted with a gruesome sight.  A series of shelves stretch across the room, each shelf meticulously lined with skulls, white and gleaming.  The empty, hollow eyes are piercing.  Perhaps it would be better if you were to leave. } {autumn} {} {dungeon} {} {1.000} {}
 E {13869} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
 R {13871} {0} {<248>} {The Room of Bones} {<248># #<088>} {  The floor of this room is littered knee-deep with bones large and small, yellow and white.  The scene is grim and macabre.  It looks as if this room has been left vacant for quite a long time, spiders and centipedes crawling among the bones.  There is light to the north - perhaps the suffocating smell of death does not linger there. } {autumn} {} {dungeon} {} {1.000} {}
@@ -66150,7 +66153,7 @@ R {13973} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
 R {13974} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
-R {13994} {0} {<248>} {The Western Wing of the Onyx Temple} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
+R {13994} {0} {<248>} {The Western Wing of the Onyx Temple} {<248>[ ]<088>} {  The temple's hallways are well-carpeted with red rugs. Chandeliers lined with dripping candles hang from the high, vaulted ceiling, which seems to amplify  the hymns and chants of the faithful. The smoke from the candles creates an  aromatic haze that clouds the thoughts with visions of grotesque sprits and  anguished faces. Distant cries of agony are mixed with the sounds of worship, as the neverending cultic ritual is enlivened. } {empyrean} {} {chessblack} {} {1.000} {}
 E {14002} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {14011} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
@@ -66178,7 +66181,7 @@ R {14000} {0} {<248>} {The Onyx Nave} {<248>[ ]<088>} {} {empyrean} {} {chessbla
 E {13997} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {14001} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {14001} {0} {<248>} {The Onyx Nave} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
+R {14001} {0} {<248>} {The Onyx Nave} {<248>[ ]<088>} {  The temple's floor is the same black marble that paved the approach, but a  different stone, onyx, rises up to form the walls and chambered ceiling. There are candlesticks set into the walls, with mirrors behind, giving  increased light and making the already immense nave seem illusively larger. The sound of fervent cultic chanting echoes from around the sacricial altars  at the front of the temple. There is an odd, unpleasant scent mixed with the  thickly scented smoke from the candles: the smell of burning flesh. } {empyrean} {} {chessblack} {} {1.000} {}
 E {14000} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {14002} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
@@ -66206,23 +66209,23 @@ R {14007} {0} {<248>} {The Eastern Wing of the Onyx Temple} {<248>[ ]<088>} {} {
 E {14008} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {14002} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {14008} {0} {<248>} {The Eastern Cloister} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
+R {14008} {0} {<248>} {The Eastern Cloister} {<248>[ ]<088>} {  The columned cloister opens to the sky, but the exposed courtyard is filled  with black rose bushes. They grow so thickly that the only way to access the  other side is to walk around the shaded hall, lined with doors leading to the chambers that house those who work in the temple. A small plaque bearing the  imperial crest hangs over every door, and gaudy golden statues of twisted  human forms lie in recesses holding the oil torches that light the area at  night. } {empyrean} {} {chessblack} {} {1.000} {}
 E {14010} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {14009} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {14007} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {14009} {0} {<248>} {The Eastern Cloister} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
+R {14009} {0} {<248>} {The Eastern Cloister} {<248>[ ]<088>} {  The columned cloister opens to the sky, but the exposed courtyard is filled  with black rose bushes. They grow so thickly that the only way to access the  other side is to walk around the shaded hall, lined with doors leading to the chambers that house those who work in the temple. A small plaque bearing the  imperial crest hangs over every door, and gaudy golden statues of twisted  human forms lie in recesses holding the oil torches that light the area at  night. } {empyrean} {} {chessblack} {} {1.000} {}
 E {14008} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R {14010} {0} {<248>} {The Eastern Cloister} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
+R {14010} {0} {<248>} {The Eastern Cloister} {<248>[ ]<088>} {  The columned cloister opens to the sky, but the exposed courtyard is filled  with black rose bushes. They grow so thickly that the only way to access the  other side is to walk around the shaded hall, lined with doors leading to the chambers that house those who work in the temple. A small plaque bearing the  imperial crest hangs over every door, and gaudy golden statues of twisted  human forms lie in recesses holding the oil torches that light the area at  night. } {empyrean} {} {chessblack} {} {1.000} {}
 E {14008} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {14011} {0} {<248>} {The Western Cloister} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
+R {14011} {0} {<248>} {The Western Cloister} {<248>[ ]<088>} {  The columned cloister opens to the sky, but the exposed courtyard is filled  with black rose bushes. They grow so thickly that the only way to access the  other side is to walk around the shaded hall, lined with doors leading to the chambers that house those who work in the temple. A small plaque bearing the  imperial crest hangs over every door, and gaudy golden statues of twisted  human forms lie in recesses holding the oil torches that light the area at  night. } {empyrean} {} {chessblack} {} {1.000} {}
 E {13994} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {14012} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {14013} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {14012} {0} {<248>} {The Western Cloister} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
+R {14012} {0} {<248>} {The Western Cloister} {<248>[ ]<088>} {  The columned cloister opens to the sky, but the exposed courtyard is filled  with black rose bushes. They grow so thickly that the only way to access the  other side is to walk around the shaded hall, lined with doors leading to the chambers that house those who work in the temple. A small plaque bearing the  imperial crest hangs over every door, and gaudy golden statues of twisted  human forms lie in recesses holding the oil torches that light the area at  night. } {empyrean} {} {chessblack} {} {1.000} {}
 E {14011} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
 R {14013} {0} {<248>} {The Western Cloister} {<248>[ ]<088>} {} {empyrean} {} {chessblack} {} {1.000} {}
@@ -73534,7 +73537,7 @@ E {16504} {n} {n} {1} {0} {} {1.000} {} {0.00}
 R {16504} {0} {<278>} {Pedestal of the Orb!} {<278>[ ]<088>} {  This is a large square room.  All around on the walls there are friezes of dwarves and elves, pictured worshiping the very orb that hovers above the pedestal in the middle of this very room.  The pedestal is pure gold, and the orb hovers above it, humming and glowing with such radiance that you can barely see its form.  This, then, is the object of your quest.   } {kerofk} {} {inside} {} {1.000} {}
 E {16505} {n} {open n;n} {1} {0} {} {1.000} {} {0.00}
 
-R {16505} {0} {<278>} {Temple of MouseRider} {<278>[ ]<088>} {  Here you are again at the Temple of MouseRider, through a bizarre twist of space.  The main entrance seems to be gone, however...  MouseRider is clutching one of the shards of the destroyed orb.  He laughs evilly as he takes a vicious dagger and disembowels himself, spilling organs all over his feet and the floor.  'Fools!  ' he cries, 'I am now an immortal, I am now a liche!!  ' He laughs, and directs his minions to attack!   } {kerofk} {} {inside} {} {1.000} {}
+R {16505} {128} {<278>} {Temple of MouseRider} {<278>[ ]<088>} {  Here you are again at the Temple of MouseRider, through a bizarre twist of space.  The main entrance seems to be gone, however...  MouseRider is clutching one of the shards of the destroyed orb.  He laughs evilly as he takes a vicious dagger and disembowels himself, spilling organs all over his feet and the floor.  'Fools!  ' he cries, 'I am now an immortal, I am now a liche!!  ' He laughs, and directs his minions to attack!   } {kerofk} {} {inside} {} {1.000} {}
 E {16506} {n} {open n;n} {1} {0} {} {1.000} {} {0.00}
 
 R {16506} {0} {<278>} {Void} {<278>[ ]<088>} {  Mouserider's bedroom is gone.  You float in space, and several objects wink into being around you.  A reward from the gods, perhaps?  A rift opens in space below you, and you spot the street outside the White Temple in Kerofk.  A voice booms around you: "Take these toys, and remember this: don't expect plot continuity from a mud!"  You feel relief.   } {kerofk} {} {inside} {} {1.000} {}
@@ -75046,7 +75049,7 @@ E {16917} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {16921} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {16917} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {16920} {0} {<228>} {Within the Conflict} {<228>, `<088>} {  Cannons are periodically fired from the multitude of ships that float with surprising ease and swiftness through the parting mists.  The sharp reek of fiery gunpowder and the metallic taste of fear hangs over the bloody battlefield.  A slaughter in all directions, there appears to be no victors for long.  A rain of ash has begun drifting over the combatants, dusting everything with powderish film.  The ground beneath is a massive, grisly carpet of trampled and battered corpses, lying in the blood of the damned.   } {deadlights} {} {field} {pk,maze} {1.000} {}
+R {16920} {128} {<228>} {Within the Conflict} {<228>, `<088>} {  Cannons are periodically fired from the multitude of ships that float with surprising ease and swiftness through the parting mists.  The sharp reek of fiery gunpowder and the metallic taste of fear hangs over the bloody battlefield.  A slaughter in all directions, there appears to be no victors for long.  A rain of ash has begun drifting over the combatants, dusting everything with powderish film.  The ground beneath is a massive, grisly carpet of trampled and battered corpses, lying in the blood of the damned.   } {deadlights} {} {field} {pk,maze} {1.000} {}
 
 R {16921} {128} {<228>} {Above the Battleground} {<228>, `<088>} {  As the dense clouds of warfare fall away below, the blazing jewels of the firmament erupt in all of their glory, far above.  In the distance, the teeny and unimportant sound of thousands fighting for their lives echoes away into one continuous feedback of death.  The moon looks as if it has been filled with blood.  The stench of the dying has faded, leaving the air relatively clean and free of corruption.  Unimaginable as it may be, the calmness in the surrounding atmosphere compared to the chaos below leaves a feeling of well-being and serenity.   } {deadlights} {} {field} {} {1.000} {}
 E {16919} {d} {d} {32} {0} {} {1.000} {} {0.00}
@@ -75062,9 +75065,14 @@ E {16921} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {16921} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {16924} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {16923} {0} {<110>} {} { } {} {} {} {} {} {1.000} {}
+R {16923} {0} {<228>} {The Plane of Judgement} {<228>, `<088>} {} {deadlights} {} {field} {} {1.000} {}
+E {16917} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {16921} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {16924} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {16924} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {16921} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {16924} {0} {<228>} {The Disappearing Firmament} {<228>, `<088>} {  The number of the grains of sand on a beach are miniscule to the amount of stars in this universe.  Yet, without fail, they continue to fade, to disappear, to die with an abrupt sense of finality that borders on a world of the damned.  Finally, and with absolutely no fanfare, the last of the visible suns empty themselves into the thin strands of whatever time is left.  To gaze upon the heavens now is to look upon a Great Void, one that is dead and has no meaning anymore.  There is no Voice of God shouting "It is Finished!"  , and no Odin arrives to greet the last of his children home. There is simply Nothing, except for this world where the known remnants of life destroy each other quickly and permanently.   } {deadlights} {} {field} {} {1.000} {}
+R {16924} {128} {<228>} {The Disappearing Firmament} {<228>, `<088>} {  The number of the grains of sand on a beach are miniscule to the amount of stars in this universe.  Yet, without fail, they continue to fade, to disappear, to die with an abrupt sense of finality that borders on a world of the damned.  Finally, and with absolutely no fanfare, the last of the visible suns empty themselves into the thin strands of whatever time is left.  To gaze upon the heavens now is to look upon a Great Void, one that is dead and has no meaning anymore.  There is no Voice of God shouting "It is Finished!"  , and no Odin arrives to greet the last of his children home. There is simply Nothing, except for this world where the known remnants of life destroy each other quickly and permanently.   } {deadlights} {} {field} {} {1.000} {}
 E {16925} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {16922} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {16923} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -75073,7 +75081,7 @@ E {16922} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {16925} {0} {<278>} {The Torrent} {<278>[ ]<088>} {  The deepest pits in hell are the closest resemblance to draw bearing from within this miasma of conflicting elements.  Countless bands of liquid metal permeate the cosmic mix of rock, plasma, and gaseous streams that percolate like a celestial melting pot.  Incredible pressures fight for balance within the chaotic jumble, along with a terrifying, confusing array of magnetic and gravity effects, with others that are less identifiable.  There is nothing remotely relative in this type of situation.   } {deadlights} {} {inside} {maze} {1.000} {}
 
-R {16926} {0} {<248>} {Swept in the Currents} {<248>~ ~<088>} {  Far below, like a distant memory, lies the horrible, raging torrent.  All about the aquatic surroundings possess a plain, grayish appearance, looking nearly uniform in all directions, except towards the east, where a great wall floats in the middle of this drab world like a long-forgotten dream.  A tiny speck in the dark confines of the giant wall deceive the senses, a tiny passageway a great distance away.  The wall is very large, indeed, and stretches upwards and down as far as can be perceived.  Tremendous, powerful currents of almost unimaginable magnitude battle like giants across the emptiness.   } {deadlights} {} {underwater} {} {1.000} {}
+R {16926} {128} {<248>} {Swept in the Currents} {<248>~ ~<088>} {  Far below, like a distant memory, lies the horrible, raging torrent.  All about the aquatic surroundings possess a plain, grayish appearance, looking nearly uniform in all directions, except towards the east, where a great wall floats in the middle of this drab world like a long-forgotten dream.  A tiny speck in the dark confines of the giant wall deceive the senses, a tiny passageway a great distance away.  The wall is very large, indeed, and stretches upwards and down as far as can be perceived.  Tremendous, powerful currents of almost unimaginable magnitude battle like giants across the emptiness.   } {deadlights} {} {underwater} {} {1.000} {}
 E {16929} {e} {e} {2} {0} {} {1.000} {} {0.00}
 
 R {16927} {0} {<278>} {The Torrent} {<278>[ ]<088>} {  The deepest pits in hell are the closest resemblance to draw bearing from within this miasma of conflicting elements.  Countless bands of liquid metal permeate the cosmic mix of rock, plasma, and gaseous streams that percolate like a celestial melting pot.  Incredible pressures fight for balance within the chaotic jumble, along with a terrifying, confusing array of magnetic and gravity effects, with others that are less identifiable.  There is nothing remotely relative in this type of situation.   } {deadlights} {} {inside} {maze} {1.000} {}
@@ -79275,7 +79283,7 @@ E {17639} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {17759} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {37900} {w} {w} {8} {1} {} {1.000} {} {0.00}
 
-R {17700} {0} {<228>} {Bluegrass Haven} {<228>, `<088>} {  Mile upon mile of fields with grass as tall as a halfling greet you.  There are very few roads here, but the ground is fairly level and easy to travel.  If it weren't for the chilly winds, you might think you'd be on Mesolar.   } {gelidus} {} {field} {} {1.000} {}
+R {17700} {0} {<228>} {Bluegrass Haven} {<228>, `<088>} {  Mile upon mile of fields with grass as tall as a halfling greet you.  There are very few roads here, but the ground is fairly level and easy to travel.  If it weren't for the chilly winds, you might think you'd be on Mesolar.   } {gelidus} {} {field} {shop} {1.000} {}
 E {17701} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {17640} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {17760} {s} {s} {4} {0} {} {1.000} {} {0.00}
@@ -90671,7 +90679,7 @@ R {19663} {128} {<278>} {A Dark Street} {<278>. .<088>} {  All around you, the s
 E {19661} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {19664} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R {19664} {0} {<278>} {Before the Dark Tower} {<278>[ ]<088>} {  The ancient doors of the tower radiate evil. Slaves and skeletons adorn the black spyres and jagged spears on the foot of the tower, and the screams of the cursed and the dying can be heard all around.  Guards stand at both sides of the door, barring the entrance.   } {darklight} {} {inside} {} {1.000} {}
+R {19664} {128} {<278>} {Before the Dark Tower} {<278>[ ]<088>} {  The ancient doors of the tower radiate evil. Slaves and skeletons adorn the black spyres and jagged spears on the foot of the tower, and the screams of the cursed and the dying can be heard all around.  Guards stand at both sides of the door, barring the entrance.   } {darklight} {} {inside} {} {1.000} {}
 E {19665} {n} {open n;n} {1} {0} {} {50.000} {} {0.00}
 E {19663} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
@@ -90869,6 +90877,7 @@ R {19708} {0} {<238>} {Into a lateral crack} {<238>^ ^<088>} {  A crack has bran
 E {19708} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {19707} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {19709} {w} {w} {8} {0} {} {1.000} {} {0.00}
+E {19680} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
 R {19709} {0} {<238>} {A cavernous room} {<238>^ ^<088>} {  Here is a large, cavernous room. It is vast, and a number of strange  creatures crowd in it. Some resemble mythical creatures, such as basilisks  and lamias. They don't seem friendly though, for dark brown splatters are  visible on the wall\; splatters that look suspiciously like dried blood. There is no sign of other adventurers here. An oddity, for it seemed like  there were hundreds flocking to the mountain in search of lost treasures. } {terra} {} {rocks} {} {1.000} {}
 E {19708} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -106159,11 +106168,11 @@ E {25405} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E { 7058} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {25434} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {25436} {0} {<248>} {Floating Above the Depths} {<248>~ ~<088>} {  A few ripples echo outwards across the midnight blue water.  Shadows dance underneath the surface, but it is hard to determine if they are cast by a creature, or merely a trick of the light as it filters down into the depths.  A few air bubbles tickle your legs as they struggle upwards to burst upon the surface.  Gazing downwards into the water results in the beautiful midnight blue turning into an impenetrable darkness.   } {oradrin} {} {underwater} {pk} {1.000} {}
+R {25436} {128} {<248>} {Floating Above the Depths} {<248>~ ~<088>} {  A few ripples echo outwards across the midnight blue water.  Shadows dance underneath the surface, but it is hard to determine if they are cast by a creature, or merely a trick of the light as it filters down into the depths.  A few air bubbles tickle your legs as they struggle upwards to burst upon the surface.  Gazing downwards into the water results in the beautiful midnight blue turning into an impenetrable darkness.   } {oradrin} {} {underwater} {pk} {1.000} {}
 E { 7105} {w} {w} {8} {1} {} {1.000} {} {0.00}
 E {25437} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
-R {25437} {0} {<248>} {Eddies of Twilight's Fading} {<248>~ ~<088>} {  Midnight blue fades into black as the light travels further into the depths.  Bands of fast moving currents tug the sea life into a chaotic dance of spinning plankton and rippling seaweed.  A suddenly dense wall of water stops your progress downwards.  The sudden appearance and uniformity of the wall suggests it is not natural.  Now what magic is this, that can order the powers of the deep ocean to its will?   } {oradrin} {} {underwater} {pk} {1.000} {}
+R {25437} {128} {<248>} {Eddies of Twilight's Fading} {<248>~ ~<088>} {  Midnight blue fades into black as the light travels further into the depths.  Bands of fast moving currents tug the sea life into a chaotic dance of spinning plankton and rippling seaweed.  A suddenly dense wall of water stops your progress downwards.  The sudden appearance and uniformity of the wall suggests it is not natural.  Now what magic is this, that can order the powers of the deep ocean to its will?   } {oradrin} {} {underwater} {pk} {1.000} {}
 E {25438} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {25439} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {25441} {s} {s} {4} {0} {} {1.000} {} {0.00}
@@ -106221,9 +106230,11 @@ E {25448} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {25443} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {25449} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {25448} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {25448} {0} {<248>} {Shadows of Azraen} {<248>~ ~<088>} {  This end of the trench is shrouded in shadow.  An eerie wail repeats itself every few minutes, and the water crackles with ancient energy.  Spirits of the past haunt this place, and the water is noticably colder.   } {oradrin} {} {underwater} {} {1.000} {}
+E {25447} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {25449} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {25449} {0} {<248>} {Cassiel's Challenge} {<248>~ ~<088>} {  Globes of dim blue light hover a waist-high block monument in the corner of the trench.  The runes atop it are pitted and scarred from decay, but seem to describe a series of trials.  The details are obscure and interrupted, but they look to have been designed to test the mettle of an individual.   } {oradrin} {} {underwater} {} {1.000} {}
+E {25447} {e} {e} {2} {0} {} {1.000} {} {0.00}
 
 R {25450} {0} {<248>} {Jarin's Gate} {<248>~ ~<088>} {  Debris and darkness close overhead as you descend into a narrow trench.  A massive gateway covered in rubies stands before you.  A large statue stands opposite the gate, showing a robed man in the middle of a spellcasting, his staff held back and to the left.  A ruby tops the staff, glittering with a magic of its own.  The trench extends further out, curving inwards slightly towards the gate.   } {oradrin} {} {underwater} {} {1.000} {}
 E {25451} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -106263,7 +106274,7 @@ E {25460} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
 R {25460} {0} {<178>} {The Deep} { } {  The darkness abates somewhat.  The mysterious shadows of passing creatures take on a somewhat skewed substance.  In a world turned upside down by depth, darkness, and pressure, chaos controls the inhabitants.  It is impossible to determine what exactly floats by, or even where it came from.  The surrounding sea looks the same in all directions: darkness that eats the light.   } {oradrin} {} {} {} {1.000} {}
 
-R {25474} {0} {<248>} {Pillar of Courage} {<248>~ ~<088>} {} {oradrin} {} {underwater} {} {1.000} {}
+R {25474} {0} {<248>} {Pillar of Courage} {<248>~ ~<088>} {  You float in the corner of a massive underwater palatial hall.  A large, glowing pillar supports a portion of the domed ceiling above, and casts a turquoise tinge upon its surroundings.  A second pillar stands further along the outside wall, as does a third on the far side of the hall, and a fourth beside it.  Each pillar glows a different colour.  Spanning the width of the central hall is a low wall, half again the height of a man.  Between the top of the wall and the ceiling, a field of light illuminates the entirety of the hall.   } {oradrin} {} {underwater} {} {1.000} {}
 E {25475} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {25480} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
@@ -110592,13 +110603,21 @@ R {26659} {0} {<178>} {Meeting Place of Infamy} {<178>~ ~<088>} {  This is where
 
 R {26660} {0} {<218>} {Room of Fire} {<218>[ ]<088>} {  This area seems to have been trashed several times over by something with a  great deal of strength. There were probably adventurous fools here, but if  there were they must certainly be dead now by the looks of the marks on the  buildings and trash bins near the end of the alley. } {infamy} {} {hellinside} {pk,maze} {1.000} {}
 
+R {26661} {0} {<178>} {Realm of Infamy} {<178>~ ~<088>} {  Mist swirls around as you realize you are lost in the land of villains of the past. Everything here is not quite as friendly as you might think, but then  again, what is? Everything looks the same from here. Where could the exit be? } {infamy} {} {mist} {pk,maze} {1.000} {}
+
+R {26663} {0} {<178>} {Realm of Infamy} {<178>~ ~<088>} {  Mist swirls around as you realize you are lost in the land of villains of the past. Everything here is not quite as friendly as you might think, but then  again, what is? Everything looks the same from here. Where could the exit be? } {infamy} {} {mist} {pk,maze} {1.000} {}
+
 R {26664} {0} {<178>} {Almost There} {<178>~ ~<088>} {  You are so close to the exit, there is almost a glow of warmth coming from this room.  Rok, the creator of this area is standing here to answer any questions you might have.  Rok always has an open ear when others talk, maybe you should consider listening to him for a change.   } {infamy} {} {mist} {pk,maze} {1.000} {}
 
 R {26665} {0} {<178>} {Realm of Infamy} {<178>~ ~<088>} {  Mist swirls around as you realize you are lost in the land of villains of the past. Everything here is not quite as friendly as you might think, but then  again, what is? Everything looks the same from here. Where could the exit be? } {infamy} {} {mist} {pk,maze} {1.000} {}
 
+R {26667} {0} {<178>} {Realm of Infamy} {<178>~ ~<088>} {  Mist swirls around as you realize you are lost in the land of villains of the past. Everything here is not quite as friendly as you might think, but then  again, what is? Everything looks the same from here. Where could the exit be? } {infamy} {} {mist} {pk,maze} {1.000} {}
+
 R {26669} {0} {<178>} {Realm of Infamy} {<178>~ ~<088>} {  Mist swirls around as you realize you are lost in the land of villains of the past. Everything here is not quite as friendly as you might think, but then  again, what is? Everything looks the same from here. Where could the exit be? } {infamy} {} {mist} {pk} {1.000} {}
 E {26664} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {26645} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {26670} {0} {<178>} {Realm of Infamy} {<178>~ ~<088>} {  Mist swirls around as you realize you are lost in the land of villains of the past. Everything here is not quite as friendly as you might think, but then  again, what is? Everything looks the same from here. Where could the exit be? } {infamy} {} {mist} {pk,maze} {1.000} {}
 
 R {26671} {0} {<178>} {White Halls of Meditation} {<178>[ ]<088>} {  This is a room with no exits anywhere it would seem, though it is also a place for those who seek rest from the horrors of the Realm of Infamy.  This is the only room in the area from which you can recall to Aylor.  } {infamy} {} {insideice} {} {1.000} {}
 
@@ -114092,11 +114111,11 @@ E {27568} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {27570} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {27573} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {27570} {0} {<268>} {The Arena} {<268>. .<088>} {  This portion of the arena ground ends in a steep cliff. The other side is too far away to jump. Chains are tethered into the side of the cliff walls. This  is where aerial combatants battle each other and perhaps bring the combat to  the ground. Strong air currents threaten to blow you into the air. The aerial combat continues to the north where there is no land to stand on. } {kingsholm} {} {air} {pk} {1.000} {}
+R {27570} {128} {<268>} {The Arena} {<268>. .<088>} {  This portion of the arena ground ends in a steep cliff. The other side is too far away to jump. Chains are tethered into the side of the cliff walls. This  is where aerial combatants battle each other and perhaps bring the combat to  the ground. Strong air currents threaten to blow you into the air. The aerial combat continues to the north where there is no land to stand on. } {kingsholm} {} {air} {pk} {1.000} {}
 E {27569} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {27571} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {27571} {0} {<148>} {A Pond in the Arena} {<148>~ ~<088>} {  A small pond lies in the middle of this area providing an excellent spot for  water denizens to fight. The water is dirty, and it has a reddish tint. Something lurks just beneath the waters, and is moving so quickly that you  cannot define what it is. Blood soaked sand lines the beach of the pond. The  water laps against the shore providing a deceptive calm. } {kingsholm} {} {waterswim} {pk} {1.000} {}
+R {27571} {128} {<148>} {A Pond in the Arena} {<148>~ ~<088>} {  A small pond lies in the middle of this area providing an excellent spot for  water denizens to fight. The water is dirty, and it has a reddish tint. Something lurks just beneath the waters, and is moving so quickly that you  cannot define what it is. Blood soaked sand lines the beach of the pond. The  water laps against the shore providing a deceptive calm. } {kingsholm} {} {waterswim} {pk} {1.000} {}
 E {27570} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {27573} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {27572} {w} {w} {8} {0} {} {1.000} {} {0.00}
@@ -115403,6 +115422,10 @@ R {27913} {0} {<228>} {The Path of Torment} {<228>, `<088>} {  All your worst fe
 
 R {27915} {128} {<228>} {The Path of Torment} {<228>, `<088>} {  The heat in the nightmare is unbearable, but still your body shivers with fear.  Black and burned trees line either side of this path, their branches creaking in the wind.  A horrible smell of death and decay surrounds you, and you struggle not to vomit.  Your only hope left is to leave this place, and so you continue on.   } {astral} {} {field} {} {1.000} {}
 E {27912} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {27916} {128} {<228>} {The Blood Swamp} {<228>, `<088>} {  With each step you feel as though you are being sucked further down into the  swampy ground. You cling to the surrounding thorny bushes to keep yourself  up, and your hands sting with enormous pain from their poisonous prickles. Struggling to get past the swamp is tiresome, and as you gasp for breath you  accidentally swallow a chunk of the reddish-brown swamp. The taste is more  disgusting than you could have imagined, and for the first time you consider  giving in to this nightmare. } {astral} {} {field} {maze} {1.000} {}
+
+R {27918} {128} {<228>} {The Blood Swamp} {<228>, `<088>} {  The platform ends abruptly, and you find yourself standing in a swamp of  blood and thorns. The smell is so bad you almost choke, and the black thorny  bushes scrape your legs as you walk by. The mushy ground sinks down with each step you take. As you look for an escape, menacing laughter rings loudly in  your ears. } {astral} {} {field} {maze} {1.000} {}
 
 R {27921} {0} {<138>} {The Palace of Stars} {<138>[ ]<088>} {} {astral} {} {palace_room} {} {1.000} {}
 E {27922} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -118200,43 +118223,147 @@ E {28784} {n} {n} {1} {0} {} {1.000} {} {0.00}
 R {28803} {0} {<228>} {Wild Sagewood} {<228>. ^<088>} {  The trees grow wild and ragged here. With the trees close together with roots and branches tangled, no underbrush grows. Only the hardiest of vines fight  for life among these wild trees. The stale air feels heavy to breathe and  move about in. It is quite dark in this corner of the woods, and there  doesn't seem to be another way through the trees. The only path from here is  west. } {sagewood} {} {hills} {} {1.000} {}
 E {28802} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {28804} {0} {<148>} {At the brink of Darkness} {<148>. .<088>} {  Dread fills your soul as you behold the legendary gateway to the Council of the Wyrm.  A place spoken of only in legends, the council is the abode of evil so great, that 800 years ago thousands died to seal its evil away from the world.  The darkness within is trapped, but still remains.  Do you dare to enter a place that even the greatest heroes of our time and times past fear to approach?  Dare you enter the Council of the Wyrm?   } {wyrm} {} {underground} {} {1.000} {}
-E {28805} {d} {d} {32} {0} {} {1.000} {} {0.00}
+R {28804} {128} {<148>} {At the brink of Darkness} {<148>. .<088>} {  Dread fills your soul as you behold the legendary gateway to the Council of the Wyrm.  A place spoken of only in legends, the council is the abode of evil so great, that 800 years ago thousands died to seal its evil away from the world.  The darkness within is trapped, but still remains.  Do you dare to enter a place that even the greatest heroes of our time and times past fear to approach?  Dare you enter the Council of the Wyrm?   } {wyrm} {} {underground} {} {1.000} {}
+E {28805} {d} {open d;d} {32} {0} {} {1.000} {} {0.00}
 E {28839} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {28840} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {28842} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {28847} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {28841} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {28805} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {28805} {128} {<148>} {The Ivory Court} {<148>. .<088>} {  Broken swords, shattered shields, and a couple of rusted pieces of armor are all that remain of the great battle fought at this very spot.  Even now stories are told to children about the beauty of this Ivory Court and the kindness of the monarch.  However as time passed and this place was hidden behind the Last Guardian its true location became unknown, some even considered it a myth.  No one knows how it came to pass that this once beautiful place became a gateway of evil.  Some speak of Derrick, the mad priest.  However after the Battle of the Ivory Court, no one who knew the true story was still alive.  The monarch and her family were ravaged by the demons and wyrmspawn let loose, and Derrick was never seen again.  Now it is merely a place of incredible sadness, that fades out of memory and will soon be completely forgotten.   } {wyrm} {} {underground} {} {1.000} {}
+E {28806} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {28807} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28808} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28810} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28804} {u} {open u;u} {16} {0} {} {1.000} {} {0.00}
+E {28809} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {28839} {0} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
+R {28806} {0} {<148>} {Gateway to Sin} {<148>. .<088>} {  Darkness grows as you descend into the depths towards the birthing place of sin itself.  Shadows dance around you, always right on the edge of your vision.  Always there, playing with your mind, laughing at you where you cannot see.  The shadows dance their dance of insanity.   } {wyrm} {} {underground} {} {1.000} {}
+E {28811} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {28805} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {28807} {128} {<148>} {Eastern Point of the Compass Rose} {<148>. .<088>} {  Set around the center of the Ivory Court are 4 points of power used to keep the darkness contained.  At each point stands one knight who gave up his mortal life to serve an eternal watch here.  By remaining at his point in the compass, the Council of the Wyrm cannot stretch out its grasp and invade the mundane realms again.   } {wyrm} {} {underground} {} {1.000} {}
+E {28805} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28808} {128} {<148>} {Northern Point of the Compass Rose} {<148>. .<088>} {  Set around the center of the Ivory Court are 4 points of power used to keep the darkness contained. At each point stands one knight who gave up his mortal life to serve an eternal watch here. By remaining at his point in the compass, the Council of the Wyrm cannot stretch out its grasp and invade the mundane realms again. } {wyrm} {} {underground} {} {1.000} {}
+E {28805} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {28809} {128} {<148>} {Western Point of the Compass Rose} {<148>. .<088>} {  Set around the center of the Ivory Court are 4 points of power used to keep the darkness contained. At each point stands one knight who gave up his mortal life to serve an eternal watch here. By remaining at his point in the compass, the Council of the Wyrm cannot stretch out its grasp and invade the mundane realms again. } {wyrm} {} {underground} {} {1.000} {}
+E {28805} {e} {e} {2} {0} {} {1.000} {} {0.00}
+
+R {28810} {128} {<148>} {Southern Point of the Compass Rose} {<148>. .<088>} {  Set around the center of the Ivory Court are 4 points of power used to keep the darkness contained. At each point stands one knight who gave up his mortal life to serve an eternal watch here. By remaining at his point in the compass, the Council of the Wyrm cannot stretch out its grasp and invade the mundane realms again. } {wyrm} {} {underground} {} {1.000} {}
+E {28805} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {28811} {0} {<148>} {Gateway to Sin} {<148>. .<088>} {  Darkness grows as you descend into the depths towards the birthing place of sin itself.  Shadows dance around you, always right on the edge of your vision.  Always there, playing with your mind, laughing at you where you cannot see.  The shadows dance their dance of insanity.   } {wyrm} {} {underground} {} {1.000} {}
+E {28812} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {28806} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {28812} {0} {<148>} {Gateway to Sin} {<148>. .<088>} {  Darkness grows as you descend into the depths towards the birthing place of sin itself.  Shadows dance around you, always right on the edge of your vision.  Always there, playing with your mind, laughing at you where you cannot see.  The shadows dance their dance of insanity.   } {wyrm} {} {underground} {} {1.000} {}
+E {28813} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {28811} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {28813} {0} {<148>} {The Rift} {<148>. .<088>} {  The Blackness grows greater still, virtually swallowing what little illumination your light provides.  The walls seem almost fluid here, flowing and oozing with the power in evidence.  The actual gateway itself seems almost liquid, stretching and flowing from edge to edge like a caged beast, eager to escape its trap.  The mere sight of this gateway chills your soul with a deep terror.  Your entire being quivers with the desire to flee, but should you wish to surrender your life and mortal soul then make your peace with whatever gods you hold dear then enter and confront a nightmare which will devour you.   } {wyrm} {} {underground} {} {1.000} {}
+E {28812} {u} {u} {16} {0} {} {1.000} {} {0.00}
+E {28814} {enter gateway} {enter gateway} {0} {0} {} {1.000} {} {0.00}
+
+R {28814} {128} {<148>} {Center of the Council} {<148>. .<088>} {  Large caverns open up from all directions into this one room.  Black obsidian walls absorb your light completely, so that you can't tell they are there except for the fact you are backed up against one wall and can feel its smooth cool texture.  The entire cavern vibrates with an alien power, slowly humming to the rhythm of one dark being.   } {wyrm} {} {underground} {} {1.000} {}
+E {28828} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {28815} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28817} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28821} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28827} {u} {open u;u} {16} {0} {} {1.000} {} {0.00}
+E {28819} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28815} {0} {<148>} {The 1st Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the first circle of the council.  Smooth black walls cage you into this horror of beasts and demons.  Obsidian walls absorb all light, and seem to suck the heat out of you with a mere touch.  Darkness itself seems to crawl along these walls, and a deep terror starts to grip your heart.   } {wyrm} {} {underground} {} {1.000} {}
+E {35586} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28816} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28822} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28814} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28816} {128} {<148>} {The 1st Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the first circle of the council.  Smooth black walls cage you into this horror of beasts and demons.  Obsidian walls absorb all light, and seem to suck the heat out of you with a mere touch.  Darkness itself seems to crawl along these walls, and a deep terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {35577} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {35575} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28815} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28817} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28817} {128} {<148>} {The 1st Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the first circle of the council.  Smooth black walls cage you into this horror of beasts and demons.  Obsidian walls absorb all light, and seem to suck the heat out of you with a mere touch.  Darkness itself seems to crawl along these walls, and a deep terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28816} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {35587} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28814} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28818} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28818} {128} {<148>} {The 1st Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the first circle of the council.  Smooth black walls cage you into this horror of beasts and demons.  Obsidian walls absorb all light, and seem to suck the heat out of you with a mere touch.  Darkness itself seems to crawl along these walls, and a deep terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28817} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {35572} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28819} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {35574} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28819} {128} {<148>} {The 1st Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the first circle of the council.  Smooth black walls cage you into this horror of beasts and demons.  Obsidian walls absorb all light, and seem to suck the heat out of you with a mere touch.  Darkness itself seems to crawl along these walls, and a deep terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28814} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28818} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28820} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {35584} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28820} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {28821} {128} {<148>} {The 1st Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the first circle of the council.  Smooth black walls cage you into this horror of beasts and demons.  Obsidian walls absorb all light, and seem to suck the heat out of you with a mere touch.  Darkness itself seems to crawl along these walls, and a deep terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28822} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28814} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {35585} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28820} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28822} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {28823} {128} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the council. Smooth black walls cage you into this horror of beasts and demons.  Obsidian walls absorb all light, and seem to suck the heat out of you with a mere touch.  Darkness itself seems to crawl along these walls, and a deep terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28830} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {35586} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {28824} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {28825} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {28827} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {28828} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {28829} {0} {<148>} {The Pit of Insanity} {<148>. .<088>} {  Unholy power swirls around you and cackles with hunger at the sight of mortal flesh on which to dine. Lights swirl around, above and below you and suck at  your life energy. The longer you stand here, the more you feel yourself  slipping into the mind of a madman. } {wyrm} {} {underground} {} {1.000} {}
+E {28818} {d} {d} {32} {0} {} {1.000} {} {0.00}
+
+R {28830} {0} {<148>} {Above The Ending} {<148>. .<088>} {  You are slowly falling towards a large pit.  Screams fill the air and howling voices from beyond send goosebumps across your flesh.  The sounds themselves would kill a lesser man, but in these last few hours you have seen horrors that no mortal should have to face.  You hold your weapon ready and prepare for the nightmare which awaits you.   } {wyrm} {} {underground} {} {1.000} {}
+E {28829} {d} {d} {32} {0} {} {1.000} {} {0.00}
+
+R {28839} {128} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
 E {28843} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {28804} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {28840} {0} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
+R {28840} {128} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
 E {28843} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {28804} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {28844} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {28841} {0} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
+R {28841} {128} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
 E {28804} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {28844} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {28845} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {28842} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {28842} {128} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
+E {28804} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28845} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {28843} {0} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
+R {28843} {128} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
 E {28839} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {28840} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {28844} {0} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
+R {28844} {128} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
 E {28840} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {28841} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {28845} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {28845} {128} {<148>} {Swirl of Chaos and Darkness} {<148>. .<088>} {  Energy swirls around you in a powerful dance of chaos and power.  Dark coils of power tangle and separate, shooting forth more waves of tainted energy.  The source of this storm and war of destruction cannot be seen, but you suspect it lies beneath you and beyond the gateway guardian.   } {wyrm} {} {underground} {} {1.000} {}
+E {28842} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28841} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R {28847} {0} {<168>} {Above the Portal} {<168>[<278>?<168>]<088>} {  In all directions substance has begun to lose its grip on reality, walls become fluid and the ground seems to only exist partially in this reality.  You move more by will rather than actual movement, and that will is becoming sapped by the darker forces that only hint at their existence.  You get a feeling of ancient and awesome power beneath you, and the waves of pure energy radiating upwards strikes an incredible unrational fear into your heart.  Striving to continue you grip your weapon tightly and pray that you might survive.   } {wyrm} {} {areaexit} {} {1.000} {}
+R {28847} {128} {<168>} {Above the Portal} {<168>[<278>?<168>]<088>} {  In all directions substance has begun to lose its grip on reality, walls become fluid and the ground seems to only exist partially in this reality.  You move more by will rather than actual movement, and that will is becoming sapped by the darker forces that only hint at their existence.  You get a feeling of ancient and awesome power beneath you, and the waves of pure energy radiating upwards strikes an incredible unrational fear into your heart.  Striving to continue you grip your weapon tightly and pray that you might survive.   } {wyrm} {} {areaexit} {} {1.000} {}
 E {28804} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {35634} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {31116} {u} {u} {16} {0} {} {1.000} {} {0.00}
@@ -119109,11 +119236,11 @@ R {29126} {0} {<228>} {The Beginning of Your End} {<228>. ^<088>} {  A roadway r
 E {24898} {d} {d} {32} {1} {} {1.000} {} {0.00}
 E {29127} {n} {n} {1} {0} {} {1.000} {} {0.00}
 
-R {29127} {0} {<228>} {A Roadway Down the Hill} {<228>. ^<088>} {  The roadway follows the line of the ridge, winding its way up and down,  always following the arches and passing underneath them. The flames from  the torches that are ensconced on the arches burn brightly, shining the way once the night has fallen so the path is always visible to those who wish to  follow. There are some trees growing nearby, blocking some of the views  around you whilst providing shelter to the birds and animals of the land. } {skeletal} {} {hills} {pk} {1.000} {}
+R {29127} {128} {<228>} {A Roadway Down the Hill} {<228>. ^<088>} {  The roadway follows the line of the ridge, winding its way up and down,  always following the arches and passing underneath them. The flames from  the torches that are ensconced on the arches burn brightly, shining the way once the night has fallen so the path is always visible to those who wish to  follow. There are some trees growing nearby, blocking some of the views  around you whilst providing shelter to the birds and animals of the land. } {skeletal} {} {hills} {pk} {1.000} {}
 E {29128} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {29126} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {29128} {0} {<228>} {The Roadway Moves On} {<228>. ^<088>} {  As the road winds its way along the ridgeline you can spy a temple in the  distance to the north. At first you can only see the tops of the spires, but  as you move closer you can see that it is standing in the midst of a large  field of battle. You can't see the combatants, but you can see movement on  the ground and faintly hear the clash of iron on iron. To the west there is a copse of trees and you spy a lone figure in tattered clothing rummaging  through some bags. } {skeletal} {} {hills} {pk} {1.000} {}
+R {29128} {128} {<228>} {The Roadway Moves On} {<228>. ^<088>} {  As the road winds its way along the ridgeline you can spy a temple in the  distance to the north. At first you can only see the tops of the spires, but  as you move closer you can see that it is standing in the midst of a large  field of battle. You can't see the combatants, but you can see movement on  the ground and faintly hear the clash of iron on iron. To the west there is a copse of trees and you spy a lone figure in tattered clothing rummaging  through some bags. } {skeletal} {} {hills} {pk} {1.000} {}
 E {29129} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {29127} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {29130} {w} {w} {8} {0} {} {1.000} {} {0.00}
@@ -123265,11 +123392,11 @@ R {30303} {128} {<148>} {A dark section of tunnel} {<148>. .<088>} {  The torche
 E {30302} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {30304} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {30304} {0} {<148>} {A dead end} {<148>. .<088>} {  Torches flicker here, casting odd shadows across the stone walls.  You've reached a dead end.  You decide it's time to turn around and head back out the way you came.   } {yarr} {} {underground} {pk} {1.000} {}
+R {30304} {128} {<148>} {A dead end} {<148>. .<088>} {  Torches flicker here, casting odd shadows across the stone walls.  You've reached a dead end.  You decide it's time to turn around and head back out the way you came.   } {yarr} {} {underground} {pk} {1.000} {}
 E {30303} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {30305} {e} {open e;e} {2} {0} {} {1.000} {} {0.00}
 
-R {30305} {0} {<148>} {A secret cave} {<148>. .<088>} {  You've stumbled into a hidden cave and realize that dead end wasn't a dead end after all.  Looking around you see stalagtites pushing down from the ceiling and stalagmites jutting up from the floor.  In the center of the room the floor raises up, creating a natural platform.  Taking a second look at the room you begin to see the twinkle of silver and gold around you.  This must be some kind of treasure storage area.   } {yarr} {} {underground} {} {1.000} {}
+R {30305} {128} {<148>} {A secret cave} {<148>. .<088>} {  You've stumbled into a hidden cave and realize that dead end wasn't a dead end after all.  Looking around you see stalagtites pushing down from the ceiling and stalagmites jutting up from the floor.  In the center of the room the floor raises up, creating a natural platform.  Taking a second look at the room you begin to see the twinkle of silver and gold around you.  This must be some kind of treasure storage area.   } {yarr} {} {underground} {} {1.000} {}
 E {30304} {w} {open w;w} {8} {0} {} {1.000} {} {0.00}
 
 R {30306} {0} {<148>} {A short distance offshore} {<148>~ ~<088>} {  You're about halfway between the ship to the east and the shore to the west.  The water is quite calm here, and very clear.  You begin to notice some rather large shapes moving beneath the surface and begin to wonder how safe sitting here really is.   } {yarr} {} {ocean} {} {1.000} {}
@@ -127464,7 +127591,7 @@ R {31411} {0} {<228>} {A Bright Corridor in the Labyrinth} {<228>( *<088>} {  Th
 E {31410} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {31412} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {31412} {0} {<228>} {A Bloody Corridor in the Labyrinth} {<228>( *<088>} {  The labyrinth continues.  Blood plentifully spatters the fine, soft grass underfoot and you might wish to hold your breath until you are well away from the rotting odor rising from it.  A nervous glance around reveals eyes gleaming in the shadows, as well as what might be a glint of steel.  Do you really want to remain here for long?  After all, you can still head north or south to continue your escape efforts.   } {labyrinth} {} {forest} {} {1.000} {}
+R {31412} {128} {<228>} {A Bloody Corridor in the Labyrinth} {<228>( *<088>} {  The labyrinth continues.  Blood plentifully spatters the fine, soft grass underfoot and you might wish to hold your breath until you are well away from the rotting odor rising from it.  A nervous glance around reveals eyes gleaming in the shadows, as well as what might be a glint of steel.  Do you really want to remain here for long?  After all, you can still head north or south to continue your escape efforts.   } {labyrinth} {} {forest} {} {1.000} {}
 E {31411} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {31413} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
@@ -141622,6 +141749,11 @@ E {35108} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {35108} {0} {<238>} {High in the Cliff Lands} {<238>^ ^<088>} {  The strange landscape of cliffs and rocks continues, perhaps the result of tectonic shifts many eons ago.  The earth has an eerie, barren quality. Little grows here.  That which does, nestles in cracks and crevices, anywhere there's soil.  A spindly, barren tree stands beneath a massive northern cliff, offering a way up to the ledges that form a natural path.  The branches shake and rattle with the wind. } {ketu} {} {rocks} {} {1.000} {}
 E {35107} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {35109} {climb tree} {climb tree} {0} {0} {} {1.000} {} {0.00}
+E {35109} {u} {climb tree} {16} {0} {} {1.000} {} {0.00}
+
+R {35109} {0} {<238>} {Standing Above the World} {<238>/ \<088>} {  From your precarious position, the world seems small and insignificant.  The ledge on which you stand holds firm, but gives little room for error, being barely two feet wide.  The cliff face is craggy and worn.  It offers you hand-holds in the form of rocks, and tiny trees that have somehow found a way to grow out of the cliffside.   The wind is particularly vicious here.  So high up, it is difficult for you to breathe, your lungs taking in air, but not nearly enough oxygen.  The wind cuts against you with the intensity of a thousand tiny knives. } {ketu} {} {mountain} {} {1.000} {}
+E {35108} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
 R {35110} {0} {<228>} {Verdant Grasslands} {<228>, `<088>} {  The grassland here once served as some sort of border.  A stone wall, perhaps five feet in height, spans across much of it.  Incredibly ancient, the wall has fallen to ruin.  There are gaps in many places, the stones gone, those that remain weather-worn and battered.  The grass itself is a deep, rich green.  Tall and thick, it bows and sways in the wind. } {ketu} {} {field} {} {1.000} {}
 E {35111} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -143108,6 +143240,56 @@ E {35562} {s} {s} {4} {0} {} {1.000} {} {0.00}
 R {35571} {0} {<238>} {Atop a Dune} {<138>~ ~<088>} {  Standing atop the highest sand dune, one would have an unobstructed view of  the vast desert landscape that stretches out in all directions. To the west,  the sun blazes hot and bright, casting a golden light across the dunes and  illuminating the colorful wagons and tents of a Romani caravan in the  distance. The caravan appears like a mirage, a splash of vibrant color  against the arid, monochromatic landscape. The Romani move slowly and  steadily across the sand, their wagons drawn by horses or camels, as they  traverse the desert in search of new horizons. } {fractal} {} {desert} {} {1.000} {}
 E {35568} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
+R {35572} {0} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {35587} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28818} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {35573} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {35573} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {35574} {128} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28818} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {35573} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {35584} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {35575} {0} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {35576} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28816} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {35587} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {35576} {0} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {35577} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {35575} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {35577} {128} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {35576} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {35586} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28816} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {35578} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {35583} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {35584} {128} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28819} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {35574} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {35583} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28825} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {35585} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {35586} {0} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {28823} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {35577} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {35578} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {28815} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {35587} {0} {<148>} {The 2nd Circle} {<148>. .<088>} {  Blackness merges around you as you traverse through the second circle of the  council. Smooth black walls cage you into this horror of beasts and demons. Obsidian walls absorb all light, and seem to suck the heat out of you with a  mere touch. Darkness itself seems to crawl along these walls, and a deep  terror starts to grip your heart. } {wyrm} {} {underground} {} {1.000} {}
+E {35575} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {28824} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {28817} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {35572} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
 R {35593} {0} {<148>} {A Narrow Tunnel} {<148>. .<088>} {  A narrow alley leads to a cramped burrow to the south. It is a relatively  dark corner of the Fort, and not well travelled. Peering westward, the main  tunnel bustles with life, but here, the quiet is almost disturbing. There is  a guard post to the south. It seems to be an odd place for a guard. } {terramire} {} {underground} {} {1.000} {}
 E {35600} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E { 4500} {w} {w} {8} {0} {} {1.000} {} {0.00}
@@ -143263,7 +143445,7 @@ E {35628} {w} {open w;w} {8} {0} {} {1.000} {} {0.00}
 R {35631} {0} {<178>} {The Hiding Place Of The Mastermind} { } {  The Mastermind behind the attacks on Fort Terramire stays in hiding. Very few of her minions even see her. She only communicates with a select few, who  make sure her orders are carried out with exact precision. The underground  hiding spot is huge. Maps of Fort Terramire have been hung upon the walls,  each marked with the exact locations of the attacks. The room is pretty much  bare, except for the maps on the wall, a desk, a chair, and a bed. A dresser  holds her clothing, and possibly something else. } {terramire} {} {} {} {1.000} {}
 E {35625} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {35634} {0} {<248>} {A cave} {<248>% %<088>} {} {wyrm} {} {cave} {} {1.000} {}
+R {35634} {128} {<248>} {A cave} {<248>% %<088>} {} {wyrm} {} {cave} {} {1.000} {}
 E {28847} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {35636} {0} {<248>} {Halls of the Ascended} {<248># #<088>} {} {gnomalin} {} {dungeon} {safe} {1.000} {}
@@ -148600,7 +148782,7 @@ R {38582} {0} {<238>} {Fulfillment} {<238>^ ^<088>} {} {fortune} {} {rocks} {} {
 E {38574} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {38581} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {38583} {0} {<238>} {Enchantment Near the Waterfall} {<238>/ \<088>} {} {fortune} {} {mountain} {} {1.000} {}
+R {38583} {0} {<238>} {Enchantment Near the Waterfall} {<238>/ \<088>} {  It is entertaining to stand on this rocky ledge that hides behind the  waterfall. The water crashes down into the rocks below and droplets of water  splash back here, cold and cleansing. Once the water hits the rocks, it jets  forth in the form of a river, causing its red lotus flowers to bop and sway  in the wake of its force. } {fortune} {} {mountain} {} {1.000} {}
 E {38669} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {38587} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {38584} {w} {w} {8} {0} {} {1.000} {} {0.00}
@@ -148915,7 +149097,18 @@ R {38713} {128} {<178>} {Entrance to Hide and Sneak} {<178>[ ]<088>} {  Faint ec
 E {38717} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {38727} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {38714} {0} {<110>} {} { } {} {} {} {} {} {1.000} {}
+R {38714} {0} {<138>} {Prize Room One - First Step Toward Salvation} {<138>*<128>$<138>*<088>} {} {icefall} {} {shop} {} {1.000} {}
+E {38715} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {38706} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {38716} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {38715} {0} {<138>} {Prize Room Two - The Best Offense Is A Good ... Defense?} {<138>*<128>$<138>*<088>} {  Effervescing in a corner, a cauldron is being slowly mixed by a lizard who stares at you without taking a moment to look at the concoction brewing. Scents of fungal spores, herbs, strawberries, and a little tweak of magic are emanating from the pot.  Bowls in the opposite corner of the room contain a copious amount of salt and cracked black pepper.  Yet another counter, similar to the one in the first room, is shimmering with a heavenly light as if beckoning you to approach it and redeem a prize. } {icefall} {} {shop} {} {1.000} {}
+E {38824} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {38714} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {38716} {0} {<138>} {Prize Room Three - With Great Power Comes Great Slaughter} {<138>*<128>$<138>*<088>} {  Catching your attention immediately are swords and shields hung like one would hang heads of hunted animals, exuding superiority and experience. Expecting a lizard to greet you behind a fancily decorated counter, there doesn't appear to be anyone in this room.  Suddenly, rustling sounds behind you reveal a lizard setting up a counter as if not expecting your presence. He mumbles something about no one ever making it this far, yet doesn't come off as annoyed by your presence.  In fact, he can't seem to contain his excitement, knocking off the decorations on his counter accidentally. } {icefall} {} {shop} {} {1.000} {}
+E {38714} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {38846} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
 R {38717} {128} {<178>} {Steamy Abyss} {<178>[ ]<088>} {  Fissures extend in angled and random directions, as if lightning streaked across the sky and left a permanent imprint on the floor below.  You dare not casually walk across the gaps in the ground as you almost slip into the chasm below.  Steam rushes up from the endless depths below, producing a distinct feeling of warmth separate from the chilled winds blistering your skin and lips throughout the day. } {icefall} {} {insideice} {} {1.000} {}
 E {38728} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -149037,7 +149230,7 @@ R {38744} {0} {<108>} {Infinite Resolve} {<208>[ ]<088>} {  Shades of blue line 
 E {38743} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {38735} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {38745} {0} {<278>} {Layer Two - Cornered} {<278>.@.<088>} {} {icefall} {} {stairs} {} {1.000} {}
+R {38745} {0} {<278>} {Layer Two - Cornered} {<278>.@.<088>} {} {icefall} {} {stairs} {shop} {1.000} {}
 E {38768} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {38746} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {38769} {s} {s} {4} {0} {} {1.000} {} {0.00}
@@ -149182,7 +149375,7 @@ E {38779} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {38785} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {38771} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {38779} {0} {<108>} {Fools Rush In} {<208>[ ]<088>} {  Knuckled dents catch your feet off guard as you walk through bumpy holes and get closer to the south-western portion of this trial.  Taking another gander at the curves in the ground, it appears someone tried to smash through the ground, to no avail.  No other rooms near you contain these signs of desperation, so previous adventurers had likely miscalculated their exit out. } {icefall} {} {space1} {} {1.000} {}
+R {38779} {0} {<108>} {Fools Rush In} {<208>[ ]<088>} {  Knuckled dents catch your feet off guard as you walk through bumpy holes and get closer to the south-western portion of this trial.  Taking another gander at the curves in the ground, it appears someone tried to smash through the ground, to no avail.  No other rooms near you contain these signs of desperation, so previous adventurers had likely miscalculated their exit out. } {icefall} {} {space1} {shop} {1.000} {}
 E {38780} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {38786} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {38772} {s} {s} {4} {0} {} {1.000} {} {0.00}
@@ -149378,9 +149571,13 @@ E {38836} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {38814} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
+R {38824} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
 R {38825} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
 R {38836} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+
+R {38846} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
 R {38847} {0} {<218>} {Buried Alive in Your Entrails} {<218>/ \<088>} {} {icefall} {} {volcano} {} {1.000} {}
 E {38848} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -149549,7 +149746,10 @@ E {38891} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {38879} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {38884} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {38886} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {38886} {0} {<238>} {Western Edge of Ice Sliders} {<238>^ ^<088>} {  Snowmen with beady black rocks serving as eyes and smiles are facing the wall to the west, as if turning their backs on you.  Picking up a handful of snow, it crumbles through your fingers, dry and thirsting water.  These snowmen were therefore brought in from outside, piece by piece.  A crank system can be seen to the north. } {icefall} {} {rocks} {} {1.000} {}
+E {38887} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {38892} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {38880} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
 R {38887} {0} {<178>} {Sliding on Ice} {<178>~ ~<088>} {  Chalky colors form an X on the ground here.  No amount of sliding on this symbol reveals a pitfall or any trap in sight.  The X wipes off easily, increasing the probability of it being designed to stall adventurers on a pointless clue that goes nowhere.  The north-western corner is within sight a dozen feet away. } {icefall} {} {ice} {} {1.000} {}
 E {38888} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -150299,7 +150499,7 @@ E {39188} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {39183} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {39190} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {39190} {0} {<268>} {Rural Routes} {<268>. .<088>} {} {chakra} {} {air} {} {1.000} {}
+R {39190} {0} {<268>} {Rural Routes} {<268>. .<088>} {  Wandering through these fields, just at the fringe of an ancient green  forest, is relaxing. The forest floor is carpeted with a beautiful sea of  bluebells, windflowers, and purple orchids. The trees harbor tawny owls,  spotted woodpeckers, and warblers. Light is filtered down through the trees  in such a way that the scene becomes dreamlike. } {chakra} {} {air} {} {1.000} {}
 E {39307} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {39189} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {39191} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -151580,7 +151780,7 @@ E {39616} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
 R {39641} {0} {<148>} {Stage Makeup Design} {<148>. .<088>} {  The stage makeup design area is a hall that has been created through the  construction of a number of different stations. Each of these stations  includes a comfortable-looking chair for a performer to sit at, and a large  mirror that is affixed to a dressing table. The wall has been finished in  plain red brick, and the floor is of cold, grey concrete. } {oceanpark} {} {underground} {} {1.000} {}
 E {39640} {n} {n} {1} {0} {} {1.000} {} {0.00}
-E {39643} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {39643} {s} {s} {4} {0} {} {100.000} {} {0.00}
 E {39642} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
 R {39642} {0} {<118>} {Dressing Room A} {<118>. .<088>} {  The centerpiece of this dressing room is a crystal chandelier that hangs from the ceiling. It has been lit with a dozen candles and casts a dreamy light  over the racks of costumes that are lined-up along the walls. A vase of  purple flowers sits upon a side table in the corner of the room, and a white, cushioned chair has been placed beside this table. The scent of the flowers  carries throughout the dressing room and as a result the space feels  tranquil. } {oceanpark} {} {redcarpet} {} {1.000} {}
@@ -151606,7 +151806,7 @@ E {39650} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {39653} {enter whirlpool} {enter whirlpool} {0} {0} {} {1.000} {} {0.00}
 
 R {39647} {0} {<118>} {Offstage: No Park Guest Access} {<118>. .<088>} {  Being offstage at the Coral Reef Auditorium is a lot different from being  upstairs. The lighting is dim and the air is stuffy. A musty scent that must  come from the old props and costumes that are stored down here clings to the  air. The constant background noises that an individual becomes quickly  accustomed to when exploring the park can not be heard down here. Instead  there is silence, which is followed by random banging sounds, and then the  sound of chairs scraping across the cement, and shoes clicking hurriedly  along. } {oceanpark} {} {redcarpet} {} {1.000} {}
-E {39648} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39648} {n} {n} {1} {0} {} {100.000} {} {0.00}
 E {39615} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
 R {39648} {0} {<148>} {New Set Construction} {<148>. .<088>} {  This section of the area is being used for designing new sets. It includes  several bulletin boards where sketches of future sets have been hung, and a  number of large, canvas sheets cover the ground. Where there is no canvas,  there is merely concrete. Half-painted sets have been propped up against the  wall in order to dry, and a saw and workbench take up the rest of the space  near the wall. The air reeks of oil paint, but a few ceiling fans are working to keep the air from becoming too toxic. Palettes of paint, paintbrushes, and open pails of paint litter the floor, so it is important for an individual to carefully consider their next step. } {oceanpark} {} {underground} {} {1.000} {}
@@ -152783,7 +152983,12 @@ E {39916} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {39919} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {39921} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {39919} {0} {<110>} {} { } {} {} {} {} {} {1.000} {}
+R {39919} {0} {<278>} {Within the Tower} {<278> * <088>} {  The stairs to this tower are no longer here. It is like a tornado went  through the tower itself. Shards of paper, splinters of wood, and pieces of  rock lay in a chaotic scene on the floor of the tower. The platform way up  above still appears intact from far below. If only there was a way to ascend  the tower and investigate the high tower. } {winds} {} {pillar} {} {1.000} {}
+E {39918} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {39920} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {39920} {0} {<278>} {Tower of the White Moon} {<278> * <088>} {  The Tower's inner chamber remains intact. The door from the platform and the  roof remained sealed, creating a precious coffin of information. Various  scripts are situated in long rows of cabinets along the outside of the  chamber. In the centre of the chamber, lays a table with one chair beside it. On the table itself, is a closed, single book. } {winds} {} {pillar} {} {1.000} {}
+E {39919} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
 R {39921} {0} {<278>} {Within the Ruins} {<278>[ ]<088>} {  Large stone walls surround the city, now vegetation sticks out of many of the cracks as well as moss and lichens protruding around the stairways and arches throughout the derelict capital. Small rodents and carrion birds rummage  through the city that is now their domain. Climbing above the confines of the walls, a great tower once stood proudly to guard this corner of the city. Now, abandoned and in decay the tower sits silently, large gaping holes out  of her roof, barely resembling the pride of a city's people who once walked  on these broken pathways. } {winds} {} {road} {} {1.000} {}
 E {39918} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -152799,7 +153004,12 @@ E {39921} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {39926} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {39924} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {39924} {0} {<110>} {} { } {} {} {} {} {} {1.000} {}
+R {39924} {0} {<278>} {Within the Tower} {<278> * <088>} {} {winds} {} {pillar} {} {1.000} {}
+E {39923} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {39925} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {39925} {0} {<278>} {Tower of the Black Moon} {<278> * <088>} {} {winds} {} {pillar} {} {1.000} {}
+E {39924} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
 R {39926} {0} {<278>} {Within the Ruins} {<278>[ ]<088>} {  Large stone walls surround the city, now vegetation sticks out of many of the cracks as well as moss and lichens protruding around the stairways and arches throughout the derelict capital. Small rodents and carrion birds rummage  through the city that is now their domain. Climbing above the confines of the walls, a great tower once stood proudly to guard this corner of the city. Now, abandoned and in decay the tower sits silently, large gaping holes out  of her roof, barely resembling the pride of a city's people who once walked  on these broken pathways. } {winds} {} {road} {} {1.000} {}
 E {39913} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -152815,7 +153025,12 @@ E {39931} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {39926} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {39929} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {39929} {0} {<110>} {} { } {} {} {} {} {} {1.000} {}
+R {39929} {0} {<278>} {Within the Tower} {<278> * <088>} {  Climbing the huge parapets of the tower, a spiraling staircase winds its way  to a platform and a door at the top of the tower. Large tapestries depicting  unknown heroes with large golden breastplates hang from the rafters of the  tower. All tattered, these are the first artefacts that show any sort of  history of this dead civilization. } {winds} {} {pillar} {} {1.000} {}
+E {39928} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {39930} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {39930} {0} {<278>} {Tower of the Sun} {<278> * <088>} {  The top of the tower reveals a large open room with a sundial in the middle. The pedestal of the sundial is cracked and the dial has shattered on the  floor just inches from where it once would have stood proudly. In the corner  of the room, a table with two broken chairs stands out as the only other  effect in this tower. The chairs are needlessly broken near the walls, the  table itself is empty, dust adorns the top of the table although some scratch marks are clearly visible depicting some sort of written scrawl. } {winds} {} {pillar} {} {1.000} {}
+E {39929} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
 R {39931} {0} {<278>} {Within the Ruins} {<278>[ ]<088>} {  Large stone walls surround the city, now vegetation sticks out of many of the cracks as well as moss and lichens protruding around the stairways and arches throughout the derelict capital. Small rodents and carrion birds rummage  through the city that is now their domain. Climbing above the confines of the walls, a great tower once stood proudly to guard this corner of the city. Now, abandoned and in decay the tower sits silently, large gaping holes out  of her roof, barely resembling the pride of a city's people who once walked  on these broken pathways. } {winds} {} {road} {} {1.000} {}
 E {39933} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -152831,7 +153046,27 @@ E {39916} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {39934} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {39931} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {39934} {0} {<110>} {} { } {} {} {} {} {} {1.000} {}
+R {39934} {0} {<278>} {Within the Tower} {<278> * <088>} {  Climbing the long staircase to the top of the tower, various depictions are painted into the large grey rocks.  Various sites around what must be the countryside of the city of citizens looking up to the heavens.  The paint itself has faded away, leaving a dull sheen on the rock.   } {winds} {} {pillar} {} {1.000} {}
+E {39933} {d} {d} {32} {0} {} {1.000} {} {0.00}
+E {39935} {u} {u} {16} {0} {} {1.000} {} {0.00}
+
+R {39935} {0} {<278>} {Tower of the Grey Moon} {<278> * <088>} {  Many chairs are situated in circular rows facing the centre of the tower. The rafters above appear rotten and the once cedar roof stands in haphazard  pieces over many of the chairs. In the centre of the room, a large podium  where a speaker would talk to those seated, still stands proudly within the  confines of the room. A book lays on top of the podium, still open to its  final page. The book appears very fragile, and attempting to take the book  would most likely result in its demise. } {winds} {} {pillar} {} {1.000} {}
+E {39934} {d} {d} {32} {0} {} {1.000} {} {0.00}
+
+R {39937} {0} {<248>} {Trapped!!} {<248>. <178>+<088>} {  Hidden without a trace, a previous tenant of the cell began this room to take solitude against their captors.  It is carefully chiseled out of the icy surfaces, the ice itself so dark from the dirt above in this frozen wasteland of a cell.  The walls of the cave are very dark from the dirt, but within an object appears to be entrapped.   } {winds} {} {crypt} {} {1.000} {}
+E {39938} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {39938} {0} {<178>} {A Recluse Confine} { } {  Hidden without a trace, a previous tenant of the cell began this room to take solitude against their captors.  It is carefully chiseled out of the icy surfaces, the ice itself so dark from the dirt above in this frozen wasteland of a cell.  The walls of the cave are very dark from the dirt, but within an object appears to be entrapped.   } {winds} {} {} {} {1.000} {}
+E {39939} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39937} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {39939} {0} {<218>} {Corridor of the Soulless} {<218>. .<088>} {  Arching hallways lead away from the cell. Every few feet there is a torch in  a wall sconce, still barely enough light to illuminate the corridor. What  lies ahead could be anything, nothing is visible ahead, nor are there any  apparent sounds within the corridors. } {winds} {} {bloodyhall} {} {1.000} {}
+E {39940} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {39938} {w} {w} {8} {0} {} {1.000} {} {0.00}
+
+R {39940} {0} {<218>} {Corridor of the Soulless} {<218>. .<088>} {  Arching hallways lead away from the cell. Every few feet there is a torch in  a wall sconce, still barely enough light to illuminate the corridor. What  lies ahead could be anything, nothing is visible ahead, nor are there any  apparent sounds within the corridors. To the east, the archway leads to a set of stairs, leading to what appears to be a very large chamber. } {winds} {} {bloodyhall} {} {1.000} {}
+E {39941} {e} {e} {2} {0} {} {1.000} {} {0.00}
+E {39939} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
 R {39941} {0} {<248>} {Chamber of the Soulless} {<248>. <178>+<088>} {  Four sets of stairs from the corners of the room lead to a large chamber,  filled with protruding peaks from the ground and scary stalactites scaling  the ceiling. In the centre, a large dais with an oak throne sits on the  surface. A man, or the essence of one, sits on the throne. Many torches and  hanging chandeliers are magically spaced throughout the chamber to provide  sufficient light, but very little warmth. } {winds} {} {crypt} {} {1.000} {}
 
@@ -157751,6 +157986,7 @@ E {43828} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {43826} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
 R {43828} {128} {<228>} {Temptation of War} {<228>, .<088>} {  Despite the blood on the battlefield all around you, you somehow stand upon a hill that isn't covered in blood at all. Around it is a wide open field,  where battles are waged between demons of many kinds and other creatures of  the underworld who survived the trip down here. A gasp can be heard next to  you. Turning, you see a warrior who might be able to assist you. } {crynn} {} {field3} {pk} {1.000} {}
+E {43829} {'I want to fight for my faith} {'I want to fight for my faith} {0} {0} {} {1.000} {} {0.00}
 
 R {43829} {0} {<228>} {Battlefield of Faith} {<228>, `<088>} {  Demonic voices echo throughout the land as humans and demons rampage and  clash. Many people fall and die, staining the lands here permanently with  their blood. Crimson pools gather in some open spots where the grass has been trampled out. You can occasionally hear a victorious roar by either human or  beast. The sky is a dull and gloomy grey. } {crynn} {} {field} {} {1.000} {}
 E {43837} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -157845,7 +158081,7 @@ E {43840} {w} {w} {8} {0} {} {1.000} {} {0.00}
 R {43845} {0} {<178>} {Organs of Divine Might} {<178>{<148>*<178>}<088>} {  Here, suddenly, the cacophony of voices ceases to invade your consciousness. An organ of deep echoing tone plays nearby without an organist. Demonic  lyrics then surface in your mind, synchronizing with the music as it is  played, seemingly, for your benefit alone. The roof high above seems to have  scorch marks on it... There is a huge door to the west with blood splattered  all over it. } {crynn} {} {ruins} {} {1.000} {}
 E {43840} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {43843} {s} {s} {4} {0} {} {1.000} {} {0.00}
-E {43853} {w} {w} {8} {0} {} {1.000} {} {0.00}
+E {43853} {w} {open w;w} {8} {0} {} {1.000} {} {0.00}
 
 R {43846} {0} {<278>} {Circular Pews} {<278>[ ]<088>} {  Stools are arranged to form a circular pattern here, and all of them face  the center of the church. The voices continue to speak to you, and the  incessant thrumming of organ music twists and confuses your perception.  Each stool has a candle next to it, giving off the sickly sweet smell of  cherries. } {crynn} {} {inside} {} {1.000} {}
 E {43841} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -157854,6 +158090,8 @@ E {43842} {w} {w} {8} {0} {} {1.000} {} {0.00}
 R {43847} {128} {<278>} {Circular Pews} {<278>[ ]<088>} {  Stools are arranged to form a circular pattern here, and all of them face  the center of the church. The voices continue to speak to you, and the  incessant thrumming of organ music twists and confuses your perception.  Each stool has a candle next to it, giving off the sickly sweet smell of  cherries. } {crynn} {} {inside} {} {1.000} {}
 E {43842} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {43843} {n} {n} {1} {0} {} {1.000} {} {0.00}
+
+R {43852} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
 
 R {43853} {128} {<108>} {Bloody Masses} {<208>[ ]<088>} {  You step into darkness, but then get lost. In all directions you see what  appear to be the same things, yet they are different. The soles of your  shoes stick to the ground and you notice that you are standing in a  shallow pool of blood. You hear wailing in all directions, and demonic  voices urge you forward... } {crynn} {} {space1} {} {1.000} {}
 E {43854} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -157930,10 +158168,24 @@ R {43866} {128} {<238>} {Room of Bronze} {<238>[ ]<088>} {  This room is made co
 E {43867} {d} {d} {32} {0} {} {1.000} {} {0.00}
 
 R {43867} {128} {<148>} {Before a Large Cavern} {<148>. .<088>} {  Blood drips in from the door above, which leads back to the rooms of the  orbs. To the north is a large cavern which you can clearly see, which is a welcome change since so many rooms in this place are covered in darkness.  However, as you try to go north, you find that your progress is strangely  blocked. } {crynn} {} {underground} {} {1.000} {}
-E {43868} {n} {n} {1} {0} {} {1.000} {} {0.00}
+E {43868} {n} {open n;n} {1} {0} {} {1.000} {} {0.00}
 E {43862} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {43868} {0} {<118>} {} { } {} {} {} {} {} {1.000} {}
+R {43868} {0} {<148>} {A Strange Cavern} {<148>. .<088>} {  The rest of the cavern is easy to see, but a strange invisible force to  the north blocks your way. You realize you are in need of one of the four orbs in order to advance forward. You see a strange figure north of you in the center of the cavern, which is well lit considering how the rest of  the church looks. And yet, it is impossible to reach that part of the  cavern without the orb. } {crynn} {} {underground} {} {1.000} {}
+E {43869} {n} {open n;n} {1} {0} {} {1.000} {} {0.00}
+E {43867} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {43869} {0} {<148>} {A Strange Cavern} {<148>. .<088>} {  The rest of the cavern is easy to see, but a strange invisible force to  the north blocks your way. You realize you are in need of one of the four orbs in order to advance forward. You see a strange figure north of you in the center of the cavern, which is well lit considering how the rest of  the church looks. And yet, it is impossible to reach that part of the  cavern without the orb. } {crynn} {} {underground} {} {1.000} {}
+E {43870} {n} {open n;n} {1} {0} {} {1.000} {} {0.00}
+E {43868} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {43870} {0} {<148>} {A Strange Cavern} {<148>. .<088>} {  The rest of the cavern is easy to see, but a strange invisible force to  the north blocks your way. You realize you are in need of one of the four orbs in order to advance forward. You see a strange figure north of you in the center of the cavern, which is well lit considering how the rest of  the church looks. And yet, it is impossible to reach that part of the  cavern without the orb. } {crynn} {} {underground} {} {1.000} {}
+E {43871} {n} {open n;n} {1} {0} {} {1.000} {} {0.00}
+E {43869} {s} {s} {4} {0} {} {1.000} {} {0.00}
+
+R {43871} {0} {<148>} {A Strange Cavern} {<148>. .<088>} {  This cavern is bare, and the only people here are you and a strange man  standing in the center of the room. The walls are made of some strange  rock-like material. He looks up at you, and extends his hands, as if he wants to ask you something. } {crynn} {} {underground} {} {1.000} {}
+E {43870} {s} {s} {4} {0} {} {1.000} {} {0.00}
+E {43852} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
 R {44255} {0} {<178>} {A Flower Patch} {<168>*<158>*<138>*<088>} {  You stand at the edge of the gardens with colorful flowers all around you. They wave back and forth in the wind and there is a sweet smell in the air. The colors are bright and water drops on the flower petals reflect in the  sunlight. } {bliss} {} {flowers1} {} {1.000} {}
 E {44260} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -160074,7 +160326,7 @@ E {45969} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45977} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45987} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45977} {0} {<268>} {A Squalid Cage} {<268>. .<088>} {  The minotaurs have suspended a number of cages from the cavern ceiling using  strong chains. The cages sway wildly to and fro\; it makes them tricky to hang off of while planning where to go next. The creatures that are trapped inside of the cages are ramming against the cage walls. The cages are also being  pushed around by the distortions in the air that have been created by the  minotaur portals. } {dungeon} {} {air} {pk} {1.000} {}
+R {45977} {128} {<268>} {A Squalid Cage} {<268>. .<088>} {  The minotaurs have suspended a number of cages from the cavern ceiling using  strong chains. The cages sway wildly to and fro\; it makes them tricky to hang off of while planning where to go next. The creatures that are trapped inside of the cages are ramming against the cage walls. The cages are also being  pushed around by the distortions in the air that have been created by the  minotaur portals. } {dungeon} {} {air} {pk} {1.000} {}
 E {46014} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45968} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45978} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -160119,7 +160371,7 @@ E {45982} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45984} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45989} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45984} {0} {<268>} {Floating Through Fluff} {<268>. .<088>} {  The minotaurs have opened a portal up in the sky above and it is shooting out an endless stream of fluff. It's like the fluff in cattails and quite soft  and pleasant. Unfortunately, it doesn't take long to notice that along with  the fluff, the portal is also emitting blood and gore. Some poor, fluffy  creature has met its tragic end. } {dungeon} {} {air} {pk} {1.000} {}
+R {45984} {128} {<268>} {Floating Through Fluff} {<268>. .<088>} {  The minotaurs have opened a portal up in the sky above and it is shooting out an endless stream of fluff. It's like the fluff in cattails and quite soft  and pleasant. Unfortunately, it doesn't take long to notice that along with  the fluff, the portal is also emitting blood and gore. Some poor, fluffy  creature has met its tragic end. } {dungeon} {} {air} {pk} {1.000} {}
 E {46017} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45979} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45983} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -160139,40 +160391,40 @@ E {45985} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45987} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45992} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45987} {0} {<268>} {Noxious Air Current} {<268>. .<088>} {  This southern section of the testing grounds is filled with portals that the  minotaurs have opened to random dimensions. Most of the portals are indigo in color and churn the air in a clockwise circle. The portal that swirls about  in this section of the sky is discharging a nasty odor, but the minotaurs  don't seem to mind. } {dungeon} {} {air} {pk} {1.000} {}
+R {45987} {128} {<268>} {Noxious Air Current} {<268>. .<088>} {  This southern section of the testing grounds is filled with portals that the  minotaurs have opened to random dimensions. Most of the portals are indigo in color and churn the air in a clockwise circle. The portal that swirls about  in this section of the sky is discharging a nasty odor, but the minotaurs  don't seem to mind. } {dungeon} {} {air} {pk} {1.000} {}
 E {46019} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45976} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45986} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45993} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45988} {0} {<268>} {A Stinking Cage} {<268>. .<088>} {  There is a cage hanging just south of this spot. It is suspended from chains  that have been attached to each of its upper corners. Peeking in between the  cage's iron bars proves to be a bad idea because the smell is very  unpleasant. There isn't actually anything in the cage aside from a large pile of dung. } {dungeon} {} {air} {pk} {1.000} {}
+R {45988} {128} {<268>} {A Stinking Cage} {<268>. .<088>} {  There is a cage hanging just south of this spot. It is suspended from chains  that have been attached to each of its upper corners. Peeking in between the  cage's iron bars proves to be a bad idea because the smell is very  unpleasant. There isn't actually anything in the cage aside from a large pile of dung. } {dungeon} {} {air} {pk} {1.000} {}
 E {46020} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45982} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45989} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45999} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45989} {0} {<268>} {Floating Timelessly} {<268>. .<088>} {  Upon flying into this section of the testing grounds, things immediately  begin to look strange. A portal hangs in the air up above, but it does not  churn like the others in this area. Instead, it stays completely still. Actually, there are also bits of debris in the air that are hanging in one  spot as if frozen in time. } {dungeon} {} {air} {pk} {1.000} {}
+R {45989} {128} {<268>} {Floating Timelessly} {<268>. .<088>} {  Upon flying into this section of the testing grounds, things immediately  begin to look strange. A portal hangs in the air up above, but it does not  churn like the others in this area. Instead, it stays completely still. Actually, there are also bits of debris in the air that are hanging in one  spot as if frozen in time. } {dungeon} {} {air} {pk} {1.000} {}
 E {46021} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45983} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45988} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45990} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45998} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45990} {0} {<268>} {A Pitch Black Cage} {<268>. .<088>} {  The minotaurs have suspended a cage from the ceiling of the cavern and it  hangs down to this spot. This particular cage is difficult to look at for  long because whatever is inside of it is sucking the light out of everything  around it. Even the cage is difficult to see through this patch of sinister  blackness. } {dungeon} {} {air} {pk} {1.000} {}
+R {45990} {128} {<268>} {A Pitch Black Cage} {<268>. .<088>} {  The minotaurs have suspended a cage from the ceiling of the cavern and it  hangs down to this spot. This particular cage is difficult to look at for  long because whatever is inside of it is sucking the light out of everything  around it. Even the cage is difficult to see through this patch of sinister  blackness. } {dungeon} {} {air} {pk} {1.000} {}
 E {46023} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45984} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45989} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45991} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45997} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45991} {0} {<268>} {A Small Cage} {<268>. .<088>} {  A few feet up from here, a cage is suspended from the ceiling of the cavern. When compared to the other cages in the area, this one is tiny. The door of  the cage is open and it sounds like something is walking around on its roof. A quick inspection reveals that there is definitely nothing inside of the  cage, so what is on top of it? } {dungeon} {} {air} {pk} {1.000} {}
+R {45991} {128} {<268>} {A Small Cage} {<268>. .<088>} {  A few feet up from here, a cage is suspended from the ceiling of the cavern. When compared to the other cages in the area, this one is tiny. The door of  the cage is open and it sounds like something is walking around on its roof. A quick inspection reveals that there is definitely nothing inside of the  cage, so what is on top of it? } {dungeon} {} {air} {pk} {1.000} {}
 E {46024} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45985} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45990} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45992} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45996} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45992} {0} {<268>} {Freezing Air} {<268>. .<088>} {  The indigo portal that reels in the air up above this spot is expelling air  that is cold enough to make eyelashes freeze together. This doesn't seem  dangerous at first, but soon a pointy icicle comes shooting out of the  portal. It is closely followed by hard chunks of ice. Time to move on! } {dungeon} {} {air} {pk} {1.000} {}
+R {45992} {128} {<268>} {Freezing Air} {<268>. .<088>} {  The indigo portal that reels in the air up above this spot is expelling air  that is cold enough to make eyelashes freeze together. This doesn't seem  dangerous at first, but soon a pointy icicle comes shooting out of the  portal. It is closely followed by hard chunks of ice. Time to move on! } {dungeon} {} {air} {pk} {1.000} {}
 E {46025} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45986} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45991} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -160185,27 +160437,27 @@ E {45987} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45992} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45994} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45994} {0} {<268>} {Stagnant Air} {<268>. .<088>} {  The minotaurs have opened many portals into their testing grounds. In every  direction, there are swirling indigo vortexes threatening to spit out nasty  creatures. However, the portal that sits open directly above this spot seems  to be broken. The cloud of indigo that borders it sits motionless and the air directly below it is warm and smells like decaying flesh. } {dungeon} {} {air} {pk} {1.000} {}
+R {45994} {128} {<268>} {Stagnant Air} {<268>. .<088>} {  The minotaurs have opened many portals into their testing grounds. In every  direction, there are swirling indigo vortexes threatening to spit out nasty  creatures. However, the portal that sits open directly above this spot seems  to be broken. The cloud of indigo that borders it sits motionless and the air directly below it is warm and smells like decaying flesh. } {dungeon} {} {air} {pk} {1.000} {}
 E {46030} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45993} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45995} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46005} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45995} {0} {<268>} {Floating Through Confusion} {<268>. .<088>} {  Flying through this section of the testing grounds is catastrophic. One  indigo portal swirls above this spot and another swirls below it. As if there is some sort of magnetic attraction between the two, both portals are  spitting out creatures at breakneck speeds. At some point, one of them  ejected hundreds of ink-like balls that prove to be difficult to navigate  through. } {dungeon} {} {air} {pk} {1.000} {}
+R {45995} {128} {<268>} {Floating Through Confusion} {<268>. .<088>} {  Flying through this section of the testing grounds is catastrophic. One  indigo portal swirls above this spot and another swirls below it. As if there is some sort of magnetic attraction between the two, both portals are  spitting out creatures at breakneck speeds. At some point, one of them  ejected hundreds of ink-like balls that prove to be difficult to navigate  through. } {dungeon} {} {air} {pk} {1.000} {}
 E {46029} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45992} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45996} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45994} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {46004} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45996} {0} {<268>} {A Damp Cage} {<268>. .<088>} {  A cage has been hung here by the minotaurs. The cage is covered in  condensation. A quick analysis of the cage's interior reveals that there is  nothing inside of it except for an innocent-looking puddle of water. Suddenly, the puddle shimmers and begins to take on a humanoid form. Its  mouth hangs open in a silent screech. } {dungeon} {} {air} {pk} {1.000} {}
+R {45996} {128} {<268>} {A Damp Cage} {<268>. .<088>} {  A cage has been hung here by the minotaurs. The cage is covered in  condensation. A quick analysis of the cage's interior reveals that there is  nothing inside of it except for an innocent-looking puddle of water. Suddenly, the puddle shimmers and begins to take on a humanoid form. Its  mouth hangs open in a silent screech. } {dungeon} {} {air} {pk} {1.000} {}
 E {46028} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45991} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45997} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45995} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {46003} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {45997} {0} {<268>} {Burning Air} {<268>. .<088>} {  Blue and green flames strike out from the portal that has been opened here. The flames seem to be growing in length and trying desperately to reach down  toward land. For a moment, a salamander-shaped form appears from within the  flames and hisses, then it disappears. } {dungeon} {} {air} {pk} {1.000} {}
+R {45997} {128} {<268>} {Burning Air} {<268>. .<088>} {  Blue and green flames strike out from the portal that has been opened here. The flames seem to be growing in length and trying desperately to reach down  toward land. For a moment, a salamander-shaped form appears from within the  flames and hisses, then it disappears. } {dungeon} {} {air} {pk} {1.000} {}
 E {46027} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45990} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {45998} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -160232,7 +160484,7 @@ E {45998} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46000} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46002} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {46002} {0} {<268>} {Toxic Air} {<268>. .<088>} {  The air here is corrosive. It is visibly eating away at clothes and skin and  feels like razor blades in the lungs. The hazardous air is seeping out of a  portal that spins lazily overhead. Hopefully the minotaurs know how to close  this portal and it would be ideal if they'd take immediate action! } {dungeon} {} {air} {pk} {1.000} {}
+R {46002} {128} {<268>} {Toxic Air} {<268>. .<088>} {  The air here is corrosive. It is visibly eating away at clothes and skin and  feels like razor blades in the lungs. The hazardous air is seeping out of a  portal that spins lazily overhead. Hopefully the minotaurs know how to close  this portal and it would be ideal if they'd take immediate action! } {dungeon} {} {air} {pk} {1.000} {}
 E {46031} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45997} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46001} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -160243,13 +160495,13 @@ E {45996} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46002} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46004} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {46004} {0} {<268>} {Floating Upside Down} {<268>. .<088>} {  The minotaurs have opened a portal here, but there is something wrong with  the way it is functioning. Once anything draws too close to its opening,  whatever or whoever it is gets flipped upside down. Nothing gets sucked  inside of the portal, so it seems harmless. To the north is a small platform  that looks like a nice spot for a rest. } {dungeon} {} {air} {pk} {1.000} {}
+R {46004} {128} {<268>} {Floating Upside Down} {<268>. .<088>} {  The minotaurs have opened a portal here, but there is something wrong with  the way it is functioning. Once anything draws too close to its opening,  whatever or whoever it is gets flipped upside down. Nothing gets sucked  inside of the portal, so it seems harmless. To the north is a small platform  that looks like a nice spot for a rest. } {dungeon} {} {air} {pk} {1.000} {}
 E {46032} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45995} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46003} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46005} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {46005} {0} {<268>} {Warm Air Current} {<268>. .<088>} {  This is the southwest corner of the cavern. The cavern walls reach up for  about 20 feet to the south and the west. Other directions are filled with the curious indigo portals that the minotaurs have conjured and left hanging open all around the cavern. Do the minotaurs not have a way to close the portals  and that is why there are so many of them? } {dungeon} {} {air} {pk} {1.000} {}
+R {46005} {128} {<268>} {Warm Air Current} {<268>. .<088>} {  This is the southwest corner of the cavern. The cavern walls reach up for  about 20 feet to the south and the west. Other directions are filled with the curious indigo portals that the minotaurs have conjured and left hanging open all around the cavern. Do the minotaurs not have a way to close the portals  and that is why there are so many of them? } {dungeon} {} {air} {pk} {1.000} {}
 E {46016} {d} {d} {32} {0} {} {1.000} {} {0.00}
 E {45994} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46004} {n} {n} {1} {0} {} {1.000} {} {0.00}
@@ -160307,7 +160559,7 @@ E {46014} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45976} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {46019} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {46016} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  In this southwest corner of the basin, something has been set up that appears  to be a practical joke. Two skeletons sit at a table. Each skeleton is  holding cards and tankards and they look like they're having a good time. It  seems like some of the minotaurs must have had too much spare time on their  hands! } {dungeon} {} {rocks} {} {1.000} {}
+R {46016} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  In this southwest corner of the basin, something has been set up that appears  to be a practical joke. Two skeletons sit at a table. Each skeleton is  holding cards and tankards and they look like they're having a good time. It  seems like some of the minotaurs must have had too much spare time on their  hands! } {dungeon} {} {rocks} {} {1.000} {}
 E {46030} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46032} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46005} {u} {u} {16} {0} {} {1.000} {} {0.00}
@@ -160329,16 +160581,18 @@ E {46018} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45987} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {46026} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {46020} {0} {<238>} {A Deadly End} {<238>^ ^<088>} {  A narrow corridor has been created here because the minotaurs have built up  scaffolding on either side of this walkway for their testing ground  platforms. A careful adventurer would continue back up to the testing  grounds, or head south, since this room is filled with fresh blood. The dry  basin floor has thirstily sucked up a lot of it, but some of it still sits in a sinister pool near the wall. } {dungeon} {} {rocks} {} {1.000} {}
+R {46020} {128} {<238>} {A Deadly End} {<238>^ ^<088>} {  A narrow corridor has been created here because the minotaurs have built up  scaffolding on either side of this walkway for their testing ground  platforms. A careful adventurer would continue back up to the testing  grounds, or head south, since this room is filled with fresh blood. The dry  basin floor has thirstily sucked up a lot of it, but some of it still sits in a sinister pool near the wall. } {dungeon} {} {rocks} {} {1.000} {}
 E {46021} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45988} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {46021} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Blood is ominously seeping into this section of the basin from the area to  the north. There are no dead bodies, only splatters and pools of blood  everywhere. Maybe a minotaur or one of the creatures that they are fighting  died up above and the blood just poured down here. Nonetheless, heading up or to the south seem like safer courses of action! } {dungeon} {} {rocks} {} {1.000} {}
+R {46021} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Blood is ominously seeping into this section of the basin from the area to  the north. There are no dead bodies, only splatters and pools of blood  everywhere. Maybe a minotaur or one of the creatures that they are fighting  died up above and the blood just poured down here. Nonetheless, heading up or to the south seem like safer courses of action! } {dungeon} {} {rocks} {} {1.000} {}
 E {46020} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46023} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45989} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {46022} {0} {<238>} {A Cracked Floor} {<238>\_/<088>} {  Exploring inside this large crack in the basin floor is treacherous and  uncomfortable. It continues down for about 20 feet until it gets too narrow  to climb down any farther. There is nothing down here of interest so it would be a good idea to head back up. Uh-oh -- someone has boarded up the exit! How did they manage to do that so quickly and quietly? } {dungeon} {} {ship} {} {1.000} {}
+R {46022} {128} {<238>} {A Cracked Floor} {<238>\_/<088>} {  Exploring inside this large crack in the basin floor is treacherous and  uncomfortable. It continues down for about 20 feet until it gets too narrow  to climb down any farther. There is nothing down here of interest so it would be a good idea to head back up. Uh-oh -- someone has boarded up the exit! How did they manage to do that so quickly and quietly? } {dungeon} {} {ship} {} {1.000} {}
+E {46007} {escape} {escape} {0} {0} {} {1.000} {} {0.00}
+E {46007} {u} {escape} {16} {0} {} {1.000} {} {0.00}
 
 R {46023} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Some sort of sticky black substance covers the basin floor here. It is  seeping out of a crack in the floor like lava. Stepping in the substance is  not a good idea because once a foot gets stuck in it, getting that foot back  out is nearly impossible. Exiting to the north, east, south or west will  continue the journey across the basin floor. } {dungeon} {} {rocks} {} {1.000} {}
 E {46017} {e} {e} {2} {0} {} {1.000} {} {0.00}
@@ -160347,13 +160601,13 @@ E {46024} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45990} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {46027} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {46024} {0} {<238>} {Damp Sludge} {<238>^ ^<088>} {  The ground in this part of the basin is spongy. Whenever a step is taken,  water comes up from below and pools around that foot. Whatever is in the  water has a strong chemical odor and burns at the eyes. To the east is  scaffolding that would be impossible to walk through, so the only available  directions from here are north, west, south or up. } {dungeon} {} {rocks} {} {1.000} {}
+R {46024} {128} {<238>} {Damp Sludge} {<238>^ ^<088>} {  The ground in this part of the basin is spongy. Whenever a step is taken,  water comes up from below and pools around that foot. Whatever is in the  water has a strong chemical odor and burns at the eyes. To the east is  scaffolding that would be impossible to walk through, so the only available  directions from here are north, west, south or up. } {dungeon} {} {rocks} {} {1.000} {}
 E {46023} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46025} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45991} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {46028} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {46025} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  The floor of this basin is very hard and flat. There is dried mud that is  riddled with cracks and a white powdery silt covers everything. If this  wasn't the chamber in a cave deep underground then it would be quite a  desert-like atmosphere. From here, it is not possible to travel down, but any other direction may be attempted. } {dungeon} {} {rocks} {} {1.000} {}
+R {46025} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  The floor of this basin is very hard and flat. There is dried mud that is  riddled with cracks and a white powdery silt covers everything. If this  wasn't the chamber in a cave deep underground then it would be quite a  desert-like atmosphere. From here, it is not possible to travel down, but any other direction may be attempted. } {dungeon} {} {rocks} {} {1.000} {}
 E {46018} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46024} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46026} {s} {s} {4} {0} {} {1.000} {} {0.00}
@@ -160372,30 +160626,30 @@ E {46028} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45997} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {46031} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {46028} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Maybe there was some sort of pier here at some point because there is a  single tall, broken pillar standing here alongside the scaffolding built by  the minotaurs. The top of the pillar must have broken off long ago because  there is no sign of it anywhere nearby. The pillar is covered with yellow and brown stains, so it is rather ugly. } {dungeon} {} {rocks} {} {1.000} {}
+R {46028} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Maybe there was some sort of pier here at some point because there is a  single tall, broken pillar standing here alongside the scaffolding built by  the minotaurs. The top of the pillar must have broken off long ago because  there is no sign of it anywhere nearby. The pillar is covered with yellow and brown stains, so it is rather ugly. } {dungeon} {} {rocks} {} {1.000} {}
 E {46024} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46027} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46029} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45996} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {46029} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Skulls have been left on the ground here in a circle. Each skull has a candle inside of it. The candles have been burnt down to nubs. In the middle of the  circle, strange sigils have been drawn in what is likely blood. Heading to  the north, east, south or west continues travel along the basin floor. Heading up will lead to the minotaur testing grounds. } {dungeon} {} {rocks} {} {1.000} {}
+R {46029} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Skulls have been left on the ground here in a circle. Each skull has a candle inside of it. The candles have been burnt down to nubs. In the middle of the  circle, strange sigils have been drawn in what is likely blood. Heading to  the north, east, south or west continues travel along the basin floor. Heading up will lead to the minotaur testing grounds. } {dungeon} {} {rocks} {} {1.000} {}
 E {46025} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46028} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {46030} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {45995} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {46032} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {46030} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Several sets of manacles have been drilled into the basin wall here. They  currently hold no prisoners and the manacles are covered in rust. The  minotaurs have probably forgotten that the manacles are here. It is possible  to move toward the north, east or west from here to continue along the basin  floor. If flying, one can head up to the minotaur testing grounds. } {dungeon} {} {rocks} {} {1.000} {}
+R {46030} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Several sets of manacles have been drilled into the basin wall here. They  currently hold no prisoners and the manacles are covered in rust. The  minotaurs have probably forgotten that the manacles are here. It is possible  to move toward the north, east or west from here to continue along the basin  floor. If flying, one can head up to the minotaur testing grounds. } {dungeon} {} {rocks} {} {1.000} {}
 E {46026} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46029} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {45994} {u} {u} {16} {0} {} {1.000} {} {0.00}
 E {46016} {w} {w} {8} {0} {} {1.000} {} {0.00}
 
-R {46031} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Palm-sized blue rocks have been lined up on the ground to form what looks  like an arrow pointing to the east. Is this some sort of clue? Is there  treasure that way? Looking to the east there isn't really anything exciting,  just the same flat stone floor that covers the rest of the basin. } {dungeon} {} {rocks} {} {1.000} {}
+R {46031} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Palm-sized blue rocks have been lined up on the ground to form what looks  like an arrow pointing to the east. Is this some sort of clue? Is there  treasure that way? Looking to the east there isn't really anything exciting,  just the same flat stone floor that covers the rest of the basin. } {dungeon} {} {rocks} {} {1.000} {}
 E {46027} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46002} {u} {u} {16} {0} {} {1.000} {} {0.00}
 
-R {46032} {0} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Powdery white silt has piled up several feet high in this corner of the  basin. There is a chest peeking out from within the silt. It sits open with  nothing inside of it aside from the powder. A skeleton is also visible in the midst of this mess. A dagger is still stuck in its ribs. } {dungeon} {} {rocks} {} {1.000} {}
+R {46032} {128} {<238>} {A Dry Basin} {<238>^ ^<088>} {  Powdery white silt has piled up several feet high in this corner of the  basin. There is a chest peeking out from within the silt. It sits open with  nothing inside of it aside from the powder. A skeleton is also visible in the midst of this mess. A dagger is still stuck in its ribs. } {dungeon} {} {rocks} {} {1.000} {}
 E {46029} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {46016} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {46004} {u} {u} {16} {0} {} {1.000} {} {0.00}
@@ -161465,7 +161719,7 @@ R {47007} {0} {<228>} {The rim of a crater} {<228>* *<088>} {} {tanra} {} {jungl
 E {46996} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {47006} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {47008} {0} {<228>} {A large crater} {<228>* *<088>} {} {tanra} {} {jungle} {} {1.000} {}
+R {47008} {0} {<228>} {A large crater} {<228>* *<088>} {  More than halfway down the crater now and the air becomes warmer, as  though all the heat is trapped inside by the trees. Tall tree ferns filter  the sunlight through their fronds\; their hairy trunks are a deep brown.  Large, discarded fronds litter the ground and it would appear some of the  fresher ones have been dragged away. } {tanra} {} {jungle} {} {1.000} {}
 E {46997} {n} {n} {1} {0} {} {1.000} {} {0.00}
 E {47009} {s} {s} {4} {0} {} {1.000} {} {0.00}
 E {47011} {w} {w} {8} {0} {} {1.000} {} {0.00}
@@ -161484,7 +161738,7 @@ R {47011} {0} {<228>} {A large crater} {<228>* *<088>} {} {tanra} {} {jungle} {p
 E {47008} {e} {e} {2} {0} {} {1.000} {} {0.00}
 E {47010} {s} {s} {4} {0} {} {1.000} {} {0.00}
 
-R {47012} {0} {<138>} {A sink hole} {<138>%%<088>} {  Well, venturing into the mud really wasn't a good idea, was it? You are well  and truly stuck with no way out and the mud is oozing into every crevice, every pore of your being. Actually, come to think of it, you better take a deep  breath and close your eyes and pray to Ayla, or whatever goddess you worship,  to grant you safe passage home before the mud claims you for its own. } {tanra} {} {quicksand} {pk} {1.000} {}
+R {47012} {128} {<138>} {A sink hole} {<138>%%<088>} {  Well, venturing into the mud really wasn't a good idea, was it? You are well  and truly stuck with no way out and the mud is oozing into every crevice, every pore of your being. Actually, come to think of it, you better take a deep  breath and close your eyes and pray to Ayla, or whatever goddess you worship,  to grant you safe passage home before the mud claims you for its own. } {tanra} {} {quicksand} {pk} {1.000} {}
 
 R {47013} {0} {<228>} {Approaching some ruins} {<228>( *<088>} {  Beneath the Forest of Everwood, this is a dark, mossy green enclosure,  surrounded by the roots of the massive trees towering above. Ahead, down a  passage bordered by roots and moss, sunlight filters down from above upon  what appear to be some stony structures in a large opening. The air in here  seems more still than in the forest above...even as birds fly above you,  their songs seem somewhat muffled. Above, a grassy fissure leads back to the  ground surface of the Forest of Everwood. } {songpalace} {} {forest} {} {1.000} {}
 E {47014} {n} {n} {1} {0} {} {1.000} {} {0.00}

@@ -88,9 +88,10 @@
 #event {IAC SB GMCP comm.channel IAC SE} {
 	#var gmcp[comm][channel] {%0};
 	#NOP Read chat.tin;
-	#replace {gmcp[comm][channel][msg]} {;%dm} {[&1m};
-	#replace {gmcp[comm][channel][msg]} {;%d\\} {[&1m};
+	#NOP #replace {gmcp[comm][channel][msg]} {;%dm} {[&1m};
+	#NOP #replace {gmcp[comm][channel][msg]} {;%d\\} {[&1m};
 	#replace {gmcp[comm][channel][msg]} {\\/} {/};
+	#replace {gmcp[comm][channel][msg]} {\\;} {;};
 	#if {"$gmcp[comm][channel][chan]" != "mobsay"} {
 		update_chat $gmcp[comm][channel][msg][0m;
 		#NOP #line log {.tt/logs/AW.chat} {$gmcp[comm][channel][msg]}
@@ -99,7 +100,13 @@
 
 #event {IAC SB GMCP comm.quest IAC SE} {
 	#var gmcp[comm][quest] {%0};
-	#var qt $gmcp[comm][quest][wait];
+	#if {"$gmcp[comm][quest][wait]" != ""} {
+		#var qt $gmcp[comm][quest][wait]
+	}; #elseif {"$gmcp[comm][quest][time]" != ""} {
+		#var qt $gmcp[comm][quest][time]
+	}; #elseif {"$gmcp[comm][quest][timer]" != ""} {
+		#var qt $gmcp[comm][quest][timer]
+	};
 	update_status
 }
 
