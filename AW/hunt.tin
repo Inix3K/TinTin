@@ -15,7 +15,7 @@
 
 	#var {hunt_mode} {check};
         #var {hunt_cnt} {1};
-        #var {hunt_tgt} {%1};
+        #var {hunt_tgt} {%0};
 	#var {hunt_dir} {};
 
         hunt $hunt_tgt
@@ -28,7 +28,7 @@
 	};
 	#var {hunt_mode} {travel};
 	#var {hunt_cnt} {0};
-        #var {hunt_tgt} {%1};
+        #var {hunt_tgt} {%0};
 	#var {hunt_dir} {};
 
         hunt $hunt_tgt
