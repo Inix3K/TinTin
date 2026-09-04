@@ -258,6 +258,11 @@
 }
 
 #alias cpgo {
+	#if {!&{cp}} {
+		#echo {<128>CPGO<099>: No campaign loaded.};
+		#return
+	};
+
 	#NOP Get campaign target;
 	#var cp[target]		*campaign[+$cp[index]];
 
