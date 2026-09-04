@@ -301,10 +301,9 @@
 
 	#map get {roomarea} {area};
 
-	#act {{(\D{30}) (\D+)}} {
-		#unact {{(\D{30}) (\D+)}};
-		#var temp {%%3};
-		#format {findloc} {%%p} {%%3};
+	#act {^%!{.{30}} {.+}$} {
+		#unact {^%!{.{30} {.+}$};
+		#format {findloc} {%p} {%%1};
 		#echo {$findloc};
 
 		snd_find_rooms {$findloc} {$area};

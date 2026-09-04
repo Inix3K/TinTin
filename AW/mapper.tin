@@ -49,12 +49,12 @@
 #NOP First attempt at snd stuff...not used now, just use snd.tin
 #alias {wf} {
 	#map get {roomarea} {area};
-	#act {{([\D]{30}) ([\D]+)}} {
-		#unact {{([\D]{30}) ([\D]+)}};
-		#format {findloc} {%%p} {%%3};
+	#act {^%!{.{30}} {.+}$} {
+		#unact {^%!{.{30}} {.+}$};
+		#format {findloc} {%p} {%%1};
 		#if {"$findloc" != ""} {
 			#map find {roomname} {%*$findloc%*} {roomarea} {$area};
-			#map list {roomname} {%*$findloc%*} {roomarea} {$area};
+			#map list {roomname} {%*$findloc%*} {roomarea} {$area}
 		}
 	};
 	where %0;
