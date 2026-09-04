@@ -319,7 +319,7 @@
 }
 
 #alias snd_add_room {
-	#regex {%1} {\.000} {} {#list {rooms} add {%1}}
+	#regex {%1} {\.000} {#nop} {#list {rooms} add {%1}}
 }
 
 #alias snd_find_rooms {

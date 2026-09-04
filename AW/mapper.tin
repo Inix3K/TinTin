@@ -118,7 +118,7 @@
 	#act {~%%1} {
 		#list minimap ins -1 {%%1};
 		#line gag
-	};
+	} {1};
 	#line gag
 }
 

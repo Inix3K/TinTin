@@ -1,156 +1,1443 @@
+#class {gear} {kill}
 #class {gear} {open}
 
-/* invmon actions */
-#var invmon[action][1]	remove
-#var invmon[action][2]	wear
-#var invmon[action][3]	lost
-#var invmon[action][4]	gain
-#var invmon[action][5]	get from container
-#var invmon[action][6]	put in container
-#var invmon[action][7]	consumed
-#var invmon[action][8]	undefined
-#var invmon[action][9]	put in vault
-#var invmon[action][10]	get from vault
-#var invmon[action][11]	put on keyring
-#var invmon[action][12]	get from keyring
+#NOP ============================================================
+#NOP Gear constants and persisted defaults
+#NOP ============================================================
 
-/* wear-loc (wearable) */
-#var invmon[location][0]	light
-#var invmon[location][1]	head
-#var invmon[location][2]	eyes
-#var invmon[location][3]	lear
-#var invmon[location][4]	rear
-#var invmon[location][5]	neck1
-#var invmon[location][6]	neck2
-#var invmon[location][7]	back
-#var invmon[location][8]	medal1
-#var invmon[location][9]	medal2
-#var invmon[location][10]	medal3
-#var invmon[location][11]	medal4
-#var invmon[location][12]	torso
-#var invmon[location][13]	body
-#var invmon[location][14]	waist
-#var invmon[location][15]	arms
-#var invmon[location][16]	lwrist
-#var invmon[location][17]	rwrist
-#var invmon[location][18]	hands
-#var invmon[location][19]	lfinger
-#var invmon[location][20]	rfinger
-#var invmon[location][21]	legs
-#var invmon[location][22]	feet
-#var invmon[location][23]	shield
-#var invmon[location][24]	wielded
-#var invmon[location][25]	second
-#var invmon[location][26]	hold
-#var invmon[location][27]	float
-#var invmon[location][28]	undefined
-#var invmon[location][29]	undefined
-#var invmon[location][30]	above
-#var invmon[location][31]	portal
-#var invmon[location][32]	sleeping
-
-/* Flags */
-#var invmon[flag][K]	Kept
-#var invmon[flag][M]	Magical
-#var invmon[flag][H]	Humming
-#var invmon[flag][I]	Invis
-#var invmon[flag][G]	Glowing
-#var invmon[flag][C]	Cursed
-#var invmon[flag][E]	Envenomed
-#var invmon[flag][W]	Weakened
-#var invmon[flag][T]	Tempered
-
-/* Types */
-#var invmon[type][1]	Light
-#var invmon[type][2]	Scroll
-#var invmon[type][3]	Wand
-#var invmon[type][4]	Stave
-#var invmon[type][5]	Weapon
-#var invmon[type][6]	Treasure
-#var invmon[type][7]	Armor
-#var invmon[type][8]	Potion
-#var invmon[type][9]	Furniture
-#var invmon[type][10]	Trash
-#var invmon[type][11]	Container
-#var invmon[type][12]	{Drink Container}
-#var invmon[type][13]	Key
-#var invmon[type][14]	Food
-#var invmon[type][15]	Boat
-#var invmon[type][16]	{Mob Corpse}
-#var invmon[type][17]	{Player Corpse}
-#var invmon[type][18]	Fountain
-#var invmon[type][19]	Pill
-#var invmon[type][20]	Portal
-#var invmon[type][21]	Beacon
-#var invmon[type][22]	{Gift Card}
-#var invmon[type][23]	Unused
-#var invmon[type][24]	{Raw Material}
-#var invmon[type][25]	Campfire
-#var invmon[type][26]	Forge
-#var invmon[type][27]	Runestone
-
-/* invmon */
-#act {^\{invmon\}%1,%2,%3,%4} {
-	#var inv[action]	%1;
-	#var inv[object]	%2;
-	#var inv[container]	%3;
-	#var inv[location]	%4;
-	#line gag
+#alias {gear_save_vars} {
+	#class {var_gear} {write} {.tt/AW/vars/gear.var}
 }
 
-/* eqdata */
-#NOP objectid,flags,itemname,level,type,unique,wear-loc,timer
-#act {^\{eqdata\}} {
-	#var {eqdata} {};
-	#act {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8}	{
-		#var eqdata[%%7][id]		%%1;
-		#var eqdata[%%7][flags]		%%2;
-		#var eqdata[%%7][name]		%%3;
-		#var eqdata[%%7][level]		%%4;
-		#var eqdata[%%7][type]		%%5;
-		#var eqdata[%%7][unique]	%%6;
-		#var eqdata[%%7][location]	%%7;
-		#var eqdata[%%7][timer]		%%8;
-		#line gag
+#alias {gear_init_defaults} {
+	#if {&{gear[container]} == 0} {
+		#class {var_gear} {assign} {
+			#var {gear[container]} {1860888649}
+		}
 	};
-	#line gag
-}
-#act {\{/eqdata\}} {
-	#unact {^%%1,%%2,%%3,%%4,%%5,%%6,%%7,%%8};
-	#line gag
-}
 
-/* Aliases */
-#NOP pass the 'level' gear intended to be worn at
-#NOP e.g.: 'invsnap 1' for save a snapshot for level 1 gear
-#alias eqsnap {
-	#format level_len {%L} {%1};
-	#if {$level_len > 0} {
-		eqdata;
-		#delay 2 {#var eqsnap[%1] $eqdata}
-	} {
-		#echo {eqsnap: Please pass level for snapshop}
+	#if {&{gear[active_profile]} == 0} {
+		#class {var_gear} {assign} {
+			#var {gear[active_profile]} {default}
+		}
+	};
+
+	#if {&{gear_profile[default][mode]} == 0} {
+		#class {var_gear} {assign} {
+			#var {gear_profile[default][mode]} {itemscore}
+		};
+		gear_save_vars
+	};
+
+	#if {&{gear_profile[default][stat][dr]} == 0} {
+		#class {var_gear} {assign} {
+			#var {gear_profile[default][stat][str]} {10};
+			#var {gear_profile[default][stat][int]} {10};
+			#var {gear_profile[default][stat][wis]} {10};
+			#var {gear_profile[default][stat][dex]} {10};
+			#var {gear_profile[default][stat][con]} {10};
+			#var {gear_profile[default][stat][luck]} {10};
+			#var {gear_profile[default][stat][hr]} {2};
+			#var {gear_profile[default][stat][dr]} {8};
+			#var {gear_profile[default][stat][hp]} {0.1};
+			#var {gear_profile[default][stat][mana]} {0.1};
+			#var {gear_profile[default][stat][moves]} {0.05};
+			#var {gear_profile[default][stat][saves]} {-5};
+			#var {gear_profile[default][weapon][avgdam]} {1};
+			#var {gear_profile[default][resist][acid]} {1};
+			#var {gear_profile[default][resist][air]} {1};
+			#var {gear_profile[default][resist][cold]} {1};
+			#var {gear_profile[default][resist][earth]} {1};
+			#var {gear_profile[default][resist][energy]} {1};
+			#var {gear_profile[default][resist][fire]} {1};
+			#var {gear_profile[default][resist][holy]} {1};
+			#var {gear_profile[default][resist][light]} {1};
+			#var {gear_profile[default][resist][electric]} {1};
+			#var {gear_profile[default][resist][mental]} {1};
+			#var {gear_profile[default][resist][negative]} {1};
+			#var {gear_profile[default][resist][sonic]} {1};
+			#var {gear_profile[default][resist][shadow]} {1};
+			#var {gear_profile[default][resist][water]} {1};
+			#var {gear_profile[default][resist][magic]} {1};
+			#var {gear_profile[default][resist][physical]} {1}
+		};
+		gear_save_vars
 	}
 }
 
-#NOP Save container id
-#var container 1860888649
+/* invmon actions */
+#var gear_invmon[action][1]	remove
+#var gear_invmon[action][2]	wear
+#var gear_invmon[action][3]	lost
+#var gear_invmon[action][4]	gain
+#var gear_invmon[action][5]	get from container
+#var gear_invmon[action][6]	put in container
+#var gear_invmon[action][7]	consumed
+#var gear_invmon[action][8]	undefined
+#var gear_invmon[action][9]	put in vault
+#var gear_invmon[action][10]	get from vault
+#var gear_invmon[action][11]	put on keyring
+#var gear_invmon[action][12]	get from keyring
+
+/* wear-loc (wearable) */
+#var gear_loc[0]	light
+#var gear_loc[1]	head
+#var gear_loc[2]	eyes
+#var gear_loc[3]	lear
+#var gear_loc[4]	rear
+#var gear_loc[5]	neck1
+#var gear_loc[6]	neck2
+#var gear_loc[7]	back
+#var gear_loc[8]	medal1
+#var gear_loc[9]	medal2
+#var gear_loc[10]	medal3
+#var gear_loc[11]	medal4
+#var gear_loc[12]	torso
+#var gear_loc[13]	body
+#var gear_loc[14]	waist
+#var gear_loc[15]	arms
+#var gear_loc[16]	lwrist
+#var gear_loc[17]	rwrist
+#var gear_loc[18]	hands
+#var gear_loc[19]	lfinger
+#var gear_loc[20]	rfinger
+#var gear_loc[21]	legs
+#var gear_loc[22]	feet
+#var gear_loc[23]	shield
+#var gear_loc[24]	wielded
+#var gear_loc[25]	second
+#var gear_loc[26]	hold
+#var gear_loc[27]	float
+#var gear_loc[28]	undefined
+#var gear_loc[29]	undefined
+#var gear_loc[30]	above
+#var gear_loc[31]	portal
+#var gear_loc[32]	sleeping
+
+/* Flags */
+#var gear_flag[K]	Kept
+#var gear_flag[M]	Magical
+#var gear_flag[H]	Humming
+#var gear_flag[I]	Invis
+#var gear_flag[G]	Glowing
+#var gear_flag[C]	Cursed
+#var gear_flag[E]	Envenomed
+#var gear_flag[W]	Weakened
+#var gear_flag[T]	Tempered
+
+/* Types */
+#var gear_type[1]	Light
+#var gear_type[2]	Scroll
+#var gear_type[3]	Wand
+#var gear_type[4]	Stave
+#var gear_type[5]	Weapon
+#var gear_type[6]	Treasure
+#var gear_type[7]	Armor
+#var gear_type[8]	Potion
+#var gear_type[9]	Furniture
+#var gear_type[10]	Trash
+#var gear_type[11]	Container
+#var gear_type[12]	{Drink Container}
+#var gear_type[13]	Key
+#var gear_type[14]	Food
+#var gear_type[15]	Boat
+#var gear_type[16]	{Mob Corpse}
+#var gear_type[17]	{Player Corpse}
+#var gear_type[18]	Fountain
+#var gear_type[19]	Pill
+#var gear_type[20]	Portal
+#var gear_type[21]	Beacon
+#var gear_type[22]	{Gift Card}
+#var gear_type[23]	Unused
+#var gear_type[24]	{Raw Material}
+#var gear_type[25]	Campfire
+#var gear_type[26]	Forge
+#var gear_type[27]	Runestone
+
+gear_init_defaults
+
+
+#NOP ============================================================
+#NOP Main command
+#NOP
+#NOP gear container <id>
+#NOP gear profile use <name>
+#NOP gear profile set <name> <stat|resist|weapon|skill> <key> <weight>
+#NOP gear scan [profile]
+#NOP gear sync [profile]
+#NOP gear best [profile]
+#NOP gear wear [sync] [profile]
+#NOP ============================================================
+
+#alias {gear} {
+	#if {"%1" == "container"} {
+		#if {"%2" == ""} {
+			#echo {<128>GEAR<099>: container is $gear[container]};
+			#return
+		};
+		#class {var_gear} {assign} {
+			#var {gear[container]} {%2}
+		};
+		gear_save_vars;
+		#echo {<128>GEAR<099>: container set to %2};
+		#return
+	};
+
+	#if {"%1" == "profile"} {
+		#if {"%2" == "use"} {
+			#if {"%3" == ""} {
+				#echo {<acf>SYNTAX<099>: gear profile use <name>};
+				#return
+			};
+			#class {var_gear} {assign} {
+				#var {gear[active_profile]} {%3}
+			};
+			#var {gear[cache_ready]} {no};
+			gear_save_vars;
+			#echo {<128>GEAR<099>: active profile is %3};
+			#return
+		};
+
+		#if {"%2" == "set"} {
+			#if {"%6" == ""} {
+				#echo {<acf>SYNTAX<099>: gear profile set <name> <stat|resist|weapon|skill> <key> <weight>};
+				#return
+			};
+			#class {var_gear} {assign} {
+				#var {gear_profile[%3][mode]} {custom};
+				#var {gear_profile[%3][%4][%5]} {%6}
+			};
+			#var {gear[cache_ready]} {no};
+			gear_save_vars;
+			#echo {<128>GEAR<099>: %3 %4 %5 weight set to %6};
+			#return
+		};
+
+		#if {"%2" == "mode"} {
+			#if {"%4" == ""} {
+				#echo {<acf>SYNTAX<099>: gear profile mode <name> <itemscore|custom>};
+				#return
+			};
+			#if {"%4" != "itemscore" && "%4" != "custom"} {
+				#echo {<acf>SYNTAX<099>: gear profile mode <name> <itemscore|custom>};
+				#return
+			};
+			#class {var_gear} {assign} {
+				#var {gear_profile[%3][mode]} {%4}
+			};
+			#var {gear[cache_ready]} {no};
+			gear_save_vars;
+			#echo {<128>GEAR<099>: %3 scoring mode set to %4};
+			#return
+		};
+
+		#if {"%2" == "copy"} {
+			#if {"%4" == ""} {
+				#echo {<acf>SYNTAX<099>: gear profile copy <from> <to>};
+				#return
+			};
+			#class {var_gear} {assign} {
+				#var {gear_profile[%4]} {$gear_profile[%3]}
+			};
+			#var {gear[cache_ready]} {no};
+			gear_save_vars;
+			#echo {<128>GEAR<099>: copied profile %3 to %4};
+			#return
+		};
+
+		#if {"%2" == "show"} {
+			#if {"%3" == ""} {
+				#echo {<128>GEAR<099>: active profile $gear[active_profile]};
+				#echo {$gear_profile[$gear[active_profile]]};
+				#return
+			};
+			#echo {$gear_profile[%3]};
+			#return
+		};
+
+		#echo {<128>GEAR<099>: profiles $gear_profile[]};
+		#return
+	};
+
+	#if {"%1" == "debug"} {
+		#if {"%2" == ""} {
+			#echo {<128>GEAR<099>: debug is $gear[debug]};
+			#return
+		};
+		#if {"%2" != "on" && "%2" != "off"} {
+			#echo {<acf>SYNTAX<099>: gear debug <on|off>};
+			#return
+		};
+		#class {var_gear} {assign} {
+			#var {gear[debug]} {%2}
+		};
+		gear_save_vars;
+		#echo {<128>GEAR<099>: debug %2};
+		#return
+	};
+
+	#if {"%1" == "scan"} {
+		gear_scan_start {%2} {report} {yes};
+		#return
+	};
+
+	#if {"%1" == "sync"} {
+		gear_scan_start {%2} {report} {no};
+		#return
+	};
+
+	#if {"%1" == "best"} {
+		gear_best_cached {%2};
+		#return
+	};
+
+	#if {"%1" == "wear"} {
+		#if {"%2" == "sync" || "%2" == "fresh"} {
+			gear_scan_start {%3} {wear} {no};
+			#return
+		};
+		gear_wear_cached {%2};
+		#return
+	};
+
+	#if {"%1" == "stop"} {
+		#var {gear_scan} {};
+		#var {gear_capture} {off};
+		#echo {<128>GEAR<099>: scan state cleared};
+		#return
+	};
+
+	#echo {<428>GEAR COMMANDS<099>};
+	#echo {  <acf>gear container <id><099>                         - Set gear bag};
+	#echo {  <acf>gear profile use <name><099>                     - Select profile};
+	#echo {  <acf>gear profile copy <from> <to><099>               - Copy profile weights};
+	#echo {  <acf>gear profile mode <name> <itemscore|custom><099> - Select score source};
+	#echo {  <acf>gear profile set <name> <type> <key> <weight><099> - Tune profile};
+	#echo {  <acf>gear debug <on|off><099>                         - Toggle scan diagnostics};
+	#echo {  <acf>gear scan [profile]<099>                         - Full score refresh};
+	#echo {  <acf>gear sync [profile]<099>                         - Refresh worn/bag and score new items};
+	#echo {  <acf>gear best [profile]<099>                         - Show cached best-in-slot};
+	#echo {  <acf>gear wear [sync] [profile]<099>                  - Wear cached best gear};
+	#echo {  <acf>gear stop<099>                                   - Clear scan state}
+}
+
+
+#NOP ============================================================
+#NOP Summary captures: eqdata, invdata, invitem, invmon
+#NOP ============================================================
+
+#alias {gear_record_item} {
+	#var {gear_item[%1][id]}		{%1};
+	#var {gear_item[%1][flags]}	{%2};
+	#var {gear_item[%1][name]}	{%3};
+	#var {gear_item[%1][level]}	{%4};
+	#var {gear_item[%1][type]}	{%5};
+	#var {gear_item[%1][unique]}	{%6};
+	#var {gear_item[%1][location]}	{%7};
+	#var {gear_item[%1][timer]}	{%8};
+	#var {gear_item[%1][source]}	{%9};
+
+	#if {"%9" == "worn"} {
+		#var {gear_worn[%7]} {$gear_item[%1]};
+		#if {"$gear_scan[active]" == "yes"} {
+			gear_should_score_item {%5} {worn};
+			#if {"$gear_tmp[score_item]" == "yes"} {
+				gear_queue_item {%1} {worn} {%7};
+				#if {"$gear_scan[force]" != "yes" && "$gear_item[%1][details]" == "yes"} {gear_consider_item {%1}}
+			}
+		}
+	};
+	#elseif {"%9" == "bag"} {
+		#var {gear_bag[%1]} {$gear_item[%1]};
+		#if {"$gear_scan[active]" == "yes"} {
+			gear_should_score_item {%5} {bag};
+			#if {"$gear_tmp[score_item]" == "yes"} {
+				gear_queue_item {%1} {bag} {%7};
+				#if {"$gear_scan[force]" != "yes" && "$gear_item[%1][details]" == "yes"} {gear_consider_item {%1}}
+			} {
+				#math {gear_scan[skipped_type]} {$gear_scan[skipped_type] + 1}
+			}
+		}
+	};
+	#elseif {"%9" == "inv"} {
+		#var {gear_inv[%1]} {$gear_item[%1]}
+	}
+}
+
+#alias {gear_debug} {
+	#if {"$gear[debug]" == "on"} {
+		#echo {<128>GEAR DEBUG<099>: %1}
+	}
+}
+
+#alias {gear_should_score_item} {
+	#var {gear_tmp[score_item]} {no};
+
+	#if {"%2" == "worn"} {
+		#var {gear_tmp[score_item]} {yes};
+		#return
+	};
+
+	#switch {"%1"} {
+		#case {"1"}	{#var {gear_tmp[score_item]} {yes}};
+		#case {"5"}	{#var {gear_tmp[score_item]} {yes}};
+		#case {"7"}	{#var {gear_tmp[score_item]} {yes}};
+		#case {"20"}	{#var {gear_tmp[score_item]} {yes}}
+	}
+}
+
+#alias {gear_queue_item} {
+	#if {"$gear_scan[active]" != "yes"} {#return};
+	#if {"$gear_scan[force]" != "yes" && "$gear_item[%1][details]" == "yes"} {#return};
+
+	#math {gear_scan[queue_count]} {$gear_scan[queue_count] + 1};
+	#var {gear_scan[queue][$gear_scan[queue_count]][id]} {%1};
+	#var {gear_scan[queue][$gear_scan[queue_count]][source]} {%2};
+	#var {gear_scan[queue][$gear_scan[queue_count]][location]} {%3}
+}
+
+#act {{^\{eqdata\}$}} {
+	#var {gear_capture} {eq};
+	#var {gear_worn} {};
+	#var {gear_scan[eq_rows]} {0};
+	gear_debug {eqdata start};
+	#line gag
+}
+
+#act {{^\{invdata\}$}} {
+	#if {"$gear_scan[active]" != "yes"} {#return};
+	#var {gear_capture} {bag};
+	#var {gear_bag} {};
+	#var {gear_scan[bag_rows]} {0};
+	gear_debug {invdata start};
+	#line gag
+}
+
+#act {{^\{invdata ([0-9]+)\}$}} {
+	#if {"%2" != "$gear[container]"} {#return};
+	#var {gear_capture} {bag};
+	#var {gear_bag} {};
+	#var {gear_scan[bag_rows]} {0};
+	gear_debug {invdata start %2};
+	#line gag
+}
+
+#NOP objectid,flags,itemname,level,type,unique,wear-loc,timer
+#act {{^([0-9]+),([^,]*),(.*),([0-9]+),([0-9]+),([0-9]+),(-?[0-9]+),(-?[0-9]+)$}} {
+	#if {"$gear_capture" == "eq"} {
+		#math {gear_scan[eq_rows]} {$gear_scan[eq_rows] + 1};
+		gear_record_item {%2} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {worn};
+		#line gag
+	};
+	#elseif {"$gear_capture" == "bag"} {
+		#math {gear_scan[bag_rows]} {$gear_scan[bag_rows] + 1};
+		gear_record_item {%2} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {bag};
+		#line gag
+	}
+}
+
+#act {{^\{/eqdata\}$}} {
+	#if {"$gear_capture" != "eq"} {#return};
+
+	gear_eqdata_complete {tag};
+	#line gag
+}
+
+#act {{^\{/invdata\}$}} {
+	#if {"$gear_capture" != "bag"} {#return};
+
+	gear_invdata_complete {tag};
+	#line gag
+}
+
+#act {{^\{invitem\}([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(.*)$}} {
+	gear_record_item {%2} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {inv};
+	#line gag
+}
+
+#act {{^\{invmon\}([^,]*),([^,]*),([^,]*),(.*)$}} {
+	#var inv[action]	%2;
+	#var inv[object]	%3;
+	#var inv[container]	%4;
+	#var inv[location]	%5;
+
+	#if {%2 == 1} {
+		#unvar {gear_worn[%5]};
+		#var {gear_item[%3][source]} {inv};
+		#var {gear_item[%3][location]} {-1}
+	};
+	#elseif {%2 == 2} {
+		#var {gear_item[%3][source]} {worn};
+		#var {gear_item[%3][location]} {%5};
+		#var {gear_worn[%5][id]} {%3}
+	};
+	#elseif {%2 == 3 || %2 == 7 || %2 == 9 || %2 == 11} {
+		#unvar {gear_item[%3]};
+		#unvar {gear_inv[%3]};
+		#unvar {gear_bag[%3]}
+	};
+	#elseif {%2 == 4 || %2 == 10 || %2 == 12} {
+		#var {gear_item[%3][source]} {inv}
+	};
+	#elseif {%2 == 5 && %4 == $gear[container]} {
+		#unvar {gear_bag[%3]};
+		#var {gear_item[%3][source]} {inv}
+	};
+	#elseif {%2 == 6 && %4 == $gear[container]} {
+		#var {gear_bag[%3]} {$gear_item[%3]};
+		#var {gear_item[%3][source]} {bag}
+	};
+
+	#line gag
+}
+
+
+#NOP ============================================================
+#NOP invdetails queue and scoring
+#NOP ============================================================
+
+#alias {gear_eqdata_complete} {
+	#if {"$gear_scan[active]" == "yes" && "$gear_scan[phase]" != "eqdata"} {#return};
+
+	#if {"$gear_capture" == "eq"} {
+		#var {gear_capture} {off}
+	};
+
+	#if {&{gear_snap[level]} != 0} {
+		#class {var_gear} {assign} {
+			#var {eqsnap[$gear_snap[level]]} {$gear_worn}
+		};
+		gear_save_vars;
+		#echo {<128>GEAR<099>: saved equipment snapshot $gear_snap[level]};
+		#var {gear_snap[level]} {}
+	};
+
+	#if {"$gear_scan[active]" != "yes"} {#return};
+
+	gear_debug {eqdata complete by %1, rows $gear_scan[eq_rows]};
+	#var {gear_scan[phase]} {invdata};
+	#var {gear_capture} {off};
+	#var {gear_scan[bag_rows]} {0};
+	invdata $gear[container] ansi;
+	#delay 2.00 {gear_invdata_complete {timer}}
+}
+
+#alias {gear_invdata_complete} {
+	#if {"$gear_scan[active]" != "yes"} {#return};
+	#if {"$gear_scan[phase]" != "invdata"} {#return};
+
+	#if {"$gear_capture" == "bag"} {
+		#var {gear_capture} {off}
+	};
+
+	#var {gear_scan[phase]} {details};
+	gear_debug {invdata complete by %1, rows $gear_scan[bag_rows], queued $gear_scan[queue_count], skipped $gear_scan[skipped_type]};
+
+	#if {$gear_scan[bag_rows] == 0} {
+		#echo {<128>GEAR<099>: no invdata rows captured from $gear[container]}
+	};
+
+	gear_scan_details_next
+}
+
+#alias {gear_scan_start} {
+	#if {"%1" != ""} {
+		#class {var_gear} {assign} {
+			#var {gear[active_profile]} {%1}
+		};
+		gear_save_vars
+	};
+
+	#var {gear_scan} {};
+	#var {gear_best} {};
+	#var {gear_group} {};
+	#var {gear_capture} {off};
+	#var {gear_scan[active]} {yes};
+	#var {gear_scan[force]} {yes};
+	#if {"%3" != ""} {#var {gear_scan[force]} {%3}};
+	#if {"$gear_scan[force]" != "yes"} {
+		#if {"$gear[cache_ready]" != "yes" || "$gear[best_profile]" != "$gear[active_profile]"} {
+			#var {gear_scan[force]} {yes}
+		}
+	};
+	#var {gear_scan[queue_count]} {0};
+	#var {gear_scan[queue_pos]} {0};
+	#var {gear_scan[missing_details]} {0};
+	#var {gear_scan[skipped_type]} {0};
+	#var {gear_scan[eq_rows]} {0};
+	#var {gear_scan[bag_rows]} {0};
+	#var {gear_scan[detail_count]} {0};
+	#var {gear_scan[considered_count]} {0};
+	#var {gear_scan[slotted_count]} {0};
+	#var {gear_scan[no_slot]} {0};
+	#var {gear_scan[best_updates]} {0};
+	#var {gear_scan[skipped_level]} {0};
+	#var {gear_scan[on_complete]} {%2};
+	#var {gear_scan[phase]} {eqdata};
+	gear_update_level_context;
+	#if {"$gear_tmp[level_known]" == "yes"} {
+		#var {gear_scan[max_level]} {$gear_tmp[max_level]};
+		gear_debug {level context: level $gear_tmp[level], tier $gear_tmp[tier], max wearable $gear_tmp[max_level]}
+	};
+
+	#if {"$gear_scan[force]" == "yes"} {
+		#echo {<128>GEAR<099>: scanning with profile $gear[active_profile]}
+	} {
+		#echo {<128>GEAR<099>: syncing worn/bag with profile $gear[active_profile]}
+	};
+	eqdata ansi;
+	#delay 1.50 {gear_eqdata_complete {timer}}
+}
+
+#alias {gear_scan_details_next} {
+	#if {"$gear_scan[active]" != "yes"} {#return};
+
+	#math {gear_scan[queue_pos]} {$gear_scan[queue_pos] + 1};
+
+	#if {$gear_scan[queue_pos] > $gear_scan[queue_count]} {
+		gear_scan_finish;
+		#return
+	};
+
+	#var {gear_scan[current_id]} {$gear_scan[queue][$gear_scan[queue_pos]][id]};
+	#var {gear_scan[current_source]} {$gear_scan[queue][$gear_scan[queue_pos]][source]};
+	#var {gear_scan[waiting_details]} {yes};
+
+	#if {"$gear_scan[current_source]" == "bag"} {
+		get $gear_scan[current_id] $gear[container];
+		#delay 0.25 {invdetails $gear_scan[current_id]}
+	} {
+		invdetails $gear_scan[current_id]
+	}
+}
+
+#act {{^\{invdetails\}$}} {
+	#if {"$gear_scan[waiting_details]" != "yes"} {#return};
+
+	#var {gear_capture} {details};
+	#var {gear_detail} {};
+	#var {gear_detail[score]} {0};
+	#line gag
+}
+
+#act {{^\{invheader\}(.*)$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	gear_parse_invheader {%2};
+	#line gag
+}
+
+#act {{^\{weapon\}([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|(.*)$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	#var {gear_detail[weapon][type]} {%2};
+	#var {gear_detail[weapon][avgdam]} {%3};
+	#var {gear_detail[weapon][verb]} {%4};
+	#var {gear_detail[weapon][damage]} {%5};
+	#var {gear_detail[weapon][special]} {%6};
+	gear_add_score {weapon} {avgdam} {%3};
+	#line gag
+}
+
+#act {{^\{statmod\}([^|]*)\|(.*)$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	gear_stat_key {%2};
+	#var {gear_detail[stat][$gear_tmp[key]]} {%3};
+	gear_add_score {stat} {$gear_tmp[key]} {%3};
+	#line gag
+}
+
+#act {{^\{resistmod\}([^|]*)\|(.*)$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	gear_resist_key {%2};
+	#var {gear_detail[resist][$gear_tmp[key]]} {%3};
+	gear_add_score {resist} {$gear_tmp[key]} {%3};
+	#line gag
+}
+
+#act {{^\{skillmod\}([^|]*)\|(.*)$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	#var {gear_detail[skill][%2]} {%3};
+	gear_add_score {skill} {%2} {%3};
+	#line gag
+}
+
+#act {{^\{enchant\}([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(.*)$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	#if {"%3" == "stat"} {
+		gear_stat_key {%4};
+		#var {gear_detail[enchant][%2][stat][$gear_tmp[key]]} {%5}
+	};
+	#elseif {"%3" == "resist"} {
+		gear_resist_key {%4};
+		#var {gear_detail[enchant][%2][resist][$gear_tmp[key]]} {%5}
+	};
+	#elseif {"%3" == "skill"} {
+		#var {gear_detail[enchant][%2][skill][%4]} {%5}
+	};
+
+	#line gag
+}
+
+#act {{^\{[a-z]+\}.*$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	#line gag
+} {9.999}
+
+#act {{^([^{}].*\|.*)$}} {
+	#if {"$gear_capture" != "details"} {#return};
+	#if {&{gear_detail[raw_header]} == 0 || "$gear_detail[header_parsed]" == "yes"} {#return};
+
+	#var {gear_detail[raw_header]} {$gear_detail[raw_header]%2};
+	gear_parse_invheader {$gear_detail[raw_header]};
+	#line gag
+}
+
+#act {{^\{/invdetails\}$}} {
+	#if {"$gear_capture" != "details"} {#return};
+
+	gear_store_detail;
+	#var {gear_capture} {off};
+	#var {gear_scan[waiting_details]} {no};
+
+	#if {"$gear_scan[current_source]" == "bag"} {
+		put $gear_scan[current_id] $gear[container];
+		#delay 0.25 {gear_scan_details_next}
+	} {
+		#delay 0.10 {gear_scan_details_next}
+	};
+
+	#line gag
+}
+
+#alias {gear_add_score} {
+	#if {&{gear_profile[$gear[active_profile]][%1][%2]} == 0} {#return};
+	#math {gear_detail[score]} {$gear_detail[score] + %3 * $gear_profile[$gear[active_profile]][%1][%2]}
+}
+
+#alias {gear_parse_invheader} {
+	#var {gear_detail[raw_header]} {%1};
+	#var {gear_detail[header_parsed]} {no};
+
+	#regexp {%1} {^%%1\|%%2\|%%3\|%%4\|%%5\|%%6\|%%7\|%%8\|%%9\|%%10\|%%11\|%%12\|%%13\|%%14$} {
+		gear_parse_invheader_14 {&1} {&2} {&3} {&4} {&5} {&6} {&7} {&8} {&9} {&10} {&11} {&12} {&13} {&14}
+	};
+
+	#if {"$gear_detail[header_parsed]" != "yes"} {
+		#regexp {%1} {^%%1\|%%2\|%%3\|%%4\|%%5\|%%6\|%%7\|%%8\|%%9\|%%10\|%%11\|%%12\|%%13$} {
+		gear_parse_invheader_13 {&1} {&2} {&3} {&4} {&5} {&6} {&7} {&8} {&9} {&10} {&11} {&12} {&13}
+		}
+	};
+
+	#if {"$gear_detail[header_parsed]" != "yes"} {
+		#regexp {%1} {^%%1\|%%2\|%%3\|%%4\|%%5\|%%6\|%%7\|%%8\|%%9\|%%10\|%%11\|%%12$} {
+			gear_parse_invheader_12 {&1} {&2} {&3} {&4} {&5} {&6} {&7} {&8} {&9} {&10} {&11} {&12}
+		}
+	};
+
+}
+
+#alias {gear_parse_invheader_14} {
+	gear_type_name_check {%3};
+
+	#if {"$gear_tmp[is_type]" == "yes"} {
+		gear_set_invheader {%1} {%2} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {%10} {%11} {%12};
+		#var {gear_detail[itemscore]} {%14}
+	} {
+		#var {gear_detail[compare]} {%2};
+		gear_set_invheader {%1} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {%10} {%11} {%12} {%13};
+		#var {gear_detail[itemscore]} {%14}
+	}
+}
+
+#alias {gear_parse_invheader_13} {
+	gear_type_name_check {%3};
+
+	#if {"$gear_tmp[is_type]" == "yes"} {
+		gear_set_invheader {%1} {%2} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {%10} {%11} {%12};
+		#var {gear_detail[itemscore]} {%13}
+	} {
+		#var {gear_detail[compare]} {%2};
+		gear_set_invheader {%1} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {%10} {%11} {%12} {%13}
+	}
+}
+
+#alias {gear_parse_invheader_12} {
+	gear_type_name_check {%3};
+
+	#if {"$gear_tmp[is_type]" == "yes"} {
+		gear_set_invheader {%1} {%2} {%3} {%4} {%5} {%6} {%7} {%8} {%9} {%10} {%11} {%12}
+	} {
+		#var {gear_detail[compare]} {%2};
+		gear_set_invheader {%1} {%3} {%4} {} {%5} {%6} {%7} {%8} {%9} {%10} {%11} {%12}
+	}
+}
+
+#alias {gear_set_invheader} {
+	#var {gear_detail[id]} {%1};
+	#var {gear_detail[level]} {%2};
+	#var {gear_detail[type]} {%3};
+	#var {gear_detail[value]} {%4};
+	#var {gear_detail[weight]} {%5};
+	#var {gear_detail[wear]} {%6};
+	#var {gear_detail[oflags]} {%7};
+	#var {gear_detail[owner]} {%8};
+	#var {gear_detail[clan]} {%9};
+	#var {gear_detail[timer]} {%10};
+	#var {gear_detail[resist_count]} {%11};
+	#var {gear_detail[skill_count]} {%12};
+	#var {gear_detail[header_parsed]} {yes}
+}
+
+#alias {gear_type_name_check} {
+	#var {gear_tmp[is_type]} {no};
+	#switch {"%1"} {
+		#case {"Light"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Scroll"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Wand"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Stave"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Staff"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Weapon"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Treasure"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Armor"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Potion"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Furniture"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Trash"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Container"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Drink Container"}	{#var {gear_tmp[is_type]} {yes}};
+		#case {"Key"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Food"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Boat"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Mob Corpse"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Player Corpse"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Fountain"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Pill"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Portal"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Beacon"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Gift Card"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Unused"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Raw Material"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Campfire"}		{#var {gear_tmp[is_type]} {yes}};
+		#case {"Forge"}			{#var {gear_tmp[is_type]} {yes}};
+		#case {"Runestone"}		{#var {gear_tmp[is_type]} {yes}}
+	}
+}
+
+#alias {gear_stat_key} {
+	#var {gear_tmp[key]} {%1};
+	#switch {"%1"} {
+		#case {"Strength"}		{#var {gear_tmp[key]} {str}};
+		#case {"Intelligence"}		{#var {gear_tmp[key]} {int}};
+		#case {"Wisdom"}		{#var {gear_tmp[key]} {wis}};
+		#case {"Dexterity"}		{#var {gear_tmp[key]} {dex}};
+		#case {"Constitution"}		{#var {gear_tmp[key]} {con}};
+		#case {"Luck"}			{#var {gear_tmp[key]} {luck}};
+		#case {"Hit roll"}		{#var {gear_tmp[key]} {hr}};
+		#case {"Damage roll"}		{#var {gear_tmp[key]} {dr}};
+		#case {"Hit points"}		{#var {gear_tmp[key]} {hp}};
+		#case {"Mana"}			{#var {gear_tmp[key]} {mana}};
+		#case {"Moves"}			{#var {gear_tmp[key]} {moves}};
+		#case {"Saves"}			{#var {gear_tmp[key]} {saves}}
+	}
+}
+
+#alias {gear_resist_key} {
+	#var {gear_tmp[key]} {%1};
+	#switch {"%1"} {
+		#case {"Acid"}			{#var {gear_tmp[key]} {acid}};
+		#case {"Air"}			{#var {gear_tmp[key]} {air}};
+		#case {"Cold"}			{#var {gear_tmp[key]} {cold}};
+		#case {"Earth"}			{#var {gear_tmp[key]} {earth}};
+		#case {"Energy"}		{#var {gear_tmp[key]} {energy}};
+		#case {"Fire"}			{#var {gear_tmp[key]} {fire}};
+		#case {"Holy"}			{#var {gear_tmp[key]} {holy}};
+		#case {"Light"}			{#var {gear_tmp[key]} {light}};
+		#case {"Electric"}		{#var {gear_tmp[key]} {electric}};
+		#case {"Mental"}		{#var {gear_tmp[key]} {mental}};
+		#case {"Negative"}		{#var {gear_tmp[key]} {negative}};
+		#case {"Sonic"}			{#var {gear_tmp[key]} {sonic}};
+		#case {"Shadow"}		{#var {gear_tmp[key]} {shadow}};
+		#case {"Water"}			{#var {gear_tmp[key]} {water}};
+		#case {"Magic"}			{#var {gear_tmp[key]} {magic}};
+		#case {"All magic"}		{#var {gear_tmp[key]} {magic}};
+		#case {"All physical"}		{#var {gear_tmp[key]} {physical}}
+	}
+}
+
+#alias {gear_store_detail} {
+	#if {&{gear_detail[id]} == 0} {
+		#math {gear_scan[missing_details]} {$gear_scan[missing_details] + 1};
+		#if {$gear_scan[missing_details] <= 3} {
+			#if {&{gear_detail[raw_header]} != 0} {
+				#echo {<128>GEAR<099>: could not parse invheader for $gear_scan[current_id]: $gear_detail[raw_header]}
+			} {
+				#echo {<128>GEAR<099>: no invheader returned for $gear_scan[current_id]}
+			}
+		};
+		#return
+	};
+
+	#math {gear_scan[detail_count]} {$gear_scan[detail_count] + 1};
+
+	#var {gear_item[$gear_detail[id]][detail]} {$gear_detail};
+	#var {gear_item[$gear_detail[id]][level]} {$gear_detail[level]};
+	#var {gear_item[$gear_detail[id]][type_name]} {$gear_detail[type]};
+	#var {gear_item[$gear_detail[id]][value]} {$gear_detail[value]};
+	#var {gear_item[$gear_detail[id]][weight]} {$gear_detail[weight]};
+	#var {gear_item[$gear_detail[id]][wear]} {$gear_detail[wear]};
+	#var {gear_item[$gear_detail[id]][oflags]} {$gear_detail[oflags]};
+	#var {gear_item[$gear_detail[id]][score]} {$gear_detail[score]};
+	#var {gear_item[$gear_detail[id]][details]} {yes};
+
+	#if {"$gear_profile[$gear[active_profile]][mode]" == "itemscore" && &{gear_detail[itemscore]} != 0} {
+		#var {gear_item[$gear_detail[id]][score]} {$gear_detail[itemscore]}
+	};
+
+	gear_assign_slots {$gear_detail[id]};
+	gear_debug {detail $gear_detail[id]: level $gear_detail[level], wear $gear_detail[wear], score $gear_item[$gear_detail[id]][score], slots $gear_item[$gear_detail[id]][slot_count]};
+	gear_consider_item {$gear_detail[id]}
+}
+
+#alias {gear_update_level_context} {
+	#var {gear_tmp[level_known]} {no};
+	#var {gear_tmp[level]} {0};
+	#var {gear_tmp[tier]} {0};
+	#var {gear_tmp[max_level]} {0};
+
+	#if {&{gmcp[char][status][level]} != 0} {
+		#var {gear_tmp[level]} {$gmcp[char][status][level]};
+		#var {gear_tmp[level_known]} {yes}
+	};
+	#elseif {&{lvl} != 0} {
+		#var {gear_tmp[level]} {$lvl};
+		#var {gear_tmp[level_known]} {yes}
+	};
+
+	#if {&{gmcp[char][base][tier]} != 0} {
+		#var {gear_tmp[tier]} {$gmcp[char][base][tier]}
+	};
+
+	#if {"$gear_tmp[level_known]" == "yes"} {
+		#math {gear_tmp[max_level]} {$gear_tmp[level] + $gear_tmp[tier] * 10}
+	}
+}
+
+#alias {gear_item_level_ok} {
+	#var {gear_tmp[level_ok]} {yes};
+	gear_update_level_context;
+
+	#if {"$gear_tmp[level_known]" != "yes"} {#return};
+	#if {&{gear_item[%1][level]} == 0} {#return};
+
+	#if {$gear_item[%1][level] > $gear_tmp[max_level]} {
+		#var {gear_tmp[level_ok]} {no}
+	}
+}
+
+#alias {gear_set_item_slots} {
+	#var {gear_item[%1][group]} {%2};
+	#var {gear_item[%1][slot]} {};
+	#var {gear_item[%1][slot_count]} {0};
+
+	#if {"%3" != ""} {
+		#math {gear_item[%1][slot_count]} {$gear_item[%1][slot_count] + 1};
+		#var {gear_item[%1][slot][$gear_item[%1][slot_count]]} {%3}
+	};
+	#if {"%4" != ""} {
+		#math {gear_item[%1][slot_count]} {$gear_item[%1][slot_count] + 1};
+		#var {gear_item[%1][slot][$gear_item[%1][slot_count]]} {%4}
+	};
+	#if {"%5" != ""} {
+		#math {gear_item[%1][slot_count]} {$gear_item[%1][slot_count] + 1};
+		#var {gear_item[%1][slot][$gear_item[%1][slot_count]]} {%5}
+	};
+	#if {"%6" != ""} {
+		#math {gear_item[%1][slot_count]} {$gear_item[%1][slot_count] + 1};
+		#var {gear_item[%1][slot][$gear_item[%1][slot_count]]} {%6}
+	}
+}
+
+#alias {gear_assign_slots} {
+	#var {gear_item[%1][slots]} {};
+	#var {gear_item[%1][slot]} {};
+	#var {gear_item[%1][slot_count]} {0};
+	#var {gear_item[%1][group]} {};
+	#var {gear_tmp[wear]} {$gear_item[%1][wear]};
+
+	#switch {"$gear_tmp[wear]"} {
+		#case {"light"}		{gear_set_item_slots {%1} {} {0}};
+		#case {"head"}		{gear_set_item_slots {%1} {} {1}};
+		#case {"eyes"}		{gear_set_item_slots {%1} {} {2}};
+		#case {"ear"}		{gear_set_item_slots {%1} {ear} {3} {4}};
+		#case {"neck"}		{gear_set_item_slots {%1} {neck} {5} {6}};
+		#case {"back"}		{gear_set_item_slots {%1} {} {7}};
+		#case {"medal"}		{gear_set_item_slots {%1} {medal} {8} {9} {10} {11}};
+		#case {"torso"}		{gear_set_item_slots {%1} {} {12}};
+		#case {"body"}		{gear_set_item_slots {%1} {} {13}};
+		#case {"waist"}		{gear_set_item_slots {%1} {} {14}};
+		#case {"arms"}		{gear_set_item_slots {%1} {} {15}};
+		#case {"wrist"}		{gear_set_item_slots {%1} {wrist} {16} {17}};
+		#case {"hands"}		{gear_set_item_slots {%1} {} {18}};
+		#case {"finger"}	{gear_set_item_slots {%1} {finger} {19} {20}};
+		#case {"legs"}		{gear_set_item_slots {%1} {} {21}};
+		#case {"feet"}		{gear_set_item_slots {%1} {} {22}};
+		#case {"shield"}	{gear_set_item_slots {%1} {} {23}};
+		#case {"wield"}		{gear_set_item_slots {%1} {} {24}};
+		#case {"wielded"}	{gear_set_item_slots {%1} {} {24}};
+		#case {"second"}	{gear_set_item_slots {%1} {} {25}};
+		#case {"hold"}		{gear_set_item_slots {%1} {} {26}};
+		#case {"float"}		{gear_set_item_slots {%1} {} {27}};
+		#case {"above"}		{gear_set_item_slots {%1} {} {30}};
+		#case {"portal"}	{gear_set_item_slots {%1} {} {31}};
+		#case {"sleep"}		{gear_set_item_slots {%1} {} {32}};
+		#case {"sleeping"}	{gear_set_item_slots {%1} {} {32}}
+	};
+
+	#if {$gear_item[%1][slot_count] > 0} {
+		#math {gear_scan[slotted_count]} {$gear_scan[slotted_count] + 1}
+	}
+}
+
+#alias {gear_consider_item} {
+	#if {&{gear_item[%1][slot_count]} == 0 || $gear_item[%1][slot_count] == 0} {
+		#math {gear_scan[no_slot]} {$gear_scan[no_slot] + 1};
+		gear_debug {no slot for %1: wear $gear_item[%1][wear], type $gear_item[%1][type_name]};
+		#return
+	};
+
+	gear_item_level_ok {%1};
+	#if {"$gear_tmp[level_ok]" != "yes"} {
+		#math {gear_scan[skipped_level]} {$gear_scan[skipped_level] + 1};
+		gear_debug {over level for %1: item level $gear_item[%1][level], max wearable $gear_tmp[max_level]};
+		#return
+	};
+
+	#math {gear_scan[considered_count]} {$gear_scan[considered_count] + 1};
+
+	#if {"$gear_item[%1][group]" == "neck"} {
+		gear_consider_pair {neck} {%1} {5} {6};
+		#return
+	};
+	#elseif {"$gear_item[%1][group]" == "ear"} {
+		gear_consider_pair {ear} {%1} {3} {4};
+		#return
+	};
+	#elseif {"$gear_item[%1][group]" == "finger"} {
+		gear_consider_pair {finger} {%1} {19} {20};
+		#return
+	};
+	#elseif {"$gear_item[%1][group]" == "wrist"} {
+		gear_consider_pair {wrist} {%1} {16} {17};
+		#return
+	};
+	#elseif {"$gear_item[%1][group]" == "medal"} {
+		gear_consider_quad {medal} {%1} {8} {9} {10} {11};
+		#return
+	};
+
+	#loop {1} {$gear_item[%1][slot_count]} {gear_tmp_slot_pos} {
+		#var {gear_tmp_slot} {$gear_item[%1][slot][$gear_tmp_slot_pos]};
+		gear_maybe_best_slot {$gear_tmp_slot} {%1}
+	}
+}
+
+#alias {gear_set_best_slot} {
+	#if {"%1" == ""} {#return};
+	#if {"%2" == ""} {#return};
+	#var {gear_best[%1][id]} {%2};
+	#var {gear_best[%1][score]} {$gear_item[%2][score]};
+	#var {gear_best[%1][name]} {$gear_item[%2][name]};
+	#math {gear_scan[best_updates]} {$gear_scan[best_updates] + 1}
+}
+
+#alias {gear_maybe_best_slot} {
+	#if {"%1" == ""} {#return};
+	#if {"%2" == ""} {#return};
+
+	#if {&{gear_best[%1][id]} == 0} {
+		gear_set_best_slot {%1} {%2};
+		#return
+	};
+
+	#if {$gear_item[%2][score] > $gear_best[%1][score]} {
+		gear_set_best_slot {%1} {%2}
+	}
+}
+
+#alias {gear_set_group_rank} {
+	#var {gear_group[%1][%2][id]} {%3};
+	#var {gear_group[%1][%2][score]} {$gear_item[%3][score]};
+	#var {gear_group[%1][%2][name]} {$gear_item[%3][name]}
+}
+
+#alias {gear_publish_group_rank} {
+	#if {&{gear_group[%1][%2][id]} == 0} {#return};
+	gear_set_best_slot {%3} {$gear_group[%1][%2][id]}
+}
+
+#alias {gear_publish_pair} {
+	gear_publish_group_rank {%1} {1} {%2};
+	gear_publish_group_rank {%1} {2} {%3}
+}
+
+#alias {gear_publish_quad} {
+	gear_publish_group_rank {%1} {1} {%2};
+	gear_publish_group_rank {%1} {2} {%3};
+	gear_publish_group_rank {%1} {3} {%4};
+	gear_publish_group_rank {%1} {4} {%5}
+}
+
+#alias {gear_consider_pair} {
+	#if {&{gear_group[%1][1][id]} == 0} {
+		gear_set_group_rank {%1} {1} {%2}
+	} {
+		#if {"$gear_group[%1][1][id]" == "%2"} {
+			gear_publish_pair {%1} {%3} {%4};
+			#return
+		};
+
+		#if {$gear_item[%2][score] > $gear_group[%1][1][score]} {
+			#var {gear_group[%1][2]} {$gear_group[%1][1]};
+			gear_set_group_rank {%1} {1} {%2}
+		} {
+			#if {&{gear_group[%1][2][id]} == 0} {
+				gear_set_group_rank {%1} {2} {%2}
+			} {
+				#if {"$gear_group[%1][2][id]" != "%2"} {
+					#if {$gear_item[%2][score] > $gear_group[%1][2][score]} {
+						gear_set_group_rank {%1} {2} {%2}
+					}
+				}
+			}
+		}
+	};
+
+	gear_publish_pair {%1} {%3} {%4}
+}
+
+#alias {gear_consider_quad} {
+	#if {&{gear_group[%1][1][id]} == 0} {
+		gear_set_group_rank {%1} {1} {%2}
+	} {
+		#if {"$gear_group[%1][1][id]" == "%2"} {
+			gear_publish_quad {%1} {%3} {%4} {%5} {%6};
+			#return
+		};
+
+		#if {$gear_item[%2][score] > $gear_group[%1][1][score]} {
+			#var {gear_group[%1][4]} {$gear_group[%1][3]};
+			#var {gear_group[%1][3]} {$gear_group[%1][2]};
+			#var {gear_group[%1][2]} {$gear_group[%1][1]};
+			gear_set_group_rank {%1} {1} {%2}
+		} {
+			#if {&{gear_group[%1][2][id]} == 0} {
+				gear_set_group_rank {%1} {2} {%2}
+			} {
+				#if {"$gear_group[%1][2][id]" == "%2"} {
+					gear_publish_quad {%1} {%3} {%4} {%5} {%6};
+					#return
+				};
+
+				#if {$gear_item[%2][score] > $gear_group[%1][2][score]} {
+					#var {gear_group[%1][4]} {$gear_group[%1][3]};
+					#var {gear_group[%1][3]} {$gear_group[%1][2]};
+					gear_set_group_rank {%1} {2} {%2}
+				} {
+					#if {&{gear_group[%1][3][id]} == 0} {
+						gear_set_group_rank {%1} {3} {%2}
+					} {
+						#if {"$gear_group[%1][3][id]" == "%2"} {
+							gear_publish_quad {%1} {%3} {%4} {%5} {%6};
+							#return
+						};
+
+						#if {$gear_item[%2][score] > $gear_group[%1][3][score]} {
+							#var {gear_group[%1][4]} {$gear_group[%1][3]};
+							gear_set_group_rank {%1} {3} {%2}
+						} {
+							#if {&{gear_group[%1][4][id]} == 0} {
+								gear_set_group_rank {%1} {4} {%2}
+							} {
+								#if {"$gear_group[%1][4][id]" != "%2"} {
+									#if {$gear_item[%2][score] > $gear_group[%1][4][score]} {
+										gear_set_group_rank {%1} {4} {%2}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	};
+
+	gear_publish_quad {%1} {%3} {%4} {%5} {%6}
+}
+
+#alias {gear_scan_finish} {
+	#var {gear_scan[active]} {no};
+	#var {gear[cache_ready]} {yes};
+	#var {gear[best_profile]} {$gear[active_profile]};
+	gear_update_level_context;
+	#if {"$gear_tmp[level_known]" == "yes"} {
+		#var {gear[cache_level]} {$gear_tmp[level]};
+		#var {gear[cache_tier]} {$gear_tmp[tier]};
+		#var {gear[cache_max_level]} {$gear_tmp[max_level]}
+	};
+	#echo {<128>GEAR<099>: scored $gear_scan[queue_count] items};
+	#if {$gear_scan[missing_details] > 0} {
+		#echo {<128>GEAR<099>: skipped $gear_scan[missing_details] items without parseable invdetails}
+	};
+	#if {$gear_scan[skipped_type] > 0} {
+		#echo {<128>GEAR<099>: skipped $gear_scan[skipped_type] non-gear bag items}
+	};
+	#if {$gear_scan[skipped_level] > 0} {
+		#echo {<128>GEAR<099>: skipped $gear_scan[skipped_level] over-level items}
+	};
+	gear_debug {finish: details $gear_scan[detail_count], considered $gear_scan[considered_count], slotted $gear_scan[slotted_count], no_slot $gear_scan[no_slot], over_level $gear_scan[skipped_level], best_updates $gear_scan[best_updates]};
+	gear_report_best;
+
+	#if {"$gear_scan[on_complete]" == "wear"} {
+		gear_wear_best
+	}
+}
+
+#alias {gear_best_cached} {
+	#if {"%1" != "" && "%1" != "$gear[active_profile]"} {
+		#echo {<128>GEAR<099>: cached best is for $gear[active_profile]. Run <acf>gear scan %1<099> or <acf>gear sync %1<099> first.};
+		#return
+	};
+	#if {"$gear[cache_ready]" != "yes"} {
+		#echo {<128>GEAR<099>: no cached best list yet. Run <acf>gear scan<099> first.};
+		#return
+	};
+	#if {"$gear[best_profile]" != "$gear[active_profile]"} {
+		#echo {<128>GEAR<099>: cached best list is for $gear[best_profile]. Run <acf>gear scan $gear[active_profile]<099> first.};
+		#return
+	};
+	gear_update_level_context;
+	#if {"$gear_tmp[level_known]" == "yes"} {
+		#if {&{gear[cache_max_level]} == 0 || "$gear[cache_max_level]" != "$gear_tmp[max_level]"} {
+			#echo {<128>GEAR<099>: character level changed; syncing best list first};
+			gear_scan_start {%1} {report} {no};
+			#return
+		}
+	};
+	gear_report_best
+}
+
+#alias {gear_report_best} {
+	#var {gear_tmp[best_count]} {0};
+	#echo {<428>BEST GEAR<099>: profile $gear[active_profile]};
+	#loop {0} {32} {gear_tmp_slot} {
+		gear_report_slot {$gear_tmp_slot}
+	};
+	#if {$gear_tmp[best_count] == 0} {
+		#echo {<128>GEAR<099>: no best-in-slot items cached. Run <acf>gear debug on<099>; <acf>gear scan<099> and check detail/slot counts.}
+	}
+}
+
+#alias {gear_report_slot} {
+	#if {&{gear_best[%1][id]} == 0} {#return};
+	#math {gear_tmp[best_count]} {$gear_tmp[best_count] + 1};
+	#echo {  <acf>$gear_loc[%1]<099>: $gear_best[%1][score]  $gear_best[%1][name] <238>($gear_best[%1][id])<099>}
+}
+
+
+#NOP ============================================================
+#NOP Wearing best gear
+#NOP ============================================================
+
+#alias {gear_wear_cached} {
+	#if {"%1" != "" && "%1" != "$gear[active_profile]"} {
+		#echo {<128>GEAR<099>: cached best is for $gear[active_profile]. Run <acf>gear scan %1<099> or <acf>gear wear sync %1<099> first.};
+		#return
+	};
+	#if {"$gear[cache_ready]" != "yes"} {
+		#echo {<128>GEAR<099>: no cached best list yet. Run <acf>gear scan<099> first.};
+		#return
+	};
+	#if {"$gear[best_profile]" != "$gear[active_profile]"} {
+		#echo {<128>GEAR<099>: cached best list is for $gear[best_profile]. Run <acf>gear scan $gear[active_profile]<099> first.};
+		#return
+	};
+	gear_update_level_context;
+	#if {"$gear_tmp[level_known]" == "yes"} {
+		#if {&{gear[cache_max_level]} == 0 || "$gear[cache_max_level]" != "$gear_tmp[max_level]"} {
+			#echo {<128>GEAR<099>: character level changed; syncing before wear};
+			gear_scan_start {%1} {wear} {no};
+			#return
+		}
+	};
+	gear_wear_best
+}
+
+#alias {gear_wear_best} {
+	#echo {<128>GEAR<099>: wearing best items from $gear[container]};
+
+	gear_wear_pair {ear} {3} {4};
+	gear_wear_pair {neck} {5} {6};
+	gear_wear_quad {medal} {8} {9} {10} {11};
+	gear_wear_pair {finger} {19} {20};
+	gear_wear_pair {wrist} {16} {17};
+
+	#loop {0} {32} {gear_tmp_slot} {
+		#if {$gear_tmp_slot == 3 || $gear_tmp_slot == 4 || $gear_tmp_slot == 5 || $gear_tmp_slot == 6 || $gear_tmp_slot == 8 || $gear_tmp_slot == 9 || $gear_tmp_slot == 10 || $gear_tmp_slot == 11 || $gear_tmp_slot == 16 || $gear_tmp_slot == 17 || $gear_tmp_slot == 19 || $gear_tmp_slot == 20} {#continue};
+		gear_wear_slot {$gear_tmp_slot}
+	};
+
+	#delay 2 {eqdata; invdata $gear[container]}
+}
+
+#alias {gear_wear_slot} {
+	#if {&{gear_best[%1][id]} == 0} {#return};
+	#var {gear_tmp[desired]} {$gear_best[%1][id]};
+	#var {gear_tmp[current]} {$gear_worn[%1][id]};
+
+	#if {"$gear_tmp[desired]" == "$gear_tmp[current]"} {#return};
+	gear_item_level_ok {$gear_tmp[desired]};
+	#if {"$gear_tmp[level_ok]" != "yes"} {
+		#echo {<128>GEAR<099>: skipping $gear_item[$gear_tmp[desired]][name] - level $gear_item[$gear_tmp[desired]][level] > max wearable $gear_tmp[max_level]};
+		#return
+	};
+
+	#if {&{gear_worn[%1][id]} != 0} {
+		remove $gear_tmp[current];
+		put $gear_tmp[current] $gear[container]
+	};
+
+	#if {"$gear_item[$gear_tmp[desired]][source]" == "bag"} {
+		get $gear_tmp[desired] $gear[container]
+	};
+
+	wear $gear_tmp[desired]
+}
+
+#alias {gear_wear_pair} {
+	#var {gear_tmp[d1]} {$gear_best[%2][id]};
+	#var {gear_tmp[d2]} {$gear_best[%3][id]};
+	#var {gear_tmp[c1]} {$gear_worn[%2][id]};
+	#var {gear_tmp[c2]} {$gear_worn[%3][id]};
+
+	#if {&{gear_best[%2][id]} == 0 && &{gear_best[%3][id]} == 0} {#return};
+	gear_filter_wear_desired {d1};
+	gear_filter_wear_desired {d2};
+	#if {"$gear_tmp[d1]" == "" && "$gear_tmp[d2]" == ""} {#return};
+	#if {"$gear_tmp[d1]" == "$gear_tmp[c1]" && "$gear_tmp[d2]" == "$gear_tmp[c2]"} {#return};
+
+	#if {&{gear_worn[%2][id]} != 0} {remove $gear_tmp[c1]};
+	#if {&{gear_worn[%3][id]} != 0 && "$gear_tmp[c2]" != "$gear_tmp[c1]"} {remove $gear_tmp[c2]};
+
+	#if {&{gear_worn[%2][id]} != 0 && "$gear_tmp[c1]" != "$gear_tmp[d1]" && "$gear_tmp[c1]" != "$gear_tmp[d2]"} {
+		put $gear_tmp[c1] $gear[container]
+	};
+	#if {&{gear_worn[%3][id]} != 0 && "$gear_tmp[c2]" != "$gear_tmp[d1]" && "$gear_tmp[c2]" != "$gear_tmp[d2]" && "$gear_tmp[c2]" != "$gear_tmp[c1]"} {
+		put $gear_tmp[c2] $gear[container]
+	};
+
+	#if {"$gear_tmp[d1]" != ""} {
+		#if {"$gear_item[$gear_tmp[d1]][source]" == "bag"} {get $gear_tmp[d1] $gear[container]};
+		wear $gear_tmp[d1]
+	};
+	#if {"$gear_tmp[d2]" != "" && "$gear_tmp[d2]" != "$gear_tmp[d1]"} {
+		#if {"$gear_item[$gear_tmp[d2]][source]" == "bag"} {get $gear_tmp[d2] $gear[container]};
+		wear $gear_tmp[d2]
+	}
+}
+
+#alias {gear_wear_quad} {
+	#var {gear_tmp[d1]} {$gear_best[%2][id]};
+	#var {gear_tmp[d2]} {$gear_best[%3][id]};
+	#var {gear_tmp[d3]} {$gear_best[%4][id]};
+	#var {gear_tmp[d4]} {$gear_best[%5][id]};
+	#var {gear_tmp[c1]} {$gear_worn[%2][id]};
+	#var {gear_tmp[c2]} {$gear_worn[%3][id]};
+	#var {gear_tmp[c3]} {$gear_worn[%4][id]};
+	#var {gear_tmp[c4]} {$gear_worn[%5][id]};
+
+	#if {&{gear_best[%2][id]} == 0 && &{gear_best[%3][id]} == 0 && &{gear_best[%4][id]} == 0 && &{gear_best[%5][id]} == 0} {#return};
+	gear_filter_wear_desired {d1};
+	gear_filter_wear_desired {d2};
+	gear_filter_wear_desired {d3};
+	gear_filter_wear_desired {d4};
+	#if {"$gear_tmp[d1]" == "" && "$gear_tmp[d2]" == "" && "$gear_tmp[d3]" == "" && "$gear_tmp[d4]" == ""} {#return};
+
+	#if {&{gear_worn[%2][id]} != 0} {remove $gear_tmp[c1]};
+	#if {&{gear_worn[%3][id]} != 0 && "$gear_tmp[c2]" != "$gear_tmp[c1]"} {remove $gear_tmp[c2]};
+	#if {&{gear_worn[%4][id]} != 0 && "$gear_tmp[c3]" != "$gear_tmp[c1]" && "$gear_tmp[c3]" != "$gear_tmp[c2]"} {remove $gear_tmp[c3]};
+	#if {&{gear_worn[%5][id]} != 0 && "$gear_tmp[c4]" != "$gear_tmp[c1]" && "$gear_tmp[c4]" != "$gear_tmp[c2]" && "$gear_tmp[c4]" != "$gear_tmp[c3]"} {remove $gear_tmp[c4]};
+
+	gear_put_old_if_needed {$gear_tmp[c1]} {$gear_tmp[d1]} {$gear_tmp[d2]} {$gear_tmp[d3]} {$gear_tmp[d4]};
+	gear_put_old_if_needed {$gear_tmp[c2]} {$gear_tmp[d1]} {$gear_tmp[d2]} {$gear_tmp[d3]} {$gear_tmp[d4]};
+	gear_put_old_if_needed {$gear_tmp[c3]} {$gear_tmp[d1]} {$gear_tmp[d2]} {$gear_tmp[d3]} {$gear_tmp[d4]};
+	gear_put_old_if_needed {$gear_tmp[c4]} {$gear_tmp[d1]} {$gear_tmp[d2]} {$gear_tmp[d3]} {$gear_tmp[d4]};
+
+	gear_get_and_wear {$gear_tmp[d1]};
+	gear_get_and_wear {$gear_tmp[d2]};
+	gear_get_and_wear {$gear_tmp[d3]};
+	gear_get_and_wear {$gear_tmp[d4]}
+}
+
+#alias {gear_put_old_if_needed} {
+	#if {"%1" == "" || "%1" == "0"} {#return};
+	#if {"%1" == "%2" || "%1" == "%3" || "%1" == "%4" || "%1" == "%5"} {#return};
+	put %1 $gear[container]
+}
+
+#alias {gear_get_and_wear} {
+	#if {"%1" == "" || "%1" == "0"} {#return};
+	gear_item_level_ok {%1};
+	#if {"$gear_tmp[level_ok]" != "yes"} {
+		#echo {<128>GEAR<099>: skipping $gear_item[%1][name] - level $gear_item[%1][level] > max wearable $gear_tmp[max_level]};
+		#return
+	};
+	#if {"$gear_item[%1][source]" == "bag"} {get %1 $gear[container]};
+	wear %1
+}
+
+#alias {gear_filter_wear_desired} {
+	#if {"$gear_tmp[%1]" == "" || "$gear_tmp[%1]" == "0"} {#return};
+	gear_item_level_ok {$gear_tmp[%1]};
+	#if {"$gear_tmp[level_ok]" != "yes"} {
+		#echo {<128>GEAR<099>: skipping $gear_item[$gear_tmp[%1]][name] - level $gear_item[$gear_tmp[%1]][level] > max wearable $gear_tmp[max_level]};
+		#var {gear_tmp[%1]} {}
+	}
+}
+
+
+#NOP ============================================================
+#NOP Legacy snapshot helpers
+#NOP ============================================================
+
+#NOP pass the 'level' gear intended to be worn at
+#NOP e.g.: 'eqsnap 1' to save a snapshot for level 1 gear
+#alias eqsnap {
+	#if {"%1" == ""} {
+		#echo {eqsnap: Please pass level for snapshot};
+		#return
+	};
+	#var {gear_snap[level]} {%1};
+	eqdata
+}
 
 #NOP pass the 'level' of the snapshot to be worn
 #alias gearup {
-	#format level_len {%L} {%1};
-	#if {$level_len > 0} {
-		#var level %1;
-		#loop 1 &eqsnap[$level][] cnt {
-			#echo {GEARUP: level: $level wear: $cnt id: $eqsnap[$level][$cnt][id]};
-			get $eqsnap[$level][$cnt][id] $container;
-			wear $eqsnap[$level][$cnt][id]
-			
-		}
-	} {
-		#echo {gearup: Please pass level for gearup}
+	#if {"%1" == ""} {
+		#echo {gearup: Please pass level for gearup};
+		#return
+	};
+
+	#loop {0} {32} {gear_tmp_slot} {
+		#if {&{eqsnap[%1][$gear_tmp_slot][id]} == 0} {#continue};
+		#echo {GEARUP: level: %1 wear: $gear_tmp_slot id: $eqsnap[%1][$gear_tmp_slot][id]};
+		get $eqsnap[%1][$gear_tmp_slot][id] $gear[container];
+		wear $eqsnap[%1][$gear_tmp_slot][id]
 	}
-	
 }
 
 #class {gear} {close}

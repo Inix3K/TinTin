@@ -173,7 +173,7 @@
 	#format {calign}	{%+7s} {@colscale{$gmcp[char][status][align];2500}};
 
 	#format {cqt}		{%+6s} {@colscale{$qt;30}m};
-	#format {cehealth}	{%+7s} {@colscale{$ehealth;100}%%};
+	#format {cehealth}	{%+7s} {@colscale{$ehealth;100}%};
 
 	#var {status1} {HP:$chp/$chp_max SP:$csp/$csp_max MV:$cmv/$cmv_max QT:$cqt    A:$calign    E:$cehealth     X:${clvl}[$ctnl](<168>$delta<278>|<158>$ktnl<088>)};
 	#var {status2} {HP:$hp_graph  SP:$sp_graph  M:$mv_graph Q:$qt_graph A:$a_graph E:$egraph};

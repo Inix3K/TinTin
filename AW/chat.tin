@@ -65,5 +65,8 @@
 #act {^You feel as if you are being watched.$} {
 	update_chat %0
 }
+#act {^You sense that %1 is scrying you.%} {
+	update_chat %0
+}
 
 #class {chat} {close}

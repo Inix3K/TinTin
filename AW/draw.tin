@@ -861,6 +861,7 @@ layout_sync_panes
 #alias {draw_minimap} {
 	#if {"$draw[map]" != "on"} {#return};
 	#if {"$awminimap[pane]" == "none"} {#return};
+	#if {&{minimap[]} == 0} {#return};
 	#loop {1} {&minimap[]} {minimap_row} {
 		#replace {minimap[$minimap_row]} {\\;} {\x3B};
 	};
