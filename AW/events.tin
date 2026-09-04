@@ -1,0 +1,91 @@
+#class {events} {kill}
+#class {events} {open}
+
+/* AW-specific screen events for pane-based draw.tin. */
+
+/* Screen sizing */
+#event {SCREEN RESIZE} {
+	#var screen[rows] %0;
+	#var screen[cols] %1;
+	#var screen[height] %2;
+	#var screen[width] %3;
+	aw_layout_resize
+}
+
+#screen get rows screen[rows]
+#screen get cols screen[cols]
+#var screen[scroll] page
+
+/* Mouse input/buffer/chat scrolling */
+#event {SCROLLED MOUSE WHEEL UP} {
+	#if {%0 > $screen[rows] - $split[bottom]} {
+		#cursor {HISTORY PREV};
+		#return
+	};
+	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
+		#if {"$screen[scroll]" == "page"} {
+			#buffer up
+		} {
+			#buffer up 1
+		};
+		#return
+	};
+	#if {"$chat[pane]" != "none" && %0 <= $split[top]} {
+		chatup
+	}
+}
+
+#event {SCROLLED MOUSE WHEEL DOWN} {
+	#if {%0 > $screen[rows] - $split[bottom]} {
+		#cursor {HISTORY NEXT};
+		#return
+	};
+	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
+		#if {"$screen[scroll]" == "page"} {
+			#buffer down
+		} {
+			#buffer down 1
+		};
+		#return
+	};
+	#if {"$chat[pane]" != "none" && %0 <= $split[top]} {
+		chatdown
+	}
+}
+
+/* Double-click toggles scroll mode for the active region. */
+#event {DOUBLE-CLICKED MOUSE BUTTON ONE} {
+	#if {%0 > $screen[rows] - $split[bottom]} {
+		#return
+	};
+	#if {%0 > $split[top] && %0 < $screen[rows] - $split[bottom]} {
+		#if {"$screen[scroll]" == "page"} {
+			#var screen[scroll] line
+		} {
+			#var screen[scroll] page
+		};
+		#return
+	};
+	#if {"$chat[pane]" != "none" && %0 <= $split[top]} {
+		#if {"$chat[scroll]" == "page"} {
+			#var chat[scroll] line
+		} {
+			#var chat[scroll] page
+		}
+	}
+}
+
+/* Map mouse clicks */
+#event {MAP SHORT-CLICKED MOUSE BUTTON ONE} {
+	#map at %0 #map info
+}
+
+#event {MAP DOUBLE-CLICKED MOUSE BUTTON ONE} {
+	#map goto %0
+}
+
+#event {MAP SHORT-CLICKED MOUSE BUTTON THREE} {
+	#map run %0
+}
+
+#class {events} {close}
