@@ -302,7 +302,7 @@
 	#map get {roomarea} {area};
 
 	#act {^%!{.{30}} {.+}$} {
-		#unact {^%!{.{30} {.+}$};
+		#unact {^%!{.{30}} {.+}$};
 		#format {findloc} {%p} {%%1};
 		#echo {$findloc};
 
@@ -314,7 +314,7 @@
 		}
 	};
 
-	where $sndmob;
+	where $sndmob
 }
 
 #alias snd_add_room {
