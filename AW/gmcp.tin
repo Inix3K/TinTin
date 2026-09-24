@@ -122,8 +122,11 @@
 	#format {tr_cap}	{%+1s}	{$gmcp[char][worth][trains]};
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
 	#math	{tick_cap}	{30 - $tick[elapsed]};
-	#format {tick_cap}	{%+1s}	{$tick_cap};
+	#format {tick_cap}	{%+2s}	{$tick_cap};
 	#var	{caption[text]}	{ <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  Tick: $tick_cap};
+	#if {"$moon[caption]" == "on"} {
+		#var {caption[text]} {$caption[text]  <268>$moon[text]<099>}
+	};
 	draw_caption
 }
 
@@ -198,6 +201,7 @@
 
 #event {IAC SB GMCP room.info IAC SE} {
         #var gmcp[room][info] {%0};
+	partroxis_room {$gmcp[room][info][num]};
 	#replace {gmcp[room][info][name]} {;%dm} {[&1m};
 
         #if {$gmcp[room][info][num] == -1} {

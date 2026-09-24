@@ -16,6 +16,9 @@
 #read .tt/AW/vars/portals.var
 
 #event {SESSION DISCONNECTED} {
+	moon_reset;
+	partroxis_clear;
+	#ar {px[room]} {0};
         #NOP Write var classes;
 	#class {var_areas}	write .tt/AW/vars/areas.var;
 	#class {var_mobs}	write .tt/AW/vars/mobs.var;

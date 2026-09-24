@@ -996,6 +996,10 @@
         {min} {200}
         {name} {The Realm of Infamy}
     }
+    {inferno} 
+    {
+        {name} {Journey to the Inferno}
+    }
     {infest} 
     {
         {lock} {}

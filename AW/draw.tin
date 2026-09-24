@@ -738,9 +738,10 @@ layout_sync_panes
 	#math canvas[top] {$slot[$tintin[pane]][row][start] - 1};
 	#var tintin[row][area] $slot[$tintin[pane]][row][start];
 	#math tintin[row][name] {$slot[$tintin[pane]][row][start] + 1};
+	#math tintin[row][note] {$slot[$tintin[pane]][row][start] + 2};
 	#var tintin[col][start] $slot[$tintin[pane]][col][start];
 	#var tintin[col][end] $slot[$tintin[pane]][col][end];
-	#math tintin[map][row][start] {$slot[$tintin[pane]][row][start] + 2};
+	#math tintin[map][row][start] {$slot[$tintin[pane]][row][start] + 3};
 	#var tintin[map][row][end] $slot[$tintin[pane]][row][end];
 	#if {"$tintin[pane]" == "top_left"} {#math tintin[map][row][end] {$slot[$tintin[pane]][row][end] - 1}};
 	#if {"$tintin[pane]" == "top_center"} {#math tintin[map][row][end] {$slot[$tintin[pane]][row][end] - 1}};
@@ -871,16 +872,28 @@ layout_sync_panes
 #alias {update_map_info} {
 	#if {"$tintin[pane]" == "none"} {#return};
 	#if {"$gmcp[room][info][zone]" == ""} {#return};
+	#map get {roomnote} {roomnote};
 	#map list {roomarea} {$gmcp[room][info][zone]} {variable} {area_mapped};
 	#var {room_cnt} {&area_mapped[]};
+	#map roomflag noglobal get {map[noglobal]};
+	#if {$map[noglobal] & 128} {
+		#var map[noglobal] on;
+		#var room_brace_col <118>
+	} {
+		#var map[noglobal] off;
+		#var room_brace_col <148>
+	};
 	#format {room_len} {%L} {$room_cnt};
 	#format {roomvnum_len} {%L} {$roomvnum};
 	#math {area_len} {$tintin[width] - 3 - $room_len};
 	#math {name_len} {$tintin[width] - 3 - $roomvnum_len};
+	#math {note_len} {$tintin[width]};
 	#format {area_trunc} {%.${area_len}s} {$areas[$gmcp[room][info][zone]][name]};
 	#format {name_trunc} {%.${name_len}s} {$roomname};
+	#format {note_trunc} {%.${note_len}s} {$roomnote};
 	#draw tile $tintin[row][area] $tintin[col][start] $tintin[row][area] $tintin[col][end] {<028>$area_trunc<148> (<128>$room_cnt<148>)<088>};
-	#draw tile $tintin[row][name] $tintin[col][start] $tintin[row][name] $tintin[col][end] {<148>[$numcol$roomvnum<088><148>] <138>$name_trunc<088>}
+	#draw tile $tintin[row][name] $tintin[col][start] $tintin[row][name] $tintin[col][end] {${room_brace_col}[$numcol$roomvnum<088>${room_brace_col}] <138>$name_trunc<088>};
+	#draw tile $tintin[row][note] $tintin[col][start] $tintin[row][note] $tintin[col][end] {<178>$note_trunc<088>}
 }
 
 #alias {draw_tintin_map} {

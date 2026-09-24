@@ -5,6 +5,7 @@
 #act {--> TICK <-- (%1 Qt: %2)} {
         #var qt %2;
         #var tick[elapsed] 0;
+	#if {"$moon[source]" == "text"} {moon_tick};
         update_status;
         #line gag
 }

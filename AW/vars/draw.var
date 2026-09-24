@@ -34,7 +34,7 @@
 #VARIABLE {draw}
 {
     {alert} {off}
-    {canvas} {on}
+    {canvas} {off}
     {caption} {on}
     {chat} {on}
     {gline} {off}

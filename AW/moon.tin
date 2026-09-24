@@ -1,0 +1,222 @@
+#class {moon} {kill}
+#class {moon} {open}
+
+#var {moon[white][period]} {65}
+#var {moon[white][up]} {17}
+#var {moon[black][period]} {50}
+#var {moon[black][up]} {13}
+#var {moon[grey][period]} {30}
+#var {moon[grey][up]} {8}
+#var {moon[alerts]} {1}
+#var {moon[level]} {3}
+#var {moon[ticks]} {off}
+#var {moon[caption]} {off}
+#var {moon[source]} {gmcp}
+#alias {moon_reset} {
+	#foreach {white;black;grey} {moon_name} {
+		#var {moon[$moon_name][phase]} {0}
+	};
+	#var {moon[text]} {3M:?};
+	#var {moon[ready]} {0};
+	#unvar {moon[next]}
+}
+
+/* Single tick source: text fallback is explicitly selected, never added to GMCP. */
+#event {IAC SB GMCP comm.tick IAC SE} {
+	#if {"$moon[source]" == "gmcp"} {moon_tick}
+}
+
+#act {^You see the white moon rise in the west.$} {moon_observe white 1}
+#act {^You see the grey moon rise in the east.$} {moon_observe grey 1}
+#act {^You see the black moon rise in the east.$} {moon_observe black 1}
+#act {^You notice the white moon starting to fall to the east.$} {moon_observe white 17}
+#act {^You notice the grey moon starting to fall to the west.$} {moon_observe grey 8}
+#act {^You notice the black moon starting to fall to the west.$} {moon_observe black 13}
+
+#alias {moon_observe} {
+	#var {moon[%1][phase]} {%2};
+	moon_calc
+}
+
+#alias {moon_tick} {
+	#foreach {white;black;grey} {moon_name} {
+		#if {$moon[$moon_name][phase] > 0} {
+			#math {moon[$moon_name][phase]} {$moon[$moon_name][phase] % $moon[$moon_name][period] + 1}
+		}
+	};
+	moon_calc;
+	#if {"$moon[ticks]" == "on"} {moon_show};
+	#else {moon_alert}
+}
+
+/*
+ * Find the first overlap by jumping to the next rise of an absent moon.
+ * No overlap can occur before that rise. Once all are up, the earliest
+ * setting gives the exact remaining duration. 1950 is LCM(65,50,30).
+ * Pair windows include any time shared with the third moon.
+ */
+#alias {moon_find} {
+	#local {mf_key} {%1};
+	#local {mf_names} {%2};
+	#local {mf_tick} {0};
+	#var {moon[next][$mf_key][start]} {-1};
+	#var {moon[next][$mf_key][duration]} {0};
+	#local {mf_name} {};
+	#local {mf_phase} {0};
+	#local {mf_wait} {0};
+	#local {mf_left} {0};
+	#while {$mf_tick < 1950} {
+		#local {mf_jump} {0};
+		#local {mf_duration} {1950};
+		#foreach {$mf_names} {mf_name} {
+			#math {mf_phase} {($moon[$mf_name][phase] - 1 + $mf_tick) % $moon[$mf_name][period] + 1};
+			#if {$mf_phase > $moon[$mf_name][up]} {
+				#math {mf_wait} {$moon[$mf_name][period] - $mf_phase + 1};
+				#if {$mf_wait > $mf_jump} {#var {mf_jump} {$mf_wait}}
+			} {
+				#math {mf_left} {$moon[$mf_name][up] - $mf_phase + 1};
+				#if {$mf_left < $mf_duration} {#var {mf_duration} {$mf_left}}
+			}
+		};
+		#if {$mf_jump == 0} {
+			#var {moon[next][$mf_key][start]} {$mf_tick};
+			#var {moon[next][$mf_key][duration]} {$mf_duration};
+			#return
+		};
+		#math {mf_tick} {$mf_tick + $mf_jump}
+	}
+}
+
+#alias {moon_calc} {
+	#var {moon[ready]} {0};
+	#var {moon[text]} {3M:?};
+	#if {$moon[white][phase] == 0 || $moon[black][phase] == 0 || $moon[grey][phase] == 0} {#return};
+	#var {moon[ready]} {1};
+	moon_find three {white;black;grey};
+	moon_find wg {white;grey};
+	moon_find wb {white;black};
+	moon_find bg {black;grey};
+	#if {$moon[next][three][start] == 0} {
+		#var {moon[text]} {3M:NOW $moon[next][three][duration]t}
+	} {
+		#var {moon[text]} {3M:$moon[next][three][start]t}
+	}
+}
+
+#alias {moon_window} {
+	#if {$moon[next][%1][start] == 0} {
+		#echo {<218>MOON<088>: <158>%2 NOW<088> ($moon[next][%1][duration] ticks left)}
+	} {
+		#echo {<218>MOON<088>: <178>%2<088> in $moon[next][%1][start] ticks, for $moon[next][%1][duration] ticks}
+	}
+}
+
+#alias {moon_show} {
+	#if {$moon[level] >= 3} {
+		#foreach {white;black;grey} {moon_name} {
+			#if {$moon[$moon_name][phase] == 0} {
+				#echo {<218>MOON<088>: $moon_name unknown}
+			}; #elseif {$moon[$moon_name][phase] <= $moon[$moon_name][up]} {
+				#math {moon_left} {$moon[$moon_name][up] - $moon[$moon_name][phase] + 1};
+				#echo {<218>MOON<088>: $moon_name <158>UP<088>, $moon_left ticks left}
+			}; #else {
+				#math {moon_left} {$moon[$moon_name][period] - $moon[$moon_name][phase] + 1};
+				#echo {<218>MOON<088>: $moon_name rises in $moon_left ticks}
+			};
+			#if {$moon[level] == 4} {
+				#echo {<218>MOON<088>: $moon_name phase $moon[$moon_name][phase]/$moon[$moon_name][period]}
+			}
+		}
+	};
+	#if {$moon[ready] == 0} {
+		#echo {<218>MOON<088>: Wait outdoors to observe each moon rise or fall.};
+		#return
+	};
+	moon_window three {Three moons};
+	#if {$moon[level] >= 2} {
+		moon_window wg {White/Grey};
+		moon_window wb {White/Black};
+		moon_window bg {Black/Grey}
+	}
+}
+
+#alias {moon_alert} {
+	#if {$moon[ready] == 0 || $moon[alerts] == 0} {#return};
+	#if {$moon[next][three][start] >= 0 && $moon[next][three][start] <= 5} {
+		moon_window three {Three moons};
+		#return
+	};
+	#if {$moon[alerts] == 2} {
+		#foreach {wg;wb} {moon_pair} {
+			#if {$moon[next][$moon_pair][start] >= 0 && $moon[next][$moon_pair][start] <= 3} {
+				#if {"$moon_pair" == "wg"} {moon_window wg {White/Grey}};
+				#else {moon_window wb {White/Black}}
+			}
+		}
+	}
+}
+
+#alias {moon_help} {
+	#echo {<218>MOON<088>: moon | moons | 3moons - current state and next conjunctions};
+	#echo {<178>  moons reset          <088>Forget phases and observe again};
+	#echo {<178>  moons source gmcp|text<088>Select server tick source (current: $moon[source])};
+	#echo {<178>  moons caption on|off<088>Compact 3-moon countdown in the caption};
+	#echo {<178>  moonticks [on|off]   <088>Show status each tick (current: $moon[ticks])};
+	#echo {<178>  moonalerts 0|1|2     <088>Off / three moons / also White pairs (current: $moon[alerts])};
+	#echo {<178>  moonlevel 1|2|3|4    <088>Triple / pairs / phases / debug (current: $moon[level])};
+	#echo {<088>Alerts repeat each tick: triples within 5 ticks, White pairs within 3.};
+	#echo {<088>Pairs include triple overlaps. Reload/reset/reconnect requires fresh observations.}
+}
+
+#alias {moons} {
+	#switch {"%1"} {
+		#case {""} {moon_show};
+		#case {"help"} {moon_help};
+		#case {"reset"} {moon_reset;#echo {<218>MOON<088>: Timers reset. Wait outdoors for observations.}};
+		#case {"source"} {
+			#if {"%2" == "gmcp" || "%2" == "text"} {
+				#var {moon[source]} {%2};
+				moon_reset;
+				#echo {<218>MOON<088>: Tick source $moon[source]. Timers reset.}
+			} {moon_help}
+		};
+		#case {"caption"} {
+			#if {"%2" == "on" || "%2" == "off"} {
+				#var {moon[caption]} {%2};
+				update_caption
+			} {moon_help}
+		};
+		#default {moon_help}
+	}
+}
+
+#alias {moon} {moons %0}
+#alias {3moons} {moons %0}
+
+#alias {moonticks} {
+	#if {"%1" == ""} {
+		#if {"$moon[ticks]" == "on"} {#var {moon[ticks]} {off}};
+		#else {#var {moon[ticks]} {on}}
+	}; #elseif {"%1" == "on" || "%1" == "off"} {
+		#var {moon[ticks]} {%1}
+	}; #else {moon_help;#return};
+	#echo {<218>MOON<088>: Tick output $moon[ticks].}
+}
+
+#alias {moonalerts} {
+	#if {"%1" == "0" || "%1" == "1" || "%1" == "2"} {
+		#var {moon[alerts]} {%1};
+		#echo {<218>MOON<088>: Alert level $moon[alerts].}
+	} {moon_help}
+}
+
+#alias {moonlevel} {
+	#if {"%1" == "1" || "%1" == "2" || "%1" == "3" || "%1" == "4"} {
+		#var {moon[level]} {%1};
+		#echo {<218>MOON<088>: Output level $moon[level].}
+	} {moon_help}
+}
+
+moon_reset
+
+#class {moon} {close}
