@@ -1,0 +1,384 @@
+#class {partroxis} {kill}
+#class {partroxis} {open}
+
+/*
+ * Partroxis guides, based on the room sequence and maze rules.
+ * Session-only memory. Requires the partroxis_room hook in AW/gmcp.tin.
+ * SEND OUTPUT observes movement without replacing direction aliases.
+ * Only one outstanding move is learned; queued movement is ambiguous.
+ */
+#var {px[enabled]} {0}
+#var {px[room]} {0}
+#var {px[serial]} {0}
+#var {px[query]} {0}
+#var {px[collect]} {0}
+#var {px[pending]} {}
+#var {px[ambiguous]} {0}
+#var {px[running]} {0}
+#var {px[expected]} {0}
+#var {px[issuing]} {0}
+
+#alias {partroxis_send} {#send {%1}}
+
+#function {px_next} {
+    #if {%1 >= 5763 && %1 < 5803} {#math {result} {%1 + 1}; #return {$result}};
+    #elseif {%1 == 5803} {#return {5812}};
+    #else {#return {0}}
+}
+
+#alias {partroxis_clear} {
+    #undelay {px_move_timeout};
+    #undelay {px_query_timeout};
+    #undelay {px_continue};
+    #unvar {px[cache]};
+    #unvar {px[exits]};
+    #var {px[pending]} {};
+    #var {px[ambiguous]} {0};
+    #var {px[query]} {0};
+    #var {px[collect]} {0};
+    #var {px[running]} {0};
+    #var {px[expected]} {0}
+}
+
+#alias {partroxis_stop} {
+    #undelay {px_continue};
+    #undelay {px_move_timeout};
+    #var {px[running]} {0};
+    #var {px[expected]} {0};
+    #var {px[pending]} {};
+    #var {px[ambiguous]} {0}
+}
+
+/* Called before mapper processing, using the real GMCP id (never map vnum). */
+#alias {partroxis_room} {
+    #local {px_new} {%1};
+    #local {px_old} {$px[room]};
+    #local {px_dir} {$px[pending]};
+    #local {px_want} {@px_next{$px_old}};
+    #var {px[room]} {$px_new};
+    #if {$px_new != 5812 && ($px_new < 5763 || $px_new > 5803)} {
+        partroxis_clear;
+        #return
+    };
+    #if {!$px[enabled]} {#return};
+    #if {"$px_dir" != "" && !$px[ambiguous] && $px_new != $px_old && $px_want > 0} {
+        #if {$px_new == $px_want} {
+            #var {px[cache][$px_old][good]} {$px_dir};
+            #unvar {px[cache][$px_old][bad][$px_dir]}
+        } {
+            #if {&{px[cache][$px_old][good]}} {
+                #if {"$px[cache][$px_old][good]" == "$px_dir"} {
+                    #unvar {px[cache]};
+                    #echo {<118>Partroxis: learned route changed; memory cleared.<099>}
+                }
+            };
+            #var {px[cache][$px_old][bad][$px_dir]} {1};
+            #echo {<138>Partroxis: wrong turn. Use partroxis return to retrace known moves.<099>}
+        }
+    };
+    #var {px[pending]} {};
+    #var {px[ambiguous]} {0};
+    #undelay {px_move_timeout};
+    #if {$px[running]} {
+        #if {$px[expected] == $px_new && $px_new != $px_old} {
+            #var {px[expected]} {0};
+            #delay {px_continue} {partroxis_step} {0.1};
+            #return
+        };
+        partroxis_stop;
+        #echo {<118>Partroxis: return stopped; arrival was not the expected room.<099>}
+    };
+    partroxis_show
+}
+
+/* No existing SEND OUTPUT handler in the AW setup. Keep this passive. */
+#event {SEND OUTPUT} {partroxis_sent {%0}}
+#alias {partroxis_sent} {
+    #if {!$px[enabled] || @px_next{$px[room]} == 0} {#return};
+    #local {px_cmd} {};
+    #local {px_dir} {};
+    #format {px_cmd} {%l} {%1};
+    #format {px_cmd} {%p} {$px_cmd};
+    #if {$px[running] && !$px[issuing]} {
+        #local {px_inflight} {0};
+        #if {"$px[pending]" != ""} {#var {px_inflight} {1}};
+        partroxis_stop;
+        #if {$px_inflight} {#var {px[ambiguous]} {1}}
+    };
+    #switch {"$px_cmd"} {
+        #case {"n"} {#var {px_dir} {n}};
+        #case {"north"} {#var {px_dir} {n}};
+        #case {"e"} {#var {px_dir} {e}};
+        #case {"east"} {#var {px_dir} {e}};
+        #case {"s"} {#var {px_dir} {s}};
+        #case {"south"} {#var {px_dir} {s}};
+        #case {"w"} {#var {px_dir} {w}};
+        #case {"west"} {#var {px_dir} {w}};
+        #case {"u"} {#var {px_dir} {u}};
+        #case {"up"} {#var {px_dir} {u}};
+        #case {"d"} {#var {px_dir} {d}};
+        #case {"down"} {#var {px_dir} {d}};
+        #case {"enter gate"} {#var {px_dir} {enter gate}}
+    };
+    #if {"$px_dir" == ""} {
+        #nop An intervening command may move us or repeat a failed move.;
+        #if {"$px[pending]" != ""} {partroxis_stop};
+        #return
+    };
+    #if {"$px[pending]" != "" || $px[ambiguous]} {
+        partroxis_stop;
+        #var {px[ambiguous]} {1};
+        #echo {<138>Partroxis: queued moves will not be learned; move one room at a time.<099>};
+        #return
+    };
+    #var {px[pending]} {$px_dir};
+    #delay {px_move_timeout} {
+        partroxis_stop;
+        #echo {<138>Partroxis: movement timed out; return stopped. Look to resynchronize.<099>}
+    } {5}
+}
+
+#alias {partroxis_show} {
+    #if {!$px[enabled]} {#return};
+    partroxis_init_data;
+    #local {px_id} {$px[room]};
+    #if {$px_id == 5812} {
+        #echo {<168>Partroxis: The Opus - maze complete.<099>};
+        #return
+    };
+    #if {@px_next{$px_id} == 0} {#return};
+    #if {&{partroxis_rooms[$px_id]}} {
+        #echo {<168>Partroxis [$px_id]: $partroxis_rooms[$px_id][mob]<099>}
+    };
+    #if {&{px[cache][$px_id][good]}} {
+        #echo {<168>Confirmed exit: $px[cache][$px_id][good]<099>};
+        #return
+    };
+    #if {$px_id == 5763} {
+        #echo {<168>Partroxis: open north, then north.<099>};
+        #return
+    };
+    #if {$px_id == 5777 || $px_id == 5792 || $px_id == 5803} {
+        #echo {<168>Partroxis: enter gate.<099>};
+        #return
+    };
+    #if {$px[query] || "$px[pending]" != ""} {#return};
+    #math {px[serial]} {$px[serial] + 1};
+    #var {px[query]} {$px_id};
+    #var {px[collect]} {0};
+    #unvar {px[exits]};
+    partroxis_send {exits};
+    partroxis_send {echo [Partroxis exits $px[serial]]};
+    #delay {px_query_timeout} {
+        #var {px[query]} {0};
+        #var {px[collect]} {0};
+        #echo {<138>Partroxis: exits incomplete. Use partroxis show to retry.<099>}
+    } {5}
+}
+
+#act {^Obvious exits from [%*$} {
+    #if {$px[query] == $px[room] && $px[query] > 0} {
+        #unvar {px[exits]};
+        #var {px[collect]} {1}
+    }
+}
+#act {^ North%!s: %1$} {partroxis_exit n {%1}}
+#act {^ East%!s: %1$} {partroxis_exit e {%1}}
+#act {^ South%!s: %1$} {partroxis_exit s {%1}}
+#act {^ West%!s: %1$} {partroxis_exit w {%1}}
+#act {^ Up%!s: %1$} {partroxis_exit u {%1}}
+#act {^ Down%!s: %1$} {partroxis_exit d {%1}}
+#alias {partroxis_exit} {
+    #if {$px[enabled] && $px[collect] && $px[query] == $px[room]} {
+        #format {px[exits][%1]} {%p} {%2}
+    }
+}
+#act {^[Partroxis exits %1]$} {partroxis_exits_done {%1}}
+#alias {partroxis_exits_done} {
+    #if {!$px[query] || "%1" != "$px[serial]"} {#return};
+    #undelay {px_query_timeout};
+    #local {px_query_room} {$px[query]};
+    #var {px[query]} {0};
+    #if {$px_query_room != $px[room]} {
+        #var {px[collect]} {0};
+        partroxis_show;
+        #return
+    };
+    #if {!$px[enabled] || !$px[collect]} {#return};
+    #var {px[collect]} {0};
+    #local {px_next_id} {@px_next{$px[room]}};
+    partroxis_init_data;
+    #local {px_choices} {};
+    #local {px_dark} {0};
+    #foreach {n;e;s;w;u;d} {px_exit_dir} {
+        #if {&{px[exits][$px_exit_dir]}} {
+            #if {"$px[exits][$px_exit_dir]" == "Too dark to see."} {#var {px_dark} {1}};
+            #if {"$px[exits][$px_exit_dir]" == "$partroxis_rooms[$px_next_id][name]" && !&{px[cache][$px[room]][bad][$px_exit_dir]}} {
+                #format {px_choices} {%s %s} {$px_choices} {$px_exit_dir}
+            }
+        }
+    };
+    #if {"$px_choices" != ""} {
+        #echo {<168>Possible exits:$px_choices -> $partroxis_rooms[$px_next_id][name]<099>}
+    };
+    #elseif {$px_dark} {
+        #echo {<138>Partroxis: night vision is needed to read the exits.<099>}
+    };
+    #else {
+        #echo {<138>Partroxis: no matching exit. Check visibility or use partroxis reset after a maze reset.<099>};
+        #echo {Partroxis debug: room=$px[room], next=$px_next_id, expected=[$partroxis_rooms[$px_next_id][name]]};
+        #echo {Partroxis debug: captured exits=[$px[exits]]}
+    }
+}
+
+/* Return follows only confirmed forward edges, one acknowledged move at a time. */
+#alias {partroxis_step} {
+    #if {!$px[running] || !$px[enabled]} {#return};
+    #if {"$gmcp[char][status][state]" != "3"} {
+        partroxis_stop;
+        #echo {<138>Partroxis: return stopped; character is not ready to move.<099>};
+        #return
+    };
+    #if {!&{px[cache][$px[room]][good]} || @px_next{$px[room]} == 0} {
+        partroxis_stop;
+        #echo {<168>Partroxis: end of the confirmed route.<099>};
+        partroxis_show;
+        #return
+    };
+    #var {px[expected]} {@px_next{$px[room]}};
+    #var {px[issuing]} {1};
+    partroxis_send {$px[cache][$px[room]][good]};
+    #var {px[issuing]} {0}
+}
+
+#act {^The Partroxis has opened yet again.$} {
+    partroxis_clear;
+    #if {$px[enabled]} {#echo {<138>Partroxis reset: learned exits cleared.<099>}}
+}
+
+#alias {partroxis} {
+    #switch {"%1"} {
+        #case {"guide"} {
+            partroxis_stop;
+            #if {"%2" == "on"} {#var {px[enabled]} {1}};
+            #elseif {"%2" == "off"} {#var {px[enabled]} {0}};
+            #elseif {"%2" == ""} {#math {px[enabled]} {!$px[enabled]}};
+            #else {#echo {Use partroxis guide [on|off].}; #return};
+            #echo {Partroxis guides: $px[enabled] (1=on, 0=off).};
+            partroxis_show
+        };
+        #case {"off"} {partroxis_stop; #var {px[enabled]} {0}; #echo {Partroxis guides off.}};
+        #case {"stop"} {partroxis_stop; #echo {Partroxis return stopped.}};
+        #case {"reset"} {partroxis_clear; #echo {Partroxis memory cleared.}; partroxis_show};
+        #case {"show"} {partroxis_show};
+        #case {"return"} {
+            #if {!$px[enabled] || @px_next{$px[room]} == 0} {
+                #echo {Enable partroxis guide on while in the maze first.}; #return
+            };
+            #if {$px[query] || "$px[pending]" != "" || $px[ambiguous]} {
+                #echo {Wait for movement/exits to finish, then retry partroxis return.}; #return
+            };
+            #var {px[running]} {1};
+            partroxis_step
+        };
+        #case {"listdata"} {
+            partroxis_init_data;
+            #foreach {*partroxis_rooms[]} {px_id} {
+                #echo {$px_id: $partroxis_rooms[$px_id][mob] - $partroxis_rooms[$px_id][name]}
+            }
+        };
+        #default {
+            #echo {Partroxis: guide [on|off], show, return, stop, reset, off, listdata, help.};
+            #echo {Enable guides, then move one room at a time using n/e/s/w/u/d or enter gate.};
+            #echo {Return retraces confirmed moves only. Memory clears on leaving, disconnect, reload, or repop.}
+        }
+    }
+}
+
+#alias {partroxis_init_data} {
+    #var {partroxis_rooms[5764][name]} {In the Mountains};
+    #var {partroxis_rooms[5764][mob]} {A Mountain of Rock};
+    #var {partroxis_rooms[5765][name]} {Through the Woods};
+    #var {partroxis_rooms[5765][mob]} {The Rabid Tiger-man};
+    #var {partroxis_rooms[5766][name]} {The Forest};
+    #var {partroxis_rooms[5766][mob]} {The man-eating wolfen};
+    #var {partroxis_rooms[5767][name]} {Swampy Path};
+    #var {partroxis_rooms[5767][mob]} {The Buck-Toothed Lizard-Man};
+    #var {partroxis_rooms[5768][name]} {The Forest};
+    #var {partroxis_rooms[5768][mob]} {The Living Tree};
+    #var {partroxis_rooms[5769][name]} {Along the River};
+    #var {partroxis_rooms[5769][mob]} {The Furious Flying Fish Man};
+    #var {partroxis_rooms[5770][name]} {The Desert};
+    #var {partroxis_rooms[5770][mob]} {The Quicksand};
+    #var {partroxis_rooms[5771][name]} {The Desert};
+    #var {partroxis_rooms[5771][mob]} {The Flesh Eating Ants};
+    #var {partroxis_rooms[5772][name]} {The Wheat Fields};
+    #var {partroxis_rooms[5772][mob]} {The Living Vines};
+    #var {partroxis_rooms[5773][name]} {In the Mountains};
+    #var {partroxis_rooms[5773][mob]} {The Gigantic Bulette};
+    #var {partroxis_rooms[5774][name]} {In the Mountains};
+    #var {partroxis_rooms[5774][mob]} {A Bird of Prey};
+    #var {partroxis_rooms[5775][name]} {A Cave};
+    #var {partroxis_rooms[5775][mob]} {The Otherworld Assassin};
+    #var {partroxis_rooms[5776][name]} {The Wheat Fields};
+    #var {partroxis_rooms[5776][mob]} {Vision of a False Portal};
+    #var {partroxis_rooms[5777][name]} {The Wheat Fields};
+    #var {partroxis_rooms[5777][mob]} {The Hungry Dragon};
+    #var {partroxis_rooms[5778][name]} {The Forest};
+    #var {partroxis_rooms[5778][mob]} {A Bloodthirsty Tiger-Man};
+    #var {partroxis_rooms[5779][name]} {The Swamp};
+    #var {partroxis_rooms[5779][mob]} {The Cold Hearted Lizard-Man};
+    #var {partroxis_rooms[5780][name]} {The Swamp};
+    #var {partroxis_rooms[5780][mob]} {The Insane Cheryb};
+    #var {partroxis_rooms[5781][name]} {River of Blood};
+    #var {partroxis_rooms[5781][mob]} {Flowing Blood};
+    #var {partroxis_rooms[5782][name]} {A small Cave};
+    #var {partroxis_rooms[5782][mob]} {A collapsing cave};
+    #var {partroxis_rooms[5783][name]} {A small Cave};
+    #var {partroxis_rooms[5783][mob]} {The Dream Eater};
+    #var {partroxis_rooms[5784][name]} {Through the Passage of Time};
+    #var {partroxis_rooms[5784][mob]} {Reality Check};
+    #var {partroxis_rooms[5785][name]} {The Swamp};
+    #var {partroxis_rooms[5785][mob]} {Blood Sucking Vines};
+    #var {partroxis_rooms[5786][name]} {The Forest};
+    #var {partroxis_rooms[5786][mob]} {The Golden Haired Assassin};
+    #var {partroxis_rooms[5787][name]} {The Wheat Fields};
+    #var {partroxis_rooms[5787][mob]} {Mass of Flying Dismembered Body Parts};
+    #var {partroxis_rooms[5788][name]} {The Wheat Fields};
+    #var {partroxis_rooms[5788][mob]} {Bloodthirsty Killer Gerbils};
+    #var {partroxis_rooms[5789][name]} {In the Mountains};
+    #var {partroxis_rooms[5789][mob]} {A Monster Bulette};
+    #var {partroxis_rooms[5790][name]} {The Wheat Fields};
+    #var {partroxis_rooms[5790][mob]} {the Thing};
+    #var {partroxis_rooms[5791][name]} {Along the River};
+    #var {partroxis_rooms[5791][mob]} {The Big and Deadly Dragon};
+    #var {partroxis_rooms[5792][name]} {The Wheat Field};
+    #var {partroxis_rooms[5792][mob]} {Soul of the Damned};
+    #var {partroxis_rooms[5793][name]} {In the Mountains};
+    #var {partroxis_rooms[5793][mob]} {Lesser Chitryn};
+    #var {partroxis_rooms[5794][name]} {In the Mountains};
+    #var {partroxis_rooms[5794][mob]} {Delusions of Hope};
+    #var {partroxis_rooms[5795][name]} {The Desert};
+    #var {partroxis_rooms[5795][mob]} {Swarm of Blood Sucking Bio-chemical Gnats};
+    #var {partroxis_rooms[5796][name]} {The Swamp};
+    #var {partroxis_rooms[5796][mob]} {It};
+    #var {partroxis_rooms[5797][name]} {The Desert};
+    #var {partroxis_rooms[5797][mob]} {Your Worst Nightmare};
+    #var {partroxis_rooms[5798][name]} {The Wheat Field};
+    #var {partroxis_rooms[5798][mob]} {Walking Suit of Armor};
+    #var {partroxis_rooms[5799][name]} {A Cave};
+    #var {partroxis_rooms[5799][mob]} {Lesser Otherworld Dragon};
+    #var {partroxis_rooms[5800][name]} {A Cave};
+    #var {partroxis_rooms[5800][mob]} {Insane Cheryb};
+    #var {partroxis_rooms[5801][name]} {In the Mountains};
+    #var {partroxis_rooms[5801][mob]} {Otherworld Dragon};
+    #var {partroxis_rooms[5802][name]} {In the Mountains};
+    #var {partroxis_rooms[5802][mob]} {Hell Hound Behemoths};
+    #var {partroxis_rooms[5803][name]} {A vast Expanse of Plains};
+    #var {partroxis_rooms[5803][mob]} {Chitryn};
+    #var {partroxis_rooms[5812][name]} {The Opus};
+    #var {partroxis_rooms[5812][mob]} {Grax, Lord of the Opus};
+}
+partroxis_init_data
+
+#class {partroxis} {close}
