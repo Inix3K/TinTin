@@ -18,7 +18,7 @@ F 1048839
 
 G 99999
 
-I 47195
+I 20019
 
 L {ASCII NESW LINE} {NO EXITS} {x}
 L {ASCII NESW LINE} {N} {o}
@@ -92461,6 +92461,7 @@ E {20019}{d}{open d;d}{32}{0}{}{1.000}{}{0.00}
 R {20019}{128}{<278>}{A Large Steel Vault}{<278>[ ]<088>}{  This room is made entirely out of steel, and other metals whose origins you're not entirely sure of.  In the center of the otherwise spotless and undecorated room is another sarcophagus.  This one, unlike the others, seems to be covered in dried blood, except for a lazy S-shape in the center, which looks somewhat familiar...   }{cataclysm}{}{inside}{}{1.000}{}
 E {20018}{u}{open u;u}{16}{0}{}{1.000}{}{0.00}
 E {20020}{enter lich}{enter lich}{0}{0}{}{1.000}{}{0.00}
+E {20020}{d}{enter lich}{32}{0}{}{1.000}{}{0.00}
 
 R {20020}{128}{<148>}{Down the Hole}{<148>. .<088>}{  Through the hole in the false sarcophagus you've arrived in a small cave.  Different from the the catacombs, this seems to be natural, but the painted glyphs on the rough walls suggest otherwise.  To the north you think you can make out a faint glow through an aperture in the wall.  You could probably squeeze through... }{cataclysm}{}{underground}{}{1.000}{}
 E {20021}{n}{n}{1}{0}{}{1.000}{}{0.00}

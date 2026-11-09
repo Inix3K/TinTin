@@ -1,6 +1,10 @@
 #class {events} {kill}
 #class {events} {open}
 
+#event {RECEIVED INPUT} {
+	#var idle 0;
+}
+
 /* AW-specific screen events for pane-based draw.tin. */
 
 /* Screen sizing */

@@ -12,11 +12,10 @@
 
 /* Aliases */
 #var {cspell} {362}
-#alias {cc} {cast $cspell}
+#alias {cc} {cast $cspell %0}
 #alias {qh} {get heal bag;drink heal}
 #alias {qs} {get lotus bag;drink lotus}
 #alias {ep} {wear duffle;enter;wear amulet}
-#alias {sr} {spellup retry}
 
 #alias {np} {
 	#map roomflag noglobal on;

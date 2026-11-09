@@ -6,6 +6,7 @@
         #var qt %2;
         #var tick[elapsed] 0;
 	#if {"$moon[source]" == "text"} {moon_tick};
+	#if {$autoslept} {autowake}
         update_status;
         #line gag
 }
@@ -13,7 +14,30 @@
 #var tick[elapsed] 0
 #ticker {tick} {
         #math {tick[elapsed]} {$tick[elapsed] + 1};
+	#if {"$autosleep" == "on" && $tick[elapsed] == 29} {autosleep};
+	#math {idle} {$idle + 1};
         update_caption
 } {1}
+
+#var autosleep on
+#alias autosleep {
+	#if {
+		$gmcp[char][status][state] == 3 &&
+		($gmcp[char][vitals][hp] < $gmcp[char][maxstats][maxhp] ||
+		$gmcp[char][vitals][mana] < $gmcp[char][maxstats][maxmana] ||
+		$gmcp[char][vitals][moves] < $gmcp[char][maxstats][maxmoves])
+	} {
+		wear 1861092240;
+		sleep;
+		#var autoslept 1
+	}
+}
+
+#alias autowake {
+			wake;
+			wear sig;
+			spellup retry;
+			#var autoslept 0
+}	
 
 #class {tick} {close}
