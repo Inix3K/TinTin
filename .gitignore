@@ -35,6 +35,11 @@ AW/vars/portals.var
 3k/notes/
 3k/rtrick.tin
 
+# Bootstaff
+AW/bootstaff-state/
+AW/bootstaff.data
+AW/bootstaff.tin
+
 #Misc
 ascii/
 colors.tin
@@ -45,3 +50,4 @@ scripts/.scripts/
 *.json
 tmp/
 *.gz
+tt/

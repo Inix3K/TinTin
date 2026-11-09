@@ -8,6 +8,8 @@
 #read .tt/AW/prompt.tin
 #read .tt/AW/tick.tin
 #read .tt/AW/hunt.tin
+#read .tt/AW/partroxis.tin
+#read .tt/AW/moon.tin
 
 #NOP Load draw last so other vars are populated
 #read .tt/AW/draw.tin

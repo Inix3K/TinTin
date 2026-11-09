@@ -1,6 +1,11 @@
 #class {inixaw} {kill}
 #class {inixaw} {open}
 
+/* Additional Loads */
+#read .tt/AW/bootstaff.tin
+#read .tt/AW/partroxis.tin
+#read .tt/AW/moon.tin
+
 /* Ticker */
 #ticker {unidle} {gl} {600}
 
@@ -8,10 +13,15 @@
 /* Aliases */
 #var {cspell} {362}
 #alias {cc} {cast $cspell}
-#alias {np} {#map roomflag noglobal on}
 #alias {qh} {get heal bag;drink heal}
 #alias {qs} {get lotus bag;drink lotus}
 #alias {ep} {wear duffle;enter;wear amulet}
 #alias {sr} {spellup retry}
+
+#alias {np} {
+	#map roomflag noglobal on;
+	update_map_info
+}
+#alias {rn} {#map set {roomname} {$gmcp[room][info][name]}}
 
 #class {inixaw} {close}

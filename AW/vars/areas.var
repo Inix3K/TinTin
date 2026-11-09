@@ -212,6 +212,10 @@
         {min} {1}
         {name} {The Path of the Believer}
     }
+    {blackclaw} 
+    {
+        {name} {Black Claw Crag}
+    }
     {blackrose} 
     {
         {lock} {140}
@@ -1895,6 +1899,10 @@
         {max} {210}
         {min} {210}
         {name} {Touchstone Cavern}
+    }
+    {transcend} 
+    {
+        {name} {Transcendence}
     }
     {twinlobe} 
     {

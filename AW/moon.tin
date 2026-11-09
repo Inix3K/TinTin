@@ -1,16 +1,16 @@
 #class {moon} {kill}
 #class {moon} {open}
 
-#var {moon[white][period]} {65}
-#var {moon[white][up]} {17}
-#var {moon[black][period]} {50}
+#var {moon[white][period]} {60}
+#var {moon[white][up]} {16}
+#var {moon[black][period]} {48}
 #var {moon[black][up]} {13}
-#var {moon[grey][period]} {30}
+#var {moon[grey][period]} {28}
 #var {moon[grey][up]} {8}
 #var {moon[alerts]} {1}
 #var {moon[level]} {3}
 #var {moon[ticks]} {off}
-#var {moon[caption]} {off}
+#var {moon[caption]} {on}
 #var {moon[source]} {gmcp}
 #alias {moon_reset} {
 	#foreach {white;black;grey} {moon_name} {
@@ -18,7 +18,8 @@
 	};
 	#var {moon[text]} {3M:?};
 	#var {moon[ready]} {0};
-	#unvar {moon[next]}
+	#unvar {moon[next]};
+	#if {"$moon[caption]" == "on"} {update_caption};
 }
 
 /* Single tick source: text fallback is explicitly selected, never added to GMCP. */
@@ -29,13 +30,14 @@
 #act {^You see the white moon rise in the west.$} {moon_observe white 1}
 #act {^You see the grey moon rise in the east.$} {moon_observe grey 1}
 #act {^You see the black moon rise in the east.$} {moon_observe black 1}
-#act {^You notice the white moon starting to fall to the east.$} {moon_observe white 17}
-#act {^You notice the grey moon starting to fall to the west.$} {moon_observe grey 8}
-#act {^You notice the black moon starting to fall to the west.$} {moon_observe black 13}
+#act {^You notice the white moon starting to fall to the east.$} {moon_observe white $moon[white][up]}
+#act {^You notice the grey moon starting to fall to the west.$} {moon_observe grey $moon[grey][up]}
+#act {^You notice the black moon starting to fall to the west.$} {moon_observe black $moon[black][up]}
 
 #alias {moon_observe} {
 	#var {moon[%1][phase]} {%2};
-	moon_calc
+	moon_calc;
+	#if {"$moon[caption]" == "on"} {update_caption}
 }
 
 #alias {moon_tick} {
@@ -45,6 +47,7 @@
 		}
 	};
 	moon_calc;
+	#if {"$moon[caption]" == "on"} {update_caption};
 	#if {"$moon[ticks]" == "on"} {moon_show};
 	#else {moon_alert}
 }
@@ -52,7 +55,7 @@
 /*
  * Find the first overlap by jumping to the next rise of an absent moon.
  * No overlap can occur before that rise. Once all are up, the earliest
- * setting gives the exact remaining duration. 1950 is LCM(65,50,30).
+ * setting gives the exact remaining duration. 1680 is LCM(60,48,28).
  * Pair windows include any time shared with the third moon.
  */
 #alias {moon_find} {
@@ -65,9 +68,9 @@
 	#local {mf_phase} {0};
 	#local {mf_wait} {0};
 	#local {mf_left} {0};
-	#while {$mf_tick < 1950} {
+	#while {$mf_tick < 1680} {
 		#local {mf_jump} {0};
-		#local {mf_duration} {1950};
+		#local {mf_duration} {1680};
 		#foreach {$mf_names} {mf_name} {
 			#math {mf_phase} {($moon[$mf_name][phase] - 1 + $mf_tick) % $moon[$mf_name][period] + 1};
 			#if {$mf_phase > $moon[$mf_name][up]} {

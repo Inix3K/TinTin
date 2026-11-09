@@ -322,6 +322,19 @@
 	where $sndmob
 }
 
+#alias sndall {
+	#var sndmob %0;
+	#var snd on;
+
+	#map get {roomarea} {area};
+	snd_find_rooms {} {$area};
+	#if {&rooms[] > 0} {
+		sndr
+	} {
+		#echo {<128>SND<099>: Something failed}
+	}
+}
+
 #alias snd_add_room {
 	#regex {%1} {\.000} {#nop} {#list {rooms} add {%1}}
 }
