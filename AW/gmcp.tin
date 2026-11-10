@@ -123,9 +123,10 @@
 	#format {pr_cap}	{%+1s}	{$gmcp[char][worth][pracs]};
 	#math	{tick_cap}	{30 - $tick[elapsed]};
 	#format {tick_cap}	{%+2s}	{$tick_cap};
-	#var	{caption[text]}	{ <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  Tick: $tick_cap};
+	#var	{caption[text]}	{ <128>$world_cap <238>G<278>:<138>$gold_cap<278>[<178>$bank_cap<278>]  <268>QP<278>:<168>$qp_cap  <258>TP<278>:<158>$tp_cap  <228>Trains<278>:<128>$tr_cap  <238>Pracs<278>:<138>$pr_cap<099>  <198>Tick<278>: $tick_cap <148>Idle<278>: $idle};
 	#if {"$moon[caption]" == "on"} {
-		#var {caption[text]} {$caption[text]  <268>$moon[text]<099>}
+		moon_caption;
+		#var {caption[text]} {$caption[text]  $moon[text]}
 	};
 	draw_caption
 }

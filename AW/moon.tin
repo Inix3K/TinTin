@@ -12,11 +12,65 @@
 #var {moon[ticks]} {off}
 #var {moon[caption]} {on}
 #var {moon[source]} {gmcp}
+#var {moon[display]} {ticks}
+#var {moon[caption_format]} {ticks}
+
+/* Only server ticks advance phases. Wall time interpolates at most one tick. */
+#function {moon_time} {
+	#local {mt_now} {0};
+	#format {mt_now} {%T} {};
+	#local {mt_elapsed} {0};
+	#if {%2 == 1} {
+		#math {mt_elapsed} {$mt_now - $moon[stamp]};
+		#if {$mt_elapsed < 0} {#local {mt_elapsed} {0}};
+		#if {$mt_elapsed > 30} {#local {mt_elapsed} {30}}
+	};
+	#local {mt_seconds} {0};
+	#math {mt_seconds} {%1 * 30 - $mt_elapsed};
+	#if {$mt_seconds <= 0} {#return {0s}};
+	#local {mt_h} {0};
+	#local {mt_m} {0};
+	#local {mt_s} {0};
+	#math {mt_h} {$mt_seconds / 3600};
+	#math {mt_m} {$mt_seconds % 3600 / 60};
+	#math {mt_s} {$mt_seconds % 60};
+	#local {mt_text} {};
+	#if {$mt_h > 0} {#format {mt_text} {%sh } {$mt_h}};
+	#if {$mt_m > 0} {#format {mt_text} {%s%sm } {$mt_text} {$mt_m}};
+	#if {$mt_s > 0} {#format {mt_text} {%s%ss} {$mt_text} {$mt_s}};
+	#format {mt_text} {%p} {$mt_text};
+	#return {$mt_text}
+}
+
+/* %2: 1 for a countdown, 0 for a future window's full duration. */
+#function {moon_span} {
+	#if {"$moon[display]" == "time"} {#return {@moon_time{%1;%2}}};
+	#if {"$moon[display]" == "both"} {#return {%1 ticks (@moon_time{%1;%2})}};
+	#return {%1 ticks}
+}
+
+#alias {moon_caption} {
+	#var {moon[text]} {<268>3M<099>: ?};
+	#if {$moon[ready] == 0} {#return};
+	#local {mc_left} {$moon[next][three][start]};
+	#local {mc_now} {};
+	#if {$mc_left == 0} {
+		#local {mc_left} {$moon[next][three][duration]};
+		#local {mc_now} {NOW }
+	};
+	#if {"$moon[caption_format]" == "time"} {
+		#var {moon[text]} {<268>3M<099>: $mc_now@moon_time{$mc_left;1}}
+	} {
+		#format {moon[text]} {<268>3M<099>: %s%st} {$mc_now} {$mc_left}
+	}
+}
+
 #alias {moon_reset} {
+	#format {moon[stamp]} {%T} {};
 	#foreach {white;black;grey} {moon_name} {
 		#var {moon[$moon_name][phase]} {0}
 	};
-	#var {moon[text]} {3M:?};
+	#var {moon[text]} {<268>3M<099>: ?};
 	#var {moon[ready]} {0};
 	#unvar {moon[next]};
 	#if {"$moon[caption]" == "on"} {update_caption};
@@ -41,6 +95,7 @@
 }
 
 #alias {moon_tick} {
+	#format {moon[stamp]} {%T} {};
 	#foreach {white;black;grey} {moon_name} {
 		#if {$moon[$moon_name][phase] > 0} {
 			#math {moon[$moon_name][phase]} {$moon[$moon_name][phase] % $moon[$moon_name][period] + 1}
@@ -99,18 +154,14 @@
 	moon_find wg {white;grey};
 	moon_find wb {white;black};
 	moon_find bg {black;grey};
-	#if {$moon[next][three][start] == 0} {
-		#var {moon[text]} {3M:NOW $moon[next][three][duration]t}
-	} {
-		#var {moon[text]} {3M:$moon[next][three][start]t}
-	}
+	moon_caption
 }
 
 #alias {moon_window} {
 	#if {$moon[next][%1][start] == 0} {
-		#echo {<218>MOON<088>: <158>%2 NOW<088> ($moon[next][%1][duration] ticks left)}
+		#echo {<218>MOON<088>: <158>%2 NOW<088> (@moon_span{$moon[next][%1][duration];1} left)}
 	} {
-		#echo {<218>MOON<088>: <178>%2<088> in $moon[next][%1][start] ticks, for $moon[next][%1][duration] ticks}
+		#echo {<218>MOON<088>: <178>%2<088> in @moon_span{$moon[next][%1][start];1}, for @moon_span{$moon[next][%1][duration];0}}
 	}
 }
 
@@ -121,10 +172,10 @@
 				#echo {<218>MOON<088>: $moon_name unknown}
 			}; #elseif {$moon[$moon_name][phase] <= $moon[$moon_name][up]} {
 				#math {moon_left} {$moon[$moon_name][up] - $moon[$moon_name][phase] + 1};
-				#echo {<218>MOON<088>: $moon_name <158>UP<088>, $moon_left ticks left}
+				#echo {<218>MOON<088>: $moon_name <158>UP<088>, @moon_span{$moon_left;1} left}
 			}; #else {
 				#math {moon_left} {$moon[$moon_name][period] - $moon[$moon_name][phase] + 1};
-				#echo {<218>MOON<088>: $moon_name rises in $moon_left ticks}
+				#echo {<218>MOON<088>: $moon_name rises in @moon_span{$moon_left;1}}
 			};
 			#if {$moon[level] == 4} {
 				#echo {<218>MOON<088>: $moon_name phase $moon[$moon_name][phase]/$moon[$moon_name][period]}
@@ -161,12 +212,14 @@
 
 #alias {moon_help} {
 	#echo {<218>MOON<088>: moon | moons | 3moons - current state and next conjunctions};
-	#echo {<178>  moons reset          <088>Forget phases and observe again};
-	#echo {<178>  moons source gmcp|text<088>Select server tick source (current: $moon[source])};
-	#echo {<178>  moons caption on|off<088>Compact 3-moon countdown in the caption};
-	#echo {<178>  moonticks [on|off]   <088>Show status each tick (current: $moon[ticks])};
-	#echo {<178>  moonalerts 0|1|2     <088>Off / three moons / also White pairs (current: $moon[alerts])};
-	#echo {<178>  moonlevel 1|2|3|4    <088>Triple / pairs / phases / debug (current: $moon[level])};
+	#echo {<178>  moons reset                      <088>Forget phases and observe again};
+	#echo {<178>  moons source gmcp|text           <088>Select server tick source (current: $moon[source])};
+	#echo {<178>  moons caption on|off             <088>Compact 3-moon countdown in the caption};
+	#echo {<178>  moons display ticks|time|both    <088>Screen and alerts (current: $moon[display])};
+	#echo {<178>  moons caption ticks|time         <088>Caption format (current: $moon[caption_format])};
+	#echo {<178>  moonticks [on|off]               <088>Show status each tick (current: $moon[ticks])};
+	#echo {<178>  moonalerts 0|1|2                 <088>Off / three moons / also White pairs (current: $moon[alerts])};
+	#echo {<178>  moonlevel 1|2|3|4                <088>Triple / pairs / phases / debug (current: $moon[level])};
 	#echo {<088>Alerts repeat each tick: triples within 5 ticks, White pairs within 3.};
 	#echo {<088>Pairs include triple overlaps. Reload/reset/reconnect requires fresh observations.}
 }
@@ -175,6 +228,12 @@
 	#switch {"%1"} {
 		#case {""} {moon_show};
 		#case {"help"} {moon_help};
+		#case {"display"} {
+			#if {"%2" == "ticks" || "%2" == "time" || "%2" == "both"} {
+				#var {moon[display]} {%2};
+				moon_show
+			} {moon_help}
+		};
 		#case {"reset"} {moon_reset;#echo {<218>MOON<088>: Timers reset. Wait outdoors for observations.}};
 		#case {"source"} {
 			#if {"%2" == "gmcp" || "%2" == "text"} {
@@ -184,6 +243,13 @@
 			} {moon_help}
 		};
 		#case {"caption"} {
+			#if {"%2" == "ticks" || "%2" == "time"} {
+				#var {moon[caption_format]} {%2};
+				#var {moon[caption]} {on};
+				moon_caption;
+				update_caption;
+				#return
+			};
 			#if {"%2" == "on" || "%2" == "off"} {
 				#var {moon[caption]} {%2};
 				update_caption
